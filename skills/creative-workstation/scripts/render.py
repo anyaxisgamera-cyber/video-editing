@@ -153,11 +153,15 @@ def render_video(project: Path, props: Path, tl: dict, out: Path, chunk_s: float
     fps = tl["meta"]["fps"]
     total = tl["meta"]["durationInFrames"]
     chunk = max(1, int(round(chunk_s * fps)))
-    work = project / "work" / f"chunks-{out.stem}"
-    work.mkdir(parents=True, exist_ok=True)
     env = {**os.environ, "REMOTION_BROWSER": os.environ.get("REMOTION_BROWSER", DEFAULT_BROWSER)}
-    # Serve the project's public folder (symlink to the media library) next to the bundle.
     bdir = bundle(project / "work")
+    # Chunks are only reusable for the same timeline + engine build + settings: key the folder by a hash of them,
+    # so editing the storyboard or the engine never silently re-uses stale chunks.
+    import hashlib
+    key = hashlib.sha1(props.read_bytes() + (bdir / ".stamp").read_bytes() + f"{chunk}|{crf}|{scale}".encode()).hexdigest()[:10]
+    work = project / "work" / f"chunks-{out.stem}-{key}"
+    work.mkdir(parents=True, exist_ok=True)
+    # Serve the project's public folder (symlink to the media library) next to the bundle.
     pub = bdir / "public"
     if pub.is_symlink() or pub.exists():
         if pub.is_symlink() or pub.is_file():

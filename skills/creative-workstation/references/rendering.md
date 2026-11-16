@@ -7,8 +7,10 @@
    + every cue in `audio.cues` at its absolute sample. Two-pass EBU R128 `loudnorm` (linear mode) → AAC 256k 48 kHz.
 3. Bundles the engine once (`npx remotion bundle`, re-used while `engine/src` is unchanged) and symlinks the
    project's `public/` (→ media library) into the bundle.
-4. Renders the video in chunks (`--frames=a-b --muted`, default 60 s each), skipping any chunk that already has the
-   right frame count → **resumable**: re-run the same command after an interruption.
+4. Renders the video in chunks (`--frames=a-b --muted`, default 60 s each) into
+   `work/chunks-<name>-<hash>/`, where the hash covers the timeline, the engine build and the encode settings.
+   Re-running the same command skips chunks that are already complete → **resumable**; editing the storyboard or
+   the engine changes the hash, so stale chunks are never reused.
 5. Joins chunks with the concat demuxer (`-c copy`, no re-encode), muxes the audio, `+faststart`.
 6. Verifies: frames == expected, duration, fps, geometry, audio codec/rate, full decode, integrated LUFS / true peak,
    contact sheet + one still per scene in `review/<name>/`. Writes `renders/<name>.render.json`.
