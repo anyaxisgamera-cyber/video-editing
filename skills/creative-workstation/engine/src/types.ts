@@ -13,7 +13,8 @@ export type TransitionType =
 
 export type SpriteSource =
   | {kind: 'image'; src: string}
-  | {kind: 'sequence'; dir: string; frames: number; pattern?: string; revolutionSeconds?: number; startOffset?: number};
+  | {kind: 'sequence'; dir: string; frames: number; pattern?: string; revolutionSeconds?: number; startOffset?: number}
+  | {kind: 'lottie'; src: string; playbackRate?: number};
 
 export type FloatingObject = {
   sprite: SpriteSource;

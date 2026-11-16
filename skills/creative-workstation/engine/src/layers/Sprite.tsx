@@ -1,8 +1,21 @@
-import React from 'react';
-import {Img, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
+import React, {useEffect, useState} from 'react';
+import {Img, staticFile, useCurrentFrame, useDelayRender, useVideoConfig} from 'remotion';
+import {Lottie, type LottieAnimationData} from '@remotion/lottie';
 import type {SpriteSource} from '../types';
 
 const pad = (n: number) => String(n).padStart(4, '0');
+
+/** Animated vector (Lottie/Bodymovin JSON from the library), loaded with delayRender so renders wait for it. */
+const LottieSprite: React.FC<{src: string; height: number; rate?: number; style?: React.CSSProperties}> = ({src, height, rate, style}) => {
+  const {delayRender, continueRender, cancelRender} = useDelayRender();
+  const [handle] = useState(() => delayRender(`Loading Lottie ${src}`));
+  const [data, setData] = useState<LottieAnimationData | null>(null);
+  useEffect(() => {
+    fetch(staticFile(src)).then((r) => r.json()).then((j) => { setData(j); continueRender(handle); }).catch((e) => cancelRender(e));
+  }, [src, handle, continueRender, cancelRender]);
+  if (!data) return null;
+  return <Lottie animationData={data} loop playbackRate={rate ?? 1} style={{height, width: height, ...style}} />;
+};
 
 /**
  * A transparent PNG, or a looping PNG sequence (Blender turntable) played back at any speed.
@@ -12,6 +25,9 @@ const pad = (n: number) => String(n).padStart(4, '0');
 export const Sprite: React.FC<{src: SpriteSource; height: number; style?: React.CSSProperties}> = ({src, height, style}) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
+  if (src.kind === 'lottie') {
+    return <LottieSprite src={src.src} height={height} rate={src.playbackRate} style={style} />;
+  }
   if (src.kind === 'image') {
     return <Img src={staticFile(src.src)} style={{height, width: 'auto', display: 'block', ...style}} />;
   }

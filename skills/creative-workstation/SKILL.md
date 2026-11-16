@@ -55,8 +55,17 @@ verification (frames, duration, fps, audio, loudness, full decode) and review st
     (−16 LUFS / −1.5 dBTP), mux, verification report `renders/<name>.render.json`, contact sheet + per-scene stills
     in `review/<name>/`. 4K: `timeline.py compile ... --width 3840 --height 2160`.
 12. **Inspect + deliver** — Read the contact sheet and stills; check `verify.passed`, frames == expected, LUFS.
+    Prove sync: `/opt/cws-venv/bin/python tests/sync_check.py renders/<name>.mp4 <timeline>.json` locates every SFX
+    in the master by waveform cross-correlation (sample-accurate) and every transition by its change centroid.
     Deliver the master + the editable project (`storyboard.json`, `timeline.json`, `luts/`, engine source,
     catalogue). Re-edits = edit storyboard → recompile → re-render.
+
+## Talking-head / raw-takes projects
+
+Use the `fable-video-edit` skill (Whisper word timestamps → take selection → `final-edit.json` → ffmpeg cuts → LUT →
+Remotion overlays). `tests/fable_workflow_test.py` runs that whole chain on synthetic spoken takes and re-transcribes
+the assembly to prove zero fillers and correct order. Whisper (base) tends to drop "um/uh" from transcripts — count
+restarts/repeated phrases too, or prompt Whisper with disfluent text, before trusting a filler count of 0.
 
 ## Photo & graphic production
 

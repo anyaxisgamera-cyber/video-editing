@@ -6,17 +6,21 @@ import type {TransitionType} from './types';
 import {unit} from './anim';
 
 type Empty = Record<string, unknown>;
-const clamp = {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'} as const;
 
-/** Exiting scene blurs + grows + fades while the entering one sharpens in from a slight zoom-out. */
+/**
+ * Symmetric blur crossfade: the outgoing scene stays opaque underneath and blurs/grows, the incoming scene
+ * fades in linearly on top while it sharpens. Composite = p·in + (1−p)·out, so the visual midpoint (and the
+ * whoosh peak) sits exactly on the boundary. (An earlier version faded the top layer in over 65 % of the
+ * transition, which put the perceived cut ~3 frames early — caught by tests/sync_check.py.)
+ */
 const BlurDissolve: React.FC<TransitionPresentationComponentProps<Empty>> = ({children, presentationDirection, presentationProgress: p}) => {
   const u = unit(useVideoConfig().height);
   const out = presentationDirection === 'exiting';
   const k = out ? p : 1 - p; // 0 = fully this scene, 1 = fully the other
   const blur = interpolate(k, [0, 1], [0, 22]) * u;
   return (
-    <AbsoluteFill style={{opacity: out ? 1 - interpolate(p, [0.35, 1], [0, 1], clamp) : interpolate(p, [0, 0.65], [0, 1], clamp),
-      filter: blur > 0.1 ? `blur(${blur}px)` : undefined, scale: String(out ? 1 + p * 0.05 : 0.96 + p * 0.04)}}>
+    <AbsoluteFill style={{opacity: out ? 1 : p, filter: blur > 0.1 ? `blur(${blur}px)` : undefined,
+      scale: String(out ? 1 + p * 0.05 : 0.96 + p * 0.04)}}>
       {children}
     </AbsoluteFill>
   );
@@ -26,7 +30,7 @@ const ZoomBlur: React.FC<TransitionPresentationComponentProps<Empty>> = ({childr
   const u = unit(useVideoConfig().height);
   const out = presentationDirection === 'exiting';
   return (
-    <AbsoluteFill style={{opacity: out ? 1 - interpolate(p, [0.4, 1], [0, 1], clamp) : interpolate(p, [0, 0.6], [0, 1], clamp),
+    <AbsoluteFill style={{opacity: out ? 1 : p,
       scale: String(out ? 1 + p * 0.35 : 0.8 + p * 0.2), filter: `blur(${(out ? p : 1 - p) * 26 * u}px)`}}>
       {children}
     </AbsoluteFill>

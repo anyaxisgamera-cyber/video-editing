@@ -458,7 +458,21 @@
         ],
         "columns": 4,
         "logoHeight": 70
-      }
+      },
+      "floating": [
+        {
+          "sprite": {
+            "kind": "lottie",
+            "src": "lib/icons/lottie-sparkle.json"
+          },
+          "depth": 1,
+          "shadow": false,
+          "x": 76,
+          "y": 30,
+          "size": 150,
+          "delay": 0.9
+        }
+      ]
     },
     {
       "id": "end",
@@ -500,6 +514,18 @@
             -3,
             0
           ]
+        },
+        {
+          "sprite": {
+            "kind": "lottie",
+            "src": "lib/icons/lottie-sparkle.json"
+          },
+          "depth": 1,
+          "shadow": false,
+          "x": 62,
+          "y": 30,
+          "size": 200,
+          "delay": 0.5
         }
       ],
       "props": {

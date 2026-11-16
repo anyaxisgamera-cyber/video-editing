@@ -197,6 +197,64 @@ def make_fonts(lib: Path, cat: Catalog, canvas_fonts: Path):
                     "May be embedded; do not sell the font file by itself", tags=["font", "EB Garamond"])
 
 
+# ------------------------------------------------------------------ animated vector (Lottie / Bodymovin)
+
+
+def _kf(t, v, ease=True):
+    k = {"t": t, "s": v if isinstance(v, list) else [v]}
+    if ease:
+        n = len(k["s"])
+        k["i"] = {"x": [0.2] * n, "y": [1] * n}
+        k["o"] = {"x": [0.8] * n, "y": [0] * n}
+    return k
+
+
+def _star(r_out, r_in):
+    import math
+    pts = []
+    for i in range(8):
+        r = r_out if i % 2 == 0 else r_in
+        a = -math.pi / 2 + i * math.pi / 4
+        pts.append([round(r * math.cos(a), 2), round(r * math.sin(a), 2)])
+    zeros = [[0, 0]] * len(pts)
+    return {"i": zeros, "o": zeros, "v": pts, "c": True}
+
+
+def sparkle_lottie(frames=60, size=512, seed=4) -> dict:
+    """Original Lottie: three 4-point sparkles that pop, twist and fade on a loop (lavender/white)."""
+    rng = np.random.default_rng(seed)
+    layers = []
+    for k, (x, y, s, delay, col) in enumerate([(256, 256, 1.0, 0, [0.96, 0.94, 1, 1]), (380, 150, 0.45, 12, [0.84, 0.78, 0.98, 1]),
+                                               (140, 360, 0.35, 24, [0.73, 0.64, 0.95, 1])]):
+        d = delay
+        layers.append({
+            "ddd": 0, "ind": k + 1, "ty": 4, "nm": f"sparkle{k}", "sr": 1, "ao": 0, "ip": 0, "op": frames, "st": 0, "bm": 0,
+            "ks": {
+                "o": {"a": 1, "k": [_kf(d, 0), _kf(d + 8, 100), _kf(d + 26, 100), _kf(min(frames - 1, d + 36), 0, False)]},
+                "r": {"a": 1, "k": [_kf(d, 0), _kf(min(frames - 1, d + 36), 90 * (1 if k % 2 == 0 else -1), False)]},
+                "p": {"a": 0, "k": [x, y, 0]}, "a": {"a": 0, "k": [0, 0, 0]},
+                "s": {"a": 1, "k": [_kf(d, [10 * s, 10 * s, 100]), _kf(d + 12, [100 * s, 100 * s, 100]),
+                                    _kf(min(frames - 1, d + 36), [55 * s, 55 * s, 100], False)]},
+            },
+            "shapes": [{"ty": "gr", "nm": "star", "it": [
+                {"ty": "sh", "ks": {"a": 0, "k": _star(200, 34 + float(rng.uniform(0, 8)))}},
+                {"ty": "fl", "c": {"a": 0, "k": col}, "o": {"a": 0, "k": 100}, "r": 1},
+                {"ty": "tr", "p": {"a": 0, "k": [0, 0]}, "a": {"a": 0, "k": [0, 0]}, "s": {"a": 0, "k": [100, 100]},
+                 "r": {"a": 0, "k": 0}, "o": {"a": 0, "k": 100}, "sk": {"a": 0, "k": 0}, "sa": {"a": 0, "k": 0}},
+            ]}],
+        })
+    return {"v": "5.7.4", "fr": 30, "ip": 0, "op": frames, "w": size, "h": size, "nm": "cws-sparkle", "ddd": 0, "assets": [],
+            "layers": layers}
+
+
+def make_lottie(lib: Path, cat: Catalog):
+    import json as _json
+    out = lib / "icons" / "lottie-sparkle.json"
+    out.write_text(_json.dumps(sparkle_lottie()))
+    cat.add(out, "icons", "generated://synth_assets.py/lottie-sparkle", "original", "None (original vector animation)",
+            tags=["lottie", "animated-vector", "sparkle"])
+
+
 # ------------------------------------------------------------------ transparent stills from 3D
 
 
@@ -219,7 +277,7 @@ def make_png_stills(lib: Path, cat: Catalog):
 
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("what", choices=["all", "backgrounds", "logos", "icons", "fonts", "stills"])
+    ap.add_argument("what", choices=["all", "backgrounds", "logos", "icons", "fonts", "stills", "lottie"])
     ap.add_argument("--library", type=Path, required=True)
     ap.add_argument("--vendor", type=Path, default=Path("/home/user/creative-studio/.vendor/node_modules"))
     ap.add_argument("--canvas-fonts", type=Path, default=Path.home() / ".claude/skills/canvas-design/canvas-fonts")
@@ -233,6 +291,8 @@ def main(argv=None) -> int:
         make_logos(a.library, cat)
     if a.what in ("all", "icons"):
         make_icons(a.library, cat, a.vendor)
+    if a.what in ("all", "lottie"):
+        make_lottie(a.library, cat)
     if a.what in ("all", "stills"):
         make_png_stills(a.library, cat)
     cat.save()
