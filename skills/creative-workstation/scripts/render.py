@@ -158,7 +158,7 @@ def render_video(project: Path, props: Path, tl: dict, out: Path, chunk_s: float
     # Chunks are only reusable for the same timeline + engine build + settings: key the folder by a hash of them,
     # so editing the storyboard or the engine never silently re-uses stale chunks.
     import hashlib
-    key = hashlib.sha1(props.read_bytes() + (bdir / ".stamp").read_bytes() + f"{chunk}|{crf}|{scale}".encode()).hexdigest()[:10]
+    key = hashlib.sha1(props.read_bytes() + (bdir / ".stamp").read_bytes() + f"{chunk}|{crf}|{scale}|bt709-tv".encode()).hexdigest()[:10]
     work = project / "work" / f"chunks-{out.stem}-{key}"
     work.mkdir(parents=True, exist_ok=True)
     # Serve the project's public folder (symlink to the media library) next to the bundle.
@@ -178,7 +178,7 @@ def render_video(project: Path, props: Path, tl: dict, out: Path, chunk_s: float
             continue
         t0 = time.time()
         cmd = ["npx", "remotion", "render", bdir, "Promo", part, f"--props={props}", f"--frames={a}-{b}", "--muted",
-               "--codec=h264", f"--crf={crf}", "--pixel-format=yuv420p", f"--concurrency={conc}",
+               "--codec=h264", f"--crf={crf}", "--pixel-format=yuv420p", "--color-space=bt709", f"--concurrency={conc}",
                f"--browser-executable={env['REMOTION_BROWSER']}", "--log=error", f"--scale={scale}"]
         run(cmd, cwd=ENGINE, env=env)
         n = video_frames(part)
@@ -215,7 +215,8 @@ def verify(final: Path, tl: dict, review: Path) -> dict:
     rep = {
         "file": str(final), "bytes": final.stat().st_size,
         "width": v["width"], "height": v["height"], "fps": round(float(num) / float(den), 3),
-        "video_codec": v["codec_name"], "pix_fmt": v.get("pix_fmt"),
+        "video_codec": v["codec_name"], "pix_fmt": v.get("pix_fmt"), "color_range": v.get("color_range"),
+        "color_space": v.get("color_space"), "color_transfer": v.get("color_transfer"), "color_primaries": v.get("color_primaries"),
         "frames": frames, "expected_frames": expected, "frames_match": frames == expected,
         "duration": round(float(pr["format"]["duration"]), 3), "expected_duration": round(expected / fps, 3),
         "audio": bool(a), "audio_codec": a and a["codec_name"], "audio_rate": a and int(a["sample_rate"]),
