@@ -158,6 +158,20 @@ def expand(sb: dict, duration: float) -> dict:
     k = 0
     while True:
         chapter += 1
+        if chapter > 1 and head and pool.get("_chapterTitles"):
+            # each new chapter opens with its own title card (kicker "Chapter NN")
+            need = head[0].get("bars", 2) * bar
+            if used + need <= duration - 2 * bar:
+                t = copy.deepcopy(head[0])
+                t["id"] = f"c{chapter:03d}-title"
+                t.setdefault("props", {})
+                t["props"]["kicker"] = f"Chapter {chapter:02d}"
+                titles = pool["_chapterTitles"]
+                t["props"]["title"] = titles[(chapter - 1) % len(titles)]
+                t["props"].pop("subtitle", None)
+                t["background"] = {"variant": ["light", "dusk", "dark"][chapter % 3]}
+                out.append(t)
+                used += need
         for s in body:
             need = s.get("bars", 2) * bar
             if used + need > duration - 2 * bar:
