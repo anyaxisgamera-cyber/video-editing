@@ -62,6 +62,15 @@ and grade at `--size 3840x2160` for native-4K sprites/footage.
 - Footage-panel scenes are the slowest (~2.5 fps at 1080p with 3 videos); title/statement scenes ~5 fps.
 - `--scale 0.5` / 960×540 timelines render ≈ 3.3× faster (≈ 16 fps on title scenes).
 
-## Measured renders
+## Measured renders (4 vCPU, no GPU)
 
-See the table appended by the final test run (below).
+| Master | Size | Frames | Video render | Avg fps |
+|---|---|---|---|---|
+| 60 s promo | 1920×1080 | 1800 | 249 s | 7.2 |
+| 30 s cut | 1920×1080 | 900 | 180 s | 5.0 |
+| 4K test | 3840×2160 | 450 | 237 s | 1.9 |
+| 5 min | 1920×1080 | 9000 | 1584 s | 5.7 |
+| 10 min | 1920×1080 | 18000 | 3114 s | 5.8 |
+| 60 min | 960×540 | 108000 | ≈ 2 h 30 min | 12–14 (nested engine), 16–21 (flat engine) |
+
+All passed: exact frame counts, full decode, BT.709 tv, −16 ±0.5 LUFS, ≤ −1.5 dBTP, sync check.

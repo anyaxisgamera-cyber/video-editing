@@ -94,7 +94,7 @@ REQUIRES API (keys). **Mixkit: VERIFIED** — licence text read from the site; p
 | 4K test | 3840×2160 | 450/450 | 15.000 s | −16.1 | −3.4 | BT.709 tv | 237 s (1.9 fps) | — |
 | Long-form 5 min | 1920×1080 | 9000/9000 | 300.000 s | −16.2 | −3.2 | BT.709 tv | 1584 s (5.7 fps) | 108 SFX: median 0.0 ms; 47 transitions: median 0.7 f |
 | Long-form 10 min | 1920×1080 | 18000/18000 | 600.000 s | −16.1 | −2.2 | BT.709 tv | 3114 s (5.8 fps) | 216 SFX: median 0.0 ms (non-tonal max 1.18 ms); 96 transitions: median 0.8 f |
-| Long-form 60 min | 960×540 | (in progress) | 3600.000 s target | | | | | |
+| Long-form 60 min | 960×540 | 108000/108000 | 3600.000 s | −16.1 | −2.2 | BT.709 tv | ≈ 2 h 30 min (58 chunks at 12–14 fps on the nested engine + 2 chunks at 16–21 fps on the flat engine) | 1325 SFX: median 0.0 ms, non-tonal max 1.18 ms; 587 transitions: median 0.78 f |
 
 All masters: full decode without errors; AAC 48 kHz; frame count == compiled timeline. The 60 s, 30 s, 4K and 5 min
 masters were rendered before two fixes were made and were then corrected without re-rendering the picture:
@@ -124,8 +124,10 @@ colour conformed to BT.709 (`conform_color.py`) and audio re-mastered (`render.p
     same presentation components get the same linear progress. Equivalence on 52 frames of the 60 s timeline
     (all transition types): 42 pixel-identical; frames 0/100/1129 differ by mean ≤ 0.25, max 5/255 (layer
     structure); frame 1133 differs between two runs of the *same* engine (rasterisation nondeterminism). All far
-    below H.264 CRF-18 coding error. Resume plan: keep the 58 completed chunks and render chunks 59–60 with the flat
-    engine via `render.py --reuse-chunks` (outcome recorded in §6 once verified).
+    below H.264 CRF-18 coding error. The 58 completed chunks were kept and chunks 59–60 rendered by the flat engine
+    via `render.py --reuse-chunks`; the result passed full verification. At the engine seam (frame 104 399→104 400)
+    the frame-to-frame change is 5.21, inside the neighbouring frames' 4.80–7.27 motion range (no visible step).
+    The flat engine was also faster at the end of the timeline (16–21 fps vs 12–14 fps).
 
 ## 8. Missing dependencies, unavailable features, licensing, limitations
 
