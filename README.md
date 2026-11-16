@@ -13,6 +13,7 @@ General-purpose skills and deterministic tools for understanding and editing arb
 | `make-product-video` | Narrated product demos, walkthroughs, sizzle reels, and launch videos with ElevenLabs voiceover, music, and sound effects |
 | `record-agent-browser-demo` | Recording rehearsed, review-ready web app walkthroughs with Agent Browser, with frame QA and optional GitHub attachment |
 | `video-editing` | Cutting footage, compositing multiple sources, mixing audio, creating React/SVG/Remotion graphics, rendering, reviewing, and validating deliverables |
+| `creative-workstation` | Reference-driven promo videos and graphics in a layered lavender-luxe motion style: licence-checked asset collection and catalogue, Blender 3D chess assets, Remotion scene engine, beat-synced music/SFX, chunked full-length 1080p/4K rendering, posters/thumbnails, background removal, restoration |
 
 The repository deliberately separates analysis, sourcing, and production. Reference films become evidence and transferable principles; B-roll choices retain provenance and approval state; rendering remains deterministic and validated.
 
@@ -38,6 +39,7 @@ npx skills add gitethanwoo/video-editing --skill find-broll
 npx skills add gitethanwoo/video-editing --skill make-product-video
 npx skills add gitethanwoo/video-editing --skill record-agent-browser-demo
 npx skills add gitethanwoo/video-editing --skill video-editing
+npx skills add gitethanwoo/video-editing --skill creative-workstation
 ```
 
 The open [`skills`](https://github.com/vercel-labs/skills) CLI supports Codex, Claude Code, Cursor, OpenCode, and other agents.

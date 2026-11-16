@@ -1,0 +1,103 @@
+{
+ "size": "poster",
+ "background": {
+  "type": "gradient",
+  "inner": "#F4EFFF",
+  "outer": "#B9A2F0",
+  "center": [
+   0.5,
+   0.36
+  ],
+  "power": 1.1
+ },
+ "layers": [
+  {
+   "type": "grid",
+   "step": 72,
+   "color": "#4B2D8F",
+   "alpha": 18
+  },
+  {
+   "type": "image",
+   "src": "../../../media-library/transparent-png/chess-rook-pearl-hero.png",
+   "x": 150,
+   "y": 1010,
+   "height": 300,
+   "blur": 5,
+   "opacity": 0.85
+  },
+  {
+   "type": "image",
+   "src": "../../../media-library/transparent-png/chess-king-obsidian-hero.png",
+   "x": 540,
+   "y": 820,
+   "height": 720,
+   "shadow": true,
+   "shadowBlur": 30,
+   "shadowOffset": [
+    0,
+    30
+   ],
+   "glow": "#FFFFFF",
+   "glowBlur": 40
+  },
+  {
+   "type": "image",
+   "src": "../../../media-library/transparent-png/chess-queen-pearl-hero.png",
+   "x": 870,
+   "y": 1040,
+   "height": 420,
+   "shadow": true,
+   "blur": 2
+  },
+  {
+   "type": "text",
+   "text": "INTRODUCING REGALIA",
+   "font": "InstrumentSans-Regular.ttf",
+   "size": 22,
+   "tracking": 7,
+   "x": 540,
+   "y": 140,
+   "color": "#5B4A86"
+  },
+  {
+   "type": "text",
+   "text": "Every move",
+   "font": "InstrumentSerif-Regular.ttf",
+   "size": 132,
+   "x": 540,
+   "y": 285,
+   "color": "#24124A"
+  },
+  {
+   "type": "text",
+   "text": "matters.",
+   "font": "InstrumentSerif-Italic.ttf",
+   "size": 132,
+   "x": 540,
+   "y": 405,
+   "color": "#8B6CD9",
+   "glow": "#FFFFFF",
+   "glowBlur": 14
+  },
+  {
+   "type": "rule",
+   "x1": 470,
+   "x2": 610,
+   "y": 455,
+   "color": "#24124A",
+   "width": 2
+  },
+  {
+   "type": "image",
+   "src": "../../../media-library/logos/regalia-ink.png",
+   "x": 540,
+   "y": 1288,
+   "height": 64
+  },
+  {
+   "type": "vignette",
+   "strength": 0.28
+  }
+ ]
+}

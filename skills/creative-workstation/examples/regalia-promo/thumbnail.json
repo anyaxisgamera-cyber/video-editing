@@ -1,0 +1,91 @@
+{
+ "size": "thumbnail",
+ "background": {
+  "type": "gradient",
+  "inner": "#4B2D8F",
+  "outer": "#140A2A",
+  "center": [
+   0.3,
+   0.4
+  ],
+  "power": 1.0
+ },
+ "layers": [
+  {
+   "type": "grid",
+   "step": 64,
+   "color": "#E9E0FF",
+   "alpha": 14
+  },
+  {
+   "type": "image",
+   "src": "../../../media-library/transparent-png/silhouette-dancer.png",
+   "x": 1010,
+   "y": 760,
+   "height": 640,
+   "anchor": [
+    0.5,
+    1.0
+   ]
+  },
+  {
+   "type": "image",
+   "src": "../../../media-library/transparent-png/chess-knight-pearl-hero.png",
+   "x": 690,
+   "y": 575,
+   "height": 300,
+   "shadow": true,
+   "glow": "#BBA4F2",
+   "glowBlur": 30
+  },
+  {
+   "type": "text",
+   "text": "Strategy,",
+   "font": "InstrumentSerif-Regular.ttf",
+   "size": 120,
+   "x": 80,
+   "y": 250,
+   "align": "left",
+   "color": "#F4EFFF"
+  },
+  {
+   "type": "text",
+   "text": "elevated.",
+   "font": "InstrumentSerif-Italic.ttf",
+   "size": 120,
+   "x": 80,
+   "y": 370,
+   "align": "left",
+   "color": "#BBA4F2",
+   "glow": "#8B6CD9",
+   "glowBlur": 18
+  },
+  {
+   "type": "text",
+   "text": "THE REGALIA METHOD",
+   "font": "InstrumentSans-Bold.ttf",
+   "size": 24,
+   "tracking": 6,
+   "x": 84,
+   "y": 450,
+   "align": "left",
+   "color": "#E9E0FF"
+  },
+  {
+   "type": "image",
+   "src": "../../../media-library/logos/regalia-white.png",
+   "x": 84,
+   "y": 640,
+   "height": 54,
+   "anchor": [
+    0,
+    0.5
+   ]
+  },
+  {
+   "type": "vignette",
+   "strength": 0.4,
+   "color": "#0A0418"
+  }
+ ]
+}

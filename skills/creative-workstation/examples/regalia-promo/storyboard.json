@@ -1,0 +1,605 @@
+{
+  "meta": {
+    "title": "REGALIA \u2014 Strategy, Elevated (original promo, lavender-luxe style)",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "bpm": 96,
+    "theme": "lavender-luxe",
+    "targetDuration": 60
+  },
+  "audio": {
+    "music": {
+      "generate": {
+        "style": "noir",
+        "seed": 7
+      }
+    },
+    "musicVolume": 0.9,
+    "autoSfx": true,
+    "loudness": {
+      "I": -16,
+      "TP": -1.5,
+      "LRA": 11
+    }
+  },
+  "defaults": {
+    "transition": {
+      "type": "blurDissolve",
+      "beats": 1
+    }
+  },
+  "scenes": [
+    {
+      "id": "open",
+      "type": "TitleReveal",
+      "bars": 3,
+      "background": {
+        "variant": "light"
+      },
+      "floating": [
+        {
+          "sprite": {
+            "kind": "sequence",
+            "dir": "lib/3d-assets/chess-king-pearl",
+            "frames": 72,
+            "revolutionSeconds": 14
+          },
+          "x": 14,
+          "y": 64,
+          "size": 560,
+          "depth": 1,
+          "drift": [
+            4,
+            0
+          ],
+          "bob": 10
+        },
+        {
+          "sprite": {
+            "kind": "sequence",
+            "dir": "lib/3d-assets/chess-pawn-pearl",
+            "frames": 72,
+            "revolutionSeconds": 11,
+            "startOffset": 30
+          },
+          "x": 87,
+          "y": 70,
+          "size": 380,
+          "depth": 1,
+          "drift": [
+            -5,
+            0
+          ],
+          "delay": 0.4
+        },
+        {
+          "sprite": {
+            "kind": "sequence",
+            "dir": "lib/3d-assets/object-orb-pearl",
+            "frames": 72,
+            "revolutionSeconds": 9
+          },
+          "x": 78,
+          "y": 22,
+          "size": 220,
+          "depth": 0,
+          "drift": [
+            -6,
+            3
+          ],
+          "delay": 0.2
+        },
+        {
+          "sprite": {
+            "kind": "sequence",
+            "dir": "lib/3d-assets/object-ring-pearl",
+            "frames": 72,
+            "revolutionSeconds": 7
+          },
+          "x": 6,
+          "y": 18,
+          "size": 300,
+          "depth": 2,
+          "drift": [
+            22,
+            6
+          ],
+          "delay": 0.8
+        }
+      ],
+      "props": {
+        "kicker": "Introducing Regalia",
+        "title": "Every move *matters.*",
+        "subtitle": "A strategy studio for leaders who play the long game.",
+        "titleSize": 170
+      },
+      "transition": {
+        "type": "zoomBlur",
+        "beats": 1
+      }
+    },
+    {
+      "id": "hero",
+      "type": "ChessHero",
+      "bars": 3,
+      "background": {
+        "variant": "dusk"
+      },
+      "floating": [
+        {
+          "sprite": {
+            "kind": "sequence",
+            "dir": "lib/3d-assets/object-cube-pearl",
+            "frames": 72,
+            "revolutionSeconds": 8
+          },
+          "x": 46,
+          "y": 16,
+          "size": 170,
+          "depth": 0,
+          "drift": [
+            8,
+            2
+          ]
+        },
+        {
+          "sprite": {
+            "kind": "sequence",
+            "dir": "lib/3d-assets/object-ring-pearl",
+            "frames": 72,
+            "revolutionSeconds": 6
+          },
+          "x": 98,
+          "y": 88,
+          "size": 420,
+          "depth": 2,
+          "drift": [
+            -30,
+            -8
+          ],
+          "delay": 0.3
+        }
+      ],
+      "props": {
+        "piece": {
+          "kind": "sequence",
+          "dir": "lib/3d-assets/chess-king-obsidian",
+          "frames": 72,
+          "revolutionSeconds": 12
+        },
+        "pieceSize": 860,
+        "side": "right",
+        "kicker": "The Regalia Method",
+        "title": "Strategy, *elevated* to an art.",
+        "body": "We map every possibility before the first piece moves \u2014 so your next decision is the right one."
+      }
+    },
+    {
+      "id": "panels",
+      "type": "MediaPanels",
+      "bars": 3,
+      "background": {
+        "variant": "dark"
+      },
+      "floating": [
+        {
+          "sprite": {
+            "kind": "sequence",
+            "dir": "lib/3d-assets/chess-knight-pearl",
+            "frames": 72,
+            "revolutionSeconds": 10
+          },
+          "x": 90,
+          "y": 22,
+          "size": 300,
+          "depth": 1,
+          "drift": [
+            -6,
+            2
+          ],
+          "delay": 0.6
+        },
+        {
+          "sprite": {
+            "kind": "sequence",
+            "dir": "lib/3d-assets/object-orb-pearl",
+            "frames": 72,
+            "revolutionSeconds": 9
+          },
+          "x": 3,
+          "y": 94,
+          "size": 260,
+          "depth": 2,
+          "drift": [
+            26,
+            -10
+          ],
+          "delay": 0.2
+        }
+      ],
+      "props": {
+        "kicker": "Perspective",
+        "title": "See the *whole* board.",
+        "layout": "trio",
+        "panels": [
+          {
+            "kind": "video",
+            "src": "lib/video-clips/graded/mixkit-3832-purple-and-blue-ink-in-the-water-1080.mp4",
+            "trimBefore": 2,
+            "caption": "Clarity"
+          },
+          {
+            "kind": "video",
+            "src": "lib/video-clips/graded/mixkit-1038-dancer-in-the-dark-back-view-1080.mp4",
+            "trimBefore": 1,
+            "caption": "Poise"
+          },
+          {
+            "kind": "video",
+            "src": "lib/video-clips/graded/mixkit-49878-big-city-at-night-from-an-aerial-shot-1080.mp4",
+            "trimBefore": 3,
+            "caption": "Scale"
+          }
+        ]
+      },
+      "transition": {
+        "type": "softWipe",
+        "beats": 1
+      }
+    },
+    {
+      "id": "board",
+      "type": "MediaPanels",
+      "bars": 2,
+      "background": {
+        "variant": "dark",
+        "grid": true
+      },
+      "props": {
+        "layout": "hero",
+        "panels": [
+          {
+            "kind": "sequence",
+            "dir": "lib/3d-assets/chess-board-orbit",
+            "frames": 96,
+            "fps": 18,
+            "caption": "Every position, considered"
+          }
+        ]
+      },
+      "transition": {
+        "type": "flash",
+        "beats": 1
+      }
+    },
+    {
+      "id": "silhouette",
+      "type": "Silhouette",
+      "bars": 2,
+      "background": {
+        "variant": "dusk"
+      },
+      "floating": [
+        {
+          "sprite": {
+            "kind": "sequence",
+            "dir": "lib/3d-assets/chess-queen-obsidian",
+            "frames": 72,
+            "revolutionSeconds": 12
+          },
+          "x": 95,
+          "y": 80,
+          "size": 520,
+          "depth": 2,
+          "drift": [
+            -36,
+            0
+          ],
+          "opacity": 0.9
+        }
+      ],
+      "props": {
+        "silhouette": "lib/transparent-png/silhouette-dancer.png",
+        "side": "left",
+        "kicker": "Leadership",
+        "title": "Composure under *pressure.*",
+        "body": "Calm, decisive, three moves ahead."
+      }
+    },
+    {
+      "id": "statement",
+      "type": "Statement",
+      "bars": 2,
+      "background": {
+        "variant": "light"
+      },
+      "floating": [
+        {
+          "sprite": {
+            "kind": "sequence",
+            "dir": "lib/3d-assets/chess-bishop-pearl",
+            "frames": 72,
+            "revolutionSeconds": 12
+          },
+          "x": 9,
+          "y": 72,
+          "size": 420,
+          "depth": 0,
+          "drift": [
+            5,
+            0
+          ]
+        },
+        {
+          "sprite": {
+            "kind": "sequence",
+            "dir": "lib/3d-assets/chess-rook-pearl",
+            "frames": 72,
+            "revolutionSeconds": 12
+          },
+          "x": 92,
+          "y": 74,
+          "size": 400,
+          "depth": 0,
+          "drift": [
+            -5,
+            0
+          ]
+        }
+      ],
+      "props": {
+        "text": "The *quiet* move is the one that wins the game.",
+        "attribution": "The Regalia Principle",
+        "size": 92
+      }
+    },
+    {
+      "id": "stats",
+      "type": "Stats",
+      "bars": 2,
+      "background": {
+        "variant": "dark"
+      },
+      "props": {
+        "title": "Results that *compound.*",
+        "items": [
+          {
+            "value": 64,
+            "label": "Markets mapped"
+          },
+          {
+            "value": 98,
+            "suffix": "%",
+            "label": "Client retention"
+          },
+          {
+            "value": 12,
+            "label": "Global studios"
+          }
+        ]
+      },
+      "transition": {
+        "type": "iris",
+        "beats": 1
+      }
+    },
+    {
+      "id": "features",
+      "type": "IconFeatures",
+      "bars": 3,
+      "background": {
+        "variant": "dark"
+      },
+      "floating": [
+        {
+          "sprite": {
+            "kind": "sequence",
+            "dir": "lib/3d-assets/object-pill-pearl",
+            "frames": 72,
+            "revolutionSeconds": 8
+          },
+          "x": 92,
+          "y": 14,
+          "size": 200,
+          "depth": 0,
+          "drift": [
+            -6,
+            4
+          ]
+        }
+      ],
+      "props": {
+        "kicker": "What we do",
+        "title": "Four moves to *mastery.*",
+        "items": [
+          {
+            "icon": "lib/icons/lucide-crown.svg",
+            "label": "Leadership",
+            "text": "Executive strategy and board advisory."
+          },
+          {
+            "icon": "lib/icons/lucide-target.svg",
+            "label": "Precision",
+            "text": "Data-driven market positioning."
+          },
+          {
+            "icon": "lib/icons/lucide-chess-knight.svg",
+            "label": "Bold moves",
+            "text": "Category-defining launches."
+          },
+          {
+            "icon": "lib/icons/lucide-chart-line.svg",
+            "label": "Growth",
+            "text": "Compounding, measurable results."
+          }
+        ]
+      },
+      "transition": {
+        "type": "slideLeft",
+        "beats": 1
+      }
+    },
+    {
+      "id": "logos",
+      "type": "LogoWall",
+      "bars": 2,
+      "background": {
+        "variant": "light"
+      },
+      "props": {
+        "kicker": "Partners",
+        "title": "Trusted by *visionaries.*",
+        "logos": [
+          "lib/logos/aurelia-ink.png",
+          "lib/logos/noctis-ink.png",
+          "lib/logos/vanta-ink.png",
+          "lib/logos/lumen-ink.png"
+        ],
+        "columns": 4,
+        "logoHeight": 70
+      }
+    },
+    {
+      "id": "end",
+      "type": "EndCard",
+      "bars": 2,
+      "background": {
+        "variant": "light"
+      },
+      "floating": [
+        {
+          "sprite": {
+            "kind": "sequence",
+            "dir": "lib/3d-assets/chess-knight-pearl",
+            "frames": 72,
+            "revolutionSeconds": 14
+          },
+          "x": 12,
+          "y": 66,
+          "size": 460,
+          "depth": 1,
+          "drift": [
+            3,
+            0
+          ]
+        },
+        {
+          "sprite": {
+            "kind": "sequence",
+            "dir": "lib/3d-assets/chess-queen-pearl",
+            "frames": 72,
+            "revolutionSeconds": 14,
+            "startOffset": 20
+          },
+          "x": 88,
+          "y": 64,
+          "size": 500,
+          "depth": 1,
+          "drift": [
+            -3,
+            0
+          ]
+        }
+      ],
+      "props": {
+        "logo": "lib/logos/regalia-ink.png",
+        "logoHeight": 150,
+        "tagline": "Make your *move.*",
+        "cta": "regalia.example"
+      }
+    }
+  ],
+  "variations": {
+    "_chapterTitles": [
+      "Every move *matters.*",
+      "Patience is a *strategy.*",
+      "Think *three* moves ahead.",
+      "Control the *centre.*",
+      "Endgames are won *early.*"
+    ],
+    "hero": {
+      "props.piece": [
+        {
+          "kind": "sequence",
+          "dir": "lib/3d-assets/chess-king-obsidian",
+          "frames": 72,
+          "revolutionSeconds": 12
+        },
+        {
+          "kind": "sequence",
+          "dir": "lib/3d-assets/chess-queen-obsidian",
+          "frames": 72,
+          "revolutionSeconds": 12
+        },
+        {
+          "kind": "sequence",
+          "dir": "lib/3d-assets/chess-knight-obsidian",
+          "frames": 72,
+          "revolutionSeconds": 12
+        }
+      ],
+      "props.side": [
+        "right",
+        "left",
+        "right"
+      ],
+      "background.variant": [
+        "dusk",
+        "dark",
+        "light"
+      ]
+    },
+    "panels": {
+      "props.panels": [
+        [
+          {
+            "kind": "video",
+            "src": "lib/video-clips/graded/mixkit-3832-purple-and-blue-ink-in-the-water-1080.mp4",
+            "trimBefore": 2,
+            "caption": "Clarity"
+          },
+          {
+            "kind": "video",
+            "src": "lib/video-clips/graded/mixkit-1038-dancer-in-the-dark-back-view-1080.mp4",
+            "trimBefore": 1,
+            "caption": "Poise"
+          },
+          {
+            "kind": "video",
+            "src": "lib/video-clips/graded/mixkit-49878-big-city-at-night-from-an-aerial-shot-1080.mp4",
+            "trimBefore": 3,
+            "caption": "Scale"
+          }
+        ],
+        [
+          {
+            "kind": "video",
+            "src": "lib/video-clips/graded/mixkit-1964-smoke-in-motion-1080.mp4",
+            "trimBefore": 1,
+            "caption": "Instinct"
+          },
+          {
+            "kind": "video",
+            "src": "lib/video-clips/graded/mixkit-44664-video-with-mirrors-in-symmetry-of-defocused-lights-1080.mp4",
+            "trimBefore": 2,
+            "caption": "Vision"
+          },
+          {
+            "kind": "video",
+            "src": "lib/video-clips/graded/mixkit-1214-woman-s-silhouette-walking-on-the-beach-at-sunset-1080.mp4",
+            "trimBefore": 2,
+            "caption": "Resolve"
+          }
+        ]
+      ]
+    },
+    "statement": {
+      "props.text": [
+        "The *quiet* move is the one that wins the game.",
+        "Strategy is the art of *sacrifice.*",
+        "Every master was once a *beginner.*"
+      ]
+    }
+  }
+}

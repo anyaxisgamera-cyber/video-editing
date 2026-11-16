@@ -1,0 +1,26 @@
+{
+  "name": "creative-workstation-engine",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Scene-based Remotion motion-graphics engine driven by a timeline JSON (lavender-luxe promo style).",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "render": "remotion render src/index.ts Promo"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.544",
+    "@remotion/fonts": "4.0.544",
+    "@remotion/lottie": "4.0.544",
+    "@remotion/media": "4.0.544",
+    "@remotion/transitions": "4.0.544",
+    "lottie-web": "5.12.2",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "remotion": "4.0.544"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.2",
+    "typescript": "5.9.3"
+  }
+}

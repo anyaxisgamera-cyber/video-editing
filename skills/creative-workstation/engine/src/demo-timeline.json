@@ -1,0 +1,743 @@
+{
+  "schema": "creative-workstation/timeline@1",
+  "meta": {
+    "title": "REGALIA \u2014 Strategy, Elevated (original promo, lavender-luxe style)",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "bpm": 96.0,
+    "theme": "lavender-luxe",
+    "targetDuration": 60,
+    "durationInFrames": 1800,
+    "durationSeconds": 60.0,
+    "beatSeconds": 0.625,
+    "barSeconds": 2.5
+  },
+  "scenes": [
+    {
+      "id": "open",
+      "type": "TitleReveal",
+      "from": 0,
+      "durationInFrames": 234,
+      "slot": {
+        "start": 0,
+        "end": 225
+      },
+      "background": {
+        "variant": "light"
+      },
+      "floating": [
+        {
+          "sprite": {
+            "kind": "sequence",
+            "dir": "lib/3d-assets/chess-king-pearl",
+            "frames": 72,
+            "revolutionSeconds": 14
+          },
+          "x": 14,
+          "y": 64,
+          "size": 560,
+          "depth": 1,
+          "drift": [
+            4,
+            0
+          ],
+          "bob": 10
+        },
+        {
+          "sprite": {
+            "kind": "sequence",
+            "dir": "lib/3d-assets/chess-pawn-pearl",
+            "frames": 72,
+            "revolutionSeconds": 11,
+            "startOffset": 30
+          },
+          "x": 87,
+          "y": 70,
+          "size": 380,
+          "depth": 1,
+          "drift": [
+            -5,
+            0
+          ],
+          "delay": 0.4
+        },
+        {
+          "sprite": {
+            "kind": "sequence",
+            "dir": "lib/3d-assets/object-orb-pearl",
+            "frames": 72,
+            "revolutionSeconds": 9
+          },
+          "x": 78,
+          "y": 22,
+          "size": 220,
+          "depth": 0,
+          "drift": [
+            -6,
+            3
+          ],
+          "delay": 0.2
+        },
+        {
+          "sprite": {
+            "kind": "sequence",
+            "dir": "lib/3d-assets/object-ring-pearl",
+            "frames": 72,
+            "revolutionSeconds": 7
+          },
+          "x": 6,
+          "y": 18,
+          "size": 300,
+          "depth": 2,
+          "drift": [
+            22,
+            6
+          ],
+          "delay": 0.8
+        }
+      ],
+      "props": {
+        "kicker": "Introducing Regalia",
+        "title": "Every move *matters.*",
+        "subtitle": "A strategy studio for leaders who play the long game.",
+        "titleSize": 170
+      },
+      "transition": {
+        "type": "zoomBlur",
+        "durationInFrames": 18
+      }
+    },
+    {
+      "id": "hero",
+      "type": "ChessHero",
+      "from": 216,
+      "durationInFrames": 243,
+      "slot": {
+        "start": 225,
+        "end": 450
+      },
+      "background": {
+        "variant": "dusk"
+      },
+      "floating": [
+        {
+          "sprite": {
+            "kind": "sequence",
+            "dir": "lib/3d-assets/object-cube-pearl",
+            "frames": 72,
+            "revolutionSeconds": 8
+          },
+          "x": 46,
+          "y": 16,
+          "size": 170,
+          "depth": 0,
+          "drift": [
+            8,
+            2
+          ]
+        },
+        {
+          "sprite": {
+            "kind": "sequence",
+            "dir": "lib/3d-assets/object-ring-pearl",
+            "frames": 72,
+            "revolutionSeconds": 6
+          },
+          "x": 98,
+          "y": 88,
+          "size": 420,
+          "depth": 2,
+          "drift": [
+            -30,
+            -8
+          ],
+          "delay": 0.3
+        }
+      ],
+      "props": {
+        "piece": {
+          "kind": "sequence",
+          "dir": "lib/3d-assets/chess-king-obsidian",
+          "frames": 72,
+          "revolutionSeconds": 12
+        },
+        "pieceSize": 860,
+        "side": "right",
+        "kicker": "The Regalia Method",
+        "title": "Strategy, *elevated* to an art.",
+        "body": "We map every possibility before the first piece moves \u2014 so your next decision is the right one."
+      },
+      "transition": {
+        "type": "blurDissolve",
+        "durationInFrames": 18
+      }
+    },
+    {
+      "id": "panels",
+      "type": "MediaPanels",
+      "from": 441,
+      "durationInFrames": 243,
+      "slot": {
+        "start": 450,
+        "end": 675
+      },
+      "background": {
+        "variant": "dark"
+      },
+      "floating": [
+        {
+          "sprite": {
+            "kind": "sequence",
+            "dir": "lib/3d-assets/chess-knight-pearl",
+            "frames": 72,
+            "revolutionSeconds": 10
+          },
+          "x": 90,
+          "y": 22,
+          "size": 300,
+          "depth": 1,
+          "drift": [
+            -6,
+            2
+          ],
+          "delay": 0.6
+        },
+        {
+          "sprite": {
+            "kind": "sequence",
+            "dir": "lib/3d-assets/object-orb-pearl",
+            "frames": 72,
+            "revolutionSeconds": 9
+          },
+          "x": 5,
+          "y": 85,
+          "size": 260,
+          "depth": 2,
+          "drift": [
+            26,
+            -10
+          ],
+          "delay": 0.2
+        }
+      ],
+      "props": {
+        "kicker": "Perspective",
+        "title": "See the *whole* board.",
+        "layout": "trio",
+        "panels": [
+          {
+            "kind": "video",
+            "src": "lib/video-clips/graded/mixkit-3832-purple-and-blue-ink-in-the-water-1080.mp4",
+            "trimBefore": 2,
+            "caption": "Clarity"
+          },
+          {
+            "kind": "video",
+            "src": "lib/video-clips/graded/mixkit-1038-dancer-in-the-dark-back-view-1080.mp4",
+            "trimBefore": 1,
+            "caption": "Poise"
+          },
+          {
+            "kind": "video",
+            "src": "lib/video-clips/graded/mixkit-49878-big-city-at-night-from-an-aerial-shot-1080.mp4",
+            "trimBefore": 3,
+            "caption": "Scale"
+          }
+        ]
+      },
+      "transition": {
+        "type": "softWipe",
+        "durationInFrames": 18
+      }
+    },
+    {
+      "id": "board",
+      "type": "MediaPanels",
+      "from": 666,
+      "durationInFrames": 168,
+      "slot": {
+        "start": 675,
+        "end": 825
+      },
+      "background": {
+        "variant": "dark",
+        "grid": true
+      },
+      "floating": [],
+      "props": {
+        "layout": "hero",
+        "panels": [
+          {
+            "kind": "sequence",
+            "dir": "lib/3d-assets/chess-board-orbit",
+            "frames": 96,
+            "fps": 18,
+            "caption": "Every position, considered"
+          }
+        ]
+      },
+      "transition": {
+        "type": "flash",
+        "durationInFrames": 18
+      }
+    },
+    {
+      "id": "silhouette",
+      "type": "Silhouette",
+      "from": 816,
+      "durationInFrames": 168,
+      "slot": {
+        "start": 825,
+        "end": 975
+      },
+      "background": {
+        "variant": "dusk"
+      },
+      "floating": [
+        {
+          "sprite": {
+            "kind": "sequence",
+            "dir": "lib/3d-assets/chess-queen-obsidian",
+            "frames": 72,
+            "revolutionSeconds": 12
+          },
+          "x": 95,
+          "y": 80,
+          "size": 520,
+          "depth": 2,
+          "drift": [
+            -36,
+            0
+          ],
+          "opacity": 0.9
+        }
+      ],
+      "props": {
+        "silhouette": "lib/transparent-png/silhouette-dancer.png",
+        "side": "left",
+        "kicker": "Leadership",
+        "title": "Composure under *pressure.*",
+        "body": "Calm, decisive, three moves ahead."
+      },
+      "transition": {
+        "type": "blurDissolve",
+        "durationInFrames": 18
+      }
+    },
+    {
+      "id": "statement",
+      "type": "Statement",
+      "from": 966,
+      "durationInFrames": 168,
+      "slot": {
+        "start": 975,
+        "end": 1125
+      },
+      "background": {
+        "variant": "light"
+      },
+      "floating": [
+        {
+          "sprite": {
+            "kind": "sequence",
+            "dir": "lib/3d-assets/chess-bishop-pearl",
+            "frames": 72,
+            "revolutionSeconds": 12
+          },
+          "x": 9,
+          "y": 72,
+          "size": 420,
+          "depth": 0,
+          "drift": [
+            5,
+            0
+          ]
+        },
+        {
+          "sprite": {
+            "kind": "sequence",
+            "dir": "lib/3d-assets/chess-rook-pearl",
+            "frames": 72,
+            "revolutionSeconds": 12
+          },
+          "x": 92,
+          "y": 74,
+          "size": 400,
+          "depth": 0,
+          "drift": [
+            -5,
+            0
+          ]
+        }
+      ],
+      "props": {
+        "text": "The *quiet* move is the one that wins the game.",
+        "attribution": "The Regalia Principle",
+        "size": 92
+      },
+      "transition": {
+        "type": "blurDissolve",
+        "durationInFrames": 18
+      }
+    },
+    {
+      "id": "stats",
+      "type": "Stats",
+      "from": 1116,
+      "durationInFrames": 168,
+      "slot": {
+        "start": 1125,
+        "end": 1275
+      },
+      "background": {
+        "variant": "dark"
+      },
+      "floating": [],
+      "props": {
+        "title": "Results that *compound.*",
+        "items": [
+          {
+            "value": 64,
+            "label": "Markets mapped"
+          },
+          {
+            "value": 98,
+            "suffix": "%",
+            "label": "Client retention"
+          },
+          {
+            "value": 12,
+            "label": "Global studios"
+          }
+        ]
+      },
+      "transition": {
+        "type": "iris",
+        "durationInFrames": 18
+      }
+    },
+    {
+      "id": "features",
+      "type": "IconFeatures",
+      "from": 1266,
+      "durationInFrames": 243,
+      "slot": {
+        "start": 1275,
+        "end": 1500
+      },
+      "background": {
+        "variant": "dark"
+      },
+      "floating": [
+        {
+          "sprite": {
+            "kind": "sequence",
+            "dir": "lib/3d-assets/object-pill-pearl",
+            "frames": 72,
+            "revolutionSeconds": 8
+          },
+          "x": 92,
+          "y": 14,
+          "size": 200,
+          "depth": 0,
+          "drift": [
+            -6,
+            4
+          ]
+        }
+      ],
+      "props": {
+        "kicker": "What we do",
+        "title": "Four moves to *mastery.*",
+        "items": [
+          {
+            "icon": "lib/icons/lucide-crown.svg",
+            "label": "Leadership",
+            "text": "Executive strategy and board advisory."
+          },
+          {
+            "icon": "lib/icons/lucide-target.svg",
+            "label": "Precision",
+            "text": "Data-driven market positioning."
+          },
+          {
+            "icon": "lib/icons/lucide-chess-knight.svg",
+            "label": "Bold moves",
+            "text": "Category-defining launches."
+          },
+          {
+            "icon": "lib/icons/lucide-chart-line.svg",
+            "label": "Growth",
+            "text": "Compounding, measurable results."
+          }
+        ]
+      },
+      "transition": {
+        "type": "slideLeft",
+        "durationInFrames": 18
+      }
+    },
+    {
+      "id": "logos",
+      "type": "LogoWall",
+      "from": 1491,
+      "durationInFrames": 168,
+      "slot": {
+        "start": 1500,
+        "end": 1650
+      },
+      "background": {
+        "variant": "light"
+      },
+      "floating": [],
+      "props": {
+        "kicker": "Partners",
+        "title": "Trusted by *visionaries.*",
+        "logos": [
+          "lib/logos/aurelia-ink.png",
+          "lib/logos/noctis-ink.png",
+          "lib/logos/vanta-ink.png",
+          "lib/logos/lumen-ink.png"
+        ],
+        "columns": 4,
+        "logoHeight": 70
+      },
+      "transition": {
+        "type": "blurDissolve",
+        "durationInFrames": 18
+      }
+    },
+    {
+      "id": "end",
+      "type": "EndCard",
+      "from": 1641,
+      "durationInFrames": 159,
+      "slot": {
+        "start": 1650,
+        "end": 1800
+      },
+      "background": {
+        "variant": "light"
+      },
+      "floating": [
+        {
+          "sprite": {
+            "kind": "sequence",
+            "dir": "lib/3d-assets/chess-knight-pearl",
+            "frames": 72,
+            "revolutionSeconds": 14
+          },
+          "x": 12,
+          "y": 66,
+          "size": 460,
+          "depth": 1,
+          "drift": [
+            3,
+            0
+          ]
+        },
+        {
+          "sprite": {
+            "kind": "sequence",
+            "dir": "lib/3d-assets/chess-queen-pearl",
+            "frames": 72,
+            "revolutionSeconds": 14,
+            "startOffset": 20
+          },
+          "x": 88,
+          "y": 64,
+          "size": 500,
+          "depth": 1,
+          "drift": [
+            -3,
+            0
+          ]
+        }
+      ],
+      "props": {
+        "logo": "lib/logos/regalia-ink.png",
+        "logoHeight": 150,
+        "tagline": "Make your *move.*",
+        "cta": "regalia.example"
+      }
+    }
+  ],
+  "audio": {
+    "music": {
+      "generate": {
+        "style": "noir",
+        "seed": 7
+      }
+    },
+    "musicVolume": 0.9,
+    "autoSfx": true,
+    "loudness": {
+      "I": -16,
+      "TP": -1.5,
+      "LRA": 11
+    },
+    "cues": [
+      {
+        "src": "lib/sound-effects/synth-swell.wav",
+        "at": 5.25,
+        "hit": 7.85,
+        "volume": 0.3,
+        "kind": "swell",
+        "reason": "blur-in title hero"
+      },
+      {
+        "src": "lib/sound-effects/synth-whoosh.wav",
+        "at": 6.78,
+        "hit": 7.5,
+        "volume": 0.55,
+        "kind": "whoosh",
+        "reason": "transition zoomBlur into hero"
+      },
+      {
+        "src": "lib/sound-effects/synth-impact.wav",
+        "at": 7.5,
+        "hit": 7.5,
+        "volume": 0.75,
+        "kind": "impact",
+        "reason": "zoomBlur accent"
+      },
+      {
+        "src": "lib/sound-effects/synth-whoosh.wav",
+        "at": 14.28,
+        "hit": 15.0,
+        "volume": 0.55,
+        "kind": "whoosh",
+        "reason": "transition blurDissolve into panels"
+      },
+      {
+        "src": "lib/sound-effects/synth-whoosh.wav",
+        "at": 21.78,
+        "hit": 22.5,
+        "volume": 0.55,
+        "kind": "whoosh",
+        "reason": "transition softWipe into board"
+      },
+      {
+        "src": "lib/sound-effects/synth-swell.wav",
+        "at": 25.25,
+        "hit": 27.85,
+        "volume": 0.3,
+        "kind": "swell",
+        "reason": "blur-in title silhouette"
+      },
+      {
+        "src": "lib/sound-effects/synth-whoosh.wav",
+        "at": 26.78,
+        "hit": 27.5,
+        "volume": 0.55,
+        "kind": "whoosh",
+        "reason": "transition flash into silhouette"
+      },
+      {
+        "src": "lib/sound-effects/synth-impact.wav",
+        "at": 27.5,
+        "hit": 27.5,
+        "volume": 0.75,
+        "kind": "impact",
+        "reason": "flash accent"
+      },
+      {
+        "src": "lib/sound-effects/synth-swell.wav",
+        "at": 30.25,
+        "hit": 32.85,
+        "volume": 0.3,
+        "kind": "swell",
+        "reason": "blur-in title statement"
+      },
+      {
+        "src": "lib/sound-effects/synth-whoosh.wav",
+        "at": 31.78,
+        "hit": 32.5,
+        "volume": 0.55,
+        "kind": "whoosh",
+        "reason": "transition blurDissolve into statement"
+      },
+      {
+        "src": "lib/sound-effects/synth-whoosh.wav",
+        "at": 36.78,
+        "hit": 37.5,
+        "volume": 0.55,
+        "kind": "whoosh",
+        "reason": "transition blurDissolve into stats"
+      },
+      {
+        "src": "lib/sound-effects/synth-tick.wav",
+        "at": 37.7333,
+        "hit": 37.7333,
+        "volume": 0.25,
+        "kind": "tick",
+        "reason": "stat 1"
+      },
+      {
+        "src": "lib/sound-effects/synth-tick.wav",
+        "at": 38.0,
+        "hit": 38.0,
+        "volume": 0.25,
+        "kind": "tick",
+        "reason": "stat 2"
+      },
+      {
+        "src": "lib/sound-effects/synth-tick.wav",
+        "at": 38.2667,
+        "hit": 38.2667,
+        "volume": 0.25,
+        "kind": "tick",
+        "reason": "stat 3"
+      },
+      {
+        "src": "lib/sound-effects/synth-whoosh.wav",
+        "at": 41.78,
+        "hit": 42.5,
+        "volume": 0.55,
+        "kind": "whoosh",
+        "reason": "transition iris into features"
+      },
+      {
+        "src": "lib/sound-effects/synth-whoosh.wav",
+        "at": 49.28,
+        "hit": 50.0,
+        "volume": 0.55,
+        "kind": "whoosh",
+        "reason": "transition slideLeft into logos"
+      },
+      {
+        "src": "lib/sound-effects/synth-shimmer.wav",
+        "at": 50.5667,
+        "hit": 50.5667,
+        "volume": 0.32,
+        "kind": "shimmer",
+        "reason": "logo reveal logos"
+      },
+      {
+        "src": "lib/sound-effects/synth-riser.wav",
+        "at": 53.0,
+        "hit": 55.0,
+        "volume": 0.35,
+        "kind": "riser",
+        "reason": "into end card"
+      },
+      {
+        "src": "lib/sound-effects/synth-whoosh.wav",
+        "at": 54.28,
+        "hit": 55.0,
+        "volume": 0.55,
+        "kind": "whoosh",
+        "reason": "transition blurDissolve into end"
+      },
+      {
+        "src": "lib/sound-effects/synth-shimmer.wav",
+        "at": 55.5667,
+        "hit": 55.5667,
+        "volume": 0.32,
+        "kind": "shimmer",
+        "reason": "logo reveal end"
+      }
+    ]
+  }
+}

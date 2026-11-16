@@ -1,0 +1,12 @@
+{
+  "meta": {"title": "Minimal 20 s test", "width": 1920, "height": 1080, "fps": 30, "bpm": 96, "targetDuration": 20},
+  "audio": {"music": {"generate": {"style": "noir", "seed": 3}}, "musicVolume": 0.9, "autoSfx": true},
+  "defaults": {"transition": {"type": "blurDissolve", "beats": 1}},
+  "scenes": [
+    {"id": "title", "type": "TitleReveal", "bars": 2, "background": {"variant": "light"},
+     "props": {"kicker": "Test", "title": "Every move *matters.*", "subtitle": "Minimal storyboard"}, "transition": {"type": "zoomBlur", "beats": 1}},
+    {"id": "quote", "type": "Statement", "bars": 3, "background": {"variant": "dark"}, "props": {"text": "Think *three* moves ahead."}},
+    {"id": "end", "type": "EndCard", "bars": 2, "background": {"variant": "light"}, "props": {"logo": "lib/logos/regalia-ink.png", "tagline": "Make your *move.*"}}
+  ],
+  "variations": {"_chapterTitles": ["Chapter *one.*", "Chapter *two.*"]}
+}
