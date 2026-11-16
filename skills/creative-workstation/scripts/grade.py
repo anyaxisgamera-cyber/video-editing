@@ -113,7 +113,7 @@ def apply(lut: Path, clips: list[Path], out_dir: Path, library: Path | None, max
             src_rel = str(c.resolve().relative_to(cat.root))
             src = cat.by_path(src_rel) or {}
             cat.add(dst, "video-clips", src.get("source_url", f"derived://{src_rel}"), src.get("license", "UNVERIFIED"),
-                    (src.get("usage_restrictions", "") + " | Graded derivative").strip(" |"),
+                    "; ".join(x for x in (src.get("usage_restrictions", ""), "graded derivative") if x),
                     title=f"{src.get('title', c.stem)} (graded {lut.stem})", tags=["graded", lut.stem],
                     source_page=src.get("source_page", ""),
                     extra={"derived_from": src_rel, "lut": lut.name, "ffmpeg": " ".join(cmd)})

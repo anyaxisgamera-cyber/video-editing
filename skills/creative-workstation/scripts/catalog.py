@@ -211,8 +211,9 @@ class Catalog:
                     dims += f" x{pr['frames']}f"
                 src = a["source_url"]
                 src_md = f"[link]({src})" if src.startswith("http") else src
-                lines.append(f"| `{a['local_path']}` | {pr.get('format','')} | {dims} | {a['license']} | "
-                             f"{a['commercial_use']} | {a.get('usage_restrictions','')} | {src_md} |")
+                cell = lambda v: str(v).replace("|", "\\|")  # noqa: E731 — keep the Markdown table intact
+                lines.append(f"| `{a['local_path']}` | {pr.get('format','')} | {dims} | {cell(a['license'])} | "
+                             f"{a['commercial_use']} | {cell(a.get('usage_restrictions',''))} | {src_md} |")
             lines.append("")
         out = self.root / "CATALOG.md"
         out.write_text("\n".join(lines) + "\n")

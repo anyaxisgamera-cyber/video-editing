@@ -262,7 +262,11 @@ def make_png_stills(lib: Path, cat: Catalog):
     for seq in sorted((lib / "3d-assets").glob("*/meta.json")):
         folder = seq.parent
         frames = sorted(folder.glob("f_*.png"))
-        if not frames or "board" in folder.name:
+        if not frames:
+            continue
+        if "board" in folder.name:  # full-frame cinematic shot: catalogue the sequence, no cut-out still
+            cat.add(folder, "3d-assets", f"generated://blender_assets.py/{folder.name}", "original",
+                    "None (original procedural 3D shot)", tags=["3d", "camera-orbit", "png-sequence"])
             continue
         hero = frames[len(frames) // 8]  # ~45° three-quarter view
         im = Image.open(hero)
@@ -275,9 +279,17 @@ def make_png_stills(lib: Path, cat: Catalog):
                 "None (original procedural 3D asset)", tags=["3d", "turntable", "png-sequence"])
 
 
+def catalog_audio(lib: Path, cat: Catalog):
+    """Register audio produced by audio_synth.py (SFX + music beds) — original, no third-party rights."""
+    for folder, category in ((lib / "sound-effects", "sound-effects"), (lib / "music", "music")):
+        for p in sorted(folder.glob("synth-*.wav")):
+            cat.add(p, category, f"generated://audio_synth.py/{p.stem}", "original", "None (original synthesis)",
+                    tags=["synth", category])
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("what", choices=["all", "backgrounds", "logos", "icons", "fonts", "stills", "lottie"])
+    ap.add_argument("what", choices=["all", "backgrounds", "logos", "icons", "fonts", "stills", "lottie", "audio"])
     ap.add_argument("--library", type=Path, required=True)
     ap.add_argument("--vendor", type=Path, default=Path("/home/user/creative-studio/.vendor/node_modules"))
     ap.add_argument("--canvas-fonts", type=Path, default=Path.home() / ".claude/skills/canvas-design/canvas-fonts")
@@ -293,6 +305,8 @@ def main(argv=None) -> int:
         make_icons(a.library, cat, a.vendor)
     if a.what in ("all", "lottie"):
         make_lottie(a.library, cat)
+    if a.what in ("all", "audio"):
+        catalog_audio(a.library, cat)
     if a.what in ("all", "stills"):
         make_png_stills(a.library, cat)
     cat.save()
