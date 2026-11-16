@@ -137,12 +137,20 @@ def main(argv=None) -> int:
         "motion_energy_mean": round(float(motion.mean()), 2), "motion_energy_p90": round(float(np.percentile(motion, 90)), 2),
         "tempo": tmp,
     }
+    # scene boundaries = hard cuts + soft (blur/dissolve) transition midpoints — promo edits often have no hard cuts
+    soft = [(e["start"] + e["end"]) / 2 for e in bev if 1.0 < (e["start"] + e["end"]) / 2 < dur - 1.0]
+    bounds = []
+    for t in sorted(cut_t + soft):
+        if not bounds or t - bounds[-1] > 1.0:
+            bounds.append(t)
+    style["scene_boundaries"] = [round(b, 2) for b in bounds]
+    style["mean_scene_s"] = round(dur / (len(bounds) + 1), 2) if dur else None
     bpm = tmp.get("bpm") or 96
     bar = 240 / bpm
     style["storyboard_defaults"] = {
         "meta": {"bpm": bpm},
         "palette": [p["hex"] for p in pal],
-        "scene_bars": max(1, round((style["mean_shot_s"] or 5) / bar)),
+        "scene_bars": max(1, round((style["mean_scene_s"] or 5) / bar)),
         "transition": {"type": "blurDissolve" if style["blur_events_per_min"] >= 4 else "softWipe", "beats": 1},
         "background_variant": "light" if lum > 140 else ("dusk" if lum > 70 else "dark"),
     }
@@ -168,7 +176,8 @@ def main(argv=None) -> int:
     subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-i", str(a.video), "-vf",
                     f"fps=24/{max(dur, 1):.3f},scale=320:-2,tile=6x4", "-frames:v", "1", str(a.out / "contact.jpg")], check=False)
     md = [f"# Style analysis — {a.video.name}", "", f"Duration {style['duration']} s · {style['shots']} shots · "
-          f"mean shot {style['mean_shot_s']} s · tempo {tmp.get('bpm')} BPM", "",
+          f"mean shot {style['mean_shot_s']} s · {len(bounds) + 1} scenes (cuts + soft transitions), mean scene "
+          f"{style['mean_scene_s']} s · tempo {tmp.get('bpm')} BPM", "",
           f"* Palette (share): " + ", ".join(f"`{p['hex']}` {p['share']:.0%}" for p in pal),
           f"* Purple/lavender share of the image: **{purple:.0%}**; mean luma {lum:.0f}/255",
           f"* Blur transitions / blur-in events: **{len(bev)}** ({style['blur_events_per_min']}/min)",
@@ -179,7 +188,7 @@ def main(argv=None) -> int:
     if a.deep:
         analyzer = Path.home() / ".claude/skills/analyze-video-editing/scripts/video_analyzer.py"
         subprocess.run(["uv", "run", "-q", str(analyzer), "analyze", str(a.video), "--work-dir", str(a.out / "deep")], check=False)
-    print(json.dumps({k: style[k] for k in ("duration", "shots", "mean_shot_s", "purple_lavender_share", "blur_events_per_min",
+    print(json.dumps({k: style[k] for k in ("duration", "shots", "mean_shot_s", "mean_scene_s", "purple_lavender_share", "blur_events_per_min",
                                             "motion_energy_mean", "tempo")} | {"palette": [p["hex"] for p in pal]}, indent=2))
     return 0
 

@@ -18,6 +18,16 @@ reference evidence), `find-broll` (provenance-first B-roll), `video-editing` (ge
 **Operating rule: don't stop at a storyboard.** Every job ends with a rendered file that passed `render.py`'s
 verification (frames, duration, fps, audio, loudness, full decode) and review stills you have looked at.
 
+## Fast path (two commands)
+
+```bash
+/opt/cws-venv/bin/python scripts/project.py init NAME --reference REF.mp4 --duration 60   # analyse + scaffold
+/opt/cws-venv/bin/python scripts/project.py build NAME [--width 3840 --height 2160]       # compile→render→verify→sync
+```
+`init` seeds BPM, palette, pacing and transition style from the measured reference; edit
+`projects/NAME/storyboard.json` (words, scenes, catalogued assets), then `build`. Exit 0 only if verification and the
+sync check pass. The detailed steps below are what those two commands run — use them when you need control.
+
 ## The workflow (reference video + asset links → final export)
 
 1. **Inspect the reference** — never infer from the filename:

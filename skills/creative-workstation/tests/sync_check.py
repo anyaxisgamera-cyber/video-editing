@@ -60,9 +60,15 @@ def main(argv=None) -> int:
             cache[c["src"]] = audio(str(src))
         clip = cache[c["src"]]
         n = int(0.5 * SR)
-        # lock onto the effect's loudest 0.5 s (a reversed swell is near-silent at its start)
-        e = np.convolve(clip ** 2, np.ones(n), mode="valid") if len(clip) > n else np.array([0.0])
-        w0 = int(np.argmax(e)) if len(clip) > n else 0
+        # lock onto the effect's loudest 0.5 s (a reversed swell is near-silent at its start);
+        # O(N) moving sum via cumsum, computed once per effect file
+        if ("w0", c["src"]) not in cache:
+            if len(clip) > n:
+                cs = np.concatenate([[0.0], np.cumsum(clip.astype(np.float64) ** 2)])
+                cache[("w0", c["src"])] = int(np.argmax(cs[n:] - cs[:-n]))
+            else:
+                cache[("w0", c["src"])] = 0
+        w0 = cache[("w0", c["src"])]
         tpl = clip[w0: w0 + n]
         lo = int((c["at"] - 0.25) * SR) + w0
         if lo < 0 or lo + int(0.5 * SR) + len(tpl) > len(y):
