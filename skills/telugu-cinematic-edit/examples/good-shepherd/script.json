@@ -1,0 +1,199 @@
+{
+  "meta": {
+    "source": "/home/user/creative-studio/projects/telugu-shepherd/script/script.en.txt",
+    "bible_version": "tel2017",
+    "bible_name": "Telugu Indian Revised Version (IRV) 2019",
+    "language": "te"
+  },
+  "segments": [
+    {
+      "id": "s01",
+      "kind": "narration",
+      "en": "In every season of life, we search for direction.",
+      "te": "జీవితంలోని ప్రతి దశలోనూ మనం సరైన దారి కోసం వెతుకుతూనే ఉంటాం.",
+      "visual": "path through a dense forest, slow forward move",
+      "translated_by": "Claude (agent translation)"
+    },
+    {
+      "id": "s02",
+      "kind": "narration",
+      "en": "When the road is long and the way ahead is unclear, we are not alone.",
+      "te": "దారి సుదీర్ఘంగా ఉన్నప్పుడు, ముందున్న మార్గం అస్పష్టంగా ఉన్నప్పుడు కూడా, మనం ఒంటరివాళ్లం కాదు.",
+      "visual": "fog over mountain heights, slow drift",
+      "translated_by": "Claude (agent translation)"
+    },
+    {
+      "id": "s03",
+      "kind": "scripture",
+      "en": "The LORD is my shepherd; I shall lack nothing.",
+      "te": "యెహోవా నా కాపరి. నాకు ఏ లోటూ లేదు.",
+      "speak_reference": false,
+      "ref": {
+        "usfm": "PSA 23:1",
+        "version": "tel2017",
+        "local": "కీర్తన 23:1",
+        "spoken": "కీర్తనలు ఇరవై మూడవ అధ్యాయం ఒకటవ వచనం",
+        "attribution": "కీర్తన 23:1 (IRV) — Telugu Indian Revised Version (IRV) 2019, © 2017, 2019 Bridge Connectivity Solutions, CC BY-SA 4.0",
+        "license": "CC BY-SA 4.0",
+        "source": "https://ebible.org/find/details.php?id=tel2017"
+      },
+      "english_check": {
+        "reference": "PSA 23:1",
+        "web_text": "The LORD is my shepherd; I shall lack nothing.",
+        "similarity": 1.0,
+        "verdict": "matches WEB"
+      },
+      "visual": "green hills in dusk light, gentle push-in"
+    },
+    {
+      "id": "s04",
+      "kind": "narration",
+      "en": "His care reaches even the quiet, hidden places of our hearts.",
+      "te": "ఆయన ఆదరణ మన హృదయాల్లోని నిశ్శబ్దమైన, దాగి ఉన్న చోట్లకు కూడా చేరుతుంది.",
+      "visual": "calm lake framed by branches, still",
+      "translated_by": "Claude (agent translation)"
+    },
+    {
+      "id": "s05",
+      "kind": "narration",
+      "en": "Even in the darkest night, one light is enough to show the way.",
+      "te": "అత్యంత చీకటి రాత్రిలో కూడా, దారి చూపడానికి ఒక్క వెలుగు చాలు.",
+      "visual": "a single candle being lit in the dark",
+      "translated_by": "Claude (agent translation)"
+    },
+    {
+      "id": "s06",
+      "kind": "narration",
+      "en": "Jesus said",
+      "te": "యేసు ఇలా అన్నారు,",
+      "visual": "candles close-up, warm",
+      "translated_by": "Claude (agent translation)"
+    },
+    {
+      "id": "s07",
+      "kind": "scripture",
+      "en": "I am the good shepherd. The good shepherd lays down his life for the sheep.",
+      "te": "నేను గొర్రెలకు మంచి కాపరిని. మంచి కాపరి గొర్రెల కోసం తన ప్రాణం ఇస్తాడు.",
+      "speak_reference": false,
+      "ref": {
+        "usfm": "JHN 10:11",
+        "version": "tel2017",
+        "local": "యోహాను 10:11",
+        "spoken": "యోహాను పదవ అధ్యాయం పదకొండవ వచనం",
+        "attribution": "యోహాను 10:11 (IRV) — Telugu Indian Revised Version (IRV) 2019, © 2017, 2019 Bridge Connectivity Solutions, CC BY-SA 4.0",
+        "license": "CC BY-SA 4.0",
+        "source": "https://ebible.org/find/details.php?id=tel2017"
+      },
+      "english_check": {
+        "reference": "JHN 10:11",
+        "web_text": "“ I am the good shepherd. The good shepherd lays down his life for the sheep.",
+        "similarity": 1.0,
+        "verdict": "matches WEB"
+      },
+      "visual": "candles close-up, warm"
+    },
+    {
+      "id": "s08",
+      "kind": "narration",
+      "en": "Today, follow the One who knows you by name.",
+      "te": "ఈ రోజే, మీ పేరు తెలిసిన ఆయనను వెంబడించండి.",
+      "visual": "person on a hill in the wind, sunrise",
+      "translated_by": "Claude (agent translation)"
+    },
+    {
+      "id": "s09",
+      "kind": "title",
+      "en": "The Good Shepherd",
+      "speak": false,
+      "visual": null,
+      "te": "మంచి కాపరి",
+      "translated_by": "Claude (agent translation)"
+    }
+  ],
+  "validation": {
+    "passed": true,
+    "errors": [],
+    "warnings": [
+      "s09: unusual length ratio 0.59 (Telugu/English chars) — check for omissions"
+    ],
+    "segments": [
+      {
+        "id": "s01",
+        "kind": "narration",
+        "telugu_ratio": 1.0,
+        "latin_words": [],
+        "length_ratio": 1.22,
+        "aksharas": 27,
+        "labse": 0.797
+      },
+      {
+        "id": "s02",
+        "kind": "narration",
+        "telugu_ratio": 1.0,
+        "latin_words": [],
+        "length_ratio": 1.35,
+        "aksharas": 34,
+        "labse": 0.835
+      },
+      {
+        "id": "s03",
+        "kind": "scripture",
+        "exact_corpus_match": true,
+        "aksharas": 14,
+        "labse": 0.805
+      },
+      {
+        "id": "s04",
+        "kind": "narration",
+        "telugu_ratio": 1.0,
+        "latin_words": [],
+        "length_ratio": 1.15,
+        "aksharas": 32,
+        "labse": 0.833
+      },
+      {
+        "id": "s05",
+        "kind": "narration",
+        "telugu_ratio": 1.0,
+        "latin_words": [],
+        "length_ratio": 0.95,
+        "aksharas": 25,
+        "labse": 0.907
+      },
+      {
+        "id": "s06",
+        "kind": "narration",
+        "telugu_ratio": 1.0,
+        "latin_words": [],
+        "length_ratio": 1.7,
+        "aksharas": 7,
+        "labse": 0.891
+      },
+      {
+        "id": "s07",
+        "kind": "scripture",
+        "exact_corpus_match": true,
+        "aksharas": 29,
+        "labse": 0.827
+      },
+      {
+        "id": "s08",
+        "kind": "narration",
+        "telugu_ratio": 1.0,
+        "latin_words": [],
+        "length_ratio": 0.95,
+        "aksharas": 19,
+        "labse": 0.858
+      },
+      {
+        "id": "s09",
+        "kind": "title",
+        "telugu_ratio": 1.0,
+        "latin_words": [],
+        "length_ratio": 0.59,
+        "aksharas": 5,
+        "labse": 0.713
+      }
+    ]
+  }
+}

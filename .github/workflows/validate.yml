@@ -28,6 +28,8 @@ jobs:
         run: npm ci && npm run typecheck
       - name: Test creative workstation
         run: uv run --no-project --with numpy --with scipy --with soundfile python skills/creative-workstation/tests/smoke_test.py --require-audio
+      - name: Test Telugu text layer
+        run: python3 skills/telugu-cinematic-edit/tests/test_text.py
       - name: Typecheck creative workstation engine
         working-directory: skills/creative-workstation/engine
         run: npm ci && npm run typecheck

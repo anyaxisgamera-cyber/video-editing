@@ -124,6 +124,29 @@ def fetch_video(url: str, library: Path, res: str = "1080", allow_personal: bool
         asset, dest = cand, out
         break
     if dest is None:
+        # Newer items (ids ≥ ~100000) have no /videos/<id>/<id>-<res>.mp4 file: the item page's download option
+        # (/free-stock-video/download/<id>/?type=1080p) renders a page holding a tokenised assets.mixkit.co URL.
+        for r in order:
+            out = library / category / f"mixkit-{meta['id']}-{slug}-{r}.mp4"
+            try:
+                page = get(f"https://mixkit.co/free-stock-video/download/{meta['id']}/?context=sidebar&type={r}p", retries=1)
+            except RuntimeError:
+                continue
+            toks = [u for u in dict.fromkeys(re.findall(r"https://assets\.mixkit\.co/[a-z0-9]{20,40}(?=[\"'\s<])", page))]
+            for cand in toks:
+                try:
+                    data = get(cand, binary=True, retries=1)
+                except RuntimeError:
+                    continue
+                if data[4:8] != b"ftyp":  # must be an MP4, not an image/preview
+                    continue
+                out.parent.mkdir(parents=True, exist_ok=True)
+                out.write_bytes(data)
+                asset, dest = cand, out
+                break
+            if dest is not None:
+                break
+    if dest is None:
         return {"status": "failed", "reason": f"no rendition of {order} downloadable", **meta}
     name, restrictions, lic_url = LIC[lic]
     cat = Catalog(library)

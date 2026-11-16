@@ -1,0 +1,88 @@
+{
+  "title": "మంచి కాపరి — Telugu test production",
+  "segments": {
+    "s01": [
+      {
+        "clip": "video-clips/mixkit-41574-walking-a-path-that-crosses-a-dense-forest-1080.mp4",
+        "in": 3.0
+      },
+      {
+        "clip": "video-clips/mixkit-32748-young-woman-from-behind-walking-in-nature-1080.mp4",
+        "in": 2.0
+      }
+    ],
+    "s02": [
+      {
+        "clip": "video-clips/mixkit-4396-fog-on-the-heights-of-the-snowy-mountains-1080.mp4",
+        "in": 2.0
+      },
+      {
+        "clip": "video-clips/mixkit-4695-clouds-covering-the-mountains-1080.mp4",
+        "in": 4.0
+      }
+    ],
+    "s03": [
+      {
+        "clip": "video-clips/mixkit-101520-green-hills-bathed-in-dusk-light-1080.mp4",
+        "in": 1.0
+      },
+      {
+        "clip": "video-clips/mixkit-101510-majestic-hills-and-sky-reflections-1080.mp4",
+        "in": 3.0
+      }
+    ],
+    "s04": [
+      {
+        "clip": "video-clips/mixkit-101495-calm-lake-framed-by-branches-1080.mp4",
+        "in": 0.5
+      },
+      {
+        "clip": "video-clips/mixkit-51662-a-picturesque-small-creek-with-calm-waters-and-steam-at-dawn-1080.mp4",
+        "in": 1.0
+      }
+    ],
+    "s05": [
+      {
+        "clip": "video-clips/mixkit-3461-lighting-candles-in-the-dark-1080.mp4",
+        "in": 1.0
+      }
+    ],
+    "s06": [
+      {
+        "clip": "video-clips/mixkit-22708-person-praying-in-front-of-an-altar-inside-a-church-1080.mp4",
+        "in": 0.5
+      },
+      {
+        "clip": "video-clips/mixkit-101510-majestic-hills-and-sky-reflections-1080.mp4",
+        "in": 11.0
+      }
+    ],
+    "s08": [
+      {
+        "clip": "video-clips/mixkit-2385-man-enjoying-the-wind-1080.mp4",
+        "in": 3.0
+      },
+      {
+        "clip": "video-clips/mixkit-5010-immense-wheat-field-seen-from-the-air-1080.mp4",
+        "in": 2.0
+      }
+    ]
+  },
+  "title_clips_note": "end title card plays over a calm wide shot",
+  "music": {
+    "src": "music/mixkit-music-184-ambient.mp3",
+    "volume": 0.45
+  },
+  "sfx": {
+    "whoosh": "sound-effects/mixkit-sfx-1491-whoosh.mp3"
+  },
+  "credits": "వచనాలు: Telugu IRV · CC BY-SA 4.0",
+  "vignette": 0.3,
+  "grain": 0.12,
+  "title_clips": [
+    {
+      "clip": "video-clips/mixkit-5010-immense-wheat-field-seen-from-the-air-1080.mp4",
+      "in": 12.0
+    }
+  ]
+}

@@ -34,6 +34,20 @@ The encode/mux chain is sample-accurate: cross-correlating the pre-encode mix wi
 lag of 0 samples (tested on the 60 s master). `tests/sync_check.py` locates every SFX in the master by waveform
 cross-correlation (all 20 cues of the 60 s test within 0.07 ms of plan).
 
+## Compositions
+
+`render.py` renders the composition named in `timeline.meta.composition` (default `Promo`):
+
+- `Promo` — the lavender-luxe motion-graphics engine (`scripts/timeline.py` compiles its timeline).
+- `Cinematic` — live-action edits (`engine/src/Cinematic.tsx`): graded footage shots with camera moves, cut /
+  dissolve / dip-to-black|white / flash transitions, Telugu subtitles (Noto Sans Telugu), verse/title cards with a
+  soft scrim, optional letterbox, vignette and grain. Its timeline is written by
+  `../telugu-cinematic-edit/scripts/recreate.py`; `verify()` reads `shots` (with `slot`) instead of `scenes`.
+
+Audio for either: `audio.voice` = narration clips placed like cues; with `audio.duck = {db, attack, release, pad}`
+the music bed is lowered under the voice by a smoothed gain envelope (100 Hz control rate, one-pole attack/release);
+SFX cues are not ducked. Absent `audio.voice`/`audio.duck`, mixing is unchanged.
+
 ## Long timelines and resuming
 
 The engine renders scenes as flat sibling `<Sequence>`s and mounts only the scenes active on the current frame.

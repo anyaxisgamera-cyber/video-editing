@@ -99,6 +99,31 @@ def mix_audio(project: Path, tl: dict, out_wav: Path) -> dict:
             cache[c["src"]] = load_clip(src)
         start = int(round(c["at"] * SR))
         placed.append((start, cache[c["src"]], float(c.get("volume", 0.6))))
+    # narration (e.g. Telugu voice-over segments): placed like cues; when audio.duck is set the music is lowered
+    # under the voice with a smoothed gain envelope (attack/release), SFX are not ducked
+    voice = []
+    for c in tl.get("audio", {}).get("voice", []):
+        clip = load_clip(project / "public" / c["src"])
+        voice.append((int(round(c["at"] * SR)), clip, float(c.get("volume", 1.0))))
+    duck = tl.get("audio", {}).get("duck")
+    env = None
+    if duck and voice:
+        rate = 100  # control rate (Hz)
+        nctl = int(math.ceil(total / SR * rate)) + 2
+        want = np.ones(nctl, dtype=np.float32)
+        g = 10 ** (float(duck.get("db", -10)) / 20)
+        pad = float(duck.get("pad", 0.15))
+        for start, clip, _ in voice:
+            a = max(0, int((start / SR - pad) * rate)); b = min(nctl, int(((start + len(clip)) / SR + pad) * rate) + 1)
+            want[a:b] = g
+        att = 1 - math.exp(-1 / (float(duck.get("attack", 0.25)) * rate))
+        rel = 1 - math.exp(-1 / (float(duck.get("release", 0.6)) * rate))
+        env = np.empty_like(want)
+        cur = 1.0
+        for i, w in enumerate(want):
+            cur += (w - cur) * (att if w < cur else rel)
+            env[i] = cur
+        env_t = np.arange(nctl) / rate
     mus = sf.SoundFile(str(music_path)) if music_path else None
     if mus is not None and mus.samplerate != SR:
         raise SystemExit(f"music must be {SR} Hz WAV (got {mus.samplerate}); convert it first")
@@ -112,14 +137,18 @@ def mix_audio(project: Path, tl: dict, out_wav: Path) -> dict:
                 m = mus.read(n, dtype="float32", always_2d=True)
                 if m.shape[1] == 1:
                     m = np.repeat(m, 2, axis=1)
-                buf[:len(m)] += m[:, :2] * mvol
-            for start, clip, vol in placed:
+                mm = m[:, :2] * mvol
+                if env is not None:
+                    mm = mm * np.interp((b0 + np.arange(len(mm))) / SR, env_t, env)[:, None].astype(np.float32)
+                buf[:len(m)] += mm
+            for start, clip, vol in placed + voice:
                 a, z = max(start, b0), min(start + len(clip), b0 + n)
                 if a < z:
                     buf[a - b0:z - b0] += clip[a - start:z - start] * vol
             peak = max(peak, float(np.abs(buf).max()) if len(buf) else 0)
             fh.write(np.tanh(buf))  # soft clip safety; loudnorm sets the final level
-    return {"music": str(music_path) if music_path else None, "cues": len(cues), "samples": total, "pre_peak": round(peak, 3)}
+    return {"music": str(music_path) if music_path else None, "cues": len(cues), "voice_segments": len(voice),
+            "ducking": duck if (duck and voice) else None, "samples": total, "pre_peak": round(peak, 3)}
 
 
 def measure_loudness(path: Path) -> dict:
@@ -216,7 +245,7 @@ def render_video(project: Path, props: Path, tl: dict, out: Path, chunk_s: float
             parts.append(part)
             continue
         t0 = time.time()
-        cmd = ["npx", "remotion", "render", bdir, "Promo", part, f"--props={props}", f"--frames={a}-{b}", "--muted",
+        cmd = ["npx", "remotion", "render", bdir, tl["meta"].get("composition", "Promo"), part, f"--props={props}", f"--frames={a}-{b}", "--muted",
                "--codec=h264", f"--crf={crf}", "--pixel-format=yuv420p", "--color-space=bt709", f"--concurrency={conc}",
                f"--browser-executable={env['REMOTION_BROWSER']}", "--log=error", f"--scale={scale}"]
         run(cmd, cwd=ENGINE, env=env)
@@ -264,12 +293,14 @@ def verify(final: Path, tl: dict, review: Path) -> dict:
         "integrated_lufs": I, "true_peak_dbfs": TP, "full_decode_errors": dec.stderr.strip()[:500] or None,
     }
     # review artefacts: contact sheet + stills at slot boundaries (+0.5 s)
-    n = max(12, min(48, len(tl["scenes"]) * 2))
+    scenes = tl.get("scenes") or tl.get("shots") or []
+    n = max(12, min(48, len(scenes) * 2))
     run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-i", final, "-vf",
          f"fps={n}/{max(1, rep['duration'])},scale=480:-2,tile=6x{math.ceil(n / 6)}", "-frames:v", "1", review / "contact-sheet.jpg"])
     stills = []
-    for s in tl["scenes"][:40]:
-        t = s["slot"]["start"] / fps + min(2.0, (s["slot"]["end"] - s["slot"]["start"]) / fps / 2)
+    for s in scenes[:40]:
+        slot = s.get("slot") or {"start": s["from"], "end": s["from"] + s["durationInFrames"]}
+        t = slot["start"] / fps + min(2.0, (slot["end"] - slot["start"]) / fps / 2)
         p = review / f"still-{s['id']}.jpg"
         subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-ss", f"{t:.3f}", "-i", str(final),
                         "-frames:v", "1", "-vf", "scale=960:-2", str(p)], check=True)

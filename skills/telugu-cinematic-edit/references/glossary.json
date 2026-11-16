@@ -1,0 +1,26 @@
+{
+  "_note": "Terms as used by the Telugu IRV (tel2017) so narration and quoted verses use the same vocabulary. Counts are occurrences in the tel2017 corpus (checked with bible.py). Translators may deviate for natural phrasing, but names of God and key theological terms should stay consistent with the chosen Bible version.",
+  "terms": {
+    "the LORD (YHWH)": "యెహోవా",
+    "God": "దేవుడు",
+    "Lord (title of Jesus)": "ప్రభువు",
+    "Jesus": "యేసు",
+    "Christ": "క్రీస్తు",
+    "Jesus Christ": "యేసు క్రీస్తు",
+    "Holy Spirit": "పరిశుద్ధాత్మ",
+    "shepherd": "కాపరి",
+    "light": "వెలుగు",
+    "Saviour": "రక్షకుడు",
+    "grace": "కృప",
+    "love": "ప్రేమ",
+    "peace": "సమాధానం",
+    "eternal life": "నిత్యజీవం",
+    "prayer": "ప్రార్థన",
+    "faith": "విశ్వాసం",
+    "Bible": "బైబిల్",
+    "chapter": "అధ్యాయం",
+    "verse": "వచనం"
+  },
+  "register": "Respectful, warm devotional Telugu. Address the audience with మీరు (plural/respectful) forms; refer to God with ఆయన. Avoid English loanwords where a natural Telugu word exists.",
+  "allowed_latin": []
+}

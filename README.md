@@ -14,6 +14,7 @@ General-purpose skills and deterministic tools for understanding and editing arb
 | `record-agent-browser-demo` | Recording rehearsed, review-ready web app walkthroughs with Agent Browser, with frame QA and optional GitHub attachment |
 | `video-editing` | Cutting footage, compositing multiple sources, mixing audio, creating React/SVG/Remotion graphics, rendering, reviewing, and validating deliverables |
 | `creative-workstation` | Reference-driven promo videos and graphics in a layered lavender-luxe motion style: licence-checked asset collection and catalogue, Blender 3D chess assets, Remotion scene engine, beat-synced music/SFX, chunked full-length 1080p/4K rendering, posters/thumbnails, background removal, restoration |
+| `telugu-cinematic-edit` | Reference-based live-action recreation in Telugu: measured scene-by-scene breakdown of a reference edit (shots, transitions, camera moves, grade, text, audio), English→Telugu script with Bible verses copied exactly from licensed Telugu Bibles, ASR-verified Telugu voice-over, timed subtitles, LUT grade matching, Cinematic render and full output validation |
 
 The repository deliberately separates analysis, sourcing, and production. Reference films become evidence and transferable principles; B-roll choices retain provenance and approval state; rendering remains deterministic and validated.
 
@@ -36,6 +37,7 @@ Or install one:
 ```bash
 npx skills add gitethanwoo/video-editing --skill analyze-video-editing
 npx skills add gitethanwoo/video-editing --skill find-broll
+npx skills add gitethanwoo/video-editing --skill telugu-cinematic-edit
 npx skills add gitethanwoo/video-editing --skill make-product-video
 npx skills add gitethanwoo/video-editing --skill record-agent-browser-demo
 npx skills add gitethanwoo/video-editing --skill video-editing
