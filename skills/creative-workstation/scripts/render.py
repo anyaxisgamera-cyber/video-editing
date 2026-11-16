@@ -182,7 +182,8 @@ def bundle(cache_dir: Path) -> Path:
     return out
 
 
-def render_video(project: Path, props: Path, tl: dict, out: Path, chunk_s: float, crf: int, conc: int, scale: float) -> dict:
+def render_video(project: Path, props: Path, tl: dict, out: Path, chunk_s: float, crf: int, conc: int, scale: float,
+                 reuse_chunks: Path | None = None) -> dict:
     fps = tl["meta"]["fps"]
     total = tl["meta"]["durationInFrames"]
     chunk = max(1, int(round(chunk_s * fps)))
@@ -193,6 +194,11 @@ def render_video(project: Path, props: Path, tl: dict, out: Path, chunk_s: float
     import hashlib
     key = hashlib.sha1(props.read_bytes() + (bdir / ".stamp").read_bytes() + f"{chunk}|{crf}|{scale}|bt709-tv".encode()).hexdigest()[:10]
     work = project / "work" / f"chunks-{out.stem}-{key}"
+    if reuse_chunks:
+        # Resume into an existing chunk folder after an engine change that was proven output-equivalent
+        # (e.g. a render that crashed near the end): complete chunks are kept, missing ones are rendered.
+        work = reuse_chunks.resolve()
+        print(f"[render] reusing chunk folder {work} (hash for this build would be {key})", flush=True)
     work.mkdir(parents=True, exist_ok=True)
     # Serve the project's public folder (symlink to the media library) next to the bundle.
     pub = bdir / "public"
@@ -289,6 +295,7 @@ def main(argv=None) -> int:
     ap.add_argument("--scale", type=float, default=1.0, help="render scale (0.5 = draft at half resolution)")
     ap.add_argument("--audio-only", action="store_true")
     ap.add_argument("--remaster", type=Path, help="existing master: re-mix + re-master its audio, stream-copy its video, re-verify")
+    ap.add_argument("--reuse-chunks", type=Path, help="resume into this existing chunk folder (only after an output-equivalent engine change)")
     a = ap.parse_args(argv)
     project = a.project.resolve()
     tl_path = project / a.timeline
@@ -321,7 +328,9 @@ def main(argv=None) -> int:
         print(json.dumps({k: v[k] for k in ("file", "frames", "expected_frames", "duration", "integrated_lufs",
                                             "true_peak_dbfs", "loudness_compliant", "passed")}, indent=2))
         return 0 if v["passed"] else 1
-    report["video"] = render_video(project, props, tl, out, a.chunk_seconds, a.crf, a.concurrency, a.scale)
+    report["video"] = render_video(project, props, tl, out, a.chunk_seconds, a.crf, a.concurrency, a.scale, a.reuse_chunks)
+    if a.reuse_chunks:
+        report["video"]["reused_chunk_folder"] = str(a.reuse_chunks)
     run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-i", report["video"]["video"], "-i", m4a,
          "-map", "0:v", "-map", "1:a", "-c:v", "copy", "-c:a", "copy", "-shortest", "-movflags", "+faststart", out])
     report["render_seconds"] = round(time.time() - t0, 1)

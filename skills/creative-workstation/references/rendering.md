@@ -34,6 +34,17 @@ The encode/mux chain is sample-accurate: cross-correlating the pre-encode mix wi
 lag of 0 samples (tested on the 60 s master). `tests/sync_check.py` locates every SFX in the master by waveform
 cross-correlation (all 20 cues of the 60 s test within 0.07 ms of plan).
 
+## Long timelines and resuming
+
+The engine renders scenes as flat sibling `<Sequence>`s and mounts only the scenes active on the current frame.
+(`<TransitionSeries>` nests each sequence inside the previous one; at ~588 scenes / 60 minutes React's commit phase
+overflowed the stack — "Maximum call stack size exceeded" — at minute 58.) Per-frame work is now independent of
+timeline length.
+
+If a long render is interrupted, re-run the same command: complete chunks are reused. If the engine had to be fixed
+mid-render and the fix is proven output-equivalent (render the same frames with both builds and diff them), resume
+into the existing folder with `render.py <project> --timeline <t>.json --reuse-chunks work/chunks-<name>-<hash>`.
+
 ## Resolution
 
 Every size in the engine is authored at 1080p and multiplied by `height / 1080`, so `timeline.py compile

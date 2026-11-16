@@ -117,6 +117,15 @@ colour conformed to BT.709 (`conform_color.py`) and audio re-mastered (`render.p
 12. CI skipped the audio-synthesis checks (no numpy on the runner) → `uv run --with …` + `--require-audio`.
 13. Analyzer derived pacing from hard cuts only (0 cuts on an all-dissolve edit) → counts soft transitions.
 14. `sync_check.py` took 10+ min on 10 minutes of media → O(N) window search (2.5 min, identical results).
+15. **60-minute render crashed at chunk 59/60** (`RangeError: Maximum call stack size exceeded` in React's commit
+    phase). Cause: `<TransitionSeries>` nests each sequence inside the previous one (`renderSequenceAndRest`), so a
+    588-scene timeline builds a fiber tree hundreds of levels deep. Fix: a flat renderer (`engine/src/Promo.tsx`) —
+    every scene is a sibling `<Sequence>` at its compiled absolute frame, only active scenes are mounted, and the
+    same presentation components get the same linear progress. Equivalence on 52 frames of the 60 s timeline
+    (all transition types): 42 pixel-identical; frames 0/100/1129 differ by mean ≤ 0.25, max 5/255 (layer
+    structure); frame 1133 differs between two runs of the *same* engine (rasterisation nondeterminism). All far
+    below H.264 CRF-18 coding error. Resume plan: keep the 58 completed chunks and render chunks 59–60 with the flat
+    engine via `render.py --reuse-chunks` (outcome recorded in §6 once verified).
 
 ## 8. Missing dependencies, unavailable features, licensing, limitations
 
