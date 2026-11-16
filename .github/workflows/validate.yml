@@ -27,7 +27,7 @@ jobs:
         working-directory: skills/video-editing/assets/remotion-edit-template
         run: npm ci && npm run typecheck
       - name: Test creative workstation
-        run: python3 skills/creative-workstation/tests/smoke_test.py
+        run: uv run --no-project --with numpy --with scipy --with soundfile python skills/creative-workstation/tests/smoke_test.py --require-audio
       - name: Typecheck creative workstation engine
         working-directory: skills/creative-workstation/engine
         run: npm ci && npm run typecheck

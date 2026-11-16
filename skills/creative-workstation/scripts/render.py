@@ -6,8 +6,9 @@
 
 * Video renders in chunks (`--frames=a-b`, muted) that are reused if already complete, so long renders
   (10, 30, 60+ minutes) are resumable and memory-flat; chunks are joined with the concat demuxer (-c copy).
-* Audio is mixed in Python from the timeline's absolute cue sheet (music + SFX) in 10 s blocks, then
-  normalised with two-pass EBU R128 loudnorm (linear) and muxed — picture and sound share one clock.
+* Audio is mixed in Python from the timeline's absolute cue sheet (music + SFX) in 10 s blocks, then mastered by a
+  measured loop (gain → 4x-oversampled limiter → AAC → re-measure) to −16 LUFS / ≤ −1.5 dBTP and muxed.
+* --remaster MASTER.mp4 re-does only the audio of an existing master (video stream-copied) and re-verifies.
 * Writes PROJECT/renders/<name>.render.json with timings and the verification report.
 """
 
@@ -121,15 +122,47 @@ def mix_audio(project: Path, tl: dict, out_wav: Path) -> dict:
     return {"music": str(music_path) if music_path else None, "cues": len(cues), "samples": total, "pre_peak": round(peak, 3)}
 
 
-def loudnorm_encode(wav: Path, out_m4a: Path, target: dict) -> dict:
-    I, TP, LRA = target.get("I", -16), target.get("TP", -1.5), target.get("LRA", 11)
-    p1 = subprocess.run(["ffmpeg", "-hide_banner", "-i", str(wav), "-af", f"loudnorm=I={I}:TP={TP}:LRA={LRA}:print_format=json",
-                         "-f", "null", "-"], capture_output=True, text=True, check=True).stderr
-    meas = json.loads(p1[p1.rfind("{"):p1.rfind("}") + 1])
-    af = (f"loudnorm=I={I}:TP={TP}:LRA={LRA}:measured_I={meas['input_i']}:measured_TP={meas['input_tp']}:"
-          f"measured_LRA={meas['input_lra']}:measured_thresh={meas['input_thresh']}:offset={meas['target_offset']}:linear=true")
-    run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-i", wav, "-af", af, "-ar", str(SR), "-c:a", "aac", "-b:a", "256k", out_m4a])
-    return {"measured": meas, "target": {"I": I, "TP": TP, "LRA": LRA}}
+def measure_loudness(path: Path) -> dict:
+    """EBU R128 integrated loudness + true peak (4x oversampled) of a file, as ffmpeg's ebur128 reports them."""
+    err = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", str(path), "-vn", "-af", "ebur128=peak=true", "-f", "null", "-"],
+                         capture_output=True, text=True).stderr
+    summ = err[err.rfind("Summary:"):]
+    I = float(summ.split("I:")[1].split("LUFS")[0])
+    TP = float(summ.split("Peak:")[1].split("dBFS")[0])
+    LRA = float(summ.split("LRA:")[1].split("LU")[0])
+    return {"I": I, "TP": TP, "LRA": LRA}
+
+
+def master_audio(wav: Path, out_m4a: Path, target: dict, max_passes: int = 4) -> dict:
+    """Measured mastering loop: gain to the loudness target, then a true-peak-safe limiter, encode AAC, re-measure the
+    ENCODED file and correct gain/ceiling until integrated loudness is within ±0.5 LU and true peak <= target.
+
+    Why not ffmpeg loudnorm: with the beds this workstation produces (≈ −19…−21 LUFS, peaks ≈ −1.5…−2 dBTP) the
+    +3…5 dB needed makes loudnorm's linear mode impossible, so it silently falls back to dynamic mode, and AAC
+    encoding then overshoots its true-peak target (measured −0.7 dBTP on a 10-minute master with TP=−1.5)."""
+    I_t, TP_t = float(target.get("I", -16)), float(target.get("TP", -1.5))
+    src = measure_loudness(wav)
+    gain = I_t - src["I"]
+    ceiling = TP_t - 2.0  # dBFS on the 4x-oversampled signal; measured: −2.5 still gave −0.7 dBTP after AAC, −3.5 gave −2.6
+    passes = []
+    for k in range(max_passes):
+        lim = max(0.0625, 10 ** (ceiling / 20))
+        # latency=true: compensate the limiter's look-ahead so picture/sound sync stays sample-accurate.
+        # level=false: no auto make-up gain (the volume stage sets loudness).
+        af = (f"volume={gain:.3f}dB,aresample={SR * 4},"
+              f"alimiter=limit={lim:.5f}:attack=2:release=80:level=false:latency=true,aresample={SR}")
+        run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-i", wav, "-af", af, "-ar", str(SR),
+             "-c:a", "aac", "-b:a", "256k", out_m4a])
+        out = measure_loudness(out_m4a)
+        ok = abs(out["I"] - I_t) <= 0.5 and out["TP"] <= TP_t
+        passes.append({"pass": k + 1, "gain_db": round(gain, 3), "ceiling_dbfs": round(ceiling, 2), "out": out, "ok": ok})
+        if ok:
+            break
+        if out["TP"] > TP_t:
+            ceiling -= (out["TP"] - TP_t) + 0.2
+        gain += I_t - out["I"]
+    return {"method": "gain + 4x-oversampled limiter + AAC, re-measured (ebur128)", "source": src,
+            "target": {"I": I_t, "TP": TP_t}, "passes": passes, "result": passes[-1]["out"], "compliant": passes[-1]["ok"]}
 
 
 # ------------------------------------------------------------------ video
@@ -208,10 +241,11 @@ def verify(final: Path, tl: dict, review: Path) -> dict:
     expected = tl["meta"]["durationInFrames"]
     frames = int(v.get("nb_read_packets") or 0)
     dec = subprocess.run(["ffmpeg", "-v", "error", "-i", str(final), "-f", "null", "-"], capture_output=True, text=True)
-    loud = subprocess.run(["ffmpeg", "-hide_banner", "-i", str(final), "-vn", "-af", "ebur128=peak=true", "-f", "null", "-"],
-                          capture_output=True, text=True).stderr
-    I = float(loud.split("I:")[-1].split("LUFS")[0]) if "I:" in loud else None
-    TP = float(loud.split("Peak:")[-1].split("dBFS")[0]) if "Peak:" in loud else None
+    try:
+        lm = measure_loudness(final)
+        I, TP = lm["I"], lm["TP"]
+    except Exception:
+        I = TP = None
     rep = {
         "file": str(final), "bytes": final.stat().st_size,
         "width": v["width"], "height": v["height"], "fps": round(float(num) / float(den), 3),
@@ -236,8 +270,11 @@ def verify(final: Path, tl: dict, review: Path) -> dict:
         stills.append(str(p))
     rep["stills"] = stills
     rep["contact_sheet"] = str(review / "contact-sheet.jpg")
+    tgt = tl.get("audio", {}).get("loudness", {})
+    rep["loudness_compliant"] = bool(I is not None and TP is not None and abs(I - tgt.get("I", -16)) <= 0.5
+                                     and TP <= tgt.get("TP", -1.5))
     rep["passed"] = bool(rep["frames_match"] and rep["audio"] and not rep["full_decode_errors"]
-                         and abs(rep["duration"] - rep["expected_duration"]) < 0.1)
+                         and abs(rep["duration"] - rep["expected_duration"]) < 0.1 and rep["loudness_compliant"])
     return rep
 
 
@@ -251,6 +288,7 @@ def main(argv=None) -> int:
     ap.add_argument("--concurrency", type=int, default=4)
     ap.add_argument("--scale", type=float, default=1.0, help="render scale (0.5 = draft at half resolution)")
     ap.add_argument("--audio-only", action="store_true")
+    ap.add_argument("--remaster", type=Path, help="existing master: re-mix + re-master its audio, stream-copy its video, re-verify")
     a = ap.parse_args(argv)
     project = a.project.resolve()
     tl_path = project / a.timeline
@@ -262,13 +300,27 @@ def main(argv=None) -> int:
     props.write_text(json.dumps({"timeline": tl}))
     t0 = time.time()
     report = {"timeline": str(tl_path), "started": time.strftime("%Y-%m-%d %H:%M:%S")}
-    wav = project / "work" / f"{out.stem}.mix.wav"
+    wav = project / "work" / f"{tl_path.stem}.mix.wav"
     report["mix"] = mix_audio(project, tl, wav)
     m4a = project / "work" / f"{out.stem}.m4a"
-    report["loudness"] = loudnorm_encode(wav, m4a, tl.get("audio", {}).get("loudness", {}))
+    report["loudness"] = master_audio(wav, m4a, tl.get("audio", {}).get("loudness", {}))
     if a.audio_only:
         print(json.dumps(report, indent=2))
         return 0
+    if a.remaster:
+        src = a.remaster.resolve()
+        tmp = out.with_name(out.stem + ".remaster.tmp.mp4")
+        run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-i", src, "-i", m4a, "-map", "0:v", "-map", "1:a",
+             "-c", "copy", "-shortest", "-movflags", "+faststart", tmp])
+        tmp.replace(src)
+        report["remastered"] = str(src)
+        report["render_seconds"] = round(time.time() - t0, 1)
+        report["verify"] = verify(src, tl, project / "review" / src.stem)
+        src.with_suffix(".render.json").write_text(json.dumps(report, indent=2))
+        v = report["verify"]
+        print(json.dumps({k: v[k] for k in ("file", "frames", "expected_frames", "duration", "integrated_lufs",
+                                            "true_peak_dbfs", "loudness_compliant", "passed")}, indent=2))
+        return 0 if v["passed"] else 1
     report["video"] = render_video(project, props, tl, out, a.chunk_seconds, a.crf, a.concurrency, a.scale)
     run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-i", report["video"]["video"], "-i", m4a,
          "-map", "0:v", "-map", "1:a", "-c:v", "copy", "-c:a", "copy", "-shortest", "-movflags", "+faststart", out])
@@ -277,7 +329,8 @@ def main(argv=None) -> int:
     (out.with_suffix(".render.json")).write_text(json.dumps(report, indent=2))
     v = report["verify"]
     print(json.dumps({k: v[k] for k in ("file", "width", "height", "fps", "frames", "expected_frames", "duration",
-                                        "audio_codec", "audio_rate", "integrated_lufs", "true_peak_dbfs", "passed")}, indent=2))
+                                        "audio_codec", "audio_rate", "integrated_lufs", "true_peak_dbfs",
+                                        "loudness_compliant", "passed")}, indent=2))
     print(f"[render] total {report['render_seconds']}s")
     return 0 if v["passed"] else 1
 

@@ -51,9 +51,12 @@ verification (frames, duration, fps, audio, loudness, full decode) and review st
     `npx remotion render src/index.ts Promo out/s --props=<{"timeline":…}> --public-dir=<p>/public --frames=a,b,c`
     from `engine/`; Read the images. Fix layout/typography/timing in the storyboard, recompile.
 11. **Render** — `/opt/cws-venv/bin/python scripts/render.py projects/<p> [--timeline timeline.json]
-    [--chunk-seconds 60]` → chunked Remotion video (resumable), streamed music+SFX mix, two-pass loudnorm
-    (−16 LUFS / −1.5 dBTP), mux, verification report `renders/<name>.render.json`, contact sheet + per-scene stills
-    in `review/<name>/`. 4K: `timeline.py compile ... --width 3840 --height 2160`.
+    [--chunk-seconds 60]` → chunked Remotion video (resumable), streamed music+SFX mix, measured mastering loop
+    (gain → 4×-oversampled limiter → AAC → re-measure until −16 ±0.5 LUFS and ≤ −1.5 dBTP), mux, BT.709 limited-range
+    video, verification report `renders/<name>.render.json` (fails if loudness is out of spec), contact sheet +
+    per-scene stills in `review/<name>/`. 4K: `timeline.py compile ... --width 3840 --height 2160`.
+    Fix only the audio of an existing master: `render.py <p> --timeline <t>.json --remaster renders/<file>.mp4`.
+    Fix full-range/untagged colour on older masters: `scripts/conform_color.py IN OUT`.
 12. **Inspect + deliver** — Read the contact sheet and stills; check `verify.passed`, frames == expected, LUFS.
     Prove sync: `/opt/cws-venv/bin/python tests/sync_check.py renders/<name>.mp4 <timeline>.json` locates every SFX
     in the master by waveform cross-correlation (sample-accurate) and every transition by its change centroid.

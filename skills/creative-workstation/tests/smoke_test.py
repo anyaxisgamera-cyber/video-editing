@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Fast, dependency-light smoke test (CI): catalogue round-trip, timeline compiler maths, expand, SFX/music
-synthesis (if numpy/scipy/soundfile are present). No Blender, Remotion or network needed."""
+synthesis (if numpy/scipy/soundfile are present; pass --require-audio to make their absence a failure).
+No Blender, Remotion or network needed."""
 
 import json
 import subprocess
@@ -62,6 +63,8 @@ def main() -> int:
             check(abs(info.duration - 12.5) < 1e-3 and info.samplerate == 48000, "music synth exact length @48k")
             check(len(audio_synth.make_sfx(Path(td) / "sfx")) == 6, "6 SFX synthesised")
     except ImportError as exc:
+        if "--require-audio" in sys.argv:
+            raise SystemExit(f"FAIL: audio synthesis checks required but dependencies are missing ({exc})")
         print(f"skip audio synthesis ({exc})")
     print("creative-workstation smoke test passed")
     return 0
