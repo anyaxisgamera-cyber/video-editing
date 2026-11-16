@@ -64,8 +64,11 @@ verification (frames, duration, fps, audio, loudness, full decode) and review st
 
 Use the `fable-video-edit` skill (Whisper word timestamps → take selection → `final-edit.json` → ffmpeg cuts → LUT →
 Remotion overlays). `tests/fable_workflow_test.py` runs that whole chain on synthetic spoken takes and re-transcribes
-the assembly to prove zero fillers and correct order. Whisper (base) tends to drop "um/uh" from transcripts — count
-restarts/repeated phrases too, or prompt Whisper with disfluent text, before trusting a filler count of 0.
+the assembly to prove zero fillers and correct order. Whisper drops "um/uh" by default — measured on a take
+spoken as "Um, every move matters. Uh, every move matters…": default → "Every move matters, every move matters…";
+with `--initial_prompt "Umm, let me think, uh, like, hmm... Okay, um, here's what I'm, uh, thinking."` → "Um, every
+move matters, uh, every move matters…". Add that prompt (edit the whisper line in fable's `scripts/transcribe.sh`)
+whenever the filler count drives take selection.
 
 ## Photo & graphic production
 
