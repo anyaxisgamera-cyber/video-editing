@@ -4,6 +4,8 @@
 
 Identify audience, destination, aspect ratio, target length, desired tone, must-keep content, and whether the user expects a rough cut or polished master. Do not invent requirements that the delivery platform does not impose.
 
+When the user supplies only a script and basic project information, the brief also fixes the number of videos, the duration of each, the languages, and the delivery formats. Follow [autonomous-production.md](autonomous-production.md).
+
 ## 2. Observe the sources
 
 Probe every file and keep the raw payload. Review contact sheets and listen to representative audio. Check rotation, variable frame rate, color range, clipped highlights, dropped frames, background noise, and whether multiple audio tracks have distinct roles.
@@ -44,3 +46,4 @@ Deliver:
 - contact sheet, transition strips, and representative stills;
 - validation report and checksum;
 - fonts, graphics, prompts, and licensed asset provenance needed to reproduce the result.
+- for script-driven productions: the source and licensing register, editing references, approvals log, timing maps, deliverable status, and production report.

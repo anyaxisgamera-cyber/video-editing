@@ -8,10 +8,14 @@
     "render:draft": "remotion render src/index.ts VideoEdit output/draft.mp4 --props=project.example.json --codec=h264 --pixel-format=yuv420p --scale=0.5 --crf=28",
     "render:video": "remotion render src/index.ts VideoEdit output/video.mp4 --props=project.example.json --codec=h264 --pixel-format=yuv420p",
     "render:overlay": "remotion render src/index.ts MotionOverlay output/overlay.mov --props=project.overlay.example.json --image-format=png --pixel-format=yuva444p10le --codec=prores --prores-profile=4444 --muted",
-    "still": "remotion still src/index.ts VideoEdit output/still.png --props=project.example.json --frame=45"
+    "still": "remotion still src/index.ts VideoEdit output/still.png --props=project.example.json --frame=45",
+    "render:script": "remotion render src/index.ts ScriptVideo output/script.mp4 --props=project.script.example.json --codec=h264 --pixel-format=yuv420p --color-space=bt709",
+    "still:script": "remotion still src/index.ts ScriptVideo output/script-still.png --props=project.script.example.json --frame=40"
   },
   "dependencies": {
+    "@remotion/captions": "4.0.489",
     "@remotion/cli": "4.0.489",
+    "@remotion/fonts": "4.0.489",
     "@remotion/media": "4.0.489",
     "react": "18.3.1",
     "react-dom": "18.3.1",

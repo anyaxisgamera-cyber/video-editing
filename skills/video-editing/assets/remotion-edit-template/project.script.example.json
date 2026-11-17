@@ -1,0 +1,154 @@
+{
+  "canvas": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "durationInFrames": 150,
+    "background": "#10131a"
+  },
+  "format": "16:9",
+  "language": {
+    "code": "en",
+    "direction": "ltr",
+    "fontFamily": "sans-serif",
+    "fontSrc": null
+  },
+  "scenes": [
+    {
+      "id": "s01",
+      "from": 0,
+      "durationInFrames": 84,
+      "media": {
+        "kind": "none",
+        "src": null,
+        "trimBefore": 0,
+        "playbackRate": 1,
+        "fit": "cover",
+        "focusX": 0.5,
+        "focusY": 0.5,
+        "width": null,
+        "height": null
+      },
+      "move": {
+        "type": "static",
+        "amount": 0
+      },
+      "transitionIn": {
+        "type": "cut",
+        "durationInFrames": 0
+      },
+      "onScreen": {
+        "text": "Script-driven video",
+        "from": 9,
+        "durationInFrames": 66
+      }
+    },
+    {
+      "id": "s02",
+      "from": 72,
+      "durationInFrames": 78,
+      "media": {
+        "kind": "none",
+        "src": null,
+        "trimBefore": 0,
+        "playbackRate": 1,
+        "fit": "cover",
+        "focusX": 0.5,
+        "focusY": 0.5,
+        "width": null,
+        "height": null
+      },
+      "move": {
+        "type": "static",
+        "amount": 0
+      },
+      "transitionIn": {
+        "type": "fade",
+        "durationInFrames": 12
+      },
+      "onScreen": null
+    }
+  ],
+  "narration": [],
+  "music": null,
+  "sfx": [],
+  "captionTracks": [
+    {
+      "sceneId": "s01",
+      "captions": [
+        {
+          "text": "Every",
+          "startMs": 300,
+          "endMs": 620,
+          "timestampMs": null,
+          "confidence": null
+        },
+        {
+          "text": " journey",
+          "startMs": 620,
+          "endMs": 1100,
+          "timestampMs": null,
+          "confidence": null
+        },
+        {
+          "text": " starts",
+          "startMs": 1100,
+          "endMs": 1500,
+          "timestampMs": null,
+          "confidence": null
+        },
+        {
+          "text": " with",
+          "startMs": 1500,
+          "endMs": 1700,
+          "timestampMs": null,
+          "confidence": null
+        },
+        {
+          "text": " one",
+          "startMs": 1700,
+          "endMs": 1950,
+          "timestampMs": null,
+          "confidence": null
+        },
+        {
+          "text": " step.",
+          "startMs": 1950,
+          "endMs": 2500,
+          "timestampMs": null,
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "sceneId": "s02",
+      "captions": [
+        {
+          "text": "Keep",
+          "startMs": 2900,
+          "endMs": 3200,
+          "timestampMs": null,
+          "confidence": null
+        },
+        {
+          "text": " walking.",
+          "startMs": 3200,
+          "endMs": 3900,
+          "timestampMs": null,
+          "confidence": null
+        }
+      ]
+    }
+  ],
+  "captionStyle": {
+    "fontSize": 46,
+    "bottom": 0.085,
+    "maxWidth": 0.8,
+    "combineTokensWithinMilliseconds": 2200,
+    "highlightActiveWord": false
+  },
+  "onScreenStyle": {
+    "fontSize": 72,
+    "top": 0.1
+  }
+}

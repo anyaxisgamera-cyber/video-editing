@@ -21,6 +21,8 @@ jobs:
         run: python3 -m compileall -q skills
       - name: Test video workbench
         run: python3 skills/video-editing/tests/smoke_test.py
+      - name: Test production tooling
+        run: python3 skills/video-editing/tests/production_test.py
       - name: Test video analyzer
         run: python3 skills/analyze-video-editing/tests/smoke_test.py
       - name: Typecheck Remotion starter
