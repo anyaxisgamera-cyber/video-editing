@@ -246,6 +246,13 @@ def main() -> None:
         m = mod.master_audio(quiet, mastered, {"I": -16, "TP": -1.5})
         assert m["compliant"], m
         assert abs(mod.loudness(mastered)["I"] + 16) <= 0.5
+        # oversized stills get a renderer copy just larger than the largest size shown; small ones are used as they are
+        big = tmp / "big.png"
+        ff("-f", "lavfi", "-i", "testsrc2=size=4000x3000", "-frames:v", "1", str(big))
+        wc, w, h = mod.still_working_copy(prod, big, 4000, 3000, 0.3)
+        assert wc != big and (w, h) == (1224, 918) and mod.media_facts(wc)["width"] == 1224, (wc, w, h)
+        assert w >= 4000 * 0.3 and h >= 3000 * 0.3, "the copy must never be smaller than what is shown (stays native)"
+        assert mod.still_working_copy(prod, big, 4000, 3000, 0.8)[0] == big
         # a picture tagged only with a BT.709 matrix (what Remotion writes) leaves mastering fully tagged, pixels unchanged
         part = tmp / "matrix-only.mp4"
         ff("-f", "lavfi", "-i", "testsrc2=size=320x180:rate=30:duration=2", "-f", "lavfi", "-i",

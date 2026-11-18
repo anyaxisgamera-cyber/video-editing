@@ -818,6 +818,29 @@ def link_into(src: Path, dst: Path, copy: bool) -> None:
     shutil.copy2(src, dst)
 
 
+def still_working_copy(prod: Path, src: Path, w: int, h: int, scale: float) -> tuple[Path, int, int]:
+    """A still far larger than the frame needs is decoded at full size by the renderer's browser: 35-45 MP images at 4K
+    logged `EncodingError: The source image cannot be decoded` and once crashed the page. Give the renderer a Lanczos
+    copy 2 % larger than the largest size the scene displays (cover/contain × zoom × camera move), so the delivered
+    pixels stay native. `scale` is that display scale relative to the source; below 0.75 a copy is made."""
+    if scale >= 0.75:
+        return src, w, h
+    tw = int(math.ceil(w * scale * 1.02 / 2) * 2)
+    th = int(round(h * tw / w / 2) * 2)
+    ext = src.suffix.lower() if src.suffix.lower() in (".png", ".webp") else ".jpg"
+    dst = prod / "assets" / ".work" / f"{src.stem}.{tw}x{th}{'.png' if ext != '.jpg' else '.jpg'}"
+    if not dst.exists():
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        tmp = dst.with_name(".tmp-" + dst.name)
+        r = subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-i", str(src), "-vf",
+                            f"scale={tw}:{th}:flags=lanczos", *(["-q:v", "2"] if dst.suffix == ".jpg" else []),
+                            "-frames:v", "1", str(tmp)], capture_output=True, text=True)
+        if r.returncode or not tmp.exists():
+            fail(f"could not make a working copy of {src.name}: {r.stderr.strip()[:200]}")
+        tmp.replace(dst)
+    return dst, tw, th
+
+
 def build_props(prod: Path, doc: dict, vid: str, lang: str, fmt: str, res: int, motion: Path, copy: bool) -> Path:
     tp = prod / "timing" / vid / f"{lang}.timing.json"
     if not tp.exists():
@@ -850,9 +873,17 @@ def build_props(prod: Path, doc: dict, vid: str, lang: str, fmt: str, res: int, 
         media = {"kind": "none", "src": None, "trimBefore": 0, "playbackRate": 1, "fit": "cover", "focusX": 0.5, "focusY": 0.5,
                  "width": None, "height": None}
         if m:
-            media = {"kind": m["kind"], "src": place(m["path"], f"media/{vid}"), "trimBefore": int(round(m["in"] * tm["fps"])),
-                     "playbackRate": m["rate"], "fit": fit_for(m["fit"], fmt), "focusX": float(m["focus"][0]), "focusY": float(m["focus"][1]),
-                     "width": m.get("width"), "height": m.get("height"), "zoom": zoom_for(m.get("zoom"), fmt)}
+            fit, zoom = fit_for(m["fit"], fmt), zoom_for(m.get("zoom"), fmt)
+            path, mw, mh = m["path"], m.get("width"), m.get("height")
+            if m["kind"] == "image" and mw and mh:
+                shown = (max if fit == "cover" else min)(W / mw, H / mh) * (zoom if fit == "cover" else 1.0) \
+                    * (1 + float((s.get("move") or {}).get("amount", 0) or 0))
+                src = Path(path) if Path(path).is_absolute() else prod / path
+                wc, mw, mh = still_working_copy(prod, src, mw, mh, shown)
+                path = str(wc)
+            media = {"kind": m["kind"], "src": place(path, f"media/{vid}"), "trimBefore": int(round(m["in"] * tm["fps"])),
+                     "playbackRate": m["rate"], "fit": fit, "focusX": float(m["focus"][0]), "focusY": float(m["focus"][1]),
+                     "width": mw, "height": mh, "zoom": zoom}
         scenes.append({"id": s["id"], "from": s["from"], "durationInFrames": s["durationInFrames"], "media": media,
                        "move": s["move"], "transitionIn": s["transitionIn"], "transitionOut": s.get("transitionOut"),
                        "onScreen": s["onScreen"], "onScreenStyle": s.get("onScreenStyle") or "title"})
@@ -1179,6 +1210,9 @@ def cmd_render(a) -> None:
             "resolution_class": qrep["checks"].get("resolution_class", {}).get("detail", {}).get("verdict")},
             drop=("failed_at", "candidate", "failed_checks"))
         print(f"validated deliverable: {dest}")
+        if not getattr(a, "keep_intermediates", False):  # the separate picture/WAV renders are now inside the deliverable
+            for f in (raw, raw_audio):
+                f.unlink(missing_ok=True)
         raise SystemExit(0)
     update_deliverable(prod, entry["path"], {"status": "failed", "failed_at": now(), "candidate": str(tmp.relative_to(prod)),
                                              "failed_checks": [k for k, ok in vr.get("checks", {}).items() if not ok]})
@@ -1300,6 +1334,8 @@ def parser() -> argparse.ArgumentParser:
         p.add_argument("--copy", action="store_true", help="copy media into public/ instead of hard-linking")
         if name == "render":
             p.add_argument("--crf", type=int, default=18); p.add_argument("--concurrency", type=int)
+            p.add_argument("--keep-intermediates", action="store_true",
+                           help="keep the separate Remotion picture and WAV renders after a validated master")
     p = sub.add_parser("feasibility", help="upscale needed per format/resolution (4K feasibility)")
     p.add_argument("production", type=Path); p.add_argument("--video")
     p = sub.add_parser("status", help="honest state of every deliverable")

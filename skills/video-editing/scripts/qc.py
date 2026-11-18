@@ -3,7 +3,7 @@
 
 Checks (each PASS/FAIL with its measurement; the method is recorded so a reviewer can repeat it):
   audio_present      one audio stream with measurable programme loudness
-  no_unexpected_black  ffmpeg blackdetect (d ≥ 0.2 s, pixel threshold 0.10) outside intended fades/dips
+  no_unexpected_black  ffmpeg blackdetect (any run of one frame or more, pixel threshold 0.10) outside intended fades/dips
   no_unexpected_freeze ffmpeg freezedetect (noise 0.001, d ≥ 2.0 s) outside still-image scenes without a camera move
   no_silence         ffmpeg silencedetect (−50 dB, d ≥ 1.0 s) inside the programme (first 0.5 s and fade-out excepted)
   captions_match_script  the SRT next to the timing map holds exactly the narration words, in order, per scene
@@ -146,7 +146,7 @@ def run_qc(video: Path, tm: dict, srt: Path, font: Path | None, texts: list[str]
         m = s.get("media") or {}
         if (not m or m.get("kind") == "image") and (s.get("move") or {}).get("type", "static") == "static":
             allowed_freeze.append((s["from"] / fps, (s["from"] + s["durationInFrames"]) / fps))
-    blacks = intervals(_run(["ffmpeg", "-hide_banner", "-nostats", "-i", video, "-vf", "blackdetect=d=0.2:pix_th=0.10", "-an",
+    blacks = intervals(_run(["ffmpeg", "-hide_banner", "-nostats", "-i", video, "-vf", "blackdetect=d=0.03:pix_th=0.10", "-an",
                              "-f", "null", "-"]), "black_start", "black_end", dur)
     bad_black = [b for b in blacks if not inside(b, allowed_black)]
     put("no_unexpected_black", not bad_black, {"black": blacks, "unexpected": bad_black})
