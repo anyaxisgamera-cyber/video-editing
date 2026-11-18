@@ -899,6 +899,23 @@ def cmd_props(a) -> None:
                      ensure_ascii=False))
 
 
+def colour_tag_args(video: Path) -> list[str]:
+    """Remotion's --color-space=bt709 marks only the matrix; transfer and primaries stay "unknown". When an H.264
+    stream has a BT.709 matrix and no transfer/primaries, write all three into the bitstream (VUI) and the container
+    while stream-copying. Pixels are untouched (decoded frames are bit-identical)."""
+    pr = json.loads(subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries",
+                                    "stream=codec_name,color_space,color_transfer,color_primaries,color_range", "-of", "json",
+                                    str(video)], capture_output=True, text=True).stdout or "{}").get("streams", [{}])
+    v = pr[0] if pr else {}
+    if v.get("codec_name") != "h264" or v.get("color_space") != "bt709" or \
+            (v.get("color_transfer") not in (None, "unknown") and v.get("color_primaries") not in (None, "unknown")):
+        return []
+    full = v.get("color_range") == "pc"
+    return ["-bsf:v", f"h264_metadata=colour_primaries=1:transfer_characteristics=1:matrix_coefficients=1:"
+                      f"video_full_range_flag={1 if full else 0}",
+            "-color_primaries", "bt709", "-color_trc", "bt709", "-colorspace", "bt709", "-color_range", "pc" if full else "tv"]
+
+
 def master_audio(raw: Path, out: Path, target: dict, max_passes: int = 4, audio: Path | None = None) -> dict:
     """Measured loop: gain → 4x-oversampled true-peak limiter → AAC → re-measure, video stream copied.
     `audio` is a separate (WAV) programme mix; without it the audio of `raw` is used."""
@@ -909,11 +926,12 @@ def master_audio(raw: Path, out: Path, target: dict, max_passes: int = 4, audio:
     inputs = ["-i", str(raw)] + (["-i", str(audio)] if audio else [])
     amap = "1:a:0" if audio else "0:a:0"
     gain, ceiling, passes = I_t - src["I"], TP_t - 2.0, []
+    tags = colour_tag_args(raw)
     for k in range(max_passes):
         lim = max(0.0625, 10 ** (ceiling / 20))
         af = f"volume={gain:.3f}dB,aresample={SR * 4},alimiter=limit={lim:.5f}:attack=2:release=80:level=false:latency=true,aresample={SR}"
         r = subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", *inputs, "-map", "0:v:0", "-map", amap,
-                            "-c:v", "copy", "-af", af, "-ar", str(SR), "-c:a", "aac", "-b:a", "256k", "-shortest",
+                            "-c:v", "copy", *tags, "-af", af, "-ar", str(SR), "-c:a", "aac", "-b:a", "256k", "-shortest",
                             "-movflags", "+faststart", str(out)], capture_output=True, text=True)
         if r.returncode:
             fail(f"mastering failed: {r.stderr.strip()[:300]}")
@@ -925,7 +943,8 @@ def master_audio(raw: Path, out: Path, target: dict, max_passes: int = 4, audio:
         if m["TP"] > TP_t:
             ceiling -= (m["TP"] - TP_t) + 0.2
         gain += I_t - m["I"]
-    return {"source": src, "target": {"I": I_t, "TP": TP_t}, "passes": passes, "compliant": passes[-1]["ok"]}
+    return {"source": src, "target": {"I": I_t, "TP": TP_t}, "passes": passes, "compliant": passes[-1]["ok"],
+            "colour_tags": "BT.709 primaries/transfer/matrix written while stream-copying" if tags else "unchanged"}
 
 
 def narration_offsets(prod: Path, tm: dict, media: Path) -> dict | None:

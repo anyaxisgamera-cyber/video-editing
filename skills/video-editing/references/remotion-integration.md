@@ -37,7 +37,7 @@ For anything not covered here, read the current documentation instead of relying
 Rendering notes:
 
 - Use Remotion's bundled browser. Behind an HTTP proxy, Node does not use the proxy unless `NODE_USE_ENV_PROXY=1` is set (Node 22), and the download fails with an address error. Set that variable rather than pointing Remotion at another browser. Pass `--browser-executable` only when the user asks for it or no download is possible, and record why.
-- Pass `--color-space=bt709` for tagged BT.709 H.264 output.
+- Pass `--color-space=bt709` for BT.709 H.264 output. Remotion 4.0.489 tags only the matrix this way (transfer and primaries read "unknown"); `production.py render` writes all three while stream-copying in the mastering step, with bit-identical decoded frames.
 - Render picture and sound separately when sync matters. In this workflow's measurements (Remotion 4.0.489), the AAC track of an H.264 MP4 rendered by Remotion sat 42.7 ms (2048 samples) late against the same composition rendered with `--codec=wav`, which was sample-accurate. Muxing the WAV with FFmpeg's AAC encoder gave 0.0–0.06 ms. Re-measure after upgrading Remotion instead of assuming either result still holds.
 - Remotion's bundler copies `public/` into the bundle and does not follow symlinks. Place media there as real files or hard links (`production.py props` hard-links, or copies across filesystems).
 - Very large stills (40 MP and up) can log `EncodingError: The source image cannot be decoded` in headless Chrome. Remotion retries the image; a frame that never decodes renders black and QC's black-frame check fails the deliverable. When the message appears, look at the review stills anyway.

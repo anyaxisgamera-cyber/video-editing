@@ -246,6 +246,19 @@ def main() -> None:
         m = mod.master_audio(quiet, mastered, {"I": -16, "TP": -1.5})
         assert m["compliant"], m
         assert abs(mod.loudness(mastered)["I"] + 16) <= 0.5
+        # a picture tagged only with a BT.709 matrix (what Remotion writes) leaves mastering fully tagged, pixels unchanged
+        part = tmp / "matrix-only.mp4"
+        ff("-f", "lavfi", "-i", "testsrc2=size=320x180:rate=30:duration=2", "-f", "lavfi", "-i",
+           "sine=frequency=330:sample_rate=48000:duration=2", "-c:v", "libx264", "-pix_fmt", "yuv420p", "-colorspace", "bt709",
+           "-c:a", "aac", "-shortest", str(part))
+        assert mod.colour_tag_args(part) and not mod.colour_tag_args(quiet), "only a BT.709-matrix H.264 stream is retagged"
+        tagged = tmp / "tagged.mp4"
+        assert mod.master_audio(part, tagged, {"I": -16, "TP": -1.5})["colour_tags"] != "unchanged"
+        tags = run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries",
+                    "stream=color_space,color_transfer,color_primaries", "-of", "csv=p=0", tagged]).stdout.strip()
+        assert tags == "bt709,bt709,bt709", tags
+        md5 = [run(["ffmpeg", "-v", "error", "-i", f, "-map", "0:v", "-f", "md5", "-"]).stdout for f in (part, tagged)]
+        assert md5[0] == md5[1], "tagging must not change a single pixel"
 
         # status: one validated deliverable, the rest missing; then a changed file becomes stale
         d = prod / "deliverables" / "v01" / "en" / "v01-en-16x9-1080.mp4"
