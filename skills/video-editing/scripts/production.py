@@ -202,6 +202,22 @@ def save_register_entries(prod: Path, entries: list[dict]) -> None:
         write_json(rp, reg)
 
 
+def update_deliverable(prod: Path, path: str, fields: dict, drop: tuple = ()) -> None:
+    """Change one deliverable in production.json under a lock, re-reading the file first: renders run for minutes and
+    several may run at once, so none may write back the whole document it loaded at its start."""
+    import fcntl
+    pj = prod / "production.json"
+    with open(pj.with_name(pj.name + ".lock"), "w") as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX)
+        doc = read_json(pj)
+        for d in doc["deliverables"]:
+            if d["path"] == path:
+                for k in drop:
+                    d.pop(k, None)
+                d.update(fields)
+        write_json(pj, doc)
+
+
 def asset_by_id(reg: dict) -> dict:
     return {a["id"]: a for a in reg.get("assets", [])}
 
@@ -859,7 +875,10 @@ def build_props(prod: Path, doc: dict, vid: str, lang: str, fmt: str, res: int, 
         "captionTracks": [{"sceneId": k, "captions": v} for k, v in tracks.items()],
         "captionStyle": {"fontSize": round((58 if vertical else 46) * unit), "bottom": 0.2 if vertical else 0.085,
                          "maxWidth": 0.84 if vertical else 0.8, "combineTokensWithinMilliseconds": 1400 if vertical else 2200,
-                         "highlightActiveWord": vertical},
+                         "highlightActiveWord": vertical,
+                         # plan/<video>/style.json "caption_backing": dark plate opacity for bright or busy footage
+                         "backing": float((read_json(prod / "plan" / vid / "style.json").get("caption_backing") or 0)
+                                          if (prod / "plan" / vid / "style.json").exists() else 0)},
         "onScreenStyle": {"fontSize": round((84 if vertical else 72) * unit), "top": 0.14 if vertical else 0.1},
         # per-video look from plan/<video>/style.json ("look"): applied identically to every shot for consistency
         "look": {**{"contrast": 1.0, "saturation": 1.0, "brightness": 1.0, "warmth": 0.0, "vignette": 0.0},
@@ -1070,13 +1089,13 @@ def cmd_render(a) -> None:
         fail(f"{a.video}/{a.language}/{a.format}/{a.resolution} is not in this production's deliverable matrix")
     blockers = gate(prod, doc, a.video, a.language)
     if blockers:
-        entry.update({"status": "blocked", "blocked_at": now(), "blockers": blockers})
-        write_json(prod / "production.json", doc)
+        update_deliverable(prod, entry["path"], {"status": "blocked", "blocked_at": now(), "blockers": blockers})
         print("BLOCKED — this deliverable is not rendered:")
         for b in blockers:
             print("  - " + b)
         raise SystemExit(3)
-    entry.pop("blockers", None)
+    # recorded before rendering: if the render is interrupted, status shows a render that never completed
+    update_deliverable(prod, entry["path"], {"status": "rendering", "render_started_at": now()}, drop=("blockers", "blocked_at"))
     props = build_props(prod, doc, a.video, a.language, a.format, a.resolution, motion, a.copy)
     pr = read_json(props)
     W, H, fps = pr["canvas"]["width"], pr["canvas"]["height"], pr["canvas"]["fps"]
@@ -1136,16 +1155,17 @@ def cmd_render(a) -> None:
         vr["mastering"] = mastering
         vr["narration_offsets_ms"] = offsets
         write_json(report, vr)
-        entry.update({"status": "validated", "sha256": vr["sha256"], "validated_at": now(),
-                      "resolution_class": qrep["checks"].get("resolution_class", {}).get("detail", {}).get("verdict")})
+        update_deliverable(prod, entry["path"], {
+            "status": "validated", "sha256": vr["sha256"], "validated_at": now(),
+            "resolution_class": qrep["checks"].get("resolution_class", {}).get("detail", {}).get("verdict")},
+            drop=("failed_at", "candidate", "failed_checks"))
         print(f"validated deliverable: {dest}")
-    else:
-        entry.update({"status": "failed", "failed_at": now(), "candidate": str(tmp.relative_to(prod)),
-                      "failed_checks": [k for k, ok in vr.get("checks", {}).items() if not ok]})
-        write_json(work / "validation.candidate.json", vr)
-        print(f"validation FAILED — candidate kept at {tmp}; report {work / 'validation.candidate.json'}")
-    write_json(prod / "production.json", doc)
-    raise SystemExit(0 if entry["status"] == "validated" else 1)
+        raise SystemExit(0)
+    update_deliverable(prod, entry["path"], {"status": "failed", "failed_at": now(), "candidate": str(tmp.relative_to(prod)),
+                                             "failed_checks": [k for k, ok in vr.get("checks", {}).items() if not ok]})
+    write_json(work / "validation.candidate.json", vr)
+    print(f"validation FAILED — candidate kept at {tmp}; report {work / 'validation.candidate.json'}")
+    raise SystemExit(1)
 
 
 # ------------------------------------------------------------------ feasibility / status
@@ -1177,15 +1197,24 @@ def cmd_feasibility(a) -> None:
 def cmd_status(a) -> None:
     prod = a.production.resolve()
     doc = load_prod(prod)
-    rows, complete = [], True
+    rows, complete, gates = [], True, {}
     for d in doc["deliverables"]:
         rcl = resolution_class(prod, doc, d["video"], d["format"], d["resolution"])
         p = prod / d["path"]
         rep = p.with_suffix(".validation.json")
         state = "missing"
         detail = ""
-        if not p.exists() and d.get("status") == "blocked":
-            state, detail = "blocked", "; ".join(d.get("blockers", [])[:2])
+        if not p.exists():
+            # blockers are re-evaluated now, never repeated from an earlier render attempt
+            key = (d["video"], d["language"])
+            if key not in gates:
+                gates[key] = gate(prod, doc, *key)
+            if gates[key]:
+                state, detail = "blocked", "; ".join(gates[key][:2])
+            elif d.get("status") == "rendering":
+                detail = f"render started {d.get('render_started_at')} never completed (interrupted or crashed)"
+            elif d.get("status") == "failed":
+                state, detail = "failed", f"candidate {d.get('candidate')} failed: {', '.join(d.get('failed_checks', [])[:4])}"
         if p.exists():
             state = "unvalidated"
             if rep.exists():

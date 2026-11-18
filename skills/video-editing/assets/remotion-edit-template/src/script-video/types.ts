@@ -51,6 +51,7 @@ export type ScriptVideoProps = {
     maxWidth: number; // fraction of the canvas width
     combineTokensWithinMilliseconds: number;
     highlightActiveWord: boolean;
+    backing?: number; // 0..1 opacity of a dark plate behind the caption block (0 = text shadow only)
   };
   onScreenStyle: {fontSize: number; top: number};
   look?: Look;

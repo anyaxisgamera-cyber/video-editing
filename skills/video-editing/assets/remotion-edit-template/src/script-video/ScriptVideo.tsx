@@ -177,6 +177,9 @@ const CaptionLayer: React.FC<Pick<ScriptVideoProps, 'captionTracks' | 'captionSt
         maxWidth: `${captionStyle.maxWidth * 100}%`, textAlign: 'center', direction: language.direction, whiteSpace: 'pre-wrap',
         fontFamily: language.fontFamily, fontSize: captionStyle.fontSize, fontWeight: 600, lineHeight: 1.35, color: '#FFFFFF',
         textShadow: '0 2px 4px rgba(0,0,0,0.85), 0 0 14px rgba(0,0,0,0.6)',
+        // optional plate for bright or busy backgrounds, where a shadow alone does not keep the text legible
+        ...(captionStyle.backing ? {backgroundColor: `rgba(0,0,0,${Math.min(0.85, captionStyle.backing)})`,
+          padding: '0.18em 0.55em', borderRadius: '0.3em'} : {}),
       }}>
         {page.tokens.map((tok, i) => {
           const active = captionStyle.highlightActiveWord && ms >= tok.fromMs && ms < tok.toMs;
