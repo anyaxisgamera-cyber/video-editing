@@ -29,7 +29,7 @@ Every cell of the matrix is a deliverable with a status. A cell is complete only
 
 Run two research tracks and record both:
 
-1. **Assets** — footage, photographs, illustrations, animations, music, sound effects, fonts, voices. Follow [research-and-licensing.md](research-and-licensing.md); every candidate goes into `research/source-register.json` with its real URL and licence evidence.
+1. **Assets** — footage, photographs, illustrations, animations, music, sound effects, fonts, voices. Follow [research-and-licensing.md](research-and-licensing.md); every candidate goes into `research/source-register.json` with its real URL and licence evidence. `production.py discover --thumbs` searches the providers and saves a labelled contact sheet; `fetch` downloads the chosen candidate after re-checking its licence; `source-check` records the factual sources the script relies on. Then run `scripts/analyze_media.py` so crops follow each image's subject.
 2. **Editing references** — professional films, documentaries, advertisements, and creators relevant to the script. Follow [editing-research.md](editing-research.md); the output is an original style guide in `plan/<video>/style.json`, not a copy of any reference.
 
 When the script is spoken word that needs evidence-style cutaways, the adjacent `find-broll` skill's routing and placement rules apply to those beats.
@@ -47,7 +47,7 @@ Choose visuals for meaning. A correct, plain shot beats a decorative, irrelevant
 
 ## 4. Narration, timing, and synchronization
 
-Produce narration per language (voice actor recordings, licensed TTS, or the user's own voice), measure every file, and derive timing from the measurements — never from word counts or another language's timing:
+Produce narration per language (voice actor recordings, licensed TTS through `scripts/narrate.py`, or the user's own voice), measure every file, and derive timing from the measurements — never from word counts or another language's timing:
 
 ```bash
 python3 "$SKILL_DIR/scripts/production.py" timing /path/to/production \

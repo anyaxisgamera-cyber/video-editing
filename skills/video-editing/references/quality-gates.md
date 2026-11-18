@@ -33,6 +33,7 @@
 - The final file starts promptly and plays through its end.
 - Review artifacts come from the final candidate, not a stale draft.
 - Validation report and SHA-256 checksum match the delivered file.
+- `production.py qc` passes on the encoded file: no unexpected black or frozen picture, no silence inside the programme, captions identical to the narration text, a font with every glyph the language needs, subjects inside the crop (`subject_in_frame`), and each narration file within ±10 ms of its planned position (FFT cross-correlation of the narration against the decoded mix at 16 kHz, 0.06 ms resolution).
 
 ## Research and licensing
 
@@ -47,7 +48,7 @@
 - Each language has its own timing map built from its own measured narration; none reuses another language's cut points.
 - Captions are the language's exact narration text, within its line-length and reading-rate limits, and in a font that covers its script.
 - Names and terms are pronounced as the lexicon specifies; on-screen text fits and reads naturally in every language.
-- Each format is reframed, not letterboxed; subjects survive the crop and text stays inside the format's safe area.
+- Each format is reframed, not letterboxed; subjects survive the crop and text stays inside the format's safe area. A letterbox is acceptable only when no crop keeps the subject and it sits on a matching background (a wide subject on a black sky, an archival image shown whole); record why next to the scene's `fit`.
 - 4K deliverables are native, or the user accepted the reported upscale.
 
 ## Production honesty

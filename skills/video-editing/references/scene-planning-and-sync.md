@@ -39,7 +39,9 @@ Read the whole script first and state its thesis. Then split it into scenes at c
 }
 ```
 
-Moves: `static`, `push_in`, `pull_out`, `pan_left`, `pan_right`, `tilt_up`, `tilt_down` (amount = zoom fraction or travel as a fraction of the frame). Transitions: `cut`, `fade` (crossfade), `fade_from_black`. Use richer transitions through Remotion's `@remotion/transitions` only when the style guide calls for them.
+Moves: `static`, `push_in`, `pull_out`, `pan_left`, `pan_right`, `tilt_up`, `tilt_down` (amount = zoom fraction or travel as a fraction of the frame). Transitions: `cut`, `fade` (crossfade), `fade_from_black`, `dip` (through black). Use richer transitions through Remotion's `@remotion/transitions` only when the style guide calls for them.
+
+Framing per format: `fit` and `zoom` take one value or a per-format object, for example `"fit": {"9:16": "contain", "16:9": "cover"}` to letterbox a wide subject in the vertical cut, or `"zoom": {"16:9": 2.0, "9:16": 1.3}` to punch in on a small subject in a large still (zoom ≥ 1, centred on `focus`). Without `focus`, the focus point comes from `analyze_media.py`. When its crop check says the subject leaves a cover crop and you keep that crop after looking at the stills, record `"crop_reviewed": {"9:16": true}`; otherwise QC fails `subject_in_frame`. `on_screen_style` is `title`, `lower_third`, or `top`; `plan/<video>/style.json` may set one `look` (`contrast`, `saturation`, `brightness`, `warmth`, `vignette`) for every shot.
 
 ## 2. Measure narration
 

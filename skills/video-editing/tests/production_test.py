@@ -161,6 +161,68 @@ def main() -> None:
                              "--resolution", "2160", "--motion-project", motion]).stdout)
         assert (p4["width"], p4["height"]) == (3840, 2160)
 
+        spec = importlib.util.spec_from_file_location("production", PRODUCTION)
+        mod = importlib.util.module_from_spec(spec)
+        sys.path.insert(0, str(PRODUCTION.parent))
+        spec.loader.exec_module(mod)
+
+        # per-format framing: letterbox the vertical cut, punch in on the landscape one; both counted in the upscale
+        scenes["scenes"][0]["visual"].update({"fit": {"9:16": "contain", "16:9": "cover"}, "zoom": {"16:9": 1.5}})
+        (prod / "plan" / "v01" / "scenes.json").write_text(json.dumps(scenes, ensure_ascii=False))
+        run([sys.executable, PRODUCTION, "timing", prod, "--video", "v01", "--language", "en"])
+        for fmt, fit, zoom in (("9:16", "contain", 1.0), ("16:9", "cover", 1.5)):
+            run([sys.executable, PRODUCTION, "props", prod, "--video", "v01", "--language", "en", "--format", fmt,
+                 "--resolution", "1080", "--motion-project", motion])
+            m0 = json.loads((motion / "props" / f"v01-en-{fmt.replace(':', 'x')}-1080.json").read_text())["scenes"][0]["media"]
+            assert (m0["fit"], m0["zoom"]) == (fit, zoom), m0
+        rc = {f: mod.resolution_class(prod, mod.load_prod(prod), "v01", f, 1080)["scenes"][0]["upscale"] for f in ("9:16", "16:9")}
+        assert abs(rc["16:9"] - 3.0 * 1.5 * 1.05) < 0.01 and abs(rc["9:16"] - 1.6875 * 1.05) < 0.01, rc
+        scenes["scenes"][0]["visual"]["zoom"] = 0.8
+        (prod / "plan" / "v01" / "scenes.json").write_text(json.dumps(scenes, ensure_ascii=False))
+        r = run([sys.executable, PRODUCTION, "timing", prod, "--video", "v01", "--language", "en"], ok=False)
+        assert r.returncode == 1 and "zoom" in r.stdout, r.stdout
+        scenes["scenes"][0]["visual"].pop("zoom")
+        scenes["scenes"][0]["visual"]["fit"] = "cover"
+
+        # licence gate: a render that would use a non-commercial asset is blocked before anything is rendered
+        scenes["scenes"][1]["visual"]["asset"] = "a02"
+        (prod / "plan" / "v01" / "scenes.json").write_text(json.dumps(scenes, ensure_ascii=False))
+        r = run([sys.executable, PRODUCTION, "render", prod, "--video", "v01", "--language", "en", "--format", "16:9",
+                 "--resolution", "1080", "--motion-project", motion], ok=False)
+        assert r.returncode == 3 and "a02" in (r.stdout + r.stderr), (r.returncode, r.stdout, r.stderr)
+        blocked = [x for x in json.loads((prod / "production.json").read_text())["deliverables"] if x.get("status") == "blocked"]
+        assert len(blocked) == 1 and blocked[0]["blockers"], blocked
+        scenes["scenes"][1]["visual"]["asset"] = "a01"
+        (prod / "plan" / "v01" / "scenes.json").write_text(json.dumps(scenes, ensure_ascii=False))
+        run([sys.executable, PRODUCTION, "timing", prod, "--video", "v01", "--language", "en"])
+        run([sys.executable, PRODUCTION, "timing", prod, "--video", "v01", "--language", "te", "--fit", "gaps"])
+
+        # QC failure detection on encoded files: unexpected black, missing audio, captions that differ from the script
+        import qc
+        tm = json.loads((prod / "timing" / "v01" / "en.timing.json").read_text())
+        secs = tm["durationInFrames"] / 30
+        bad = tmp / "bad.mp4"
+        ff("-f", "lavfi", "-i", f"testsrc2=size=320x180:rate=30:duration={secs:.3f}", "-vf",
+           f"drawbox=enable='between(t,{secs / 2 - 0.6:.2f},{secs / 2 + 0.6:.2f})':color=black:t=fill",
+           "-c:v", "libx264", "-pix_fmt", "yuv420p", str(bad))
+        srt = prod / "captions" / "v01" / "en.srt"
+        wrong = tmp / "wrong.srt"
+        wrong.write_text(srt.read_text().replace("journey", "journal"))
+        rep = qc.run_qc(bad, tm, wrong, None, [], 30, None)
+        assert not rep["checks"]["audio_present"]["passed"], rep["checks"]["audio_present"]
+        assert rep["checks"]["no_unexpected_black"]["detail"]["unexpected"], rep["checks"]["no_unexpected_black"]
+        assert "journal" in rep["checks"]["captions_match_script"]["detail"] and not rep["passed"]
+        assert qc.run_qc(bad, tm, srt, None, [], 30, None)["checks"]["captions_match_script"]["passed"]
+
+        # narration drift: a mix with the narration 120 ms late is measured as such (tolerance ±10 ms)
+        n0 = tm["narration"][0]
+        mix = tmp / "drift.wav"
+        delay = n0["from"] / 30 + 0.120
+        ff("-i", str(prod / n0["path"]), "-af", f"adelay={int(delay * 1000)}:all=1,apad=pad_dur=1", "-ar", "48000", str(mix))
+        tm1 = dict(tm, narration=[n0])
+        off = mod.narration_offsets(prod, tm1, mix)
+        assert off is None or abs(off[n0["scene"]] - 120) <= 2, off  # numpy missing → not measured, never "passed"
+
         # 4K feasibility from 640x360 sources: upscaled, never "native"
         out = run([sys.executable, PRODUCTION, "feasibility", prod]).stdout
         assert "upscaled" in out, out
@@ -168,9 +230,6 @@ def main() -> None:
         assert all(r["verdict"].startswith("upscaled") for r in feas["rows"])
 
         # mastering loop (imported) on a quiet synthetic programme
-        spec = importlib.util.spec_from_file_location("production", PRODUCTION)
-        mod = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(mod)
         quiet = tmp / "quiet.mp4"
         ff("-f", "lavfi", "-i", "testsrc2=size=320x180:rate=30:duration=4", "-f", "lavfi", "-i",
            "sine=frequency=330:sample_rate=48000:duration=4", "-filter_complex", "[1]volume=0.05[a]", "-map", "0:v", "-map", "[a]",

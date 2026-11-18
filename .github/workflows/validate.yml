@@ -17,12 +17,16 @@ jobs:
         run: sudo apt-get update && sudo apt-get install --yes ffmpeg
       - name: Check skill discovery
         run: npx --yes skills add . --list
+      - name: Validate skill frontmatter and links
+        run: uv run --no-project --with pyyaml python .github/scripts/validate_skills.py
       - name: Compile Python scripts
         run: python3 -m compileall -q skills
       - name: Test video workbench
         run: python3 skills/video-editing/tests/smoke_test.py
       - name: Test production tooling
-        run: python3 skills/video-editing/tests/production_test.py
+        run: uv run --no-project --with numpy python skills/video-editing/tests/production_test.py
+      - name: Test asset discovery providers (recorded payloads, no network)
+        run: python3 skills/video-editing/tests/providers_test.py
       - name: Test video analyzer
         run: python3 skills/analyze-video-editing/tests/smoke_test.py
       - name: Typecheck Remotion starter

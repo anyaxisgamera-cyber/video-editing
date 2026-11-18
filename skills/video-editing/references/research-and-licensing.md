@@ -33,6 +33,31 @@ Score each serious candidate on:
 
 Pick the best candidate per scene and keep runners-up as `candidate` in the register. For subjective choices with no clear winner, present the top options with stills instead of guessing.
 
+## Automated discovery and download
+
+`production.py discover` searches providers and writes every hit to the register as `candidate`, with the provider's licence normalized to `commercial_use` = `yes`, `no`, `conditional` (share-alike, or a rights advisory that needs a person's check) or `unknown`. In a `--commercial` production, `no` and `unknown` are dropped at search time; `conditional` needs an approved approval record before any render.
+
+```bash
+python3 "$SKILL_DIR/scripts/production.py" discover /path/to/production \
+  --query "lighthouse at night" --kind image --providers openverse:wikimedia,nasa,loc,met --scene v01/s03 --thumbs
+python3 "$SKILL_DIR/scripts/production.py" fetch /path/to/production --id c1a2b3c4 --max-wait 120
+```
+
+| Provider | Media | Key | Licence handling |
+|---|---|---|---|
+| `openverse` (`openverse:wikimedia`, `openverse:flickr`, …) | images, audio | none | per-item CC licence; `--commercial-only` sends `license=cc0,pdm,by` |
+| `wikimedia` | images, video, audio | none | per-file licence from `extmetadata` |
+| `nasa` | images, video | none | NASA media guidelines; logos and identifiable people excluded |
+| `met` | images | none | CC0 for Open Access objects only (`isPublicDomain`) |
+| `loc` | images | none | per-item rights advisory: "No known restrictions on publication" → `yes`; U.S.-Government-work advisories → `conditional`; anything else → `unknown` |
+| `mixkit` | video, music, sfx | none | read from each item page; `videoRestricted` clips are not commercial |
+| `pexels` | images, video | `PEXELS_API_KEY` (sent as the bare `Authorization` header) | Pexels License |
+| `pixabay` | images, video | `PIXABAY_API_KEY` (query parameter, redacted in logs) | Pixabay Content License; responses cached 24 h as its terms require |
+
+`fetch` re-reads the licence from the provider before downloading and refuses if it no longer allows the production's use. It picks the smallest rendition that needs no upscaling, writes to a `.part` file, checks the length, decodes the file, and only then marks it `downloaded` with its SHA-256 and measured size. Every failure is recorded in `download_attempts` and the entry stays a `candidate`.
+
+Rate limits are honoured, never evaded: `Retry-After` is waited out up to `--max-wait`, then the item fails. Wikimedia asks automated clients to fetch standard thumbnail widths (`960`, `1280`, `1920`, `3840`) instead of originals; `fetch` tries the original and then each smaller standard width, and `feasibility` reports the resulting upscale. From shared cloud egress, `upload.wikimedia.org` can answer HTTP 429 for long periods — switch to another source for that scene rather than retrying in a loop. Without a key, Pexels and Pixabay report themselves unavailable; creating those free accounts is the user's decision ([approvals.md](approvals.md)).
+
 ## Verify the licence at download time
 
 Read the licence on the item page itself, not only the site's general licence. Some sites mark individual items with different licences. Record:

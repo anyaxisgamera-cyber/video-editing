@@ -11,10 +11,15 @@ Commands (paths inside a production are relative to the production directory):
   render PROD --video v01 --language te --format 9:16 --resolution 1080 --motion-project PROD/remotion
   feasibility PROD [--video v01]
   status PROD
+  discover PROD --query "lighthouse at night" --kind image --providers openverse:wikimedia,nasa,met,loc,pexels,pixabay [--thumbs]
+  fetch PROD --id c1a2b3c4
+  source-check PROD URL [URL ...] [--note "what it supports"]
+  qc PROD --video v01 --language te --format 9:16 --resolution 1080 [--file x.mp4]
 
-Nothing here downloads assets or contacts asset services (`render` runs the Remotion CLI, which may fetch Remotion's
-own browser on first use). Every reported fact is measured from local files (ffprobe, silencedetect, ebur128,
-SHA-256, cross-correlation) or read from the project's own records.
+Only `discover`, `fetch`, and `source-check` contact external services (see discovery.py / providers.py); every request
+is logged to research/external-actions.jsonl with secrets redacted. `render` runs the Remotion CLI, which may fetch
+Remotion's own browser on first use. Every reported fact is measured from local files (ffprobe, silencedetect,
+ebur128, SHA-256, cross-correlation) or read from the project's own records.
 """
 
 from __future__ import annotations
@@ -58,8 +63,11 @@ def read_json(p: Path) -> dict:
 
 
 def write_json(p: Path, value) -> None:
+    """Write via a temporary file and rename, so an interrupted write never leaves truncated JSON behind."""
     p.parent.mkdir(parents=True, exist_ok=True)
-    p.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    tmp = p.with_name(f".{p.name}.{os.getpid()}.tmp")
+    tmp.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    os.replace(tmp, p)
 
 
 def sha256(p: Path) -> str:
@@ -178,6 +186,22 @@ def load_register(prod: Path) -> dict:
     return read_json(p) if p.exists() else {"assets": []}
 
 
+def save_register_entries(prod: Path, entries: list[dict]) -> None:
+    """Merge entries (by id) into the register on disk under an exclusive lock. Long-running commands (fetch waiting
+    out a rate limit, narrate) hold an in-memory copy; writing that copy whole would discard what other commands
+    recorded meanwhile, so every command saves only the entries it changed."""
+    import fcntl
+    rp = register_path(prod)
+    rp.parent.mkdir(parents=True, exist_ok=True)
+    with open(rp.with_name(rp.name + ".lock"), "w") as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX)
+        reg = load_register(prod)
+        merged = {x["id"]: x for x in reg.get("assets", [])}
+        merged.update({e["id"]: e for e in entries})
+        reg["assets"] = sorted(merged.values(), key=lambda x: x["id"])
+        write_json(rp, reg)
+
+
 def asset_by_id(reg: dict) -> dict:
     return {a["id"]: a for a in reg.get("assets", [])}
 
@@ -267,9 +291,7 @@ def cmd_register_add(a) -> None:
     elif a.status in ("downloaded", "used"):
         fail(f"status {a.status!r} needs --file")
     entry["recorded_at"] = now()
-    assets = [x for x in reg["assets"] if x["id"] != a.id] + [entry]
-    reg["assets"] = sorted(assets, key=lambda x: x["id"])
-    write_json(register_path(prod), reg)
+    save_register_entries(prod, [entry])
     print(json.dumps({"registered": a.id, "status": a.status, "sha256": entry.get("sha256"), "probe": entry.get("probe")},
                      ensure_ascii=False))
 
@@ -295,12 +317,74 @@ def referenced_assets(plan: dict) -> set[str]:
     return ids
 
 
+def load_approvals(prod: Path) -> dict:
+    p = prod / "research" / "approvals.json"
+    return {x["id"]: x for x in read_json(p).get("approvals", [])} if p.exists() else {}
+
+
+def licence_blockers(e: dict, doc: dict, approvals: dict) -> list[str]:
+    """Why an asset may not appear in this production's deliverables (empty list = usable)."""
+    lic = e.get("licence", {}) or {}
+    cu = str(lic.get("commercial_use", "unknown")).lower()
+    out = []
+    if doc.get("commercial"):
+        if cu in ("no", "false"):
+            out.append(f"{e['id']}: licence {lic.get('name')!r} does not allow commercial use")
+        elif cu in ("", "unknown"):
+            out.append(f"{e['id']}: licence {lic.get('name')!r} — commercial use not verified; commercial output is blocked until it is")
+        elif cu == "conditional":
+            ap = approvals.get(e.get("approval") or "")
+            if not ap or ap.get("decision") != "approved":
+                out.append(f"{e['id']}: {lic.get('restrictions') or 'conditional licence'} — needs an approved approval record")
+    if lic.get("no_derivatives"):
+        out.append(f"{e['id']}: licence forbids derivatives (editing)")
+    if e.get("cost") and str(e["cost"]).strip() not in ("0", "free", "none"):
+        ap = approvals.get(e.get("approval") or "")
+        if not ap or ap.get("decision") != "approved":
+            out.append(f"{e['id']}: paid asset ({e['cost']}) without an approved approval record")
+    return out
+
+
+def narration_files(prod: Path, vid: str | None = None, lang: str | None = None) -> list[Path]:
+    root = prod / "narration"
+    if not root.exists():
+        return []
+    pat = f"{vid or '*'}/{lang or '*'}/*"
+    return sorted(p for p in root.glob(pat) if p.suffix.lower() in AUDIO_EXT)
+
+
+def font_files(doc: dict, lang: str | None = None) -> list[str]:
+    """Caption/title font files configured per language in production.json (part of every deliverable in that language)."""
+    langs = [lang] if lang else list(doc.get("languages", {}))
+    return [f for f in (((doc.get("languages", {}).get(l) or {}).get("font") or {}).get("file") for l in langs) if f]
+
+
+def register_by_path(reg: dict) -> dict:
+    return {x.get("local_path"): x for x in reg.get("assets", []) if x.get("local_path")}
+
+
+def deliverable_assets(prod: Path, doc: dict, reg: dict, vid: str, lang: str) -> tuple[list[dict], list[str]]:
+    """Every register entry that ends up in (video, language): scene media, music, SFX, narration files."""
+    by_id, by_path = asset_by_id(reg), register_by_path(reg)
+    plan = scene_plans(prod, doc).get(vid, {})
+    entries, missing = [], []
+    for aid in sorted(referenced_assets(plan)):
+        (entries.append(by_id[aid]) if aid in by_id else missing.append(f"{aid}: referenced by {vid} but not registered"))
+    for f in narration_files(prod, vid, lang):
+        rel = str(f.relative_to(prod))
+        (entries.append(by_path[rel]) if rel in by_path else
+         missing.append(f"{rel}: narration file not registered (record its voice and licence with register-add or narrate)"))
+    for rel in font_files(doc, lang):
+        (entries.append(by_path[rel]) if rel in by_path else
+         missing.append(f"{rel}: font file not registered (record its licence with register-add --kind font)"))
+    return entries, missing
+
+
 def cmd_audit(a) -> None:
     prod = a.production.resolve()
     doc = load_prod(prod)
     reg = load_register(prod)
-    approvals = {x["id"]: x for x in read_json(prod / "research" / "approvals.json").get("approvals", [])} \
-        if (prod / "research" / "approvals.json").exists() else {}
+    approvals = load_approvals(prod)
     by_id = asset_by_id(reg)
     errors, warnings = [], []
     used = set()
@@ -309,6 +393,18 @@ def cmd_audit(a) -> None:
             used.add(aid)
             if aid not in by_id:
                 errors.append(f"{vid}: asset {aid} is used in scenes.json but not in the source register")
+    by_path = register_by_path(reg)
+    for f in narration_files(prod):
+        rel = str(f.relative_to(prod))
+        if rel in by_path:
+            used.add(by_path[rel]["id"])
+        else:
+            errors.append(f"{rel}: narration file not registered (record its voice and licence with register-add or narrate)")
+    for rel in font_files(doc):
+        if rel in by_path:
+            used.add(by_path[rel]["id"])
+        else:
+            errors.append(f"{rel}: font file not registered (record its licence with register-add --kind font)")
     for aid, e in by_id.items():
         lic = e.get("licence", {})
         if e.get("status") in ("downloaded", "used") or aid in used:
@@ -326,18 +422,14 @@ def cmd_audit(a) -> None:
                 errors.append(f"{aid}: no licence evidence recorded")
             if not e.get("source_url"):
                 errors.append(f"{aid}: no source URL (use 'generated' or 'user-supplied' when applicable)")
-            non_commercial = str(lic.get("commercial_use", "")).lower() in ("no", "false")
-            if doc.get("commercial") and non_commercial:
-                if aid in used:
-                    errors.append(f"{aid}: licence {lic.get('name')!r} does not allow commercial use, but the production is commercial")
-                else:
-                    warnings.append(f"{aid}: downloaded but not usable in this commercial production ({lic.get('name')}); keep it unused")
-            if str(lic.get("commercial_use", "")).lower() in ("", "unknown") and doc.get("commercial") and aid in used:
-                warnings.append(f"{aid}: commercial use not confirmed for a commercial production")
-            if aid in used and e.get("cost") and str(e["cost"]).strip() not in ("0", "free", "none"):
-                ap = approvals.get(e.get("approval") or "")
-                if not ap or ap.get("decision") != "approved":
-                    errors.append(f"{aid}: paid asset ({e['cost']}) without an approved approval record")
+            blockers = licence_blockers(e, doc, approvals)
+            if aid in used:
+                errors += [b + " — but it is used in this commercial production" if "commercial" in b and doc.get("commercial")
+                           else b for b in blockers]
+            elif blockers:
+                warnings.append(f"{aid}: downloaded but not usable here ({'; '.join(blockers)}); keep it unused")
+            if not doc.get("commercial") and aid in used and (lic.get("share_alike") or str(lic.get("commercial_use")) == "conditional"):
+                warnings.append(f"{aid}: share-alike licence — the finished video must be released under {lic.get('name')}")
         if aid not in used and e.get("status") == "used":
             warnings.append(f"{aid}: marked used but no scene references it")
     credits = []
@@ -352,6 +444,8 @@ def cmd_audit(a) -> None:
         if e.get("source_url") not in (None, "generated", "user-supplied"):
             line += f" — {e['source_url']}"
         line += f" — {lic.get('name', '?')}"
+        if lic.get("credit_line"):
+            line += f" — {lic['credit_line']}"
         if lic.get("attribution"):
             line += f" — {lic['attribution']}"
         credits.append(line)
@@ -497,10 +591,21 @@ def cmd_timing(a) -> None:
         return max(speech, r["min"], r["reading"])
 
     target = video.get("duration_seconds")
+    if a.fit == "full" and target:
+        # first rebalance scenes without narration (title cards, visual holds) within readable limits
+        free = [r for r in rows if not r["narration"]]
+        fixed = sum(length(r, r["gap"], r["hold"]) for r in rows if r["narration"]) + tail0
+        if free:
+            want = (target - fixed) / len(free)
+            for r in free:
+                lo = max(1.5, r["reading"])
+                hi = max(r["min"] * 2.0, 4.0, lo)
+                r["min"] = min(hi, max(lo, want))
+                r["fit_note"] = f"visual-only scene length set to {r['min']:.2f}s (allowed {lo:.2f}–{hi:.2f}s)"
     tail = tail0
     gaps = [r["gap"] for r in rows]
     holds = [r["hold"] for r in rows]
-    if a.fit == "gaps" and target:
+    if a.fit in ("gaps", "full") and target:
         cur = sum(length(r, g, h) for r, g, h in zip(rows, gaps, holds)) + tail
         lo_g, hi_g, lo_h, hi_h, lo_t, hi_t = 0.15, 1.2, 0.1, 1.0, 0.8, 3.0
         for _ in range(60):  # iterate: lengths are max() of terms, so solve numerically
@@ -533,6 +638,8 @@ def cmd_timing(a) -> None:
         b0, b1 = bounds[i], bounds[i + 1]
         tin = s.get("transition_in") or {"type": "cut", "seconds": 0}
         tnext = (scenes[i + 1].get("transition_in") or {"type": "cut"}) if i + 1 < len(scenes) else {"type": "cut"}
+        if tin["type"] not in ("cut", "fade", "fade_from_black", "dip"):
+            errors.append(f"{s['id']}: unknown transition {tin['type']!r} (use cut, fade, fade_from_black, dip)")
         ot_in = int(round(float(tin.get("seconds", 0)) * fps)) if tin["type"] == "fade" and i > 0 else 0
         ot_out = int(round(float(tnext.get("seconds", 0)) * fps)) if tnext["type"] == "fade" else 0
         v0 = max(0, b0 - ot_in // 2)
@@ -551,8 +658,14 @@ def cmd_timing(a) -> None:
                 avail = (pr.get("duration") or 0) - float(vis.get("in", 0))
                 if kind == "video" and avail + 1 / fps < need:
                     errors.append(f"{s['id']}: {vis['asset']} has {avail:.2f}s after its in-point but the shot needs {need:.2f}s")
+                zoom = vis.get("zoom", 1.0)
+                if any(float(z) < 1 for z in (zoom.values() if isinstance(zoom, dict) else [zoom])):
+                    errors.append(f"{s['id']}: zoom {zoom} < 1 (zoom is a punch-in on top of the cover scale)")
+                auto = (e.get("analysis") or {}).get("focus")
+                focus = vis.get("focus") or auto or [0.5, 0.5]
                 media = {"asset": vis["asset"], "kind": kind, "path": e.get("local_path"), "in": float(vis.get("in", 0)),
-                         "rate": rate, "fit": vis.get("fit", "cover"), "focus": vis.get("focus", [0.5, 0.5]),
+                         "rate": rate, "fit": vis.get("fit", "cover"), "focus": focus, "zoom": zoom,
+                         "focus_source": "scene" if vis.get("focus") else ("analysis" if auto else "default centre"),
                          "width": pr.get("width"), "height": pr.get("height")}
         nar = None
         if r["narration"]:
@@ -589,7 +702,10 @@ def cmd_timing(a) -> None:
                            "move": (vis.get("move") or {"type": "static", "amount": 0}),
                            "transitionIn": {"type": tin["type"] if i > 0 else "cut", "durationInFrames": ot_in if tin["type"] == "fade"
                                             else int(round(float(tin.get("seconds", 0)) * fps))},
-                           "onScreen": ons, "narration": nar})
+                           "transitionOut": ({"type": "dip", "durationInFrames": int(round(float(tnext.get("seconds", 0)) * fps))}
+                                             if tnext["type"] == "dip" else None),
+                           "onScreen": ons, "onScreenStyle": (s.get("on_screen_style") or "title"), "narration": nar,
+                           "fit_note": r.get("fit_note")})
     # captions → cues (SRT) and reading-rate checks
     cues = caption_cues(tokens, lang["max_chars"])
     for i, c in enumerate(cues):
@@ -719,10 +835,11 @@ def build_props(prod: Path, doc: dict, vid: str, lang: str, fmt: str, res: int, 
                  "width": None, "height": None}
         if m:
             media = {"kind": m["kind"], "src": place(m["path"], f"media/{vid}"), "trimBefore": int(round(m["in"] * tm["fps"])),
-                     "playbackRate": m["rate"], "fit": m["fit"], "focusX": float(m["focus"][0]), "focusY": float(m["focus"][1]),
-                     "width": m.get("width"), "height": m.get("height")}
+                     "playbackRate": m["rate"], "fit": fit_for(m["fit"], fmt), "focusX": float(m["focus"][0]), "focusY": float(m["focus"][1]),
+                     "width": m.get("width"), "height": m.get("height"), "zoom": zoom_for(m.get("zoom"), fmt)}
         scenes.append({"id": s["id"], "from": s["from"], "durationInFrames": s["durationInFrames"], "media": media,
-                       "move": s["move"], "transitionIn": s["transitionIn"], "onScreen": s["onScreen"]})
+                       "move": s["move"], "transitionIn": s["transitionIn"], "transitionOut": s.get("transitionOut"),
+                       "onScreen": s["onScreen"], "onScreenStyle": s.get("onScreenStyle") or "title"})
     narration = [{"id": n["scene"], "src": place(n["path"], f"narration/{vid}/{lang}"), "from": n["from"],
                   "durationInFrames": n["durationInFrames"]} for n in tm["narration"]]
     sfx = [{"src": place(x["path"], f"sfx/{vid}"), "from": x["from"], "volume": x["volume"]} for x in tm["sfx"] if x.get("path")]
@@ -744,6 +861,9 @@ def build_props(prod: Path, doc: dict, vid: str, lang: str, fmt: str, res: int, 
                          "maxWidth": 0.84 if vertical else 0.8, "combineTokensWithinMilliseconds": 1400 if vertical else 2200,
                          "highlightActiveWord": vertical},
         "onScreenStyle": {"fontSize": round((84 if vertical else 72) * unit), "top": 0.14 if vertical else 0.1},
+        # per-video look from plan/<video>/style.json ("look"): applied identically to every shot for consistency
+        "look": {**{"contrast": 1.0, "saturation": 1.0, "brightness": 1.0, "warmth": 0.0, "vignette": 0.0},
+                 **((read_json(prod / "plan" / vid / "style.json").get("look") or {}) if (prod / "plan" / vid / "style.json").exists() else {})},
     }
     out = motion / "props" / f"{vid}-{lang}-{fmt_key(fmt)}-{res}.json"
     write_json(out, props)
@@ -816,10 +936,147 @@ def narration_offsets(prod: Path, tm: dict, media: Path) -> dict | None:
     return out
 
 
+def per_format(value, fmt: str, default):
+    """`visual.fit` and `visual.zoom` take one value or a per-format dict such as {"9:16": "contain", "16:9": "cover"};
+    "default" in the dict covers formats it does not name."""
+    if isinstance(value, dict):
+        return value.get(fmt, value.get("default", default))
+    return default if value is None else value
+
+
+def zoom_for(zoom, fmt: str) -> float:
+    return max(1.0, float(per_format(zoom, fmt, 1.0)))
+
+
+def fit_for(fit, fmt: str) -> str:
+    """cover or contain for this format (letterbox a landscape subject in the vertical cut instead of cropping it away)."""
+    fit = per_format(fit, fmt, "cover")
+    if fit not in ("cover", "contain"):
+        fail(f"fit {fit!r} is not cover or contain")
+    return fit
+
+
+def resolution_class(prod: Path, doc: dict, vid: str, fmt: str, res: int) -> dict:
+    """native / upscaled for one deliverable, from the pixel sizes of the raster assets its scenes use. The scale is
+    the one the composition applies: cover fills the canvas (max of the ratios) times any punch-in `zoom`, contain fits
+    inside it (min), and a camera move enlarges the frame by its amount on top."""
+    reg = asset_by_id(load_register(prod))
+    plan = scene_plans(prod, doc).get(vid, {})
+    W, H = canvas_size(fmt, res)
+    worst, per = 0.0, []
+    for s in plan.get("scenes", []):
+        vis = s.get("visual") or {}
+        e = reg.get(vis.get("asset") or "")
+        pr = (e or {}).get("probe") or {}
+        if pr.get("width"):
+            zoom = 1 + float((vis.get("move") or {}).get("amount", 0) or 0)
+            fit = fit_for(vis.get("fit", "cover"), fmt)
+            ratio = (max if fit == "cover" else min)(W / pr["width"], H / pr["height"])
+            if fit == "cover":
+                zoom *= zoom_for(vis.get("zoom"), fmt)
+            up = ratio * zoom
+            worst = max(worst, up)
+            per.append({"scene": s["id"], "asset": vis.get("asset"), "source": f"{pr['width']}x{pr['height']}", "fit": fit,
+                        "upscale": round(up, 3)})
+    label = f"{'4K' if res >= 2160 else f'{res}p'}"
+    verdict = (f"native {label}" if worst <= 1.01 else f"upscaled {label} x{worst:.2f}") if per else f"{label} (no raster assets)"
+    return {"canvas": f"{W}x{H}", "verdict": verdict, "max_upscale": round(worst, 3), "scenes": per}
+
+
+def framing_check(prod: Path, doc: dict, vid: str, fmt: str) -> tuple[bool, dict]:
+    """Scenes whose cover crop for this format cuts the subject (analyze_media.py crop_check). A scene passes when the
+    crop keeps the subject, uses contain, or a person positioned/reviewed it: an explicit `visual.focus`, or
+    `visual.crop_reviewed` (true or per format, e.g. {"9:16": true}) recorded after looking at the review stills."""
+    reg = asset_by_id(load_register(prod))
+    cut, reviewed, unknown = [], [], []
+    for s in scene_plans(prod, doc).get(vid, {}).get("scenes", []):
+        vis = s.get("visual") or {}
+        e = reg.get(vis.get("asset") or "")
+        if not e or e.get("kind") not in ("image", "video") or fit_for(vis.get("fit", "cover"), fmt) != "cover":
+            continue
+        cc = ((e.get("analysis") or {}).get("crop_check") or {}).get(fmt)
+        if cc is None:
+            unknown.append(s["id"])
+        elif not cc.get("subject_inside"):
+            (reviewed if vis.get("focus") or per_format(vis.get("crop_reviewed"), fmt, False) else cut).append(s["id"])
+    return not cut, {"subject_cut": cut, "positioned_or_reviewed": reviewed, "not_analysed": unknown,
+                     "method": "saliency/face subject box vs the focus-weighted cover window (analyze_media.py)"}
+
+
+def qc_deliverable(prod: Path, doc: dict, vid: str, lang: str, fmt: str, res: int, video: Path) -> dict:
+    import qc
+    tm = read_json(prod / "timing" / vid / f"{lang}.timing.json")
+    langset = tm["language_settings"]
+    font = None
+    if langset.get("font") and langset["font"].get("file"):
+        f = Path(langset["font"]["file"])
+        font = f if f.is_absolute() else prod / f
+    texts = [c["text"] for c in tm["captions"]] + [s["onScreen"]["text"] for s in tm["scenes"] if s.get("onScreen")]
+    still_dir = prod / "review" / "qc" / f"{vid}-{lang}-{fmt_key(fmt)}-{res}"
+    rep = qc.run_qc(video, tm, prod / "captions" / vid / f"{lang}.srt", font, texts, tm["fps"],
+                    resolution_class(prod, doc, vid, fmt, res), still_dir)
+    ok, detail = framing_check(prod, doc, vid, fmt)
+    rep["checks"]["subject_in_frame"] = {"passed": ok, "detail": detail}
+    rep["passed"] = all(c["passed"] for c in rep["checks"].values())
+    rep["method"] = qc.__doc__.strip().splitlines()[0]
+    return rep
+
+
+def cmd_qc(a) -> None:
+    prod = a.production.resolve()
+    doc = load_prod(prod)
+    name = f"{a.video}-{a.language}-{fmt_key(a.format)}-{a.resolution}"
+    video = Path(a.file).resolve() if a.file else prod / "deliverables" / a.video / a.language / f"{name}.mp4"
+    if not video.exists():
+        fail(f"{video} does not exist")
+    rep = qc_deliverable(prod, doc, a.video, a.language, a.format, a.resolution, video)
+    tm = read_json(prod / "timing" / a.video / f"{a.language}.timing.json")
+    offs = narration_offsets(prod, tm, video)
+    rep["checks"]["narration_sync_10ms"] = {"passed": offs is not None and all(v is not None and abs(v) <= 10 for v in offs.values()),
+                                            "detail": offs if offs is not None else "numpy unavailable — not measured"}
+    rep["passed"] = all(c["passed"] for c in rep["checks"].values())
+    write_json(video.with_suffix(".qc.json"), rep)
+    for k, c in rep["checks"].items():
+        print(f"{'PASS' if c['passed'] else 'FAIL'}  {k}: {json.dumps(c['detail'], ensure_ascii=False)[:160]}")
+    print(f"QC {'passed' if rep['passed'] else 'FAILED'} → {video.with_suffix('.qc.json')}")
+    raise SystemExit(0 if rep["passed"] else 1)
+
+
+def gate(prod: Path, doc: dict, vid: str, lang: str) -> list[str]:
+    """Licence/provenance gate for one (video, language): every asset and narration file must be registered, present,
+    unchanged, and licensed for this production's use. Commercial productions block on non-commercial, unverified,
+    share-alike-without-approval, no-derivatives, or unpaid-approval assets."""
+    reg = load_register(prod)
+    approvals = load_approvals(prod)
+    entries, problems = deliverable_assets(prod, doc, reg, vid, lang)
+    for e in entries:
+        problems += licence_blockers(e, doc, approvals)
+        lp = e.get("local_path")
+        fp = prod / lp if lp and not Path(lp).is_absolute() else (Path(lp) if lp else None)
+        if not fp or not fp.exists():
+            problems.append(f"{e['id']}: file missing ({lp})")
+        elif e.get("sha256") and sha256(fp) != e["sha256"]:
+            problems.append(f"{e['id']}: file changed since it was registered")
+    return problems
+
+
 def cmd_render(a) -> None:
     prod = a.production.resolve()
     doc = load_prod(prod)
     motion = a.motion_project.resolve()
+    entry = next((d for d in doc["deliverables"] if d["video"] == a.video and d["language"] == a.language
+                  and d["format"] == a.format and d["resolution"] == a.resolution), None)
+    if entry is None:
+        fail(f"{a.video}/{a.language}/{a.format}/{a.resolution} is not in this production's deliverable matrix")
+    blockers = gate(prod, doc, a.video, a.language)
+    if blockers:
+        entry.update({"status": "blocked", "blocked_at": now(), "blockers": blockers})
+        write_json(prod / "production.json", doc)
+        print("BLOCKED — this deliverable is not rendered:")
+        for b in blockers:
+            print("  - " + b)
+        raise SystemExit(3)
+    entry.pop("blockers", None)
     props = build_props(prod, doc, a.video, a.language, a.format, a.resolution, motion, a.copy)
     pr = read_json(props)
     W, H, fps = pr["canvas"]["width"], pr["canvas"]["height"], pr["canvas"]["fps"]
@@ -865,20 +1122,27 @@ def cmd_render(a) -> None:
             "--true-peak", str(doc.get("loudness", {}).get("TP", -1.5)), "--pixel-format", "yuv420p"]
     v = subprocess.run(vcmd)
     vr = read_json(work / "validation.candidate.json")
-    entry = next(d for d in doc["deliverables"] if d["video"] == a.video and d["language"] == a.language
-                 and d["format"] == a.format and d["resolution"] == a.resolution)
     vr.setdefault("checks", {})["narration_sync_10ms"] = sync_ok
-    vr["passed"] = bool(vr.get("passed")) and sync_ok
-    if v.returncode == 0 and vr.get("passed"):
+    qrep = qc_deliverable(prod, doc, a.video, a.language, a.format, a.resolution, tmp)
+    for k, c in qrep["checks"].items():
+        vr["checks"][f"qc_{k}"] = c["passed"]
+    vr["qc"] = qrep
+    for k, c in qrep["checks"].items():
+        print(f"{'PASS' if c['passed'] else 'FAIL'}  qc_{k}: {json.dumps(c['detail'], ensure_ascii=False)[:140]}")
+    vr["passed"] = bool(vr.get("passed")) and sync_ok and qrep["passed"]
+    if vr.get("passed"):
         tmp.replace(dest)
         vr["source"] = str(dest)
         vr["mastering"] = mastering
         vr["narration_offsets_ms"] = offsets
         write_json(report, vr)
-        entry.update({"status": "validated", "sha256": vr["sha256"], "validated_at": now()})
+        entry.update({"status": "validated", "sha256": vr["sha256"], "validated_at": now(),
+                      "resolution_class": qrep["checks"].get("resolution_class", {}).get("detail", {}).get("verdict")})
         print(f"validated deliverable: {dest}")
     else:
-        entry.update({"status": "failed", "failed_at": now(), "candidate": str(tmp.relative_to(prod))})
+        entry.update({"status": "failed", "failed_at": now(), "candidate": str(tmp.relative_to(prod)),
+                      "failed_checks": [k for k, ok in vr.get("checks", {}).items() if not ok]})
+        write_json(work / "validation.candidate.json", vr)
         print(f"validation FAILED — candidate kept at {tmp}; report {work / 'validation.candidate.json'}")
     write_json(prod / "production.json", doc)
     raise SystemExit(0 if entry["status"] == "validated" else 1)
@@ -890,45 +1154,38 @@ def cmd_render(a) -> None:
 def cmd_feasibility(a) -> None:
     prod = a.production.resolve()
     doc = load_prod(prod)
-    reg = asset_by_id(load_register(prod))
     rows = []
     for vid, plan in scene_plans(prod, doc).items():
         if a.video and vid != a.video:
             continue
         for fmt in doc["formats"]:
             for res in doc["resolutions"]:
-                W, H = canvas_size(fmt, res)
-                worst, per = 0.0, []
-                for s in plan.get("scenes", []):
-                    aid = (s.get("visual") or {}).get("asset")
-                    e = reg.get(aid) if aid else None
-                    pr = (e or {}).get("probe") or {}
-                    if not pr.get("width"):
-                        continue
-                    up = max(W / pr["width"], H / pr["height"])
-                    worst = max(worst, up)
-                    per.append({"scene": s["id"], "asset": aid, "source": f"{pr['width']}x{pr['height']}", "upscale": round(up, 3)})
-                verdict = "native" if worst <= 1.01 else f"upscaled x{worst:.2f}"
-                if not per:
-                    verdict = "no raster assets (resolution-independent)"
-                rows.append({"video": vid, "format": fmt, "resolution": res, "canvas": f"{W}x{H}", "verdict": verdict,
-                             "max_upscale": round(worst, 3), "scenes": per})
-    write_json(prod / "reports" / "feasibility.json", {"checked_at": now(), "rows": rows})
+                rc = resolution_class(prod, doc, vid, fmt, res)
+                verdict = ("native" if rc["max_upscale"] <= 1.01 else f"upscaled x{rc['max_upscale']:.2f}") if rc["scenes"] \
+                    else "no raster assets (resolution-independent)"
+                rows.append({"video": vid, "format": fmt, "resolution": res, "canvas": rc["canvas"], "verdict": verdict,
+                             "max_upscale": rc["max_upscale"], "scenes": rc["scenes"]})
+    fp = prod / "reports" / "feasibility.json"
+    if a.video and fp.exists():  # keep the other videos' rows
+        rows = [r for r in read_json(fp).get("rows", []) if r["video"] != a.video] + rows
+    write_json(fp, {"checked_at": now(), "rows": rows})
     for r in rows:
-        print(f"{r['video']} {r['format']:>5} {r['resolution']:>5}p {r['canvas']:>10}  {r['verdict']}")
+        if not a.video or r["video"] == a.video:
+            print(f"{r['video']} {r['format']:>5} {r['resolution']:>5}p {r['canvas']:>10}  {r['verdict']}")
 
 
 def cmd_status(a) -> None:
     prod = a.production.resolve()
     doc = load_prod(prod)
     rows, complete = [], True
-    feas_p = prod / "reports" / "feasibility.json"
-    feas = {(r["video"], r["format"], r["resolution"]): r for r in read_json(feas_p).get("rows", [])} if feas_p.exists() else {}
     for d in doc["deliverables"]:
+        rcl = resolution_class(prod, doc, d["video"], d["format"], d["resolution"])
         p = prod / d["path"]
         rep = p.with_suffix(".validation.json")
         state = "missing"
         detail = ""
+        if not p.exists() and d.get("status") == "blocked":
+            state, detail = "blocked", "; ".join(d.get("blockers", [])[:2])
         if p.exists():
             state = "unvalidated"
             if rep.exists():
@@ -943,14 +1200,13 @@ def cmd_status(a) -> None:
                     props = Path(str(a.motion_project or "")) / "props" / (p.stem + ".json") if a.motion_project else None
                     if props and props.exists() and props.stat().st_mtime > p.stat().st_mtime:
                         state, detail = "stale", "props newer than the render"
-                    fr = feas.get((d["video"], d["format"], d["resolution"]))
-                    if state == "validated" and fr and fr["verdict"].startswith("upscaled") and not d.get("upscale_accepted"):
-                        state, detail = "upscaled", f"{fr['verdict']} — needs the user's acceptance (set upscale_accepted)"
+                    if state == "validated" and rcl["verdict"].startswith("upscaled") and not d.get("upscale_accepted"):
+                        state, detail = "upscaled", f"{rcl['verdict']} — needs the user's acceptance (set upscale_accepted)"
         complete &= state == "validated"
-        rows.append({**d, "state": state, "detail": detail})
+        rows.append({**d, "state": state, "detail": detail, "resolution_class": rcl["verdict"]})
     write_json(prod / "reports" / "status.json", {"checked_at": now(), "deliverables": rows, "complete": complete})
     for r in rows:
-        print(f"{r['state']:>11}  {r['path']}" + (f"  ({r['detail']})" if r["detail"] else ""))
+        print(f"{r['state']:>11}  {r['path']:<52} {r['resolution_class']:<22}" + (f"  ({r['detail']})" if r["detail"] else ""))
     n = sum(r["state"] == "validated" for r in rows)
     print(f"{n}/{len(rows)} deliverables validated")
     raise SystemExit(0 if complete else 1)
@@ -976,7 +1232,7 @@ def parser() -> argparse.ArgumentParser:
     p.add_argument("--file"); p.add_argument("--title", required=True); p.add_argument("--creator")
     p.add_argument("--source-url", required=True, help="item page URL, or 'generated' / 'user-supplied'")
     p.add_argument("--download-url"); p.add_argument("--licence", required=True); p.add_argument("--licence-url")
-    p.add_argument("--commercial-use", choices=["yes", "no", "unknown"], default="unknown")
+    p.add_argument("--commercial-use", choices=["yes", "no", "conditional", "unknown"], default="unknown")
     p.add_argument("--attribution-required", choices=["yes", "no"], default="no"); p.add_argument("--attribution")
     p.add_argument("--restrictions"); p.add_argument("--evidence", help="what on the item page shows the licence")
     p.add_argument("--checked-at"); p.add_argument("--status", choices=STATUSES, default="downloaded")
@@ -985,7 +1241,8 @@ def parser() -> argparse.ArgumentParser:
     p.add_argument("production", type=Path); p.add_argument("--credits")
     p = sub.add_parser("timing", help="build a frame-accurate timing map for one video and language")
     p.add_argument("production", type=Path); p.add_argument("--video", required=True); p.add_argument("--language", required=True)
-    p.add_argument("--fit", choices=["none", "gaps"], default="none")
+    p.add_argument("--fit", choices=["none", "gaps", "full"], default="none",
+                   help="gaps: pauses/holds/tail; full: also the length of scenes without narration")
     p.add_argument("--max-chars", type=int); p.add_argument("--max-cps", type=float)
     for name, hlp in (("props", "write Remotion props for ScriptVideo"), ("render", "render, master, validate one deliverable")):
         p = sub.add_parser(name, help=hlp)
@@ -999,13 +1256,34 @@ def parser() -> argparse.ArgumentParser:
     p.add_argument("production", type=Path); p.add_argument("--video")
     p = sub.add_parser("status", help="honest state of every deliverable")
     p.add_argument("production", type=Path); p.add_argument("--motion-project", type=Path)
+    p = sub.add_parser("qc", help="quality-check an encoded deliverable against its timing map")
+    p.add_argument("production", type=Path); p.add_argument("--video", required=True); p.add_argument("--language", required=True)
+    p.add_argument("--format", required=True, choices=sorted(FORMATS)); p.add_argument("--resolution", type=int, default=1080)
+    p.add_argument("--file", help="check this file instead of the deliverable path")
+    p = sub.add_parser("discover", help="search live providers, rank candidates, record them in the register")
+    p.add_argument("production", type=Path); p.add_argument("--query", required=True)
+    p.add_argument("--kind", required=True, choices=["image", "video", "audio", "music", "sfx"])
+    p.add_argument("--providers", default="openverse:wikimedia,openverse,wikimedia,nasa,met,loc,pexels,pixabay,mixkit")
+    p.add_argument("--limit", type=int, default=6, help="results per provider")
+    p.add_argument("--scene", help="scene id the search is for (recorded with the candidates)")
+    p.add_argument("--show", type=int, default=10)
+    p.add_argument("--thumbs", action="store_true", help="save provider thumbnails and a labelled contact sheet")
+    p.add_argument("--commercial-only", dest="commercial_only", action="store_true", default=None)
+    p.add_argument("--any-licence", dest="commercial_only", action="store_false")
+    p = sub.add_parser("fetch", help="re-verify the licence and download one discovered candidate")
+    p.add_argument("production", type=Path); p.add_argument("--id", required=True); p.add_argument("--force", action="store_true")
+    p.add_argument("--max-wait", type=float, default=90, help="longest Retry-After (s) to wait out on HTTP 429/503")
+    p = sub.add_parser("source-check", help="fetch cited research URLs and record what was found")
+    p.add_argument("production", type=Path); p.add_argument("urls", nargs="+"); p.add_argument("--note")
     return ap
 
 
 def main() -> None:
     a = parser().parse_args()
+    import discovery
     {"init": cmd_init, "register-add": cmd_register_add, "audit": cmd_audit, "timing": cmd_timing, "props": cmd_props,
-     "render": cmd_render, "feasibility": cmd_feasibility, "status": cmd_status}[a.command](a)
+     "render": cmd_render, "feasibility": cmd_feasibility, "status": cmd_status, "discover": discovery.cmd_discover,
+     "fetch": discovery.cmd_fetch, "source-check": discovery.cmd_source_check, "qc": cmd_qc}[a.command](a)
 
 
 if __name__ == "__main__":

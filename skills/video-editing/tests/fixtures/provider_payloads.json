@@ -1,0 +1,568 @@
+{
+ "_note": "Trimmed copies of real API responses recorded by `production.py discover` on 2026-11-18 (research/cache of the e2e production). Fields the providers do not read were removed to keep the file small.",
+ "responses": {
+  "openverse_images": {
+   "url": "https://api.openverse.org/v1/images/?q=Fresnel+lens&page_size=8&mature=false&license=cc0%2Cpdm%2Cby&source=wikimedia",
+   "body": {
+    "result_count": 240,
+    "page_count": 30,
+    "page_size": 8,
+    "page": 1,
+    "results": [
+     {
+      "id": "7ddc4aaa-3613-4e5e-9bd5-175e92cf6db1",
+      "title": "1891 Second Order Fresnel Lens (Squaw Island Light)",
+      "foreign_landing_url": "https://commons.wikimedia.org/w/index.php?curid=122230317",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/6/68/1891_Second_Order_Fresnel_Lens_%28Squaw_Island_Light%29.jpg",
+      "creator": "Mbrickn",
+      "creator_url": "https://commons.wikimedia.org/wiki/User:Mbrickn",
+      "license": "by",
+      "license_version": "4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "provider": "wikimedia",
+      "source": "wikimedia",
+      "width": 1536,
+      "height": 2048,
+      "filesize": 934497,
+      "filetype": "jpg",
+      "tags": [],
+      "attribution": "\"1891 Second Order Fresnel Lens (Squaw Island Light)\" by Mbrickn is licensed under CC BY 4.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/4.0/.",
+      "thumbnail": "https://api.openverse.org/v1/images/7ddc4aaa-3613-4e5e-9bd5-175e92cf6db1/thumb/",
+      "detail_url": "https://api.openverse.org/v1/images/7ddc4aaa-3613-4e5e-9bd5-175e92cf6db1/",
+      "mature": false,
+      "category": null
+     },
+     {
+      "id": "d2841efd-451a-4178-9736-0a675a92af52",
+      "title": "L.Sautter and Compnay Paris the makers of Lantern and Fresnel Lens (40252941455)",
+      "foreign_landing_url": "https://commons.wikimedia.org/w/index.php?curid=76004363",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/8/8b/L.Sautter_and_Compnay_Paris_the_makers_of_Lantern_and_Fresnel_Lens_%2840252941455%29.jpg",
+      "creator": "Muhammad Imran Saeed from City of London, Canada",
+      "creator_url": "https://www.flickr.com/people/32072133@N06",
+      "license": "by",
+      "license_version": "2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "provider": "wikimedia",
+      "source": "wikimedia",
+      "width": 4028,
+      "height": 3021,
+      "filesize": 3821706,
+      "filetype": "jpg",
+      "tags": [],
+      "attribution": "\"L.Sautter and Compnay Paris the makers of Lantern and Fresnel Lens (40252941455)\" by Muhammad Imran Saeed from City of London, Canada is licensed under CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/.",
+      "thumbnail": "https://api.openverse.org/v1/images/d2841efd-451a-4178-9736-0a675a92af52/thumb/",
+      "detail_url": "https://api.openverse.org/v1/images/d2841efd-451a-4178-9736-0a675a92af52/",
+      "mature": false,
+      "category": null
+     },
+     {
+      "id": "58cade77-0eda-4609-ba25-203260b27122",
+      "title": "The sea seen through a Fresnel lens system",
+      "foreign_landing_url": "https://commons.wikimedia.org/w/index.php?curid=7412070",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/e/e0/The_sea_seen_through_a_Fresnel_lens_system.jpg",
+      "creator": "Pöllö",
+      "creator_url": "https://commons.wikimedia.org/wiki/User:P%C3%B6ll%C3%B6",
+      "license": "by",
+      "license_version": "3.0",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/",
+      "provider": "wikimedia",
+      "source": "wikimedia",
+      "width": 1944,
+      "height": 2592,
+      "filesize": 2627497,
+      "filetype": "jpg",
+      "tags": [],
+      "attribution": "\"The sea seen through a Fresnel lens system\" by Pöllö is licensed under CC BY 3.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/3.0/.",
+      "thumbnail": "https://api.openverse.org/v1/images/58cade77-0eda-4609-ba25-203260b27122/thumb/",
+      "detail_url": "https://api.openverse.org/v1/images/58cade77-0eda-4609-ba25-203260b27122/",
+      "mature": false,
+      "category": null
+     }
+    ]
+   }
+  },
+  "openverse_audio": {
+   "url": "https://api.openverse.org/v1/audio/?q=ambient&page_size=5&mature=false&license=cc0%2Cpdm%2Cby&category=music",
+   "body": {
+    "result_count": 73,
+    "page_count": 15,
+    "page_size": 5,
+    "page": 1,
+    "results": [
+     {
+      "id": "7d573956-f2f0-457a-9ed6-3b2de0280c4e",
+      "title": "Ambient Dance",
+      "foreign_landing_url": "https://www.jamendo.com/track/23557",
+      "url": "https://prod-1.storage.jamendo.com/?trackid=23557&format=mp32",
+      "creator": "Zeropage",
+      "creator_url": "https://www.jamendo.com/artist/2986/zeropage",
+      "license": "by",
+      "license_version": "3.0",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/",
+      "provider": "jamendo",
+      "source": "jamendo",
+      "filesize": null,
+      "filetype": "mp32",
+      "tags": [
+       {
+        "name": "instrumental",
+        "accuracy": null,
+        "unstable__provider": "jamendo"
+       },
+       {
+        "name": "neutral",
+        "accuracy": null,
+        "unstable__provider": "jamendo"
+       },
+       {
+        "name": "speed_medium",
+        "accuracy": null,
+        "unstable__provider": "jamendo"
+       }
+      ],
+      "attribution": "\"Ambient Dance\" by Zeropage is licensed under CC BY 3.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/3.0/.",
+      "thumbnail": "https://api.openverse.org/v1/audio/7d573956-f2f0-457a-9ed6-3b2de0280c4e/thumb/",
+      "detail_url": "https://api.openverse.org/v1/audio/7d573956-f2f0-457a-9ed6-3b2de0280c4e/",
+      "mature": false,
+      "category": "music",
+      "duration": 228000,
+      "audio_set": {
+       "title": "Ambient Pills Update",
+       "foreign_landing_url": "https://www.jamendo.com/album/3263/ambient-pills-update",
+       "creator": "Zeropage",
+       "creator_url": "https://www.jamendo.com/artist/2986/zeropage",
+       "url": null,
+       "filesize": null,
+       "filetype": null
+      },
+      "genres": [
+       "electronic",
+       "trance"
+      ],
+      "alt_files": null,
+      "bit_rate": null,
+      "sample_rate": null
+     },
+     {
+      "id": "b3071a42-fa8e-403e-9bf6-ae052760ff9a",
+      "title": "Ambient Flight (Electro Vocal Mix)",
+      "foreign_landing_url": "https://www.jamendo.com/track/20237",
+      "url": "https://prod-1.storage.jamendo.com/?trackid=20237&format=mp32",
+      "creator": "Zeropage",
+      "creator_url": "https://www.jamendo.com/artist/2986/zeropage",
+      "license": "by",
+      "license_version": "3.0",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/",
+      "provider": "jamendo",
+      "source": "jamendo",
+      "filesize": null,
+      "filetype": "mp32",
+      "tags": [
+       {
+        "name": "female",
+        "accuracy": null,
+        "unstable__provider": "jamendo"
+       },
+       {
+        "name": "lounge",
+        "accuracy": null,
+        "unstable__provider": "jamendo"
+       },
+       {
+        "name": "peaceful",
+        "accuracy": null,
+        "unstable__provider": "jamendo"
+       }
+      ],
+      "attribution": "\"Ambient Flight (Electro Vocal Mix)\" by Zeropage is licensed under CC BY 3.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/3.0/.",
+      "thumbnail": "https://api.openverse.org/v1/audio/b3071a42-fa8e-403e-9bf6-ae052760ff9a/thumb/",
+      "detail_url": "https://api.openverse.org/v1/audio/b3071a42-fa8e-403e-9bf6-ae052760ff9a/",
+      "mature": false,
+      "category": "music",
+      "duration": 264000,
+      "audio_set": {
+       "title": "Ambient Pills",
+       "foreign_landing_url": "https://www.jamendo.com/album/2843/ambient-pills",
+       "creator": "Zeropage",
+       "creator_url": "https://www.jamendo.com/artist/2986/zeropage",
+       "url": null,
+       "filesize": null,
+       "filetype": null
+      },
+      "genres": [
+       "ambient",
+       "downtempo",
+       "electronica"
+      ],
+      "alt_files": null,
+      "bit_rate": null,
+      "sample_rate": null
+     }
+    ]
+   }
+  },
+  "nasa_search": {
+   "url": "https://images-api.nasa.gov/search?q=gibbous+moon&media_type=image&page_size=6",
+   "body": {
+    "collection": {
+     "version": "1.1",
+     "href": "http://images-api.nasa.gov/search?q=gibbous+moon&media_type=image&page_size=6",
+     "items": [
+      {
+       "href": "https://images-assets.nasa.gov/image/iss069e008558/collection.json",
+       "data": [
+        {
+         "center": "JSC",
+         "date_created": "2023-05-11T00:00:00Z",
+         "description": "iss069e008558 (May 3, 2-23) --- The waxing gibbous Moon is pictured from the International Space Station as it orbited 268 miles above the southern Atlantic Ocean.",
+         "description_508": "The waxing gibbous Moon above the southern Atlantic Ocean",
+         "keywords": [
+          "moon",
+          "waxing",
+          "gibbous"
+         ],
+         "media_type": "image",
+         "nasa_id": "iss069e008558",
+         "title": "The waxing gibbous Moon above the southern Atlantic Ocean"
+        }
+       ],
+       "links": [
+        {
+         "href": "https://images-assets.nasa.gov/image/iss069e008558/iss069e008558~medium.jpg",
+         "rel": "alternate",
+         "render": "image",
+         "width": 1279,
+         "size": 19000,
+         "height": 718
+        },
+        {
+         "href": "https://images-assets.nasa.gov/image/iss069e008558/iss069e008558~small.jpg",
+         "rel": "alternate",
+         "render": "image",
+         "width": 639,
+         "size": 5700,
+         "height": 359
+        },
+        {
+         "href": "https://images-assets.nasa.gov/image/iss069e008558/iss069e008558~thumb.jpg",
+         "rel": "preview",
+         "render": "image",
+         "width": 639,
+         "size": 5700,
+         "height": 359
+        },
+        {
+         "href": "https://images-assets.nasa.gov/image/iss069e008558/iss069e008558~large.jpg",
+         "rel": "alternate",
+         "render": "image",
+         "width": 1920,
+         "size": 40000,
+         "height": 1078
+        },
+        {
+         "href": "https://images-assets.nasa.gov/image/iss069e008558/iss069e008558~orig.jpg",
+         "rel": "canonical",
+         "render": "image",
+         "height": 2768,
+         "width": 4928,
+         "size": 449536
+        }
+       ]
+      },
+      {
+       "href": "https://images-assets.nasa.gov/image/iss058e024106/collection.json",
+       "data": [
+        {
+         "center": "JSC",
+         "date_created": "2019-02-21T00:00:00Z",
+         "description": "iss058e024106 (Feb. 21, 2019) --- The Earth's moon is photographed from the International Space Station in its waning gibbous stage.",
+         "description_508": "The Earth's moon is photographed from the International Space Station in its waning gibbous stage.",
+         "media_type": "image",
+         "nasa_id": "iss058e024106",
+         "title": "The Earth's moon in its waning gibbous stage",
+         "keywords": []
+        }
+       ],
+       "links": [
+        {
+         "href": "https://images-assets.nasa.gov/image/iss058e024106/iss058e024106~medium.jpg",
+         "rel": "alternate",
+         "render": "image",
+         "width": 1280,
+         "size": 26000,
+         "height": 853
+        },
+        {
+         "href": "https://images-assets.nasa.gov/image/iss058e024106/iss058e024106~small.jpg",
+         "rel": "alternate",
+         "render": "image",
+         "width": 640,
+         "size": 6100,
+         "height": 426
+        },
+        {
+         "href": "https://images-assets.nasa.gov/image/iss058e024106/iss058e024106~thumb.jpg",
+         "rel": "preview",
+         "render": "image",
+         "width": 640,
+         "size": 6100,
+         "height": 426
+        },
+        {
+         "href": "https://images-assets.nasa.gov/image/iss058e024106/iss058e024106~large.jpg",
+         "rel": "alternate",
+         "render": "image",
+         "width": 1920,
+         "size": 69000,
+         "height": 1280
+        },
+        {
+         "href": "https://images-assets.nasa.gov/image/iss058e024106/iss058e024106~orig.jpg",
+         "rel": "canonical",
+         "render": "image",
+         "height": 3712,
+         "width": 5568,
+         "size": 1281000
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "nasa_collection": {
+   "url": "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000865/collection.json",
+   "body": [
+    "http://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000865/GSFC_20171208_Archive_e000865~orig.jpg",
+    "http://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000865/GSFC_20171208_Archive_e000865~large.jpg",
+    "http://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000865/GSFC_20171208_Archive_e000865~medium.jpg",
+    "http://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000865/GSFC_20171208_Archive_e000865~small.jpg",
+    "http://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000865/GSFC_20171208_Archive_e000865~thumb.jpg",
+    "http://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000865/metadata.json"
+   ]
+  },
+  "met_search": {
+   "url": "https://collectionapi.metmuseum.org/public/collection/v1.1/search?q=Map+of+Alexandria&hasImages=true&limit=12",
+   "body": {
+    "total": 493,
+    "objectIDs": [
+     587676,
+     827080,
+     486353,
+     4942,
+     360732,
+     468353,
+     23189,
+     841616,
+     463967,
+     468034,
+     339980,
+     468036
+    ]
+   }
+  },
+  "met_object_587676": {
+   "url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/587676",
+   "body": {
+    "objectID": 587676,
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/dp/original/DP855367.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/dp/web-large/DP855367.jpg",
+    "title": "Map of Alexandria",
+    "objectDate": "1575",
+    "artistDisplayName": "Georg Braun",
+    "culture": "",
+    "medium": "Etching, hand colored",
+    "dimensions": "Sheet: 15 3/8 in. × 20 in. (39.1 × 50.8 cm)",
+    "creditLine": "Gift of Elaine and Lewis Dubroff, 2013",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/587676",
+    "rightsAndReproduction": ""
+   }
+  },
+  "met_object_486353": {
+   "url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/486353",
+   "body": {
+    "objectID": 486353,
+    "isPublicDomain": false,
+    "primaryImage": "",
+    "primaryImageSmall": "",
+    "title": "MAP III",
+    "objectDate": "1993",
+    "artistDisplayName": "Bertil Vallien",
+    "culture": "",
+    "medium": "Glass and steel",
+    "dimensions": "26 5/8 × 27 5/8 × 11 7/8 in. (67.6 × 70.2 × 30.2 cm)",
+    "creditLine": "Gift of Heller Gallery NY and Kosta Boda, Sweden, 1994",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/486353",
+    "rightsAndReproduction": ""
+   }
+  },
+  "loc_search": {
+   "url": "https://www.loc.gov/photos/?q=lighthouse&fo=json&c=20&fa=online-format%3Aimage",
+   "body": {
+    "results": [
+     {
+      "id": "http://www.loc.gov/item/2005691065/",
+      "url": "https://www.loc.gov/item/2005691065/",
+      "title": "Lighthouse, Biloxi, Mississippi",
+      "date": "1920-01-01",
+      "image_url": [
+       "https://tile.loc.gov/storage-services/service/pnp/ppmsca/09000/09074_150px.jpg#h=121&w=150"
+      ]
+     },
+     {
+      "id": "http://www.loc.gov/item/2011633529/",
+      "url": "https://www.loc.gov/item/2011633529/",
+      "title": "[Unidentified lighthouse]",
+      "date": "1980-01-01",
+      "image_url": [
+       "https://tile.loc.gov/image-services/iiif/service:pnp:highsm:15300:15336/full/pct:6.25/0/default.jpg#h=320&w=412",
+       "https://tile.loc.gov/image-services/iiif/service:pnp:highsm:15300:15336/full/pct:12.5/0/default.jpg#h=640&w=825",
+       "https://tile.loc.gov/image-services/iiif/service:pnp:highsm:15300:15336/full/pct:25/0/default.jpg#h=1281&w=1650"
+      ]
+     }
+    ],
+    "pagination": {
+     "of": 1397
+    }
+   }
+  },
+  "loc_item_2011633529": {
+   "url": "https://www.loc.gov/item/2011633529/?fo=json",
+   "body": {
+    "item": {
+     "title": "[Unidentified lighthouse]",
+     "rights_advisory": "No known restrictions on publication.",
+     "contributor_names": [
+      "Highsmith, Carol M., 1946-, photographer"
+     ],
+     "reproduction_number": "LC-DIG-highsm-15336 (digital file from original)\nLC-HS503-3718 (color film transparency)",
+     "created_published": [
+      "[between 1980 and 2006]"
+     ],
+     "notes": [
+      "Digital image produced by Carol M. Highsmith to represent her original film transparency; some details may differ between the film and the digital images.",
+      "Title devised by Library staff.",
+      "Title, date, subject note, and keywords provided by the photographer.",
+      "Credit line: Photographs in the Carol M. Highsmith Archive, Library of Congress, Prints and Photographs Division.",
+      "Gift and purchase; Carol M. Highsmith; 2011; (DLC/PP-2011:124).",
+      "Forms part of the Selects Series in the Carol M. Highsmith Archive."
+     ]
+    },
+    "resources": [
+     {
+      "url": "https://www.loc.gov/resource/highsm.15336/",
+      "files": [
+       [
+        {
+         "height": 320,
+         "levels": 1,
+         "mimetype": "image/jpeg",
+         "url": "https://tile.loc.gov/image-services/iiif/service:pnp:highsm:15300:15336/full/pct:6.25/0/default.jpg",
+         "width": 412
+        },
+        {
+         "height": 640,
+         "levels": 1,
+         "mimetype": "image/jpeg",
+         "url": "https://tile.loc.gov/image-services/iiif/service:pnp:highsm:15300:15336/full/pct:12.5/0/default.jpg",
+         "width": 825
+        },
+        {
+         "height": 1281,
+         "levels": 1,
+         "mimetype": "image/jpeg",
+         "url": "https://tile.loc.gov/image-services/iiif/service:pnp:highsm:15300:15336/full/pct:25/0/default.jpg",
+         "width": 1650
+        },
+        {
+         "height": 5126,
+         "info": "https://tile.loc.gov/image-services/iiif/service:pnp:highsm:15300:15336/info.json",
+         "levels": 7,
+         "mimetype": "image/jp2",
+         "size": 9232400,
+         "url": "https://tile.loc.gov/storage-services/service/pnp/highsm/15300/15336.jp2",
+         "width": 6600
+        }
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  "loc_item_ca1357": {
+   "url": "https://www.loc.gov/item/ca1357/?fo=json",
+   "body": {
+    "item": {
+     "title": "Point Reyes Lighthouse, Point Reyes Station, Marin County, CA",
+     "rights_advisory": "No known restrictions on images made by the U.S. Government; images     copied from other sources may be restricted.    https://www.loc.gov/rr/print/res/114_habs.html",
+     "contributor_names": [
+      "Historic American Buildings Survey, creator",
+      "Frear, Richard K, photographer",
+      "Santos, B, delineator",
+      "Camarena, Norma T, delineator"
+     ],
+     "reproduction_number": null,
+     "created_published": [
+      "Documentation compiled after 1933"
+     ],
+     "notes": [
+      "Survey number: HABS CA-2250 ",
+      "National Register of Historic Places NRIS Number: 91001100  "
+     ]
+    },
+    "resources": [
+     {
+      "url": "https://www.loc.gov/resource/hhh.ca1357.photos",
+      "files": [
+       [
+        {
+         "height": 0,
+         "levels": 1,
+         "mimetype": "image/tiff",
+         "size": 20077768,
+         "type": "bw_photos",
+         "url": "https://tile.loc.gov/storage-services/master/pnp/habshaer/ca/ca1300/ca1357/photos/013082pu.tif",
+         "width": 0
+        },
+        {
+         "height": 120,
+         "levels": 1,
+         "mimetype": "image/jpg",
+         "size": 5134,
+         "type": "bw_photos",
+         "url": "https://tile.loc.gov/storage-services/service/pnp/habshaer/ca/ca1300/ca1357/photos/013082p_150px.jpg",
+         "width": 150
+        },
+        {
+         "height": 514,
+         "levels": 1,
+         "mimetype": "image/jpeg",
+         "size": 46100,
+         "type": "bw_photos",
+         "url": "https://tile.loc.gov/storage-services/service/pnp/habshaer/ca/ca1300/ca1357/photos/013082pr.jpg",
+         "width": 640
+        },
+        {
+         "height": 822,
+         "levels": 1,
+         "mimetype": "image/jpeg",
+         "size": 131561,
+         "type": "bw_photos",
+         "url": "https://tile.loc.gov/storage-services/service/pnp/habshaer/ca/ca1300/ca1357/photos/013082pv.jpg",
+         "width": 1024
+        },
+        {
+         "aka": "https://www.loc.gov/resource/hhh.ca1357.photos.013082p",
+         "mimetype": "application/json",
+         "title": "1. General view of lighthouse and associated structures - Point Reyes Lighthouse, Point Reyes Station, Marin County, CA",
+         "use": "caption"
+        }
+       ]
+      ]
+     }
+    ]
+   }
+  }
+ }
+}

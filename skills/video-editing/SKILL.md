@@ -33,12 +33,14 @@ python3 "$SKILL_DIR/scripts/production.py" init /path/to/production \
 `production.py` keeps the production honest and reproducible. Its commands:
 
 - `register-add`, `audit`: the source register and licence checks;
+- `discover`, `fetch`, `source-check`: live asset search across Openverse, Wikimedia Commons, NASA, The Met, the Library of Congress, Mixkit, Pexels and Pixabay (keys in `PEXELS_API_KEY` / `PIXABAY_API_KEY`), with the licence re-checked at download;
 - `timing`: per-language timing maps measured from real narration;
-- `props`, `render`: Remotion props, then render, master, sync check, and validation;
+- `props`, `render`: Remotion props, then a licence gate, render, master, sync check, QC, and validation;
+- `qc`: checks on an encoded file (black, freeze, silence, captions against the script, font glyphs, framing, sync);
 - `feasibility`: 4K and crop upscale factors;
 - `status`: the state of every deliverable.
 
-It never downloads assets or contacts asset services. `render` runs the Remotion CLI, which may download Remotion's own browser on first use.
+Only `discover`, `fetch`, and `source-check` contact external services, and each request is logged in `research/external-actions.jsonl`. `render` runs the Remotion CLI, which may download Remotion's own browser on first use. Narration comes from `scripts/narrate.py` (commercially licensed TTS voices, checked by speech recognition), and `scripts/analyze_media.py` measures where each image's subject is before it is cropped.
 
 - **Research and licensing.** Search widely for real footage, images, animation, music, sound effects, fonts, and voices. Compare candidates on relevance, quality, licence, availability, and technical fit, and record real links and licence evidence in the source register: [references/research-and-licensing.md](references/research-and-licensing.md).
 - **Editing references.** Study professional films, documentaries, ads, and creators relevant to the script, then write an original style guide: [references/editing-research.md](references/editing-research.md).

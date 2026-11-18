@@ -17,6 +17,7 @@ export type SceneMedia = {
   focusX: number; // 0..1, keeps the subject in frame when cropping to 9:16 or 16:9
   focusY: number;
   width: number | null; // source pixels (after rotation), used for focus-aware cover crops
+  zoom?: number; // cover only: punch-in on top of the cover scale, centred on the focus point (1 = none)
   height: number | null;
 };
 
@@ -26,9 +27,14 @@ export type ScriptScene = {
   durationInFrames: number;
   media: SceneMedia;
   move: SceneMove;
-  transitionIn: {type: 'cut' | 'fade' | 'fade_from_black'; durationInFrames: number};
+  transitionIn: {type: 'cut' | 'fade' | 'fade_from_black' | 'dip'; durationInFrames: number};
+  transitionOut?: {type: 'dip'; durationInFrames: number} | null; // fade to black before the next scene's fade-in
   onScreen: {text: string; from: number; durationInFrames: number} | null;
+  onScreenStyle?: 'title' | 'lower_third' | 'top';
 };
+
+/** One look for the whole video (from plan/<video>/style.json) so footage from different sources matches. */
+export type Look = {contrast: number; saturation: number; brightness: number; warmth: number; vignette: number};
 
 export type ScriptVideoProps = {
   canvas: {width: number; height: number; fps: number; durationInFrames: number; background: string};
@@ -47,4 +53,5 @@ export type ScriptVideoProps = {
     highlightActiveWord: boolean;
   };
   onScreenStyle: {fontSize: number; top: number};
+  look?: Look;
 };

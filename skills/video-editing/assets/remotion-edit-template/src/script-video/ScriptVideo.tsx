@@ -14,7 +14,7 @@ import {
   useDelayRender,
   useVideoConfig,
 } from 'remotion';
-import type {ScriptScene, ScriptVideoProps, SceneMedia, SceneMove} from './types';
+import type {Look, ScriptScene, ScriptVideoProps, SceneMedia, SceneMove} from './types';
 
 // Script-driven composition: scenes, narration, captions, music and effects all placed from one timing map
 // (scripts/production.py). The same component renders every language, 9:16 or 16:9, 1080p or 4K.
@@ -64,7 +64,7 @@ const MediaLayer: React.FC<{media: SceneMedia}> = ({media}) => {
   const src = staticFile(media.src);
   let box: React.CSSProperties = {position: 'absolute', inset: 0, width: '100%', height: '100%'};
   if (media.width && media.height && media.fit === 'cover') {
-    const s = Math.max(width / media.width, height / media.height);
+    const s = Math.max(width / media.width, height / media.height) * Math.max(1, media.zoom ?? 1);
     const w = media.width * s;
     const h = media.height * s;
     box = {position: 'absolute', width: w, height: h, left: (width - w) * media.focusX, top: (height - h) * media.focusY};
@@ -82,36 +82,76 @@ const MediaLayer: React.FC<{media: SceneMedia}> = ({media}) => {
   );
 };
 
-const SceneView: React.FC<{scene: ScriptScene}> = ({scene}) => {
+/** CSS filter for the shared look; warmth is a separate low-opacity amber/blue wash (no blend modes: cheap to render). */
+const lookFilter = (look?: Look) =>
+  look ? `contrast(${look.contrast}) saturate(${look.saturation}) brightness(${look.brightness})` : undefined;
+
+const SceneView: React.FC<{scene: ScriptScene; look?: Look}> = ({scene, look}) => {
   const frame = useCurrentFrame(); // scene-relative inside <Sequence>
   const t = scene.transitionIn;
-  const opacity = t.type === 'cut' || t.durationInFrames <= 0 ? 1 : interpolate(frame, [0, t.durationInFrames], [0, 1], clamp);
+  // fade: crossfade over the overlap; fade_from_black / dip: the incoming scene rises from black
+  const tin = t.type === 'dip' ? Math.ceil(t.durationInFrames / 2) : t.durationInFrames;
+  let opacity = t.type === 'cut' || tin <= 0 ? 1 : interpolate(frame, [0, tin], [0, 1], clamp);
+  const out = scene.transitionOut;
+  if (out && out.type === 'dip' && out.durationInFrames > 0) {
+    const k = Math.floor(out.durationInFrames / 2);
+    opacity = Math.min(opacity, interpolate(frame, [scene.durationInFrames - k, scene.durationInFrames], [1, 0], clamp));
+  }
   const progress = scene.durationInFrames > 1 ? frame / (scene.durationInFrames - 1) : 0;
   const origin = `${scene.media.focusX * 100}% ${scene.media.focusY * 100}%`;
+  const filter = lookFilter(look);
   return (
     <AbsoluteFill style={{opacity, overflow: 'hidden'}}>
-      <AbsoluteFill style={{transform: moveTransform(scene.move, progress), transformOrigin: origin}}>
+      <AbsoluteFill style={{transform: moveTransform(scene.move, progress), transformOrigin: origin, filter}}>
         <MediaLayer media={scene.media} />
       </AbsoluteFill>
     </AbsoluteFill>
   );
 };
 
-const OnScreenText: React.FC<{text: string; durationInFrames: number} & Pick<ScriptVideoProps, 'language' | 'onScreenStyle'>> = ({
-  text, durationInFrames, language, onScreenStyle,
-}) => {
+const LookOverlay: React.FC<{look?: Look}> = ({look}) => {
+  if (!look) return null;
+  const w = look.warmth;
+  return (
+    <>
+      {Math.abs(w) > 0.001 ? (
+        <AbsoluteFill style={{backgroundColor: w > 0 ? 'rgb(255,170,90)' : 'rgb(90,150,255)', opacity: Math.min(0.25, Math.abs(w))}} />
+      ) : null}
+      {look.vignette > 0 ? (
+        <AbsoluteFill style={{background: `radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0) 55%, rgba(0,0,0,${Math.min(0.8, look.vignette)}) 100%)`}} />
+      ) : null}
+    </>
+  );
+};
+
+const OnScreenText: React.FC<{text: string; durationInFrames: number; variant: 'title' | 'lower_third' | 'top'} &
+  Pick<ScriptVideoProps, 'language' | 'onScreenStyle'>> = ({text, durationInFrames, variant, language, onScreenStyle}) => {
   const frame = useCurrentFrame();
-  const {fps, height} = useVideoConfig();
+  const {fps, height, width} = useVideoConfig();
   const k = Math.max(1, Math.round(0.35 * fps));
   const opacity = Math.min(interpolate(frame, [0, k], [0, 1], clamp), interpolate(frame, [durationInFrames - k, durationInFrames], [1, 0], clamp));
   const rise = interpolate(frame, [0, k], [height * 0.012, 0], {...clamp, easing: Easing.out(Easing.cubic)});
+  const base: React.CSSProperties = {
+    direction: language.direction, fontFamily: language.fontFamily, color: '#FFFFFF', opacity,
+    transform: `translateY(${rise}px)`, textShadow: '0 2px 18px rgba(0,0,0,0.55)',
+  };
+  if (variant === 'lower_third') {
+    const bar = interpolate(frame, [0, k * 1.5], [0, 1], {...clamp, easing: Easing.out(Easing.cubic)});
+    return (
+      <AbsoluteFill style={{justifyContent: 'flex-end', alignItems: 'flex-start', padding: `0 ${width * 0.07}px ${height * 0.3}px`}}>
+        <div style={{...base, fontSize: onScreenStyle.fontSize * 0.62, fontWeight: 700, lineHeight: 1.25, maxWidth: '70%',
+          borderLeft: `${Math.max(4, width * 0.004)}px solid rgba(255,255,255,${0.9 * bar})`, paddingLeft: width * 0.018}}>
+          {text}
+        </div>
+      </AbsoluteFill>
+    );
+  }
+  const centre = variant === 'title';
   return (
-    <AbsoluteFill style={{alignItems: 'center', paddingTop: height * onScreenStyle.top}}>
-      <div style={{
-        maxWidth: '84%', textAlign: 'center', direction: language.direction, fontFamily: language.fontFamily,
-        fontSize: onScreenStyle.fontSize, fontWeight: 700, lineHeight: 1.3, color: '#FFFFFF', opacity,
-        transform: `translateY(${rise}px)`, textShadow: '0 2px 18px rgba(0,0,0,0.55)',
-      }}>
+    <AbsoluteFill style={{alignItems: 'center', justifyContent: centre ? 'center' : 'flex-start',
+      paddingTop: centre ? 0 : height * onScreenStyle.top}}>
+      <div style={{...base, maxWidth: '84%', textAlign: 'center', fontSize: onScreenStyle.fontSize * (centre ? 1.1 : 1),
+        fontWeight: 700, lineHeight: 1.3}}>
         {text}
       </div>
     </AbsoluteFill>
@@ -168,15 +208,16 @@ export const ScriptVideo: React.FC<ScriptVideoProps> = (props) => {
       {props.scenes.map((s) =>
         frame >= s.from && frame < s.from + s.durationInFrames ? (
           <Sequence key={s.id} name={`scene ${s.id}`} from={s.from} durationInFrames={s.durationInFrames} layout="absolute-fill">
-            <SceneView scene={s} />
+            <SceneView scene={s} look={props.look} />
           </Sequence>
         ) : null,
       )}
+      <LookOverlay look={props.look} />
       {props.scenes.map((s) =>
         s.onScreen ? (
           <Sequence key={`text-${s.id}`} name={`text ${s.id}`} from={s.onScreen.from} durationInFrames={s.onScreen.durationInFrames} layout="absolute-fill">
             <OnScreenText text={s.onScreen.text} durationInFrames={s.onScreen.durationInFrames} language={props.language}
-              onScreenStyle={props.onScreenStyle} />
+              onScreenStyle={props.onScreenStyle} variant={s.onScreenStyle ?? 'title'} />
           </Sequence>
         ) : null,
       )}
