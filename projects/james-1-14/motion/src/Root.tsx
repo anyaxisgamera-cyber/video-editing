@@ -8,6 +8,9 @@ import scriptureDefaults from '../props/en.json';
 import {KineticShort} from './KineticShort';
 import type {KineticProps} from './KineticShort';
 import kineticDefaults from '../props/en-kinetic.json';
+import {EditorialShort} from './EditorialShort';
+import type {EditorialProps} from './EditorialShort';
+import editorialDefaults from '../props/te-editorial.json';
 
 const defaultProps: EditProps = {
   canvas: {
@@ -81,6 +84,21 @@ export const RemotionRoot = () => {
         width={1080}
         height={1920}
         defaultProps={kineticDefaults as KineticProps}
+        calculateMetadata={({props}) => ({
+          width: props.canvas.width,
+          height: props.canvas.height,
+          fps: props.canvas.fps,
+          durationInFrames: props.canvas.durationInFrames,
+        })}
+      />
+      <Composition
+        id="EditorialShort"
+        component={EditorialShort}
+        durationInFrames={900}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={editorialDefaults as EditorialProps}
         calculateMetadata={({props}) => ({
           width: props.canvas.width,
           height: props.canvas.height,

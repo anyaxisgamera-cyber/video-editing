@@ -49,6 +49,7 @@ Cluster the approved beats by source so each page, channel, or film is fetched o
 - **People and entities:** use the official or primary source and match the moment to the claim, not just the name.
 - **Products and interfaces:** prefer the user's own current recording, then the official current demonstration.
 - **Concepts:** create a restrained brand-consistent graphic, or use authoritative real footage when one exists.
+- **Stock (mood and symbolic beats):** search and download through the official Pexels and Pixabay APIs with `scripts/stock_media.py`; keys come from the environment, and every asset is recorded with its license. Read [references/stock-apis.md](references/stock-apis.md).
 - **Archival material:** prefer canonical archives with explicit provenance and usage terms.
 - **Cultural or reaction clips:** use the user's curated library; do not blind-pick memes.
 

@@ -1,0 +1,274 @@
+{
+ "version": 1,
+ "kind": "video",
+ "orientation": "portrait",
+ "min_height": 1920,
+ "beats": [
+  {
+   "id": "t01",
+   "scene": 0,
+   "narration": "శోధన ఎప్పుడూ పెద్దగా,",
+   "meaning": "temptation rarely arrives loudly or obviously",
+   "visual": "a single candle flame flickering quietly in darkness",
+   "duration": 2.47,
+   "queries": [
+    "candle flame dark",
+    "single candle flame black background",
+    "candle flickering night"
+   ],
+   "avoid": [
+    "birthday",
+    "cake",
+    "party"
+   ]
+  },
+  {
+   "id": "t02",
+   "scene": 1,
+   "narration": "స్పష్టంగా మన ముందుకు రాదు.",
+   "meaning": "it does not appear openly in front of us; it hides in shadow",
+   "visual": "a lone silhouette half-hidden in fog or shadow",
+   "duration": 2.08,
+   "queries": [
+    "silhouette fog",
+    "man shadow dark alley",
+    "person walking in fog night"
+   ],
+   "avoid": [
+    "dance",
+    "party",
+    "horror",
+    "zombie"
+   ]
+  },
+  {
+   "id": "t03",
+   "scene": 2,
+   "narration": "కొన్నిసార్లు, మనం పెరగనిచ్చే ఒక కోరికతో",
+   "meaning": "it starts with a desire we allow to grow",
+   "visual": "a person alone at night drawn to a glowing phone screen",
+   "duration": 3.04,
+   "queries": [
+    "man scrolling phone at night",
+    "phone screen light face dark",
+    "woman using phone in bed night"
+   ],
+   "avoid": [
+    "advertisement",
+    "logo",
+    "selfie"
+   ]
+  },
+  {
+   "id": "t04",
+   "scene": 3,
+   "narration": "అది ప్రారంభమవుతుంది.",
+   "meaning": "from that desire, it begins",
+   "visual": "a small seed sprouting and growing (time-lapse)",
+   "duration": 1.68,
+   "queries": [
+    "seed sprouting timelapse",
+    "plant growing timelapse",
+    "seedling sprout soil"
+   ],
+   "avoid": [
+    "cartoon",
+    "animation"
+   ]
+  },
+  {
+   "id": "t05",
+   "scene": 4,
+   "narration": "మన ఎంపికలు మన హృదయంలో మొదలవుతాయి.",
+   "meaning": "our choices start in the heart",
+   "visual": "hand placed over the heart / quiet reflection",
+   "duration": 3.12,
+   "queries": [
+    "hand on heart",
+    "person hand on chest praying",
+    "woman hand on heart eyes closed"
+   ],
+   "avoid": [
+    "hospital",
+    "doctor",
+    "pain"
+   ]
+  },
+  {
+   "id": "t06",
+   "scene": 5,
+   "narration": "ప్రతి శోధన మనం సరైన మార్గాన్ని",
+   "meaning": "every temptation tests whether we choose the right path",
+   "visual": "a path that divides in a forest or field",
+   "duration": 2.61,
+   "queries": [
+    "fork in the road forest",
+    "crossroads path",
+    "two paths forest"
+   ],
+   "avoid": [
+    "car",
+    "traffic",
+    "city"
+   ]
+  },
+  {
+   "id": "t07",
+   "scene": 6,
+   "narration": "ఎంచుకోవాలని సవాలు చేస్తుంది.",
+   "meaning": "it challenges us to decide",
+   "visual": "a person standing still, deciding which way to walk",
+   "duration": 2.59,
+   "queries": [
+    "man standing at crossroads",
+    "person walking on path alone",
+    "man walking forest path"
+   ],
+   "avoid": [
+    "running",
+    "sport",
+    "hiking group"
+   ]
+  },
+  {
+   "id": "t08",
+   "scene": 7,
+   "narration": "తాత్కాలికమైన కోరికలు",
+   "meaning": "desires are temporary",
+   "visual": "sand running out in an hourglass / slipping through fingers",
+   "duration": 1.53,
+   "queries": [
+    "hourglass sand",
+    "sand falling through fingers",
+    "hourglass time passing"
+   ],
+   "avoid": [
+    "beach party",
+    "desert car"
+   ]
+  },
+  {
+   "id": "t09",
+   "scene": 8,
+   "narration": "నీ జీవితాన్ని నడిపించనివ్వకు.",
+   "meaning": "do not let them steer your life",
+   "visual": "a person walking away into the dark / losing direction",
+   "duration": 2.32,
+   "queries": [
+    "lost man walking night",
+    "person walking alone dark road",
+    "man walking away into darkness"
+   ],
+   "avoid": [
+    "fashion",
+    "model",
+    "dance"
+   ]
+  },
+  {
+   "id": "t10",
+   "scene": 9,
+   "narration": "శోధనను గుర్తించు. దేవుని వైపు తిరుగు. సరైనదాన్ని ఎంచుకో.",
+   "meaning": "recognize, turn to God, choose what is right",
+   "visual": "light breaking through clouds; a person looking up in prayer",
+   "duration": 5.28,
+   "queries": [
+    "sun rays through clouds",
+    "praying man sunrise",
+    "person looking up to sky light"
+   ],
+   "avoid": [
+    "airplane",
+    "drone city"
+   ]
+  },
+  {
+   "id": "t11",
+   "scene": 10,
+   "narration": "యాకోబు 1:14",
+   "meaning": "James 1:14 — Scripture speaks",
+   "visual": "an open Bible, pages in soft light",
+   "duration": 3.44,
+   "queries": [
+    "open bible",
+    "bible pages close up",
+    "holy bible reading"
+   ],
+   "avoid": [
+    "quran",
+    "torah",
+    "book store"
+   ]
+  },
+  {
+   "id": "t12",
+   "scene": 11,
+   "narration": "మన స్వంత కోరికలు మనల్ని",
+   "meaning": "our own desires...",
+   "visual": "a person facing their own reflection",
+   "duration": 1.96,
+   "queries": [
+    "man looking at reflection mirror",
+    "reflection in window night",
+    "woman reflection mirror"
+   ],
+   "avoid": [
+    "makeup",
+    "fashion",
+    "haircut"
+   ]
+  },
+  {
+   "id": "t13",
+   "scene": 12,
+   "narration": "ఎలా దారి తప్పించగలవో గుర్తుచేస్తుంది.",
+   "meaning": "...can lead us astray",
+   "visual": "someone lost in fog / a winding path into mist",
+   "duration": 2.99,
+   "queries": [
+    "lost in fog forest",
+    "foggy road nobody",
+    "walking into fog"
+   ],
+   "avoid": [
+    "car",
+    "horror"
+   ]
+  },
+  {
+   "id": "t14",
+   "scene": 13,
+   "narration": "ప్రతివాడును తన స్వకీయమైన దురాశచేత ఈడ్వబడి మరులు కొల్పబడిన వాడై శోధింపబడును.",
+   "meaning": "the verse itself: each is tempted when dragged away by his own desire",
+   "visual": "slow pages of an old Bible / reading by candlelight",
+   "duration": 7.42,
+   "queries": [
+    "reading bible candlelight",
+    "old bible pages turning",
+    "hands reading bible"
+   ],
+   "avoid": [
+    "quran",
+    "school"
+   ]
+  },
+  {
+   "id": "t15",
+   "scene": 14,
+   "narration": "నీ హృదయాన్ని కాపాడుకో. వివేకంతో ఎంచుకో.",
+   "meaning": "guard your heart, choose wisely",
+   "visual": "a cross on a hill at sunrise / light over a cross",
+   "duration": 3.0,
+   "queries": [
+    "cross sunrise",
+    "cross silhouette sunset",
+    "wooden cross hill"
+   ],
+   "avoid": [
+    "grave",
+    "cemetery",
+    "halloween"
+   ]
+  }
+ ]
+}
