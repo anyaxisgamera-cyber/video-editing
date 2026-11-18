@@ -1,0 +1,511 @@
+{
+ "canvas": {
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "durationInFrames": 920
+ },
+ "language": "en",
+ "font": {
+  "family": "Inter Tight",
+  "files": [
+   {
+    "weight": "600",
+    "style": "normal",
+    "src": "fonts/inter-tight-latin-600-normal.woff2"
+   },
+   {
+    "weight": "800",
+    "style": "normal",
+    "src": "fonts/inter-tight-latin-800-normal.woff2"
+   }
+  ],
+  "scale": 1.0,
+  "finalScale": 1.0
+ },
+ "badge": "JAMES 1:14",
+ "cardTitle": "Stand firm",
+ "scenes": [
+  {
+   "bg": "cream",
+   "object": "candle",
+   "layout": "objectLeft",
+   "words": [
+    {
+     "text": "Temptation",
+     "start": 0.2,
+     "end": 1.07,
+     "key": false
+    },
+    {
+     "text": "doesn't",
+     "start": 1.07,
+     "end": 1.55,
+     "key": false
+    },
+    {
+     "text": "always",
+     "start": 1.55,
+     "end": 1.95,
+     "key": false
+    },
+    {
+     "text": "come",
+     "start": 1.95,
+     "end": 2.11,
+     "key": false
+    },
+    {
+     "text": "loudly.",
+     "start": 2.12,
+     "end": 3.15,
+     "key": true
+    }
+   ],
+   "start": 0.0,
+   "end": 3.2
+  },
+  {
+   "bg": "black",
+   "words": [
+    {
+     "text": "Sometimes,",
+     "start": 3.32,
+     "end": 4.03,
+     "key": false
+    },
+    {
+     "text": "it",
+     "start": 4.03,
+     "end": 4.19,
+     "key": false
+    },
+    {
+     "text": "begins",
+     "start": 4.19,
+     "end": 4.51,
+     "key": false
+    },
+    {
+     "text": "with",
+     "start": 4.51,
+     "end": 4.67,
+     "key": false
+    },
+    {
+     "text": "a",
+     "start": 4.67,
+     "end": 4.79,
+     "key": false
+    },
+    {
+     "text": "desire",
+     "start": 4.79,
+     "end": 5.31,
+     "key": true
+    }
+   ],
+   "start": 3.2,
+   "end": 5.19
+  },
+  {
+   "bg": "cream",
+   "object": "apple",
+   "layout": "objectBelow",
+   "grow": true,
+   "words": [
+    {
+     "text": "we",
+     "start": 5.31,
+     "end": 5.47,
+     "key": false
+    },
+    {
+     "text": "allow",
+     "start": 5.47,
+     "end": 5.79,
+     "key": false
+    },
+    {
+     "text": "to",
+     "start": 5.79,
+     "end": 5.87,
+     "key": false
+    },
+    {
+     "text": "grow.",
+     "start": 5.87,
+     "end": 6.83,
+     "key": true
+    }
+   ],
+   "start": 5.19,
+   "end": 6.71
+  },
+  {
+   "bg": "black",
+   "layout": "circleHead",
+   "object": "heart",
+   "words": [
+    {
+     "text": "Our",
+     "start": 6.83,
+     "end": 7.07,
+     "key": false
+    },
+    {
+     "text": "choices",
+     "start": 7.07,
+     "end": 7.55,
+     "key": false
+    },
+    {
+     "text": "begin",
+     "start": 7.55,
+     "end": 7.87,
+     "key": false
+    },
+    {
+     "text": "in",
+     "start": 7.87,
+     "end": 7.95,
+     "key": false
+    },
+    {
+     "text": "the",
+     "start": 7.95,
+     "end": 8.11,
+     "key": false
+    },
+    {
+     "text": "heart,",
+     "start": 8.12,
+     "end": 8.75,
+     "key": true
+    }
+   ],
+   "start": 6.71,
+   "end": 8.63
+  },
+  {
+   "bg": "cream",
+   "arc": true,
+   "words": [
+    {
+     "text": "and",
+     "start": 8.75,
+     "end": 9.07,
+     "key": false
+    },
+    {
+     "text": "every",
+     "start": 9.07,
+     "end": 9.39,
+     "key": false
+    },
+    {
+     "text": "temptation",
+     "start": 9.44,
+     "end": 10.19,
+     "key": true
+    },
+    {
+     "text": "challenges",
+     "start": 10.19,
+     "end": 10.75,
+     "key": false
+    },
+    {
+     "text": "us",
+     "start": 10.75,
+     "end": 10.99,
+     "key": false
+    }
+   ],
+   "start": 8.63,
+   "end": 10.87
+  },
+  {
+   "bg": "cream",
+   "arc": true,
+   "words": [
+    {
+     "text": "to",
+     "start": 10.99,
+     "end": 11.15,
+     "key": false
+    },
+    {
+     "text": "choose",
+     "start": 11.15,
+     "end": 11.39,
+     "key": false
+    },
+    {
+     "text": "wisely.",
+     "start": 11.39,
+     "end": 12.59,
+     "key": true
+    }
+   ],
+   "start": 10.87,
+   "end": 12.47
+  },
+  {
+   "bg": "black",
+   "object": "hourglass",
+   "layout": "objectBelow",
+   "words": [
+    {
+     "text": "Don't",
+     "start": 12.59,
+     "end": 12.83,
+     "key": false
+    },
+    {
+     "text": "let",
+     "start": 12.83,
+     "end": 13.07,
+     "key": false
+    },
+    {
+     "text": "temporary",
+     "start": 13.2,
+     "end": 13.63,
+     "key": true
+    },
+    {
+     "text": "desires",
+     "start": 13.63,
+     "end": 14.27,
+     "key": false
+    }
+   ],
+   "start": 12.47,
+   "end": 14.15
+  },
+  {
+   "bg": "cream",
+   "enter": "circle",
+   "words": [
+    {
+     "text": "lead",
+     "start": 14.27,
+     "end": 14.43,
+     "key": false
+    },
+    {
+     "text": "your",
+     "start": 14.43,
+     "end": 14.59,
+     "key": false
+    },
+    {
+     "text": "life.",
+     "start": 14.59,
+     "end": 15.55,
+     "key": true
+    }
+   ],
+   "start": 14.15,
+   "end": 15.43
+  },
+  {
+   "bg": "cream",
+   "layout": "card",
+   "arc": true,
+   "words": [
+    {
+     "text": "Recognize",
+     "start": 15.55,
+     "end": 16.19,
+     "key": false
+    },
+    {
+     "text": "the",
+     "start": 16.19,
+     "end": 16.35,
+     "key": false
+    },
+    {
+     "text": "temptation.",
+     "start": 16.36,
+     "end": 17.47,
+     "key": false
+    },
+    {
+     "text": "Turn",
+     "start": 17.47,
+     "end": 17.79,
+     "key": false
+    },
+    {
+     "text": "toward",
+     "start": 17.79,
+     "end": 18.11,
+     "key": false
+    },
+    {
+     "text": "God.",
+     "start": 18.11,
+     "end": 18.99,
+     "key": false
+    },
+    {
+     "text": "Choose",
+     "start": 18.99,
+     "end": 19.39,
+     "key": false
+    },
+    {
+     "text": "what",
+     "start": 19.39,
+     "end": 19.55,
+     "key": false
+    },
+    {
+     "text": "is",
+     "start": 19.55,
+     "end": 19.71,
+     "key": false
+    },
+    {
+     "text": "right.",
+     "start": 19.71,
+     "end": 20.67,
+     "key": false
+    }
+   ],
+   "start": 15.43,
+   "items": [
+    {
+     "text": "Recognize the temptation.",
+     "start": 15.55
+    },
+    {
+     "text": "Turn toward God.",
+     "start": 17.47
+    },
+    {
+     "text": "Choose what is right.",
+     "start": 18.99
+    }
+   ],
+   "end": 20.55
+  },
+  {
+   "bg": "black",
+   "enter": "circle",
+   "words": [
+    {
+     "text": "James 1:14",
+     "start": 20.67,
+     "end": 21.79,
+     "key": true
+    },
+    {
+     "text": "reminds",
+     "start": 21.79,
+     "end": 22.27,
+     "key": false
+    },
+    {
+     "text": "us:",
+     "start": 22.27,
+     "end": 22.99,
+     "key": false
+    }
+   ],
+   "start": 20.55,
+   "end": 22.87
+  },
+  {
+   "bg": "cream",
+   "object": "bible",
+   "layout": "objectBelow",
+   "words": [
+    {
+     "text": "temptation",
+     "start": 22.99,
+     "end": 23.71,
+     "key": false
+    },
+    {
+     "text": "begins",
+     "start": 23.71,
+     "end": 24.19,
+     "key": false
+    },
+    {
+     "text": "when",
+     "start": 24.19,
+     "end": 24.35,
+     "key": false
+    },
+    {
+     "text": "our",
+     "start": 24.35,
+     "end": 24.59,
+     "key": false
+    },
+    {
+     "text": "own",
+     "start": 24.59,
+     "end": 24.83,
+     "key": false
+    },
+    {
+     "text": "desires",
+     "start": 24.83,
+     "end": 25.47,
+     "key": true
+    }
+   ],
+   "start": 22.87,
+   "end": 25.35
+  },
+  {
+   "bg": "cream",
+   "exit": "tilt",
+   "arc": true,
+   "words": [
+    {
+     "text": "draw",
+     "start": 25.47,
+     "end": 25.63,
+     "key": false
+    },
+    {
+     "text": "us",
+     "start": 25.63,
+     "end": 25.79,
+     "key": false
+    },
+    {
+     "text": "away.",
+     "start": 25.79,
+     "end": 26.59,
+     "key": true
+    }
+   ],
+   "start": 25.35,
+   "end": 27.04
+  }
+ ],
+ "final": {
+  "lines": [
+   "Guard your heart.",
+   "Choose wisely."
+  ],
+  "key": [
+   "heart.",
+   "wisely."
+  ],
+  "object": "cross",
+  "start": 27.04,
+  "verse": {
+   "text": "“But each person is tempted when they are dragged away by their own evil desire and enticed.”",
+   "reference": "James 1:14 (NIV)"
+  }
+ }
+}

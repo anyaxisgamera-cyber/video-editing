@@ -1,6 +1,9 @@
 """Premix narration + music, measure it, and write the workbench render plan.
 
-Usage: python build/mix.py LANG
+Usage: python build/mix.py LANG [--work work/LANG] [--props motion/props/LANG.json]
+                              [--picture output/LANG/picture.mp4] [--output NAME.mp4] [--tag LANG]
+
+If WORK/sfx.wav exists it is mixed in as an effects track (not ducked).
 
 Reads   work/LANG/narration.wav, work/LANG/music.wav, work/LANG/timeline.json,
         content/LANG.json, output/LANG/picture.mp4 (silent Remotion render)
@@ -16,6 +19,7 @@ Audio design:
 
 from __future__ import annotations
 
+import argparse
 import json
 import re
 import subprocess
@@ -34,16 +38,28 @@ def measure(path: Path, extra: str = "") -> dict:
 
 
 def main() -> None:
-    lang = sys.argv[1]
-    work = ROOT / "work" / lang
+    ap = argparse.ArgumentParser()
+    ap.add_argument("lang")
+    ap.add_argument("--work")
+    ap.add_argument("--props")
+    ap.add_argument("--picture")
+    ap.add_argument("--output")
+    ap.add_argument("--tag", help="name for the filtergraph / render dir (default LANG)")
+    args = ap.parse_args()
+    lang = args.lang
+    tag = args.tag or lang
+    work = ROOT / (args.work or f"work/{lang}")
+    props_path = ROOT / (args.props or f"motion/props/{lang}.json")
     content = json.loads((ROOT / "content" / f"{lang}.json").read_text(encoding="utf-8"))
-    timeline = json.loads((work / "timeline.json").read_text(encoding="utf-8"))
-    duration = timeline["duration"]
+    canvas = json.loads(props_path.read_text(encoding="utf-8"))["canvas"]
+    duration = canvas["durationInFrames"] / canvas["fps"]
+    has_sfx = (work / "sfx.wav").exists()
 
     voice = measure(work / "narration.wav")
     music = measure(work / "music.wav")
     voice_gain = -16.0 - float(voice["input_i"])
     music_gain = -27.0 - float(music["input_i"])
+    sfx_gain = (-29.0 - float(measure(work / "sfx.wav")["input_i"])) if has_sfx else 0.0
 
     premix = work / "premix.wav"
     graph = (
@@ -52,14 +68,20 @@ def main() -> None:
         f"volume={voice_gain:.2f}dB,asplit=2[voice][key];"
         f"[1:a]aformat=sample_rates=48000:channel_layouts=stereo,volume={music_gain:.2f}dB[bed];"
         f"[bed][key]sidechaincompress=threshold=0.03:ratio=4:attack=120:release=900:makeup=1[ducked];"
-        f"[voice][ducked]amix=inputs=2:normalize=0:duration=longest,atrim=0:{duration:.3f}[out]"
+        + (f"[2:a]aformat=sample_rates=48000:channel_layouts=stereo,volume={sfx_gain:.2f}dB[fx];"
+           f"[voice][ducked][fx]amix=inputs=3:normalize=0:duration=longest,atrim=0:{duration:.3f}[out]"
+           if has_sfx else
+           f"[voice][ducked]amix=inputs=2:normalize=0:duration=longest,atrim=0:{duration:.3f}[out]")
     )
-    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(work / "narration.wav"), "-i", str(work / "music.wav"),
+    inputs = ["-i", str(work / "narration.wav"), "-i", str(work / "music.wav")]
+    if has_sfx:
+        inputs += ["-i", str(work / "sfx.wav")]
+    subprocess.run(["ffmpeg", "-v", "error", "-y", *inputs,
                     "-filter_complex", graph, "-map", "[out]", "-c:a", "pcm_s24le", str(premix)], check=True)
 
     m = measure(premix)
     (ROOT / "filtergraphs").mkdir(exist_ok=True)
-    ffgraph = ROOT / "filtergraphs" / f"{lang}.ffgraph"
+    ffgraph = ROOT / "filtergraphs" / f"{tag}.ffgraph"
     ffgraph.write_text(
         "[0:v]setsar=1,format=yuv420p[vout];\n"
         f"[1:a]loudnorm=I={TARGET_I}:TP={TARGET_TP}:LRA={TARGET_LRA}:"
@@ -68,13 +90,14 @@ def main() -> None:
         f"aresample=48000,atrim=start=0:end={duration:.3f},asetpts=PTS-STARTPTS[aout]\n",
         encoding="utf-8",
     )
-    frames = json.loads((ROOT / "motion" / "props" / f"{lang}.json").read_text(encoding="utf-8"))["canvas"]["durationInFrames"]
+    frames = canvas["durationInFrames"]
+    rel = lambda p: "../" * len(work.relative_to(ROOT).parts) + p  # noqa: E731
     plan = {
         "version": 1,
-        "inputs": [f"../../output/{lang}/picture.mp4", "premix.wav"],
-        "filtergraph": f"../../filtergraphs/{lang}.ffgraph",
-        "output": f"../../output/{content['output']}",
-        "work_dir": f"../../output/{lang}/render",
+        "inputs": [rel(args.picture or f"output/{lang}/picture.mp4"), "premix.wav"],
+        "filtergraph": rel(f"filtergraphs/{tag}.ffgraph"),
+        "output": rel(f"output/{args.output or content['output']}"),
+        "work_dir": rel(f"output/{tag}/render"),
         "video_map": "[vout]",
         "audio_map": "[aout]",
         "video": {

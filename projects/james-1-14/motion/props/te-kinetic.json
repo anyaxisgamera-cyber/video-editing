@@ -1,0 +1,468 @@
+{
+ "canvas": {
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "durationInFrames": 1174
+ },
+ "language": "te",
+ "font": {
+  "family": "Noto Sans Telugu",
+  "files": [
+   {
+    "weight": "600",
+    "style": "normal",
+    "src": "fonts/noto-sans-telugu-telugu-600-normal.woff2"
+   },
+   {
+    "weight": "800",
+    "style": "normal",
+    "src": "fonts/noto-sans-telugu-telugu-800-normal.woff2"
+   },
+   {
+    "weight": "600",
+    "style": "normal",
+    "src": "fonts/noto-sans-telugu-latin-600-normal.woff2"
+   },
+   {
+    "weight": "800",
+    "style": "normal",
+    "src": "fonts/noto-sans-telugu-latin-800-normal.woff2"
+   }
+  ],
+  "scale": 0.9,
+  "finalScale": 0.66
+ },
+ "badge": "యాకోబు 1:14",
+ "cardTitle": "స్థిరంగా నిలబడు",
+ "scenes": [
+  {
+   "bg": "cream",
+   "object": "candle",
+   "layout": "objectLeft",
+   "words": [
+    {
+     "text": "శోధన",
+     "start": 0.2,
+     "end": 0.83,
+     "key": true
+    },
+    {
+     "text": "ఎప్పుడూ",
+     "start": 0.92,
+     "end": 1.87,
+     "key": false
+    },
+    {
+     "text": "పెద్దగా,",
+     "start": 1.87,
+     "end": 2.75,
+     "key": false
+    }
+   ],
+   "start": 0.0,
+   "end": 2.63
+  },
+  {
+   "bg": "black",
+   "words": [
+    {
+     "text": "స్పష్టంగా",
+     "start": 2.75,
+     "end": 3.55,
+     "key": false
+    },
+    {
+     "text": "మన",
+     "start": 3.55,
+     "end": 3.71,
+     "key": false
+    },
+    {
+     "text": "ముందుకు",
+     "start": 3.71,
+     "end": 4.03,
+     "key": false
+    },
+    {
+     "text": "రాదు.",
+     "start": 4.03,
+     "end": 4.91,
+     "key": true
+    }
+   ],
+   "start": 2.63,
+   "end": 4.79
+  },
+  {
+   "bg": "black",
+   "words": [
+    {
+     "text": "కొన్నిసార్లు,",
+     "start": 4.91,
+     "end": 5.87,
+     "key": false
+    },
+    {
+     "text": "మనం",
+     "start": 5.87,
+     "end": 6.19,
+     "key": false
+    },
+    {
+     "text": "పెరగనిచ్చే",
+     "start": 6.19,
+     "end": 6.91,
+     "key": false
+    },
+    {
+     "text": "ఒక",
+     "start": 6.91,
+     "end": 7.15,
+     "key": false
+    },
+    {
+     "text": "కోరికతో",
+     "start": 7.15,
+     "end": 7.95,
+     "key": true
+    }
+   ],
+   "start": 4.79,
+   "end": 7.83
+  },
+  {
+   "bg": "cream",
+   "object": "apple",
+   "layout": "objectBelow",
+   "grow": true,
+   "words": [
+    {
+     "text": "అది",
+     "start": 7.95,
+     "end": 8.19,
+     "key": false
+    },
+    {
+     "text": "ప్రారంభమవుతుంది.",
+     "start": 8.19,
+     "end": 9.71,
+     "key": true
+    }
+   ],
+   "start": 7.83,
+   "end": 9.59
+  },
+  {
+   "bg": "black",
+   "layout": "circleHead",
+   "object": "heart",
+   "words": [
+    {
+     "text": "మన",
+     "start": 9.71,
+     "end": 9.95,
+     "key": false
+    },
+    {
+     "text": "ఎంపికలు",
+     "start": 9.95,
+     "end": 10.75,
+     "key": false
+    },
+    {
+     "text": "మన",
+     "start": 10.75,
+     "end": 10.99,
+     "key": false
+    },
+    {
+     "text": "హృదయంలో",
+     "start": 10.99,
+     "end": 11.55,
+     "key": true
+    },
+    {
+     "text": "మొదలవుతాయి.",
+     "start": 11.55,
+     "end": 12.67,
+     "key": false
+    }
+   ],
+   "start": 9.59,
+   "end": 12.55
+  },
+  {
+   "bg": "cream",
+   "arc": true,
+   "words": [
+    {
+     "text": "ప్రతి",
+     "start": 12.67,
+     "end": 13.07,
+     "key": false
+    },
+    {
+     "text": "శోధన",
+     "start": 13.07,
+     "end": 13.71,
+     "key": false
+    },
+    {
+     "text": "మనం",
+     "start": 13.8,
+     "end": 14.27,
+     "key": false
+    },
+    {
+     "text": "సరైన",
+     "start": 14.27,
+     "end": 14.75,
+     "key": true
+    },
+    {
+     "text": "మార్గాన్ని",
+     "start": 14.75,
+     "end": 15.283,
+     "key": false
+    }
+   ],
+   "start": 12.55,
+   "end": 15.163
+  },
+  {
+   "bg": "cream",
+   "arc": true,
+   "words": [
+    {
+     "text": "ఎంచుకోవాలని",
+     "start": 15.283,
+     "end": 16.27,
+     "key": true
+    },
+    {
+     "text": "సవాలు",
+     "start": 16.27,
+     "end": 16.67,
+     "key": false
+    },
+    {
+     "text": "చేస్తుంది.",
+     "start": 16.67,
+     "end": 17.79,
+     "key": false
+    }
+   ],
+   "start": 15.163,
+   "end": 17.67
+  },
+  {
+   "bg": "black",
+   "object": "hourglass",
+   "layout": "objectBelow",
+   "words": [
+    {
+     "text": "తాత్కాలికమైన",
+     "start": 17.79,
+     "end": 18.75,
+     "key": true
+    },
+    {
+     "text": "కోరికలు",
+     "start": 18.75,
+     "end": 19.31,
+     "key": false
+    }
+   ],
+   "start": 17.67,
+   "end": 19.28
+  },
+  {
+   "bg": "cream",
+   "enter": "circle",
+   "words": [
+    {
+     "text": "నీ",
+     "start": 19.4,
+     "end": 19.71,
+     "key": false
+    },
+    {
+     "text": "జీవితాన్ని",
+     "start": 19.71,
+     "end": 20.323,
+     "key": false
+    },
+    {
+     "text": "నడిపించనివ్వకు.",
+     "start": 20.323,
+     "end": 21.71,
+     "key": true
+    }
+   ],
+   "start": 19.28,
+   "end": 21.59
+  },
+  {
+   "bg": "cream",
+   "layout": "card",
+   "arc": true,
+   "words": [
+    {
+     "text": "శోధనను",
+     "start": 21.71,
+     "end": 22.35,
+     "key": false
+    },
+    {
+     "text": "గుర్తించు.",
+     "start": 22.35,
+     "end": 23.39,
+     "key": false
+    },
+    {
+     "text": "దేవుని",
+     "start": 23.4,
+     "end": 23.87,
+     "key": false
+    },
+    {
+     "text": "వైపు",
+     "start": 23.87,
+     "end": 24.163,
+     "key": false
+    },
+    {
+     "text": "తిరుగు.",
+     "start": 24.163,
+     "end": 24.99,
+     "key": false
+    },
+    {
+     "text": "సరైనదాన్ని",
+     "start": 24.99,
+     "end": 25.79,
+     "key": false
+    },
+    {
+     "text": "ఎంచుకో.",
+     "start": 25.79,
+     "end": 26.75,
+     "key": false
+    }
+   ],
+   "start": 21.59,
+   "items": [
+    {
+     "text": "శోధనను గుర్తించు.",
+     "start": 21.71
+    },
+    {
+     "text": "దేవుని వైపు తిరుగు.",
+     "start": 23.4
+    },
+    {
+     "text": "సరైనదాన్ని ఎంచుకో.",
+     "start": 24.99
+    }
+   ],
+   "end": 26.96
+  },
+  {
+   "bg": "black",
+   "enter": "circle",
+   "words": [
+    {
+     "text": "యాకోబు 1:14",
+     "start": 27.08,
+     "end": 30.03,
+     "key": true
+    }
+   ],
+   "start": 26.96,
+   "end": 30.32
+  },
+  {
+   "bg": "cream",
+   "object": "bible",
+   "layout": "objectBelow",
+   "words": [
+    {
+     "text": "మన",
+     "start": 30.44,
+     "end": 30.83,
+     "key": false
+    },
+    {
+     "text": "స్వంత",
+     "start": 30.83,
+     "end": 31.23,
+     "key": false
+    },
+    {
+     "text": "కోరికలు",
+     "start": 31.23,
+     "end": 31.87,
+     "key": true
+    },
+    {
+     "text": "మనల్ని",
+     "start": 31.96,
+     "end": 32.51,
+     "key": false
+    }
+   ],
+   "start": 30.32,
+   "end": 32.39
+  },
+  {
+   "bg": "cream",
+   "exit": "tilt",
+   "arc": true,
+   "words": [
+    {
+     "text": "ఎలా",
+     "start": 32.51,
+     "end": 32.83,
+     "key": false
+    },
+    {
+     "text": "దారి",
+     "start": 32.83,
+     "end": 33.15,
+     "key": true
+    },
+    {
+     "text": "తప్పించగలవో",
+     "start": 33.15,
+     "end": 33.95,
+     "key": false
+    },
+    {
+     "text": "గుర్తుచేస్తుంది.",
+     "start": 33.95,
+     "end": 35.07,
+     "key": false
+    }
+   ],
+   "start": 32.39,
+   "end": 35.52
+  }
+ ],
+ "final": {
+  "lines": [
+   "నీ హృదయాన్ని కాపాడుకో.",
+   "వివేకంతో ఎంచుకో."
+  ],
+  "key": [
+   "హృదయాన్ని",
+   "వివేకంతో"
+  ],
+  "object": "cross",
+  "start": 35.52,
+  "verse": {
+   "text": "“ప్రతివాడును తన స్వకీయ దురాశచేత ఈడ్వబడి మరులుకొల్పబడినవాడై శోధింపబడును.”",
+   "reference": "యాకోబు 1:14"
+  }
+ }
+}

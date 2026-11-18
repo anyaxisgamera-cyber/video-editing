@@ -7,16 +7,197 @@
   "font": "en",
   "subtitleMaxChars": 30,
   "lines": [
-    {"scene": "s1_candle", "text": "Temptation doesn't always come loudly.", "headline": "Temptation is quiet"},
-    {"scene": "s2_apple", "text": "Sometimes, it begins with a desire we allow to grow.", "headline": "A desire allowed to grow"},
-    {"scene": "s3_path", "text": "Our choices begin in the heart, and every temptation challenges us to choose wisely.", "headline": "Choices begin in the heart"},
-    {"scene": "s4_hourglass", "text": "Don't let temporary desires lead your life.", "headline": "Desires are temporary"},
-    {"scene": "s5_light", "text": "Recognize the temptation. Turn toward God. Choose what is right.", "headline": "", "steps": ["Recognize.", "Turn toward God.", "Choose what is right."]},
-    {"scene": "s6_bible", "text": "James 1:14 reminds us: temptation begins when our own desires draw us away.", "headline": "", "pauseBefore": 0.35}
+    {
+      "scene": "s1_candle",
+      "text": "Temptation doesn't always come loudly.",
+      "headline": "Temptation is quiet"
+    },
+    {
+      "scene": "s2_apple",
+      "text": "Sometimes, it begins with a desire we allow to grow.",
+      "headline": "A desire allowed to grow"
+    },
+    {
+      "scene": "s3_path",
+      "text": "Our choices begin in the heart, and every temptation challenges us to choose wisely.",
+      "headline": "Choices begin in the heart"
+    },
+    {
+      "scene": "s4_hourglass",
+      "text": "Don't let temporary desires lead your life.",
+      "headline": "Desires are temporary"
+    },
+    {
+      "scene": "s5_light",
+      "text": "Recognize the temptation. Turn toward God. Choose what is right.",
+      "headline": "",
+      "steps": [
+        "Recognize.",
+        "Turn toward God.",
+        "Choose what is right."
+      ]
+    },
+    {
+      "scene": "s6_bible",
+      "text": "James 1:14 reminds us: temptation begins when our own desires draw us away.",
+      "headline": "",
+      "pauseBefore": 0.35,
+      "speak": [
+        [
+          "James one fourteen",
+          "James 1:14"
+        ],
+        [
+          "reminds us: temptation begins when our own desires draw us away.",
+          null
+        ]
+      ]
+    }
   ],
   "verse": {
     "text": "“But each person is tempted when they are dragged away by their own evil desire and enticed.”",
     "reference": "James 1:14 (NIV)"
   },
-  "final": {"scene": "s7_cross", "lines": ["Guard your heart.", "Choose wisely."], "reference": "James 1:14 (NIV)"}
+  "final": {
+    "scene": "s7_cross",
+    "lines": [
+      "Guard your heart.",
+      "Choose wisely."
+    ],
+    "reference": "James 1:14 (NIV)"
+  },
+  "elevenlabs": {
+    "voice_id": "nPczCjzI2devNBz1zQrb",
+    "voice_name": "Brian - Deep, Resonant and Comforting",
+    "model_id": "eleven_v4",
+    "voice_settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.8,
+      "style": 0.15,
+      "use_speaker_boost": true
+    }
+  },
+  "kinetic": {
+    "font": "en",
+    "cardTitle": "Stand firm",
+    "badge": "JAMES 1:14",
+    "scenes": [
+      {
+        "text": "Temptation doesn't always come loudly.",
+        "bg": "cream",
+        "key": [
+          "loudly."
+        ],
+        "object": "candle",
+        "layout": "objectLeft"
+      },
+      {
+        "text": "Sometimes, it begins with a desire",
+        "bg": "black",
+        "key": [
+          "desire"
+        ]
+      },
+      {
+        "text": "we allow to grow.",
+        "bg": "cream",
+        "key": [
+          "grow."
+        ],
+        "object": "apple",
+        "layout": "objectBelow",
+        "grow": true
+      },
+      {
+        "text": "Our choices begin in the heart,",
+        "bg": "black",
+        "key": [
+          "heart,"
+        ],
+        "layout": "circleHead",
+        "object": "heart"
+      },
+      {
+        "text": "and every temptation challenges us",
+        "bg": "cream",
+        "key": [
+          "temptation"
+        ],
+        "arc": true
+      },
+      {
+        "text": "to choose wisely.",
+        "bg": "cream",
+        "key": [
+          "wisely."
+        ],
+        "arc": true
+      },
+      {
+        "text": "Don't let temporary desires",
+        "bg": "black",
+        "key": [
+          "temporary"
+        ],
+        "object": "hourglass",
+        "layout": "objectBelow"
+      },
+      {
+        "text": "lead your life.",
+        "bg": "cream",
+        "key": [
+          "life."
+        ],
+        "enter": "circle"
+      },
+      {
+        "text": "Recognize the temptation. Turn toward God. Choose what is right.",
+        "bg": "cream",
+        "layout": "card",
+        "items": [
+          "Recognize the temptation.",
+          "Turn toward God.",
+          "Choose what is right."
+        ],
+        "arc": true
+      },
+      {
+        "text": "James 1:14 reminds us:",
+        "bg": "black",
+        "key": [
+          "James 1:14"
+        ],
+        "enter": "circle"
+      },
+      {
+        "text": "temptation begins when our own desires",
+        "bg": "cream",
+        "key": [
+          "desires"
+        ],
+        "object": "bible",
+        "layout": "objectBelow"
+      },
+      {
+        "text": "draw us away.",
+        "bg": "cream",
+        "key": [
+          "away."
+        ],
+        "exit": "tilt",
+        "arc": true
+      }
+    ],
+    "final": {
+      "lines": [
+        "Guard your heart.",
+        "Choose wisely."
+      ],
+      "key": [
+        "heart.",
+        "wisely."
+      ],
+      "object": "cross"
+    }
+  }
 }

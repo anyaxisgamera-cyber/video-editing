@@ -65,5 +65,146 @@
       "వివేకంతో ఎంచుకో."
     ],
     "reference": "యాకోబు 1:14"
+  },
+  "elevenlabs": {
+    "voice_id": "nPczCjzI2devNBz1zQrb",
+    "voice_name": "Brian - Deep, Resonant and Comforting",
+    "model_id": "eleven_v4",
+    "voice_settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.8,
+      "style": 0.15,
+      "use_speaker_boost": true
+    }
+  },
+  "kinetic": {
+    "font": "te",
+    "cardTitle": "స్థిరంగా నిలబడు",
+    "badge": "యాకోబు 1:14",
+    "scenes": [
+      {
+        "text": "శోధన ఎప్పుడూ పెద్దగా,",
+        "bg": "cream",
+        "key": [
+          "శోధన"
+        ],
+        "object": "candle",
+        "layout": "objectLeft"
+      },
+      {
+        "text": "స్పష్టంగా మన ముందుకు రాదు.",
+        "bg": "black",
+        "key": [
+          "రాదు."
+        ]
+      },
+      {
+        "text": "కొన్నిసార్లు, మనం పెరగనిచ్చే ఒక కోరికతో",
+        "bg": "black",
+        "key": [
+          "కోరికతో"
+        ]
+      },
+      {
+        "text": "అది ప్రారంభమవుతుంది.",
+        "bg": "cream",
+        "key": [
+          "ప్రారంభమవుతుంది."
+        ],
+        "object": "apple",
+        "layout": "objectBelow",
+        "grow": true
+      },
+      {
+        "text": "మన ఎంపికలు మన హృదయంలో మొదలవుతాయి.",
+        "bg": "black",
+        "key": [
+          "హృదయంలో"
+        ],
+        "layout": "circleHead",
+        "object": "heart"
+      },
+      {
+        "text": "ప్రతి శోధన మనం సరైన మార్గాన్ని",
+        "bg": "cream",
+        "key": [
+          "సరైన"
+        ],
+        "arc": true
+      },
+      {
+        "text": "ఎంచుకోవాలని సవాలు చేస్తుంది.",
+        "bg": "cream",
+        "key": [
+          "ఎంచుకోవాలని"
+        ],
+        "arc": true
+      },
+      {
+        "text": "తాత్కాలికమైన కోరికలు",
+        "bg": "black",
+        "key": [
+          "తాత్కాలికమైన"
+        ],
+        "object": "hourglass",
+        "layout": "objectBelow"
+      },
+      {
+        "text": "నీ జీవితాన్ని నడిపించనివ్వకు.",
+        "bg": "cream",
+        "key": [
+          "నడిపించనివ్వకు."
+        ],
+        "enter": "circle"
+      },
+      {
+        "text": "శోధనను గుర్తించు. దేవుని వైపు తిరుగు. సరైనదాన్ని ఎంచుకో.",
+        "bg": "cream",
+        "layout": "card",
+        "items": [
+          "శోధనను గుర్తించు.",
+          "దేవుని వైపు తిరుగు.",
+          "సరైనదాన్ని ఎంచుకో."
+        ],
+        "arc": true
+      },
+      {
+        "text": "యాకోబు 1:14",
+        "bg": "black",
+        "key": [
+          "యాకోబు 1:14"
+        ],
+        "enter": "circle"
+      },
+      {
+        "text": "మన స్వంత కోరికలు మనల్ని",
+        "bg": "cream",
+        "key": [
+          "కోరికలు"
+        ],
+        "object": "bible",
+        "layout": "objectBelow"
+      },
+      {
+        "text": "ఎలా దారి తప్పించగలవో గుర్తుచేస్తుంది.",
+        "bg": "cream",
+        "key": [
+          "దారి"
+        ],
+        "exit": "tilt",
+        "arc": true
+      }
+    ],
+    "final": {
+      "lines": [
+        "నీ హృదయాన్ని కాపాడుకో.",
+        "వివేకంతో ఎంచుకో."
+      ],
+      "key": [
+        "హృదయాన్ని",
+        "వివేకంతో"
+      ],
+      "object": "cross"
+    }
   }
 }

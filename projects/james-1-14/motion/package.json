@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@fontsource/cormorant-garamond": "^5.3.0",
+    "@fontsource/inter-tight": "^5.3.0",
+    "@fontsource/noto-sans-telugu": "^5.3.0",
     "@fontsource/noto-serif-telugu": "^5.3.0",
     "@remotion/cli": "4.0.489",
     "@remotion/media": "4.0.489",

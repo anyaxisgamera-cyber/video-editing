@@ -59,3 +59,35 @@ cannot download its own browser.
 - On-screen verse text: NIV (2011) for English; the Telugu card uses the traditional Telugu
   Bible wording of James 1:14. Spoken lines are the supplied scripts, verbatim.
 - Plates are AI-generated symbolic imagery without people; they were chosen by eye per scene.
+
+## v2 — kinetic-typography cut (current deliverables)
+
+Rebuilt to follow a reference kinetic-typography short (studied with
+`skills/analyze-video-editing`): alternating cream/black frames, bold tight sans
+(Inter Tight / Noto Sans Telugu), words revealed on their spoken timestamps with the
+key word in red (glowing on black), isolated objects, a pinned checklist card, circle
+wipes, arc swooshes, push-ins, a soft 92 BPM bed, and whooshes/pops synced to cuts.
+Every narration word appears on screen exactly once, so the kinetic text is the caption
+track (SRT sidecars are also written). The v1 lavender `ScriptureShort` remains intact.
+
+Voice: ElevenLabs `eleven_v4`, voice "Brian" (premade), one request per language with
+character timestamps (`build/narrate_el.py`; reads `ELEVENLABS_API_KEY`, any placeholder
+works behind a key-injecting proxy). Word starts are corrected by a measured −0.15 s.
+
+```bash
+for L in en te; do
+  python build/narrate_el.py content/$L.json work/$L-kinetic
+  python build/kinetic_props.py content/$L.json work/$L-kinetic motion/props/$L-kinetic.json
+  python build/kinetic_audio.py motion/props/$L-kinetic.json work/$L-kinetic
+  (cd motion && npx remotion render src/index.ts KineticShort ../output/$L-kinetic/picture.mp4 \
+     --props=props/$L-kinetic.json --codec=h264 --crf=12 --pixel-format=yuv420p --muted)
+  python build/mix.py $L --work work/$L-kinetic --props motion/props/$L-kinetic.json \
+     --picture output/$L-kinetic/picture.mp4 --tag $L-kinetic
+  python3 $WB render-ffmpeg work/$L-kinetic/render-plan.json
+  python build/qa_kinetic.py $L output/<deliverable>.mp4 motion/props/$L-kinetic.json work/$L-kinetic/qa.json
+done
+```
+
+Objects (`motion/public/media/obj-*.png`) are SD-Turbo renders on a plain backdrop,
+matted with `build/cutout.py light` (no learned matting model); picks are in
+`objects.selection.json`.
