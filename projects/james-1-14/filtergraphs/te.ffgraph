@@ -1,0 +1,2 @@
+[0:v]setsar=1,format=yuv420p[vout];
+[1:a]loudnorm=I=-14.0:TP=-1.5:LRA=11.0:measured_I=-18.58:measured_TP=-4.85:measured_LRA=5.40:measured_thresh=-29.33:offset=0.47:linear=true,aresample=48000,atrim=start=0:end=39.950,asetpts=PTS-STARTPTS[aout]

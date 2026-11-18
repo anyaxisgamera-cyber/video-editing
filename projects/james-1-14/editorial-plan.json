@@ -1,0 +1,131 @@
+{
+  "version": 1,
+  "brief": {
+    "audience": "Christian viewers on YouTube Shorts and Instagram Reels (English and Telugu speakers)",
+    "purpose": "Short devotional on James 1:14 — understanding temptation",
+    "destination": "YouTube Shorts, Instagram Reels",
+    "tone": "Calm, reverent, elegant; lavender/purple palette, serif typography, slow motion and soft dissolves",
+    "mustKeep": [
+      "User-supplied narration scripts verbatim",
+      "James 1:14 (NIV) / యాకోబు 1:14 reference at the end",
+      "Final screen: Guard your heart. Choose wisely. / నీ హృదయాన్ని కాపాడుకో. వివేకంతో ఎంచుకో."
+    ],
+    "mustAvoid": [
+      "Combining languages in one video",
+      "Speeding narration to hit a duration",
+      "Depicting people or faces (avoid AI artifacts)",
+      "Copying the reference video's content"
+    ]
+  },
+  "delivery": {
+    "width": 1080,
+    "height": 1920,
+    "fps": "30",
+    "targetDurationSeconds": "20-30 (natural narration governs; Telugu runs longer)"
+  },
+  "sources": [
+    {
+      "id": "narration",
+      "kind": "neural TTS (edge-tts: en-US-AvaNeural, te-IN-ShrutiNeural), default rate",
+      "generatedBy": "build/narrate.py"
+    },
+    {
+      "id": "music",
+      "kind": "original synthesized ambient pad + bell motif",
+      "generatedBy": "build/music.py"
+    },
+    {
+      "id": "plates",
+      "kind": "SD-Turbo symbolic stills, upscaled to 1080x1920",
+      "generatedBy": "build/plates.py"
+    },
+    {
+      "id": "reference",
+      "kind": "Pinterest screen recording (requested)",
+      "status": "NOT AVAILABLE in the build environment; style taken from the written brief"
+    }
+  ],
+  "synchronization": [
+    {
+      "what": "subtitles",
+      "method": "synthesizer word boundaries offset by each line's placement; verified with VAD + Whisper in build/qa.py"
+    }
+  ],
+  "selects": [],
+  "outputBeats": [
+    {
+      "id": "s1_candle",
+      "line": 1,
+      "meaning": "Temptation is quiet",
+      "visual": "single candle flame in darkness"
+    },
+    {
+      "id": "s2_apple",
+      "line": 2,
+      "meaning": "A desire we allow to grow",
+      "visual": "lone apple in a beam of light"
+    },
+    {
+      "id": "s3_path",
+      "line": 3,
+      "meaning": "Choices begin in the heart; choose wisely",
+      "visual": "forked path in lavender mist"
+    },
+    {
+      "id": "s4_hourglass",
+      "line": 4,
+      "meaning": "Temporary desires",
+      "visual": "hourglass, sand running out"
+    },
+    {
+      "id": "s5_light",
+      "line": 5,
+      "meaning": "Recognize / Turn toward God / Choose right",
+      "visual": "light breaking through clouds; three steps land on spoken words"
+    },
+    {
+      "id": "s6_bible",
+      "line": 6,
+      "meaning": "James 1:14",
+      "visual": "open Bible in window light; verse card"
+    },
+    {
+      "id": "s7_cross",
+      "line": null,
+      "meaning": "Guard your heart. Choose wisely.",
+      "visual": "cross on a hill at dawn; final message + reference"
+    }
+  ],
+  "tracks": [
+    {
+      "id": "V1",
+      "content": "scene plates, slow push/drift, 0.8 s cross-dissolves"
+    },
+    {
+      "id": "V2",
+      "content": "lavender grade, vignette, floating light motes"
+    },
+    {
+      "id": "V3",
+      "content": "series label, headlines, step text, verse card, final card"
+    },
+    {
+      "id": "V4",
+      "content": "burned-in subtitles (also exported as SRT)"
+    },
+    {
+      "id": "A1",
+      "content": "narration, -16 LUFS pre-mix"
+    },
+    {
+      "id": "A2",
+      "content": "music, ~-27 LUFS, side-chain ducked under narration"
+    },
+    {
+      "id": "master",
+      "content": "two-pass linear loudnorm to -14 LUFS / -1.5 dBTP, AAC 48 kHz"
+    }
+  ],
+  "reviewMarkers": [],
+  "reviewRanges": []
+}

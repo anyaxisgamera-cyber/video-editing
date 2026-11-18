@@ -1,0 +1,9 @@
+# Generated media stays local (see repository AGENTS.md).
+motion/public/media/*
+!motion/public/media/.gitkeep
+motion/public/fonts/
+review/*
+!review/.gitkeep
+*.jpg
+*.png
+*.srt

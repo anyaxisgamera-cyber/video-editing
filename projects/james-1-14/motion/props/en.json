@@ -1,0 +1,244 @@
+{
+ "canvas": {
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "durationInFrames": 916
+ },
+ "language": "en",
+ "font": {
+  "family": "Cormorant Garamond",
+  "files": [
+   {
+    "weight": "500",
+    "style": "normal",
+    "src": "fonts/cormorant-garamond-latin-500-normal.woff2"
+   },
+   {
+    "weight": "600",
+    "style": "normal",
+    "src": "fonts/cormorant-garamond-latin-600-normal.woff2"
+   },
+   {
+    "weight": "500",
+    "style": "italic",
+    "src": "fonts/cormorant-garamond-latin-500-italic.woff2"
+   },
+   {
+    "weight": "600",
+    "style": "italic",
+    "src": "fonts/cormorant-garamond-latin-600-italic.woff2"
+   }
+  ],
+  "headlineSize": 96,
+  "subtitleSize": 56,
+  "verseSize": 64,
+  "finalSize": 112,
+  "lineHeight": 1.18,
+  "letterSpacing": 0.5
+ },
+ "accentFont": {
+  "family": "Cormorant Garamond",
+  "files": [
+   {
+    "weight": "500",
+    "style": "normal",
+    "src": "fonts/cormorant-garamond-latin-500-normal.woff2"
+   },
+   {
+    "weight": "600",
+    "style": "normal",
+    "src": "fonts/cormorant-garamond-latin-600-normal.woff2"
+   },
+   {
+    "weight": "500",
+    "style": "italic",
+    "src": "fonts/cormorant-garamond-latin-500-italic.woff2"
+   },
+   {
+    "weight": "600",
+    "style": "italic",
+    "src": "fonts/cormorant-garamond-latin-600-italic.woff2"
+   }
+  ],
+  "headlineSize": 96,
+  "subtitleSize": 56,
+  "verseSize": 64,
+  "finalSize": 112,
+  "lineHeight": 1.18,
+  "letterSpacing": 0.5
+ },
+ "series": "Understanding Temptation",
+ "scenes": [
+  {
+   "id": "s1_candle",
+   "start": 0.0,
+   "end": 2.975,
+   "headline": "Temptation is quiet",
+   "image": "media/s1_candle.jpg"
+  },
+  {
+   "id": "s2_apple",
+   "start": 2.975,
+   "end": 6.95,
+   "headline": "A desire allowed to grow",
+   "image": "media/s2_apple.jpg"
+  },
+  {
+   "id": "s3_path",
+   "start": 6.95,
+   "end": 12.262,
+   "headline": "Choices begin in the heart",
+   "image": "media/s3_path.jpg"
+  },
+  {
+   "id": "s4_hourglass",
+   "start": 12.262,
+   "end": 15.15,
+   "headline": "Desires are temporary",
+   "image": "media/s4_hourglass.jpg"
+  },
+  {
+   "id": "s5_light",
+   "start": 15.15,
+   "end": 20.513,
+   "headline": "",
+   "image": "media/s5_light.jpg"
+  },
+  {
+   "id": "s6_bible",
+   "start": 20.513,
+   "end": 27.312,
+   "headline": "",
+   "image": "media/s6_bible.jpg"
+  },
+  {
+   "id": "s7_cross",
+   "start": 27.312,
+   "end": 30.512,
+   "headline": "",
+   "image": "media/s7_cross.jpg"
+  }
+ ],
+ "cues": [
+  {
+   "start": 0.6,
+   "end": 3.025,
+   "text": "Temptation doesn't always come loudly.",
+   "line": 0
+  },
+  {
+   "start": 3.325,
+   "end": 5.26,
+   "text": "Sometimes, it begins with a",
+   "line": 1
+  },
+  {
+   "start": 5.3,
+   "end": 7.0,
+   "text": "desire we allow to grow.",
+   "line": 1
+  },
+  {
+   "start": 7.3,
+   "end": 8.435,
+   "text": "Our choices begin in the",
+   "line": 2
+  },
+  {
+   "start": 8.475,
+   "end": 10.235,
+   "text": "heart, and every temptation",
+   "line": 2
+  },
+  {
+   "start": 10.275,
+   "end": 12.312,
+   "text": "challenges us to choose wisely.",
+   "line": 2
+  },
+  {
+   "start": 12.612,
+   "end": 14.11,
+   "text": "Don't let temporary desires",
+   "line": 3
+  },
+  {
+   "start": 14.15,
+   "end": 15.2,
+   "text": "lead your life.",
+   "line": 3
+  },
+  {
+   "start": 15.5,
+   "end": 17.325,
+   "text": "Recognize the temptation.",
+   "line": 4
+  },
+  {
+   "start": 17.438,
+   "end": 18.688,
+   "text": "Turn toward God.",
+   "line": 4
+  },
+  {
+   "start": 18.8,
+   "end": 20.212,
+   "text": "Choose what is right.",
+   "line": 4
+  },
+  {
+   "start": 20.863,
+   "end": 23.412,
+   "text": "James 1:14 reminds us:",
+   "line": 5
+  },
+  {
+   "start": 23.537,
+   "end": 25.085,
+   "text": "temptation begins when our own",
+   "line": 5
+  },
+  {
+   "start": 25.125,
+   "end": 26.862,
+   "text": "desires draw us away.",
+   "line": 5
+  }
+ ],
+ "steps": [
+  {
+   "text": "Recognize.",
+   "start": 15.5
+  },
+  {
+   "text": "Turn toward God.",
+   "start": 17.438
+  },
+  {
+   "text": "Choose what is right.",
+   "start": 18.8
+  }
+ ],
+ "verse": {
+  "text": "“But each person is tempted when they are dragged away by their own evil desire and enticed.”",
+  "reference": "James 1:14 (NIV)",
+  "start": 20.813
+ },
+ "final": {
+  "lines": [
+   "Guard your heart.",
+   "Choose wisely."
+  ],
+  "reference": "James 1:14 (NIV)",
+  "start": 27.312
+ },
+ "palette": {
+  "ink": "#F8F3FF",
+  "lavender": "#B9A3E3",
+  "lilac": "#DCCBF7",
+  "plum": "#5B3A8C",
+  "deep": "#1C1130",
+  "glow": "#EFE6FF"
+ }
+}

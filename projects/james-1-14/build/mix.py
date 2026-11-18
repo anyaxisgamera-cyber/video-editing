@@ -1,0 +1,106 @@
+"""Premix narration + music, measure it, and write the workbench render plan.
+
+Usage: python build/mix.py LANG
+
+Reads   work/LANG/narration.wav, work/LANG/music.wav, work/LANG/timeline.json,
+        content/LANG.json, output/LANG/picture.mp4 (silent Remotion render)
+Writes  work/LANG/premix.wav, filtergraphs/LANG.ffgraph, work/LANG/render-plan.json
+
+Audio design:
+  * narration is cleaned (high-pass, gentle compression) and normalized to -16 LUFS;
+  * music sits at roughly -27 LUFS and is side-chain ducked further under speech,
+    then breathes back up for the closing card;
+  * the final graph applies a measured (two-pass, linear) loudnorm to -14 LUFS,
+    -1.5 dBTP, suitable for YouTube Shorts and Instagram Reels.
+"""
+
+from __future__ import annotations
+
+import json
+import re
+import subprocess
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+TARGET_I, TARGET_TP, TARGET_LRA = -14.0, -1.5, 11.0
+
+
+def measure(path: Path, extra: str = "") -> dict:
+    graph = f"{extra}loudnorm=I={TARGET_I}:TP={TARGET_TP}:LRA={TARGET_LRA}:print_format=json"
+    err = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", str(path), "-af", graph, "-f", "null", "-"],
+                         capture_output=True, text=True, check=True).stderr
+    return json.loads(re.search(r"\{[^{}]*\"input_i\"[^{}]*\}", err, re.S).group(0))
+
+
+def main() -> None:
+    lang = sys.argv[1]
+    work = ROOT / "work" / lang
+    content = json.loads((ROOT / "content" / f"{lang}.json").read_text(encoding="utf-8"))
+    timeline = json.loads((work / "timeline.json").read_text(encoding="utf-8"))
+    duration = timeline["duration"]
+
+    voice = measure(work / "narration.wav")
+    music = measure(work / "music.wav")
+    voice_gain = -16.0 - float(voice["input_i"])
+    music_gain = -27.0 - float(music["input_i"])
+
+    premix = work / "premix.wav"
+    graph = (
+        f"[0:a]aformat=sample_rates=48000:channel_layouts=stereo,highpass=f=75,"
+        f"acompressor=threshold=-20dB:ratio=2.5:attack=15:release=180:makeup=1,"
+        f"volume={voice_gain:.2f}dB,asplit=2[voice][key];"
+        f"[1:a]aformat=sample_rates=48000:channel_layouts=stereo,volume={music_gain:.2f}dB[bed];"
+        f"[bed][key]sidechaincompress=threshold=0.03:ratio=4:attack=120:release=900:makeup=1[ducked];"
+        f"[voice][ducked]amix=inputs=2:normalize=0:duration=longest,atrim=0:{duration:.3f}[out]"
+    )
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(work / "narration.wav"), "-i", str(work / "music.wav"),
+                    "-filter_complex", graph, "-map", "[out]", "-c:a", "pcm_s24le", str(premix)], check=True)
+
+    m = measure(premix)
+    (ROOT / "filtergraphs").mkdir(exist_ok=True)
+    ffgraph = ROOT / "filtergraphs" / f"{lang}.ffgraph"
+    ffgraph.write_text(
+        "[0:v]setsar=1,format=yuv420p[vout];\n"
+        f"[1:a]loudnorm=I={TARGET_I}:TP={TARGET_TP}:LRA={TARGET_LRA}:"
+        f"measured_I={m['input_i']}:measured_TP={m['input_tp']}:measured_LRA={m['input_lra']}:"
+        f"measured_thresh={m['input_thresh']}:offset={m['target_offset']}:linear=true,"
+        f"aresample=48000,atrim=start=0:end={duration:.3f},asetpts=PTS-STARTPTS[aout]\n",
+        encoding="utf-8",
+    )
+    frames = json.loads((ROOT / "motion" / "props" / f"{lang}.json").read_text(encoding="utf-8"))["canvas"]["durationInFrames"]
+    plan = {
+        "version": 1,
+        "inputs": [f"../../output/{lang}/picture.mp4", "premix.wav"],
+        "filtergraph": f"../../filtergraphs/{lang}.ffgraph",
+        "output": f"../../output/{content['output']}",
+        "work_dir": f"../../output/{lang}/render",
+        "video_map": "[vout]",
+        "audio_map": "[aout]",
+        "video": {
+            "codec": "libx264",
+            "args": ["-preset", "slow", "-crf", "17", "-profile:v", "high", "-level:v", "4.2",
+                     "-movflags", "+faststart", "-tag:v", "avc1"],
+            "pixel_format": "yuv420p",
+            "fps": "30",
+            "width": 1080,
+            "height": 1920,
+        },
+        "audio": {"codec": "aac", "args": ["-b:a", "192k"], "sample_rate": 48000},
+        "validation": {
+            "duration": round(frames / 30, 3),
+            "duration_tolerance": 0.12,
+            "codec": "h264",
+            "pixel_formats": ["yuv420p"],
+            "lufs": TARGET_I,
+            "true_peak": TARGET_TP,
+            "loudness_range": TARGET_LRA,
+        },
+    }
+    (work / "render-plan.json").write_text(json.dumps(plan, indent=2), encoding="utf-8")
+    print(json.dumps({"voice_in": voice["input_i"], "music_in": music["input_i"], "premix_i": m["input_i"],
+                      "premix_tp": m["input_tp"]}))
+
+
+if __name__ == "__main__":
+    main()
