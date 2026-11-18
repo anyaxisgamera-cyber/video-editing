@@ -154,6 +154,11 @@ def main() -> None:
     add(sfx, final_start - 0.2, whoosh(0.45, 0.26))
     add(sfx, final_start, thump(0.6))
     add(sfx, final_start + 0.05, shimmer())
+    logo = (props.get("logo") or {}).get("start")
+    if logo:  # closing logo reveal (editorial cut)
+        add(sfx, logo - 0.25, whoosh(0.5, 0.24))
+        add(sfx, logo + 0.1, thump(0.35))
+        add(sfx, logo + 0.2, shimmer(0.1))
     write(work / "sfx.wav", sfx)
     print(json.dumps({"duration": round(duration, 3), "scenes": len(props["scenes"])}))
 

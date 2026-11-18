@@ -87,6 +87,9 @@ def main() -> None:
         f"[1:a]loudnorm=I={TARGET_I}:TP={TARGET_TP}:LRA={TARGET_LRA}:"
         f"measured_I={m['input_i']}:measured_TP={m['input_tp']}:measured_LRA={m['input_lra']}:"
         f"measured_thresh={m['input_thresh']}:offset={m['target_offset']}:linear=true,"
+        # Safety limiter at -2 dBFS: dynamic-mode loudnorm plus AAC encoding can overshoot
+        # the -1.5 dBTP target by a few tenths of a dB.
+        "alimiter=limit=0.794:attack=1:release=60:level=false,"
         f"aresample=48000,atrim=start=0:end={duration:.3f},asetpts=PTS-STARTPTS[aout]\n",
         encoding="utf-8",
     )

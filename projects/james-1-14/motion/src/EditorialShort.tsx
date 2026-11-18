@@ -202,7 +202,7 @@ const EWord = ({w, t, size, tone, accent, fonts, scale = 1}: {
     ? accent === 'label' || tone === 'green' ? '#FFFFFF' : tone === 'dark' ? C.greenBright : C.green
     : tone === 'light' ? C.ink : '#FFFFFF';
   const box = isKey && accent === 'label' ? reveal(t, w.start - 0.08, 0.3) : 0;
-  const outline = isKey && accent === 'outline' ? interpolate(t, [w.start, w.start + 0.45], [0, 1], clamp) : 0;
+  const outline = isKey && accent === 'outline' ? interpolate(t, [w.start + 0.12, w.start + 0.6], [0, 1], clamp) : 0;
   return (
     <span style={{position: 'relative', display: 'inline-block', margin: `0 ${size * 0.16}px`, padding: isKey && accent ? '0 18px' : 0}}>
       {isKey && accent === 'label' ? (
