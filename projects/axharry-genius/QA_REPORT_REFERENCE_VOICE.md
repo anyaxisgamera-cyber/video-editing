@@ -81,3 +81,24 @@ Both masters: every frame decodes (English 1,923/1,923; Telugu 2,382/2,382); no 
 (geometry, fps, codec, pixel format, 48 kHz, full decode, loudness). The Telugu reference-voice picture stream is bit-identical
 (MD5 `d5dd0f5f6c34dfbf733a8763763f44c6`) to the previously verified Telugu master, so its captions, hook badge, original logo and
 visuals carry over unchanged. The English reference-voice picture was re-rendered for the new timing; its contact sheet was reviewed.
+
+## 4K deliverables
+
+| File | Properties | SHA-256 |
+|---|---|---|
+| `AXHARRY_ENGLISH_REFERENCE_VOICE_4K.mp4` | 2160×3840 (9:16), 30 fps, H.264 High + AAC 48 kHz stereo, 64.10 s, 197,640,151 bytes; -14.08 LUFS, -1.93 dBTP | `1cf025358db6a84f96074c5bcf342957d1c442afe0b982898f8bbc54dc4b8974` |
+| `AXHARRY_TELUGU_REFERENCE_VOICE_4K.mp4` | 2160×3840 (9:16), 30 fps, H.264 High + AAC 48 kHz stereo, 79.40 s, 245,411,158 bytes; -14.07 LUFS, -1.61 dBTP | `6d9ed330eac7b5396c8baafb00198c8bad3b70e911489bf35f6855daf7d4448c` |
+
+Both 4K masters passed workbench validation (geometry, fps, codec, pixel format, 48 kHz, full decode, loudness); all frames
+decode (1,923 / 2,382); no black frames; each audio track is bit-identical to its verified 1080p master
+(English MD5 8572c5c8088f0d3723fa8f96fb8285ad, Telugu MD5 a8c2ebed9f11c2c78969cbc9bbf57bda).
+
+**4K provenance:** rendered at 2160×3840 by Remotion (`--scale=2`); typography, captions, badges, logo framing and effects are
+drawn at 4K. The anime artwork is upscaled from 512×512 generated images (Lanczos), so artwork detail is not native 4K.
+
+## Known defect (all AXHARRY renders, including the earlier approved masters)
+
+White caption words show thin dark internal outlines where glyph contours overlap (for example the leg of "R" and inside "D").
+Cause: the captions' 1.5 px `-webkit-text-stroke`, which strokes overlapping contours. Red and gold key words have no stroke and are
+unaffected. Fix: remove the stroke (the drop shadow already provides contrast) and re-render the pictures (about 30 min at 1080p,
+about 2 h at 4K). Audio and timing would not change.
