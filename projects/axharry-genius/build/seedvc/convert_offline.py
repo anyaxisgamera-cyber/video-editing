@@ -67,10 +67,40 @@ def convert() -> None:
     import torch
     import yaml
 
+    # Inert matplotlib stand-in: Seed-VC imports it only for training-time spectrogram plots.
+    # The real package spawns `fc-list` on import (blocked by the guard); nothing here plots.
+    import types
+    mpl = types.ModuleType("matplotlib")
+    mpl.use = lambda *a, **k: None
+    pylab = types.ModuleType("matplotlib.pylab")
+    mpl.pylab = mpl.pyplot = pylab
+    sys.modules.update({"matplotlib": mpl, "matplotlib.pylab": pylab, "matplotlib.pyplot": pylab})
+
+    # urllib3 (via huggingface_hub/transformers) probes IPv6 by creating a socket at import time.
+    # The sandbox has no IPv6; declaring that skips the probe, so no socket is ever created.
+    socket.has_ipv6 = False
+
+    # numba: never read or write its on-disk cache (cache entries are pickles). librosa defines a
+    # cached gufunc at import time; with these no-ops it compiles in memory and nothing is reloaded.
+    import numba.core.caching as numba_caching
+    numba_caching.Cache.load_overload = lambda self, *a, **k: None
+    numba_caching.Cache.save_overload = lambda self, *a, **k: None
+
+    # librosa.load calls audioread.available_backends() on every call (an isinstance check), which
+    # shells out to `ldconfig`. Inputs here are WAV paths read by soundfile: report no backends.
+    import audioread
+    audioread.available_backends = lambda flush_cache=False: ()
+
     models = RUN / "models"
     seed = Path(os.environ["SEEDVC_DIR"])
     sys.path.insert(0, str(seed))
     os.chdir(seed)
+    # Seed-VC needs only dac/nn/{quantize,layers}.py (VectorQuantize). Register bare package
+    # shells so dac/__init__.py (full codec + audiotools) is never executed.
+    for name, sub in (("dac", "dac"), ("dac.nn", "dac/nn")):
+        shell = types.ModuleType(name)
+        shell.__path__ = [str(seed / sub)]
+        sys.modules[name] = shell
     from modules.audio import mel_spectrogram
     from modules.bigvgan import bigvgan
     from modules.campplus.DTDNN import CAMPPlus

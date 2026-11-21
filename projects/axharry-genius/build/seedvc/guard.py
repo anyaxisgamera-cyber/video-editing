@@ -28,6 +28,8 @@ _STATE: dict = {}
 def _die(code: int, msg: str) -> None:
     try:
         sys.stderr.write(f"GUARD VIOLATION [{code}]: {msg}\n")
+        import traceback  # diagnostics only: where did the violation come from?
+        sys.stderr.write("".join(traceback.format_stack(limit=14)[:-2]))
         sys.stderr.flush()
     finally:
         os._exit(code)

@@ -6,6 +6,7 @@
 #  * unshare -rnm : new user + network + mount namespace; no network interfaces except a down loopback.
 #  * env -i       : no inherited variables (no API keys, tokens or proxy settings); only the listed ones.
 #  * TORCH_FORCE_WEIGHTS_ONLY_LOAD=1 : torch itself refuses unsafe (non-weights) unpickling.
+#  * numba on-disk caching is disabled in-process (cache entries are pickles); RUN/home is wiped each run.
 #  * tmpfs mounts hide /home/user (projects, originals, approved masters), /mnt (user data) and
 #    /root credential/config/upload directories; Python runs with -I -B (isolated, no bytecode writes).
 #  * guard.py (imported first by the script) enforces hashes, safe loading, and an audit-hook tripwire.
@@ -16,6 +17,7 @@ RUN="$(realpath "$1")"; SEED="$(realpath "$2")"; VENV="$(realpath "$3")"; shift 
 HERE="$(dirname "$(realpath "$0")")"
 PROJECT="$(realpath "$HERE/../..")"
 SCRIPT="$(basename "${1:-convert_offline.py}")"; [ $# -gt 0 ] && shift
+rm -rf "$RUN/home"   # no state (caches) carries over between runs
 mkdir -p "$RUN/out" "$RUN/home/tmp" "$RUN/bin"
 chmod -R u+w "$RUN/bin" 2>/dev/null; cp "$HERE"/*.py "$RUN/bin/"   # /home/user is hidden inside the sandbox
 chmod -R a-w "$RUN/bin"
@@ -45,7 +47,8 @@ AFTER="$(hash_protected)"
 if [ "$BEFORE" != "$AFTER" ]; then echo "AUDIT FAIL: a protected original changed"; STATUS=90; else
   echo "audit: protected originals unchanged ($(echo "$BEFORE" | grep -c .) files re-hashed)"; fi
 CHANGED="$(find / -xdev -newer "$MARK" -type f -not -path "$RUN/*" -not -path "/proc/*" -not -path "/sys/*" \
-  -not -path "/dev/*" -not -path "/tmp/claude-code.log" -not -path "/tmp/claude-code-*.diag.log" -not -path "/tmp/claude-0/*/tasks/*" 2>/dev/null | head -50)"
+  -not -path "/dev/*" -not -path "/tmp/claude-code.log" -not -path "/tmp/claude-code-*.diag.log" -not -path "/tmp/claude-0/*/tasks/*" \
+  -not -path "/root/.claude/projects/*" -not -path "/tmp/claude-0/cache-break-state-*.json" 2>/dev/null | head -50)"
 if [ -n "$CHANGED" ]; then echo "AUDIT FAIL: files written outside RUN_DIR:"; echo "$CHANGED"; STATUS=91; else
-  echo "audit: no files written outside RUN_DIR (agent harness logs /tmp/claude-code.log and /tmp/claude-code-*.diag.log excluded; verified written by the agent outside the sandbox)"; fi
+  echo "audit: no files written outside RUN_DIR (agent harness files excluded: /tmp/claude-code*.log, /root/.claude/projects/* [masked inside the sandbox], /tmp/claude-0/cache-break-state-*.json; verified written by the agent outside the sandbox)"; fi
 exit $STATUS

@@ -193,3 +193,23 @@ closed); and a loopback check read the host's `/sys` view, so the check now uses
 
 `/tmp/claude-code.log` and `/tmp/claude-code-*.diag.log` are the agent harness's own logs. Verified: the content is Claude
 Code diagnostic JSON (`cc_version 2.1.330`), and it kept growing while no sandbox process existed. No other exclusions.
+
+## 12. Execution record (approved run)
+
+1. **Download:** `fetch_models.py` fetched exactly the 8 approved files from the pinned URLs; all matched exact size and full
+   SHA-256 and were made read-only. No other model files were downloaded.
+2. **Conversion runs.** Every guard termination below was correct fail-closed behaviour; each cause was fixed without relaxing the guard:
+   - `matplotlib` missing. Installed `matplotlib 3.9.2` (listed in Seed-VC's requirements, not in my earlier version list).
+   - Exit 21: `matplotlib` spawns `fc-list` on import. Replaced with an inert stand-in (Seed-VC uses it only for training plots).
+   - Exit 22: numba unpickled its on-disk cache. numba cache load and save are disabled in-process, and RUN/home is wiped before each
+     run. `NUMBA_DISABLE_JIT` was tried and reverted because it breaks librosa; a check measured 0 unpickling events with the cache off.
+   - Exit 20: urllib3 creates an IPv6 probe socket on import. `socket.has_ipv6 = False` skips the probe (the sandbox has no IPv6).
+   - `audiotools` missing via `dac/__init__.py`. Bare package shells load only `dac/nn/{quantize,layers}.py`.
+   - Exit 23: `librosa.load` probes audioread backends via `ldconfig`. The backend list is reported empty (inputs are WAV via soundfile).
+   - **Successful run:** guard verified all 8 files; `torch.load OK (weights_only=True, sha256 re-verified)` for all 3 pickles;
+     both jobs converted; protected originals unchanged.
+3. **Write audit of the successful run** flagged 3 files, each verified as not written by the sandbox: `build/voice_qa.py`
+   (created by the agent's file tool at 18:40:19, during the run), and `/root/.claude/sessions/101.json` and
+   `/root/.claude/skills/synced/.../manifest.json` (written at 19:00:09–10 by the restarted agent worker, PID 101 started 19:00:07,
+   after the sandboxed conversion finished at 18:54). Limitation: the audit is time-based, so concurrent agent activity appears in it.
+4. **Parameter test** (same sandbox, same guard) was stopped early by the agent once results were conclusive; originals verified unchanged.
