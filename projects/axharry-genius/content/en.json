@@ -1,0 +1,142 @@
+{
+  "language": "en",
+  "output": "AXHARRY_ENGLISH.mp4",
+  "subtitleMaxChars": 24,
+  "leadIn": 0.4,
+  "hook": "THE DIFFERENCE BETWEEN YOU AND ME? YOU REACT. I DECIDE WHAT HAPPENS.",
+  "elevenlabs": {
+    "voice_id": "pNInz6obpgDQGcFmaJgB",
+    "voice_name": "Adam - Dominant, Firm",
+    "model_id": "eleven_v4",
+    "voice_settings": {
+      "stability": 0.55,
+      "similarity_boost": 0.8,
+      "style": 0.25,
+      "use_speaker_boost": true
+    }
+  },
+  "lines": [
+    {
+      "scene": "a01_eyes",
+      "text": "Tell me, do you know the difference between an expert and a genius?",
+      "key": [
+        "expert",
+        "genius?"
+      ]
+    },
+    {
+      "scene": "a02_expert",
+      "text": "An expert has learned everything there is to know about a subject.",
+      "key": [
+        "everything"
+      ]
+    },
+    {
+      "scene": "a03_genius",
+      "text": "But a genius, a genius knows how to use that information to rewrite the rules entirely.",
+      "key": [
+        "genius,",
+        "rewrite",
+        "rules"
+      ]
+    },
+    {
+      "scene": "a04_crowd",
+      "text": "Most people use knowledge to fit into society.",
+      "key": [
+        "fit"
+      ]
+    },
+    {
+      "scene": "a05_study",
+      "text": "They study to get a job, to make money, to be respected.",
+      "key": [
+        "job,",
+        "money,",
+        "respected."
+      ]
+    },
+    {
+      "scene": "a06_tools",
+      "text": "They're training to be better tools for someone else.",
+      "key": [
+        "tools"
+      ]
+    },
+    {
+      "scene": "a07_hand",
+      "text": "I was raised to be the hand that holds the tool.",
+      "key": [
+        "hand"
+      ]
+    },
+    {
+      "scene": "a08_world",
+      "text": "I don't care about the history of the world or the beauty of science.",
+      "key": [
+        "history",
+        "science."
+      ]
+    },
+    {
+      "scene": "a09_leverage",
+      "text": "I only care about the leverage those things provide.",
+      "key": [
+        "leverage"
+      ]
+    },
+    {
+      "scene": "a10_textbooks",
+      "text": "You think you're smart because you've memorized a few textbooks?",
+      "key": [
+        "smart",
+        "textbooks?"
+      ]
+    },
+    {
+      "scene": "a11_button",
+      "text": "Real knowledge is knowing exactly which button to press to make a good person do something evil.",
+      "key": [
+        "button",
+        "evil."
+      ]
+    },
+    {
+      "scene": "a12_control",
+      "text": "I don't need to be your friend to control you.",
+      "key": [
+        "control"
+      ]
+    },
+    {
+      "scene": "a13_fear",
+      "text": "I just need to know what you're afraid of.",
+      "key": [
+        "afraid"
+      ]
+    },
+    {
+      "scene": "a14_currency",
+      "text": "Information is the only currency that never loses its value.",
+      "key": [
+        "Information",
+        "currency"
+      ]
+    },
+    {
+      "scene": "a15_richest",
+      "text": "And right now, I'm the richest person in the room.",
+      "key": [
+        "richest"
+      ]
+    },
+    {
+      "scene": "a16_share",
+      "text": "From now on, I share my knowledge.",
+      "key": [
+        "share",
+        "knowledge."
+      ]
+    }
+  ]
+}

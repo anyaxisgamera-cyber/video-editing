@@ -40,9 +40,10 @@ type EScene = {
 type FontRole = {family: string; files: {weight: string; style: string; src: string}[]};
 export type EditorialProps = {
   canvas: {width: number; height: number; fps: number; durationInFrames: number};
-  fonts: {sans: FontRole; serif: FontRole; label: FontRole; elegant: FontRole};
+  language?: 'en' | 'te';
+  fonts: {sans: FontRole; serif: FontRole; label: FontRole; elegant: FontRole; italicAccent?: boolean};
   sideLabel: string;
-  header: {left: string; right: string; leftLabel: string; rightLabel: string};
+  header: {left: string; right: string; leftLabel: string; rightLabel: string; caption?: string};
   cardTitle: string;
   watermark: string;
   logo: {src: string; start: number};
@@ -114,7 +115,7 @@ const Header = ({h, t, start, fonts}: {h: EditorialProps['header']; t: number; s
       <div style={{position: 'absolute', left: 130, right: 250, top: 62, height: 16, background: C.ink,
         transform: `scaleX(${p})`, transformOrigin: 'left'}} />
       <div style={{position: 'absolute', left: 130, top: 96, fontFamily: `'${fonts.label.family}'`, fontSize: 15, fontWeight: 600,
-        color: '#666', letterSpacing: 2, lineHeight: 1.35}}>JAMES · TELUBSI<br />CHAPTER 1 · VERSE 14</div>
+        color: '#666', letterSpacing: 2, lineHeight: 1.35, whiteSpace: 'pre-line'}}>{h.caption ?? 'JAMES · CHAPTER 1 · VERSE 14'}</div>
       <div style={{position: 'absolute', right: 0, top: 0, fontFamily: `'${fonts.label.family}'`, fontWeight: 800, fontSize: 150,
         letterSpacing: -6, lineHeight: 1, color: C.ink}}>{h.right}</div>
       <div style={{position: 'absolute', right: 190, top: 6, fontFamily: `'${fonts.sans.family}'`, fontSize: 22, fontWeight: 600, color: '#555'}}>{h.rightLabel}</div>
@@ -220,14 +221,15 @@ const EWord = ({w, t, size, tone, accent, fonts, scale = 1}: {
         position: 'relative', display: 'inline-block',
         fontFamily: isKey ? `'${fonts.serif.family}'` : `'${fonts.sans.family}'`,
         fontWeight: isKey ? 700 : 600,
-        fontSize: isKey ? keySize : size * scale,
+        fontStyle: isKey && fonts.italicAccent ? 'italic' : 'normal',
+        fontSize: isKey ? keySize * (fonts.italicAccent ? 1.12 : 1) : size * scale,
         letterSpacing: isKey ? -0.01 * keySize : -0.02 * size,
         lineHeight: 1.32,
         color,
         textShadow: isKey && tone === 'dark' ? `0 0 22px ${C.green}aa` : tone === 'dark' ? '0 0 16px rgba(255,255,255,0.25)' : 'none',
         opacity: p,
         filter: `blur(${(1 - p) * 10}px)`,
-        transform: `translateY(${(1 - p) * 16}px) ${isKey ? 'skewX(-9deg)' : ''}`,
+        transform: `translateY(${(1 - p) * 16}px) ${isKey && !fonts.italicAccent ? 'skewX(-9deg)' : ''}`,
       }}>{w.text}</span>
     </span>
   );
@@ -288,7 +290,8 @@ const Verse = ({scene, t, props}: {scene: EScene; t: number; props: EditorialPro
   return (
     <div style={{position: 'absolute', left: 110, right: 110, top: 430}}>
       <div style={{display: 'flex', alignItems: 'center', gap: 20, opacity: p, marginBottom: 34}}>
-        <span style={{fontFamily: `'${props.fonts.serif.family}'`, fontWeight: 700, fontSize: 74, color: C.green, transform: 'skewX(-9deg)'}}>
+        <span style={{fontFamily: `'${props.fonts.serif.family}'`, fontWeight: 700, fontSize: props.fonts.italicAccent ? 88 : 74, color: C.green,
+          fontStyle: props.fonts.italicAccent ? 'italic' : 'normal', transform: props.fonts.italicAccent ? undefined : 'skewX(-9deg)'}}>
           {props.verse.number}
         </span>
         <div style={{flex: 1, height: 3, background: C.ink, transform: `scaleX(${p})`, transformOrigin: 'left'}} />
@@ -297,7 +300,8 @@ const Verse = ({scene, t, props}: {scene: EScene; t: number; props: EditorialPro
         {scene.words.map((w, i) => {
           const q = reveal(t, w.start);
           return (
-            <span key={i} style={{fontFamily: `'${props.fonts.serif.family}'`, fontWeight: w.key ? 700 : 500, fontSize: 62,
+            <span key={i} style={{fontFamily: `'${props.fonts.serif.family}'`, fontWeight: w.key ? 700 : 500,
+              fontStyle: w.key && props.fonts.italicAccent ? 'italic' : 'normal', fontSize: props.fonts.italicAccent ? 76 : 62,
               lineHeight: 1.55, marginRight: 18, color: w.key ? C.green : C.ink, opacity: q, filter: `blur(${(1 - q) * 9}px)`,
               transform: `translateY(${(1 - q) * 14}px)`}}>{w.text}</span>
           );

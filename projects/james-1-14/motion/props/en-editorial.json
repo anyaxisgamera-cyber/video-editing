@@ -1,0 +1,704 @@
+{
+ "canvas": {
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "durationInFrames": 1173
+ },
+ "language": "en",
+ "fonts": {
+  "sans": {
+   "family": "Inter Tight",
+   "files": [
+    {
+     "weight": "600",
+     "style": "normal",
+     "src": "fonts/inter-tight-latin-600-normal.woff2"
+    },
+    {
+     "weight": "800",
+     "style": "normal",
+     "src": "fonts/inter-tight-latin-800-normal.woff2"
+    }
+   ]
+  },
+  "serif": {
+   "family": "Cormorant Garamond",
+   "files": [
+    {
+     "weight": "700",
+     "style": "italic",
+     "src": "fonts/cormorant-garamond-latin-700-italic.woff2"
+    },
+    {
+     "weight": "600",
+     "style": "italic",
+     "src": "fonts/cormorant-garamond-latin-600-italic.woff2"
+    },
+    {
+     "weight": "500",
+     "style": "normal",
+     "src": "fonts/cormorant-garamond-latin-500-normal.woff2"
+    },
+    {
+     "weight": "700",
+     "style": "normal",
+     "src": "fonts/cormorant-garamond-latin-700-normal.woff2"
+    }
+   ]
+  },
+  "label": {
+   "family": "Inter Tight",
+   "files": [
+    {
+     "weight": "600",
+     "style": "normal",
+     "src": "fonts/inter-tight-latin-600-normal.woff2"
+    },
+    {
+     "weight": "800",
+     "style": "normal",
+     "src": "fonts/inter-tight-latin-800-normal.woff2"
+    }
+   ]
+  },
+  "elegant": {
+   "family": "Cormorant Garamond",
+   "files": [
+    {
+     "weight": "600",
+     "style": "italic",
+     "src": "fonts/cormorant-garamond-latin-600-italic.woff2"
+    },
+    {
+     "weight": "600",
+     "style": "normal",
+     "src": "fonts/cormorant-garamond-latin-600-normal.woff2"
+    }
+   ]
+  },
+  "italicAccent": true
+ },
+ "sideLabel": "NIV  ·  JAMES  1 : 14",
+ "header": {
+  "left": "1",
+  "right": "14",
+  "leftLabel": "chapter",
+  "rightLabel": "verse",
+  "caption": "JAMES · NIV\nCHAPTER 1 · VERSE 14"
+ },
+ "cardTitle": "Stand firm",
+ "watermark": "@axharry12",
+ "logo": {
+  "src": "brand/ax-logo-circle.png",
+  "start": 35.69
+ },
+ "verse": {
+  "number": "[14]",
+  "text": "But each person is tempted when they are dragged away by their own evil desire and enticed.",
+  "reference": "James 1:14 (NIV)"
+ },
+ "scenes": [
+  {
+   "bg": "light",
+   "object": "candle",
+   "layout": "badge",
+   "header": true,
+   "words": [
+    {
+     "text": "Temptation",
+     "start": 0.2,
+     "end": 0.99,
+     "key": false
+    },
+    {
+     "text": "doesn't",
+     "start": 1.0,
+     "end": 1.47,
+     "key": false
+    },
+    {
+     "text": "always",
+     "start": 1.47,
+     "end": 1.79,
+     "key": false
+    },
+    {
+     "text": "come",
+     "start": 1.79,
+     "end": 2.03,
+     "key": false
+    },
+    {
+     "text": "loudly.",
+     "start": 2.03,
+     "end": 2.59,
+     "key": true
+    }
+   ],
+   "start": 0.0,
+   "line": "Temptation doesn't always come loudly.",
+   "end": 2.88
+  },
+  {
+   "bg": "black",
+   "words": [
+    {
+     "text": "Sometimes,",
+     "start": 3.0,
+     "end": 3.95,
+     "key": false
+    },
+    {
+     "text": "it",
+     "start": 3.95,
+     "end": 4.11,
+     "key": false
+    },
+    {
+     "text": "begins",
+     "start": 4.11,
+     "end": 4.51,
+     "key": false
+    },
+    {
+     "text": "with",
+     "start": 4.51,
+     "end": 4.67,
+     "key": false
+    },
+    {
+     "text": "a",
+     "start": 4.67,
+     "end": 4.75,
+     "key": false
+    },
+    {
+     "text": "desire",
+     "start": 4.76,
+     "end": 5.31,
+     "key": true
+    }
+   ],
+   "start": 2.88,
+   "line": "Sometimes, it begins with a desire",
+   "end": 5.19
+  },
+  {
+   "bg": "light",
+   "object": "apple",
+   "layout": "badge",
+   "grow": true,
+   "words": [
+    {
+     "text": "we",
+     "start": 5.31,
+     "end": 5.47,
+     "key": false
+    },
+    {
+     "text": "allow",
+     "start": 5.47,
+     "end": 5.71,
+     "key": false
+    },
+    {
+     "text": "to",
+     "start": 5.71,
+     "end": 5.87,
+     "key": false
+    },
+    {
+     "text": "grow.",
+     "start": 5.88,
+     "end": 6.83,
+     "key": true
+    }
+   ],
+   "start": 5.19,
+   "line": "we allow to grow.",
+   "end": 6.71
+  },
+  {
+   "bg": "green",
+   "object": "heart",
+   "layout": "objectBelow",
+   "words": [
+    {
+     "text": "Our",
+     "start": 6.83,
+     "end": 7.07,
+     "key": false
+    },
+    {
+     "text": "choices",
+     "start": 7.16,
+     "end": 7.55,
+     "key": false
+    },
+    {
+     "text": "begin",
+     "start": 7.55,
+     "end": 7.79,
+     "key": false
+    },
+    {
+     "text": "in",
+     "start": 7.79,
+     "end": 7.91,
+     "key": false
+    },
+    {
+     "text": "the",
+     "start": 7.91,
+     "end": 8.03,
+     "key": false
+    },
+    {
+     "text": "heart,",
+     "start": 8.03,
+     "end": 8.75,
+     "key": true
+    }
+   ],
+   "start": 6.71,
+   "line": "Our choices begin in the heart,",
+   "end": 8.63
+  },
+  {
+   "bg": "light",
+   "accent": "outline",
+   "words": [
+    {
+     "text": "and",
+     "start": 8.75,
+     "end": 8.99,
+     "key": false
+    },
+    {
+     "text": "every",
+     "start": 8.99,
+     "end": 9.39,
+     "key": false
+    },
+    {
+     "text": "temptation",
+     "start": 9.44,
+     "end": 10.11,
+     "key": true
+    },
+    {
+     "text": "challenges",
+     "start": 10.12,
+     "end": 10.83,
+     "key": false
+    },
+    {
+     "text": "us",
+     "start": 10.83,
+     "end": 11.07,
+     "key": false
+    }
+   ],
+   "start": 8.63,
+   "line": "and every temptation challenges us",
+   "end": 10.95
+  },
+  {
+   "bg": "light",
+   "accent": "label",
+   "words": [
+    {
+     "text": "to",
+     "start": 11.07,
+     "end": 11.23,
+     "key": false
+    },
+    {
+     "text": "choose",
+     "start": 11.23,
+     "end": 11.47,
+     "key": false
+    },
+    {
+     "text": "wisely.",
+     "start": 11.47,
+     "end": 12.59,
+     "key": true
+    }
+   ],
+   "start": 10.95,
+   "line": "to choose wisely.",
+   "end": 12.47
+  },
+  {
+   "bg": "black",
+   "object": "hourglass",
+   "layout": "objectBelow",
+   "words": [
+    {
+     "text": "Don't",
+     "start": 12.59,
+     "end": 12.91,
+     "key": false
+    },
+    {
+     "text": "let",
+     "start": 12.91,
+     "end": 13.15,
+     "key": false
+    },
+    {
+     "text": "temporary",
+     "start": 13.28,
+     "end": 13.71,
+     "key": true
+    },
+    {
+     "text": "desires",
+     "start": 13.72,
+     "end": 14.27,
+     "key": false
+    }
+   ],
+   "start": 12.47,
+   "line": "Don't let temporary desires",
+   "end": 14.15
+  },
+  {
+   "bg": "light",
+   "enter": "circle",
+   "words": [
+    {
+     "text": "lead",
+     "start": 14.27,
+     "end": 14.51,
+     "key": false
+    },
+    {
+     "text": "your",
+     "start": 14.51,
+     "end": 14.67,
+     "key": false
+    },
+    {
+     "text": "life.",
+     "start": 14.67,
+     "end": 15.63,
+     "key": true
+    }
+   ],
+   "start": 14.15,
+   "line": "lead your life.",
+   "end": 15.51
+  },
+  {
+   "bg": "green",
+   "layout": "card",
+   "words": [
+    {
+     "text": "Recognize",
+     "start": 15.63,
+     "end": 16.27,
+     "key": false
+    },
+    {
+     "text": "the",
+     "start": 16.27,
+     "end": 16.35,
+     "key": false
+    },
+    {
+     "text": "temptation.",
+     "start": 16.35,
+     "end": 17.47,
+     "key": false
+    },
+    {
+     "text": "Turn",
+     "start": 17.48,
+     "end": 17.79,
+     "key": false
+    },
+    {
+     "text": "toward",
+     "start": 17.79,
+     "end": 18.11,
+     "key": false
+    },
+    {
+     "text": "God.",
+     "start": 18.11,
+     "end": 18.99,
+     "key": false
+    },
+    {
+     "text": "Choose",
+     "start": 18.99,
+     "end": 19.39,
+     "key": false
+    },
+    {
+     "text": "what",
+     "start": 19.39,
+     "end": 19.55,
+     "key": false
+    },
+    {
+     "text": "is",
+     "start": 19.55,
+     "end": 19.71,
+     "key": false
+    },
+    {
+     "text": "right.",
+     "start": 19.72,
+     "end": 20.59,
+     "key": false
+    }
+   ],
+   "start": 15.51,
+   "line": "Recognize the temptation. Turn toward God. Choose what is right.",
+   "items": [
+    {
+     "text": "Recognize the temptation.",
+     "start": 15.63
+    },
+    {
+     "text": "Turn toward God.",
+     "start": 17.48
+    },
+    {
+     "text": "Choose what is right.",
+     "start": 18.99
+    }
+   ],
+   "end": 20.47
+  },
+  {
+   "bg": "black",
+   "enter": "circle",
+   "words": [
+    {
+     "text": "James 1:14",
+     "start": 20.59,
+     "end": 21.71,
+     "key": false
+    },
+    {
+     "text": "reminds",
+     "start": 21.71,
+     "end": 22.19,
+     "key": false
+    },
+    {
+     "text": "us:",
+     "start": 22.19,
+     "end": 22.91,
+     "key": false
+    }
+   ],
+   "start": 20.47,
+   "line": "James 1:14 reminds us:",
+   "end": 22.79
+  },
+  {
+   "bg": "light",
+   "object": "bible",
+   "layout": "badge",
+   "header": true,
+   "words": [
+    {
+     "text": "temptation",
+     "start": 22.91,
+     "end": 23.63,
+     "key": false
+    },
+    {
+     "text": "begins",
+     "start": 23.63,
+     "end": 24.19,
+     "key": false
+    },
+    {
+     "text": "when",
+     "start": 24.19,
+     "end": 24.35,
+     "key": false
+    },
+    {
+     "text": "our",
+     "start": 24.35,
+     "end": 24.59,
+     "key": false
+    },
+    {
+     "text": "own",
+     "start": 24.59,
+     "end": 24.75,
+     "key": false
+    },
+    {
+     "text": "desires",
+     "start": 24.75,
+     "end": 25.39,
+     "key": true
+    }
+   ],
+   "start": 22.79,
+   "line": "temptation begins when our own desires",
+   "end": 25.27
+  },
+  {
+   "bg": "light",
+   "accent": "outline",
+   "exit": "tilt",
+   "words": [
+    {
+     "text": "draw",
+     "start": 25.39,
+     "end": 25.63,
+     "key": false
+    },
+    {
+     "text": "us",
+     "start": 25.63,
+     "end": 25.79,
+     "key": false
+    },
+    {
+     "text": "away.",
+     "start": 25.84,
+     "end": 26.75,
+     "key": true
+    }
+   ],
+   "start": 25.27,
+   "line": "draw us away.",
+   "end": 26.63
+  },
+  {
+   "bg": "light",
+   "layout": "verse",
+   "words": [
+    {
+     "text": "But",
+     "start": 26.75,
+     "end": 26.99,
+     "key": false
+    },
+    {
+     "text": "each",
+     "start": 26.99,
+     "end": 27.23,
+     "key": false
+    },
+    {
+     "text": "person",
+     "start": 27.23,
+     "end": 27.63,
+     "key": false
+    },
+    {
+     "text": "is",
+     "start": 27.63,
+     "end": 27.79,
+     "key": false
+    },
+    {
+     "text": "tempted",
+     "start": 27.79,
+     "end": 28.27,
+     "key": true
+    },
+    {
+     "text": "when",
+     "start": 28.27,
+     "end": 28.43,
+     "key": false
+    },
+    {
+     "text": "they",
+     "start": 28.43,
+     "end": 28.59,
+     "key": false
+    },
+    {
+     "text": "are",
+     "start": 28.59,
+     "end": 28.75,
+     "key": false
+    },
+    {
+     "text": "dragged",
+     "start": 28.75,
+     "end": 29.07,
+     "key": false
+    },
+    {
+     "text": "away",
+     "start": 29.08,
+     "end": 29.47,
+     "key": false
+    },
+    {
+     "text": "by",
+     "start": 29.47,
+     "end": 29.63,
+     "key": false
+    },
+    {
+     "text": "their",
+     "start": 29.63,
+     "end": 29.87,
+     "key": false
+    },
+    {
+     "text": "own",
+     "start": 29.87,
+     "end": 30.19,
+     "key": false
+    },
+    {
+     "text": "evil",
+     "start": 30.19,
+     "end": 30.43,
+     "key": false
+    },
+    {
+     "text": "desire",
+     "start": 30.43,
+     "end": 31.15,
+     "key": false
+    },
+    {
+     "text": "and",
+     "start": 31.15,
+     "end": 31.31,
+     "key": false
+    },
+    {
+     "text": "enticed.",
+     "start": 31.4,
+     "end": 32.19,
+     "key": true
+    }
+   ],
+   "start": 26.63,
+   "line": "But each person is tempted when they are dragged away by their own evil desire and enticed.",
+   "end": 32.69
+  }
+ ],
+ "final": {
+  "lines": [
+   "Guard your heart.",
+   "Choose wisely."
+  ],
+  "key": [
+   "heart.",
+   "wisely."
+  ],
+  "object": "cross",
+  "start": 32.69
+ }
+}

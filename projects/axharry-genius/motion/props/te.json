@@ -1,0 +1,2257 @@
+{
+ "canvas": {
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "durationInFrames": 2382
+ },
+ "language": "te",
+ "fonts": {
+  "caption": {
+   "family": "Noto Sans Telugu",
+   "files": [
+    {
+     "weight": "800",
+     "style": "normal",
+     "src": "fonts/noto-sans-telugu-telugu-800-normal.woff2"
+    },
+    {
+     "weight": "800",
+     "style": "normal",
+     "src": "fonts/noto-sans-telugu-latin-800-normal.woff2"
+    },
+    {
+     "weight": "600",
+     "style": "normal",
+     "src": "fonts/noto-sans-telugu-telugu-600-normal.woff2"
+    },
+    {
+     "weight": "600",
+     "style": "normal",
+     "src": "fonts/noto-sans-telugu-latin-600-normal.woff2"
+    }
+   ]
+  },
+  "label": {
+   "family": "Inter Tight",
+   "files": [
+    {
+     "weight": "600",
+     "style": "normal",
+     "src": "fonts/inter-tight-latin-600-normal.woff2"
+    },
+    {
+     "weight": "800",
+     "style": "normal",
+     "src": "fonts/inter-tight-latin-800-normal.woff2"
+    }
+   ]
+  },
+  "labelTe": {
+   "family": "Noto Sans Telugu",
+   "files": [
+    {
+     "weight": "600",
+     "style": "normal",
+     "src": "fonts/noto-sans-telugu-telugu-600-normal.woff2"
+    }
+   ]
+  }
+ },
+ "hook": "నీకూ నాకూ తేడా? నువ్వు స్పందిస్తావు. ఏం జరగాలో నేను నిర్ణయిస్తాను.",
+ "logo": "brand/axharry-logo-original.jpg",
+ "goldFrom": 73.12,
+ "endCard": 76.78,
+ "intense": [
+  "a03_genius",
+  "a11_button",
+  "a12_control",
+  "a15_richest"
+ ],
+ "scenes": [
+  {
+   "id": "a01_eyes",
+   "line": 0,
+   "words": [
+    {
+     "text": "చెప్పు,",
+     "start": 0.25,
+     "end": 1.2,
+     "key": false
+    },
+    {
+     "text": "ఒక",
+     "start": 1.2,
+     "end": 1.44,
+     "key": false
+    },
+    {
+     "text": "నిపుణుడికీ",
+     "start": 1.44,
+     "end": 2.32,
+     "key": true
+    },
+    {
+     "text": "ఒక",
+     "start": 2.32,
+     "end": 2.56,
+     "key": false
+    },
+    {
+     "text": "మేధావికీ",
+     "start": 2.56,
+     "end": 3.28,
+     "key": true
+    },
+    {
+     "text": "మధ్య",
+     "start": 3.28,
+     "end": 3.76,
+     "key": false
+    },
+    {
+     "text": "తేడా",
+     "start": 3.77,
+     "end": 4.24,
+     "key": false
+    },
+    {
+     "text": "ఏంటో",
+     "start": 4.24,
+     "end": 4.533,
+     "key": false
+    },
+    {
+     "text": "నీకు",
+     "start": 4.533,
+     "end": 4.72,
+     "key": false
+    },
+    {
+     "text": "తెలుసా?",
+     "start": 4.72,
+     "end": 5.12,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 0.25,
+     "words": [
+      {
+       "text": "చెప్పు,",
+       "start": 0.25,
+       "end": 1.2,
+       "key": false
+      }
+     ],
+     "end": 1.2
+    },
+    {
+     "start": 1.2,
+     "words": [
+      {
+       "text": "ఒక",
+       "start": 1.2,
+       "end": 1.44,
+       "key": false
+      },
+      {
+       "text": "నిపుణుడికీ",
+       "start": 1.44,
+       "end": 2.32,
+       "key": true
+      },
+      {
+       "text": "ఒక",
+       "start": 2.32,
+       "end": 2.56,
+       "key": false
+      }
+     ],
+     "end": 2.56
+    },
+    {
+     "start": 2.56,
+     "words": [
+      {
+       "text": "మేధావికీ",
+       "start": 2.56,
+       "end": 3.28,
+       "key": true
+      },
+      {
+       "text": "మధ్య",
+       "start": 3.28,
+       "end": 3.76,
+       "key": false
+      },
+      {
+       "text": "తేడా",
+       "start": 3.77,
+       "end": 4.24,
+       "key": false
+      }
+     ],
+     "end": 4.24
+    },
+    {
+     "start": 4.24,
+     "words": [
+      {
+       "text": "ఏంటో",
+       "start": 4.24,
+       "end": 4.533,
+       "key": false
+      },
+      {
+       "text": "నీకు",
+       "start": 4.533,
+       "end": 4.72,
+       "key": false
+      },
+      {
+       "text": "తెలుసా?",
+       "start": 4.72,
+       "end": 5.12,
+       "key": false
+      }
+     ],
+     "end": 5.72
+    }
+   ],
+   "start": 0.0,
+   "end": 5.77,
+   "shots": [
+    {
+     "start": 0.0,
+     "end": 2.52,
+     "image": "art/a01_eyes_3.jpg",
+     "framing": 0
+    },
+    {
+     "start": 2.52,
+     "end": 5.77,
+     "image": "art/a01_eyes_17.jpg",
+     "framing": 1
+    }
+   ]
+  },
+  {
+   "id": "a02_expert",
+   "line": 1,
+   "words": [
+    {
+     "text": "నిపుణుడు",
+     "start": 5.85,
+     "end": 6.72,
+     "key": false
+    },
+    {
+     "text": "ఒక",
+     "start": 6.72,
+     "end": 6.96,
+     "key": false
+    },
+    {
+     "text": "విషయం",
+     "start": 6.96,
+     "end": 7.36,
+     "key": false
+    },
+    {
+     "text": "గురించి",
+     "start": 7.36,
+     "end": 7.76,
+     "key": false
+    },
+    {
+     "text": "తెలుసుకోవాల్సినదంతా",
+     "start": 7.76,
+     "end": 9.12,
+     "key": true
+    },
+    {
+     "text": "నేర్చుకుంటాడు.",
+     "start": 9.12,
+     "end": 10.12,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 5.85,
+     "words": [
+      {
+       "text": "నిపుణుడు",
+       "start": 5.85,
+       "end": 6.72,
+       "key": false
+      },
+      {
+       "text": "ఒక",
+       "start": 6.72,
+       "end": 6.96,
+       "key": false
+      },
+      {
+       "text": "విషయం",
+       "start": 6.96,
+       "end": 7.36,
+       "key": false
+      }
+     ],
+     "end": 7.36
+    },
+    {
+     "start": 7.36,
+     "words": [
+      {
+       "text": "గురించి",
+       "start": 7.36,
+       "end": 7.76,
+       "key": false
+      }
+     ],
+     "end": 7.76
+    },
+    {
+     "start": 7.76,
+     "words": [
+      {
+       "text": "తెలుసుకోవాల్సినదంతా",
+       "start": 7.76,
+       "end": 9.12,
+       "key": true
+      }
+     ],
+     "end": 9.12
+    },
+    {
+     "start": 9.12,
+     "words": [
+      {
+       "text": "నేర్చుకుంటాడు.",
+       "start": 9.12,
+       "end": 10.12,
+       "key": false
+      }
+     ],
+     "end": 10.25
+    }
+   ],
+   "start": 5.77,
+   "end": 10.17,
+   "shots": [
+    {
+     "start": 5.77,
+     "end": 9.08,
+     "image": "art/a02_expert_17.jpg",
+     "framing": 3
+    },
+    {
+     "start": 9.08,
+     "end": 10.17,
+     "image": "art/a02_expert_3.jpg",
+     "framing": 0
+    }
+   ]
+  },
+  {
+   "id": "a03_genius",
+   "line": 2,
+   "words": [
+    {
+     "text": "కానీ",
+     "start": 10.25,
+     "end": 10.64,
+     "key": false
+    },
+    {
+     "text": "మేధావి,",
+     "start": 10.64,
+     "end": 11.76,
+     "key": true
+    },
+    {
+     "text": "మేధావి",
+     "start": 11.76,
+     "end": 12.4,
+     "key": false
+    },
+    {
+     "text": "ఆ",
+     "start": 12.41,
+     "end": 12.64,
+     "key": false
+    },
+    {
+     "text": "సమాచారాన్ని",
+     "start": 12.64,
+     "end": 13.52,
+     "key": false
+    },
+    {
+     "text": "ఉపయోగించి",
+     "start": 13.52,
+     "end": 14.32,
+     "key": false
+    },
+    {
+     "text": "నియమాలనే",
+     "start": 14.57,
+     "end": 15.52,
+     "key": false
+    },
+    {
+     "text": "పూర్తిగా",
+     "start": 15.52,
+     "end": 16.08,
+     "key": false
+    },
+    {
+     "text": "తిరగరాస్తాడు.",
+     "start": 16.08,
+     "end": 17.24,
+     "key": true
+    }
+   ],
+   "chunks": [
+    {
+     "start": 10.25,
+     "words": [
+      {
+       "text": "కానీ",
+       "start": 10.25,
+       "end": 10.64,
+       "key": false
+      },
+      {
+       "text": "మేధావి,",
+       "start": 10.64,
+       "end": 11.76,
+       "key": true
+      }
+     ],
+     "end": 11.76
+    },
+    {
+     "start": 11.76,
+     "words": [
+      {
+       "text": "మేధావి",
+       "start": 11.76,
+       "end": 12.4,
+       "key": false
+      },
+      {
+       "text": "ఆ",
+       "start": 12.41,
+       "end": 12.64,
+       "key": false
+      },
+      {
+       "text": "సమాచారాన్ని",
+       "start": 12.64,
+       "end": 13.52,
+       "key": false
+      }
+     ],
+     "end": 13.52
+    },
+    {
+     "start": 13.52,
+     "words": [
+      {
+       "text": "ఉపయోగించి",
+       "start": 13.52,
+       "end": 14.32,
+       "key": false
+      },
+      {
+       "text": "నియమాలనే",
+       "start": 14.57,
+       "end": 15.52,
+       "key": false
+      }
+     ],
+     "end": 15.52
+    },
+    {
+     "start": 15.52,
+     "words": [
+      {
+       "text": "పూర్తిగా",
+       "start": 15.52,
+       "end": 16.08,
+       "key": false
+      },
+      {
+       "text": "తిరగరాస్తాడు.",
+       "start": 16.08,
+       "end": 17.24,
+       "key": true
+      }
+     ],
+     "end": 17.45
+    }
+   ],
+   "start": 10.17,
+   "end": 17.37,
+   "shots": [
+    {
+     "start": 10.17,
+     "end": 13.48,
+     "image": "art/a03_genius_3.jpg",
+     "framing": 2
+    },
+    {
+     "start": 13.48,
+     "end": 17.37,
+     "image": "art/a03_genius_17.jpg",
+     "framing": 3
+    }
+   ]
+  },
+  {
+   "id": "a04_crowd",
+   "line": 3,
+   "words": [
+    {
+     "text": "చాలామంది",
+     "start": 17.45,
+     "end": 18.32,
+     "key": false
+    },
+    {
+     "text": "జ్ఞానాన్ని",
+     "start": 18.33,
+     "end": 19.2,
+     "key": false
+    },
+    {
+     "text": "సమాజంలో",
+     "start": 19.2,
+     "end": 20.0,
+     "key": false
+    },
+    {
+     "text": "ఇమిడిపోవడానికే",
+     "start": 20.0,
+     "end": 20.96,
+     "key": true
+    },
+    {
+     "text": "వాడుకుంటారు.",
+     "start": 20.96,
+     "end": 22.0,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 17.45,
+     "words": [
+      {
+       "text": "చాలామంది",
+       "start": 17.45,
+       "end": 18.32,
+       "key": false
+      },
+      {
+       "text": "జ్ఞానాన్ని",
+       "start": 18.33,
+       "end": 19.2,
+       "key": false
+      }
+     ],
+     "end": 19.2
+    },
+    {
+     "start": 19.2,
+     "words": [
+      {
+       "text": "సమాజంలో",
+       "start": 19.2,
+       "end": 20.0,
+       "key": false
+      },
+      {
+       "text": "ఇమిడిపోవడానికే",
+       "start": 20.0,
+       "end": 20.96,
+       "key": true
+      }
+     ],
+     "end": 20.96
+    },
+    {
+     "start": 20.96,
+     "words": [
+      {
+       "text": "వాడుకుంటారు.",
+       "start": 20.96,
+       "end": 22.0,
+       "key": false
+      }
+     ],
+     "end": 22.0
+    }
+   ],
+   "start": 17.37,
+   "end": 21.92,
+   "shots": [
+    {
+     "start": 17.37,
+     "end": 20.92,
+     "image": "art/a04_crowd_17.jpg",
+     "framing": 1
+    },
+    {
+     "start": 20.92,
+     "end": 21.92,
+     "image": "art/a04_crowd_3.jpg",
+     "framing": 2
+    }
+   ]
+  },
+  {
+   "id": "a05_study",
+   "line": 4,
+   "words": [
+    {
+     "text": "ఉద్యోగం",
+     "start": 22.0,
+     "end": 22.533,
+     "key": true
+    },
+    {
+     "text": "కోసం,",
+     "start": 22.533,
+     "end": 23.28,
+     "key": false
+    },
+    {
+     "text": "డబ్బు",
+     "start": 23.28,
+     "end": 23.6,
+     "key": true
+    },
+    {
+     "text": "కోసం,",
+     "start": 23.6,
+     "end": 24.4,
+     "key": false
+    },
+    {
+     "text": "గౌరవం",
+     "start": 24.4,
+     "end": 24.88,
+     "key": true
+    },
+    {
+     "text": "కోసం",
+     "start": 24.88,
+     "end": 25.2,
+     "key": false
+    },
+    {
+     "text": "చదువుతారు.",
+     "start": 25.2,
+     "end": 26.32,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 22.0,
+     "words": [
+      {
+       "text": "ఉద్యోగం",
+       "start": 22.0,
+       "end": 22.533,
+       "key": true
+      },
+      {
+       "text": "కోసం,",
+       "start": 22.533,
+       "end": 23.28,
+       "key": false
+      }
+     ],
+     "end": 23.28
+    },
+    {
+     "start": 23.28,
+     "words": [
+      {
+       "text": "డబ్బు",
+       "start": 23.28,
+       "end": 23.6,
+       "key": true
+      },
+      {
+       "text": "కోసం,",
+       "start": 23.6,
+       "end": 24.4,
+       "key": false
+      }
+     ],
+     "end": 24.4
+    },
+    {
+     "start": 24.4,
+     "words": [
+      {
+       "text": "గౌరవం",
+       "start": 24.4,
+       "end": 24.88,
+       "key": true
+      },
+      {
+       "text": "కోసం",
+       "start": 24.88,
+       "end": 25.2,
+       "key": false
+      },
+      {
+       "text": "చదువుతారు.",
+       "start": 25.2,
+       "end": 26.32,
+       "key": false
+      }
+     ],
+     "end": 26.32
+    }
+   ],
+   "start": 21.92,
+   "end": 26.24,
+   "shots": [
+    {
+     "start": 21.92,
+     "end": 24.36,
+     "image": "art/a05_study_17.jpg",
+     "framing": 0
+    },
+    {
+     "start": 24.36,
+     "end": 26.24,
+     "image": "art/a05_study_3.jpg",
+     "framing": 1
+    }
+   ]
+  },
+  {
+   "id": "a06_tools",
+   "line": 5,
+   "words": [
+    {
+     "text": "వేరొకరి",
+     "start": 26.32,
+     "end": 26.853,
+     "key": false
+    },
+    {
+     "text": "చేతిలో",
+     "start": 26.853,
+     "end": 27.28,
+     "key": false
+    },
+    {
+     "text": "మంచి",
+     "start": 27.29,
+     "end": 27.787,
+     "key": false
+    },
+    {
+     "text": "పనిముట్లుగా",
+     "start": 27.787,
+     "end": 28.48,
+     "key": true
+    },
+    {
+     "text": "మారడానికే",
+     "start": 28.48,
+     "end": 29.2,
+     "key": false
+    },
+    {
+     "text": "వాళ్ళు",
+     "start": 29.29,
+     "end": 29.66,
+     "key": false
+    },
+    {
+     "text": "శిక్షణ",
+     "start": 29.66,
+     "end": 30.08,
+     "key": false
+    },
+    {
+     "text": "పొందుతున్నారు.",
+     "start": 30.08,
+     "end": 31.12,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 26.32,
+     "words": [
+      {
+       "text": "వేరొకరి",
+       "start": 26.32,
+       "end": 26.853,
+       "key": false
+      },
+      {
+       "text": "చేతిలో",
+       "start": 26.853,
+       "end": 27.28,
+       "key": false
+      },
+      {
+       "text": "మంచి",
+       "start": 27.29,
+       "end": 27.787,
+       "key": false
+      }
+     ],
+     "end": 27.787
+    },
+    {
+     "start": 27.787,
+     "words": [
+      {
+       "text": "పనిముట్లుగా",
+       "start": 27.787,
+       "end": 28.48,
+       "key": true
+      },
+      {
+       "text": "మారడానికే",
+       "start": 28.48,
+       "end": 29.2,
+       "key": false
+      }
+     ],
+     "end": 29.29
+    },
+    {
+     "start": 29.29,
+     "words": [
+      {
+       "text": "వాళ్ళు",
+       "start": 29.29,
+       "end": 29.66,
+       "key": false
+      },
+      {
+       "text": "శిక్షణ",
+       "start": 29.66,
+       "end": 30.08,
+       "key": false
+      }
+     ],
+     "end": 30.08
+    },
+    {
+     "start": 30.08,
+     "words": [
+      {
+       "text": "పొందుతున్నారు.",
+       "start": 30.08,
+       "end": 31.12,
+       "key": false
+      }
+     ],
+     "end": 31.12
+    }
+   ],
+   "start": 26.24,
+   "end": 31.04,
+   "shots": [
+    {
+     "start": 26.24,
+     "end": 29.25,
+     "image": "art/a06_tools_17.jpg",
+     "framing": 3
+    },
+    {
+     "start": 29.25,
+     "end": 31.04,
+     "image": "art/a06_tools_3.jpg",
+     "framing": 0
+    }
+   ]
+  },
+  {
+   "id": "a07_hand",
+   "line": 6,
+   "words": [
+    {
+     "text": "కానీ",
+     "start": 31.12,
+     "end": 31.52,
+     "key": false
+    },
+    {
+     "text": "నన్ను,",
+     "start": 31.52,
+     "end": 32.32,
+     "key": false
+    },
+    {
+     "text": "ఆ",
+     "start": 32.32,
+     "end": 32.48,
+     "key": false
+    },
+    {
+     "text": "పనిముట్టును",
+     "start": 32.49,
+     "end": 33.307,
+     "key": false
+    },
+    {
+     "text": "పట్టుకునే",
+     "start": 33.307,
+     "end": 33.84,
+     "key": false
+    },
+    {
+     "text": "చేయిగా",
+     "start": 33.85,
+     "end": 34.4,
+     "key": true
+    },
+    {
+     "text": "పెంచారు.",
+     "start": 34.4,
+     "end": 35.44,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 31.12,
+     "words": [
+      {
+       "text": "కానీ",
+       "start": 31.12,
+       "end": 31.52,
+       "key": false
+      },
+      {
+       "text": "నన్ను,",
+       "start": 31.52,
+       "end": 32.32,
+       "key": false
+      }
+     ],
+     "end": 32.32
+    },
+    {
+     "start": 32.32,
+     "words": [
+      {
+       "text": "ఆ",
+       "start": 32.32,
+       "end": 32.48,
+       "key": false
+      },
+      {
+       "text": "పనిముట్టును",
+       "start": 32.49,
+       "end": 33.307,
+       "key": false
+      }
+     ],
+     "end": 33.307
+    },
+    {
+     "start": 33.307,
+     "words": [
+      {
+       "text": "పట్టుకునే",
+       "start": 33.307,
+       "end": 33.84,
+       "key": false
+      },
+      {
+       "text": "చేయిగా",
+       "start": 33.85,
+       "end": 34.4,
+       "key": true
+      }
+     ],
+     "end": 34.4
+    },
+    {
+     "start": 34.4,
+     "words": [
+      {
+       "text": "పెంచారు.",
+       "start": 34.4,
+       "end": 35.44,
+       "key": false
+      }
+     ],
+     "end": 35.44
+    }
+   ],
+   "start": 31.04,
+   "end": 35.36,
+   "shots": [
+    {
+     "start": 31.04,
+     "end": 34.36,
+     "image": "art/a07_hand_17.jpg",
+     "framing": 2
+    },
+    {
+     "start": 34.36,
+     "end": 35.36,
+     "image": "art/a07_hand_17.jpg",
+     "framing": 3
+    }
+   ]
+  },
+  {
+   "id": "a08_world",
+   "line": 7,
+   "words": [
+    {
+     "text": "ప్రపంచ",
+     "start": 35.44,
+     "end": 35.84,
+     "key": false
+    },
+    {
+     "text": "చరిత్ర",
+     "start": 35.85,
+     "end": 36.32,
+     "key": true
+    },
+    {
+     "text": "గురించి",
+     "start": 36.32,
+     "end": 36.72,
+     "key": false
+    },
+    {
+     "text": "గానీ,",
+     "start": 36.72,
+     "end": 37.44,
+     "key": false
+    },
+    {
+     "text": "సైన్స్",
+     "start": 37.44,
+     "end": 37.947,
+     "key": true
+    },
+    {
+     "text": "అందం",
+     "start": 37.947,
+     "end": 38.293,
+     "key": false
+    },
+    {
+     "text": "గురించి",
+     "start": 38.293,
+     "end": 38.64,
+     "key": false
+    },
+    {
+     "text": "గానీ",
+     "start": 38.64,
+     "end": 39.04,
+     "key": false
+    },
+    {
+     "text": "నాకు",
+     "start": 39.13,
+     "end": 39.52,
+     "key": false
+    },
+    {
+     "text": "పట్టింపు",
+     "start": 39.52,
+     "end": 39.92,
+     "key": false
+    },
+    {
+     "text": "లేదు.",
+     "start": 39.92,
+     "end": 40.72,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 35.44,
+     "words": [
+      {
+       "text": "ప్రపంచ",
+       "start": 35.44,
+       "end": 35.84,
+       "key": false
+      },
+      {
+       "text": "చరిత్ర",
+       "start": 35.85,
+       "end": 36.32,
+       "key": true
+      },
+      {
+       "text": "గురించి",
+       "start": 36.32,
+       "end": 36.72,
+       "key": false
+      }
+     ],
+     "end": 36.72
+    },
+    {
+     "start": 36.72,
+     "words": [
+      {
+       "text": "గానీ,",
+       "start": 36.72,
+       "end": 37.44,
+       "key": false
+      }
+     ],
+     "end": 37.44
+    },
+    {
+     "start": 37.44,
+     "words": [
+      {
+       "text": "సైన్స్",
+       "start": 37.44,
+       "end": 37.947,
+       "key": true
+      },
+      {
+       "text": "అందం",
+       "start": 37.947,
+       "end": 38.293,
+       "key": false
+      },
+      {
+       "text": "గురించి",
+       "start": 38.293,
+       "end": 38.64,
+       "key": false
+      }
+     ],
+     "end": 38.64
+    },
+    {
+     "start": 38.64,
+     "words": [
+      {
+       "text": "గానీ",
+       "start": 38.64,
+       "end": 39.04,
+       "key": false
+      },
+      {
+       "text": "నాకు",
+       "start": 39.13,
+       "end": 39.52,
+       "key": false
+      },
+      {
+       "text": "పట్టింపు",
+       "start": 39.52,
+       "end": 39.92,
+       "key": false
+      }
+     ],
+     "end": 39.92
+    },
+    {
+     "start": 39.92,
+     "words": [
+      {
+       "text": "లేదు.",
+       "start": 39.92,
+       "end": 40.72,
+       "key": false
+      }
+     ],
+     "end": 40.72
+    }
+   ],
+   "start": 35.36,
+   "end": 40.64,
+   "shots": [
+    {
+     "start": 35.36,
+     "end": 38.6,
+     "image": "art/a08_world_17.jpg",
+     "framing": 1
+    },
+    {
+     "start": 38.6,
+     "end": 40.64,
+     "image": "art/a08_world_3.jpg",
+     "framing": 2
+    }
+   ]
+  },
+  {
+   "id": "a09_leverage",
+   "line": 8,
+   "words": [
+    {
+     "text": "అవి",
+     "start": 40.72,
+     "end": 40.96,
+     "key": false
+    },
+    {
+     "text": "ఇచ్చే",
+     "start": 40.96,
+     "end": 41.44,
+     "key": false
+    },
+    {
+     "text": "ఆధిపత్యం",
+     "start": 41.44,
+     "end": 42.16,
+     "key": true
+    },
+    {
+     "text": "మాత్రమే",
+     "start": 42.16,
+     "end": 42.64,
+     "key": false
+    },
+    {
+     "text": "నాకు",
+     "start": 42.64,
+     "end": 42.933,
+     "key": false
+    },
+    {
+     "text": "ముఖ్యం.",
+     "start": 42.933,
+     "end": 43.84,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 40.72,
+     "words": [
+      {
+       "text": "అవి",
+       "start": 40.72,
+       "end": 40.96,
+       "key": false
+      },
+      {
+       "text": "ఇచ్చే",
+       "start": 40.96,
+       "end": 41.44,
+       "key": false
+      },
+      {
+       "text": "ఆధిపత్యం",
+       "start": 41.44,
+       "end": 42.16,
+       "key": true
+      }
+     ],
+     "end": 42.16
+    },
+    {
+     "start": 42.16,
+     "words": [
+      {
+       "text": "మాత్రమే",
+       "start": 42.16,
+       "end": 42.64,
+       "key": false
+      },
+      {
+       "text": "నాకు",
+       "start": 42.64,
+       "end": 42.933,
+       "key": false
+      },
+      {
+       "text": "ముఖ్యం.",
+       "start": 42.933,
+       "end": 43.84,
+       "key": false
+      }
+     ],
+     "end": 43.84
+    }
+   ],
+   "start": 40.64,
+   "end": 43.76,
+   "shots": [
+    {
+     "start": 40.64,
+     "end": 43.76,
+     "image": "art/a09_leverage_17.jpg",
+     "framing": 0
+    }
+   ]
+  },
+  {
+   "id": "a10_textbooks",
+   "line": 9,
+   "words": [
+    {
+     "text": "కొన్ని",
+     "start": 43.84,
+     "end": 44.16,
+     "key": false
+    },
+    {
+     "text": "పుస్తకాలు",
+     "start": 44.16,
+     "end": 44.72,
+     "key": false
+    },
+    {
+     "text": "బట్టీ",
+     "start": 44.72,
+     "end": 45.12,
+     "key": true
+    },
+    {
+     "text": "పట్టినంత",
+     "start": 45.12,
+     "end": 45.6,
+     "key": false
+    },
+    {
+     "text": "మాత్రాన,",
+     "start": 45.6,
+     "end": 46.48,
+     "key": false
+    },
+    {
+     "text": "నువ్వు",
+     "start": 46.48,
+     "end": 46.773,
+     "key": false
+    },
+    {
+     "text": "తెలివైనవాడివి",
+     "start": 46.773,
+     "end": 47.552,
+     "key": true
+    },
+    {
+     "text": "అనుకుంటున్నావా?",
+     "start": 47.552,
+     "end": 48.24,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 43.84,
+     "words": [
+      {
+       "text": "కొన్ని",
+       "start": 43.84,
+       "end": 44.16,
+       "key": false
+      },
+      {
+       "text": "పుస్తకాలు",
+       "start": 44.16,
+       "end": 44.72,
+       "key": false
+      },
+      {
+       "text": "బట్టీ",
+       "start": 44.72,
+       "end": 45.12,
+       "key": true
+      }
+     ],
+     "end": 45.12
+    },
+    {
+     "start": 45.12,
+     "words": [
+      {
+       "text": "పట్టినంత",
+       "start": 45.12,
+       "end": 45.6,
+       "key": false
+      },
+      {
+       "text": "మాత్రాన,",
+       "start": 45.6,
+       "end": 46.48,
+       "key": false
+      }
+     ],
+     "end": 46.48
+    },
+    {
+     "start": 46.48,
+     "words": [
+      {
+       "text": "నువ్వు",
+       "start": 46.48,
+       "end": 46.773,
+       "key": false
+      },
+      {
+       "text": "తెలివైనవాడివి",
+       "start": 46.773,
+       "end": 47.552,
+       "key": true
+      }
+     ],
+     "end": 47.552
+    },
+    {
+     "start": 47.552,
+     "words": [
+      {
+       "text": "అనుకుంటున్నావా?",
+       "start": 47.552,
+       "end": 48.24,
+       "key": false
+      }
+     ],
+     "end": 48.81
+    }
+   ],
+   "start": 43.76,
+   "end": 48.73,
+   "shots": [
+    {
+     "start": 43.76,
+     "end": 46.44,
+     "image": "art/a10_textbooks_17.jpg",
+     "framing": 3
+    },
+    {
+     "start": 46.44,
+     "end": 48.73,
+     "image": "art/a10_textbooks_3.jpg",
+     "framing": 0
+    }
+   ]
+  },
+  {
+   "id": "a11_button",
+   "line": 10,
+   "words": [
+    {
+     "text": "అసలైన",
+     "start": 48.81,
+     "end": 49.44,
+     "key": false
+    },
+    {
+     "text": "జ్ఞానం",
+     "start": 49.45,
+     "end": 49.92,
+     "key": false
+    },
+    {
+     "text": "అంటే,",
+     "start": 49.92,
+     "end": 50.32,
+     "key": false
+    },
+    {
+     "text": "ఒక",
+     "start": 50.57,
+     "end": 50.96,
+     "key": false
+    },
+    {
+     "text": "మంచి",
+     "start": 50.96,
+     "end": 51.36,
+     "key": false
+    },
+    {
+     "text": "మనిషితో",
+     "start": 51.36,
+     "end": 51.92,
+     "key": false
+    },
+    {
+     "text": "చెడ్డ",
+     "start": 52.01,
+     "end": 52.4,
+     "key": true
+    },
+    {
+     "text": "పని",
+     "start": 52.4,
+     "end": 52.72,
+     "key": false
+    },
+    {
+     "text": "చేయించడానికి",
+     "start": 52.72,
+     "end": 53.76,
+     "key": false
+    },
+    {
+     "text": "ఏ",
+     "start": 53.76,
+     "end": 54.0,
+     "key": false
+    },
+    {
+     "text": "బటన్",
+     "start": 54.01,
+     "end": 54.453,
+     "key": true
+    },
+    {
+     "text": "నొక్కాలో",
+     "start": 54.453,
+     "end": 55.04,
+     "key": false
+    },
+    {
+     "text": "కచ్చితంగా",
+     "start": 55.04,
+     "end": 55.68,
+     "key": false
+    },
+    {
+     "text": "తెలుసుకోవడం.",
+     "start": 55.68,
+     "end": 56.88,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 48.81,
+     "words": [
+      {
+       "text": "అసలైన",
+       "start": 48.81,
+       "end": 49.44,
+       "key": false
+      },
+      {
+       "text": "జ్ఞానం",
+       "start": 49.45,
+       "end": 49.92,
+       "key": false
+      },
+      {
+       "text": "అంటే,",
+       "start": 49.92,
+       "end": 50.32,
+       "key": false
+      }
+     ],
+     "end": 50.57
+    },
+    {
+     "start": 50.57,
+     "words": [
+      {
+       "text": "ఒక",
+       "start": 50.57,
+       "end": 50.96,
+       "key": false
+      },
+      {
+       "text": "మంచి",
+       "start": 50.96,
+       "end": 51.36,
+       "key": false
+      },
+      {
+       "text": "మనిషితో",
+       "start": 51.36,
+       "end": 51.92,
+       "key": false
+      },
+      {
+       "text": "చెడ్డ",
+       "start": 52.01,
+       "end": 52.4,
+       "key": true
+      }
+     ],
+     "end": 52.4
+    },
+    {
+     "start": 52.4,
+     "words": [
+      {
+       "text": "పని",
+       "start": 52.4,
+       "end": 52.72,
+       "key": false
+      },
+      {
+       "text": "చేయించడానికి",
+       "start": 52.72,
+       "end": 53.76,
+       "key": false
+      },
+      {
+       "text": "ఏ",
+       "start": 53.76,
+       "end": 54.0,
+       "key": false
+      }
+     ],
+     "end": 54.01
+    },
+    {
+     "start": 54.01,
+     "words": [
+      {
+       "text": "బటన్",
+       "start": 54.01,
+       "end": 54.453,
+       "key": true
+      },
+      {
+       "text": "నొక్కాలో",
+       "start": 54.453,
+       "end": 55.04,
+       "key": false
+      }
+     ],
+     "end": 55.04
+    },
+    {
+     "start": 55.04,
+     "words": [
+      {
+       "text": "కచ్చితంగా",
+       "start": 55.04,
+       "end": 55.68,
+       "key": false
+      },
+      {
+       "text": "తెలుసుకోవడం.",
+       "start": 55.68,
+       "end": 56.88,
+       "key": false
+      }
+     ],
+     "end": 56.88
+    }
+   ],
+   "start": 48.73,
+   "end": 56.8,
+   "shots": [
+    {
+     "start": 48.73,
+     "end": 52.36,
+     "image": "art/a11_button_17.jpg",
+     "framing": 2
+    },
+    {
+     "start": 52.36,
+     "end": 55.0,
+     "image": "art/a11_button_17.jpg",
+     "framing": 3
+    },
+    {
+     "start": 55.0,
+     "end": 56.8,
+     "image": "art/a11_button_17.jpg",
+     "framing": 0
+    }
+   ]
+  },
+  {
+   "id": "a12_control",
+   "line": 11,
+   "words": [
+    {
+     "text": "నిన్ను",
+     "start": 56.88,
+     "end": 57.2,
+     "key": false
+    },
+    {
+     "text": "కంట్రోల్",
+     "start": 57.2,
+     "end": 57.653,
+     "key": true
+    },
+    {
+     "text": "చేయడానికి,",
+     "start": 57.653,
+     "end": 58.64,
+     "key": false
+    },
+    {
+     "text": "నేను",
+     "start": 58.64,
+     "end": 58.933,
+     "key": false
+    },
+    {
+     "text": "నీ",
+     "start": 58.933,
+     "end": 59.04,
+     "key": false
+    },
+    {
+     "text": "స్నేహితుడిని",
+     "start": 59.05,
+     "end": 59.76,
+     "key": false
+    },
+    {
+     "text": "కావాల్సిన",
+     "start": 59.76,
+     "end": 60.32,
+     "key": false
+    },
+    {
+     "text": "అవసరం",
+     "start": 60.32,
+     "end": 60.72,
+     "key": false
+    },
+    {
+     "text": "లేదు.",
+     "start": 60.72,
+     "end": 61.52,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 56.88,
+     "words": [
+      {
+       "text": "నిన్ను",
+       "start": 56.88,
+       "end": 57.2,
+       "key": false
+      },
+      {
+       "text": "కంట్రోల్",
+       "start": 57.2,
+       "end": 57.653,
+       "key": true
+      }
+     ],
+     "end": 57.653
+    },
+    {
+     "start": 57.653,
+     "words": [
+      {
+       "text": "చేయడానికి,",
+       "start": 57.653,
+       "end": 58.64,
+       "key": false
+      }
+     ],
+     "end": 58.64
+    },
+    {
+     "start": 58.64,
+     "words": [
+      {
+       "text": "నేను",
+       "start": 58.64,
+       "end": 58.933,
+       "key": false
+      },
+      {
+       "text": "నీ",
+       "start": 58.933,
+       "end": 59.04,
+       "key": false
+      },
+      {
+       "text": "స్నేహితుడిని",
+       "start": 59.05,
+       "end": 59.76,
+       "key": false
+      }
+     ],
+     "end": 59.76
+    },
+    {
+     "start": 59.76,
+     "words": [
+      {
+       "text": "కావాల్సిన",
+       "start": 59.76,
+       "end": 60.32,
+       "key": false
+      },
+      {
+       "text": "అవసరం",
+       "start": 60.32,
+       "end": 60.72,
+       "key": false
+      },
+      {
+       "text": "లేదు.",
+       "start": 60.72,
+       "end": 61.52,
+       "key": false
+      }
+     ],
+     "end": 61.52
+    }
+   ],
+   "start": 56.8,
+   "end": 61.44,
+   "shots": [
+    {
+     "start": 56.8,
+     "end": 59.72,
+     "image": "art/a12_control_17.jpg",
+     "framing": 1
+    },
+    {
+     "start": 59.72,
+     "end": 61.44,
+     "image": "art/a12_control_17.jpg",
+     "framing": 2
+    }
+   ]
+  },
+  {
+   "id": "a13_fear",
+   "line": 12,
+   "words": [
+    {
+     "text": "నువ్వు",
+     "start": 61.52,
+     "end": 61.84,
+     "key": false
+    },
+    {
+     "text": "దేనికి",
+     "start": 61.84,
+     "end": 62.373,
+     "key": false
+    },
+    {
+     "text": "భయపడతావో,",
+     "start": 62.373,
+     "end": 63.28,
+     "key": true
+    },
+    {
+     "text": "అది",
+     "start": 63.28,
+     "end": 63.547,
+     "key": false
+    },
+    {
+     "text": "తెలిస్తే",
+     "start": 63.547,
+     "end": 64.0,
+     "key": false
+    },
+    {
+     "text": "చాలు.",
+     "start": 64.0,
+     "end": 64.88,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 61.52,
+     "words": [
+      {
+       "text": "నువ్వు",
+       "start": 61.52,
+       "end": 61.84,
+       "key": false
+      },
+      {
+       "text": "దేనికి",
+       "start": 61.84,
+       "end": 62.373,
+       "key": false
+      }
+     ],
+     "end": 62.373
+    },
+    {
+     "start": 62.373,
+     "words": [
+      {
+       "text": "భయపడతావో,",
+       "start": 62.373,
+       "end": 63.28,
+       "key": true
+      }
+     ],
+     "end": 63.28
+    },
+    {
+     "start": 63.28,
+     "words": [
+      {
+       "text": "అది",
+       "start": 63.28,
+       "end": 63.547,
+       "key": false
+      },
+      {
+       "text": "తెలిస్తే",
+       "start": 63.547,
+       "end": 64.0,
+       "key": false
+      },
+      {
+       "text": "చాలు.",
+       "start": 64.0,
+       "end": 64.88,
+       "key": false
+      }
+     ],
+     "end": 64.88
+    }
+   ],
+   "start": 61.44,
+   "end": 64.8,
+   "shots": [
+    {
+     "start": 61.44,
+     "end": 64.8,
+     "image": "art/a13_fear_3.jpg",
+     "framing": 0
+    }
+   ]
+  },
+  {
+   "id": "a14_currency",
+   "line": 13,
+   "words": [
+    {
+     "text": "ఎప్పటికీ",
+     "start": 64.88,
+     "end": 65.52,
+     "key": false
+    },
+    {
+     "text": "విలువ",
+     "start": 65.52,
+     "end": 65.84,
+     "key": false
+    },
+    {
+     "text": "కోల్పోని",
+     "start": 65.84,
+     "end": 66.56,
+     "key": false
+    },
+    {
+     "text": "ఏకైక",
+     "start": 66.56,
+     "end": 67.12,
+     "key": false
+    },
+    {
+     "text": "కరెన్సీ,",
+     "start": 67.12,
+     "end": 68.0,
+     "key": true
+    },
+    {
+     "text": "సమాచారమే.",
+     "start": 68.0,
+     "end": 69.28,
+     "key": true
+    }
+   ],
+   "chunks": [
+    {
+     "start": 64.88,
+     "words": [
+      {
+       "text": "ఎప్పటికీ",
+       "start": 64.88,
+       "end": 65.52,
+       "key": false
+      },
+      {
+       "text": "విలువ",
+       "start": 65.52,
+       "end": 65.84,
+       "key": false
+      }
+     ],
+     "end": 65.84
+    },
+    {
+     "start": 65.84,
+     "words": [
+      {
+       "text": "కోల్పోని",
+       "start": 65.84,
+       "end": 66.56,
+       "key": false
+      },
+      {
+       "text": "ఏకైక",
+       "start": 66.56,
+       "end": 67.12,
+       "key": false
+      },
+      {
+       "text": "కరెన్సీ,",
+       "start": 67.12,
+       "end": 68.0,
+       "key": true
+      }
+     ],
+     "end": 68.0
+    },
+    {
+     "start": 68.0,
+     "words": [
+      {
+       "text": "సమాచారమే.",
+       "start": 68.0,
+       "end": 69.28,
+       "key": true
+      }
+     ],
+     "end": 69.28
+    }
+   ],
+   "start": 64.8,
+   "end": 69.2,
+   "shots": [
+    {
+     "start": 64.8,
+     "end": 67.96,
+     "image": "art/a14_currency_17.jpg",
+     "framing": 3
+    },
+    {
+     "start": 67.96,
+     "end": 69.2,
+     "image": "art/a14_currency_17.jpg",
+     "framing": 0
+    }
+   ]
+  },
+  {
+   "id": "a15_richest",
+   "line": 14,
+   "words": [
+    {
+     "text": "ఇప్పుడు,",
+     "start": 69.28,
+     "end": 70.08,
+     "key": false
+    },
+    {
+     "text": "ఈ",
+     "start": 70.08,
+     "end": 70.24,
+     "key": false
+    },
+    {
+     "text": "గదిలో",
+     "start": 70.24,
+     "end": 70.8,
+     "key": false
+    },
+    {
+     "text": "అందరికంటే",
+     "start": 70.8,
+     "end": 71.52,
+     "key": false
+    },
+    {
+     "text": "ధనవంతుడిని",
+     "start": 71.52,
+     "end": 72.32,
+     "key": true
+    },
+    {
+     "text": "నేనే.",
+     "start": 72.32,
+     "end": 73.2,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 69.28,
+     "words": [
+      {
+       "text": "ఇప్పుడు,",
+       "start": 69.28,
+       "end": 70.08,
+       "key": false
+      }
+     ],
+     "end": 70.08
+    },
+    {
+     "start": 70.08,
+     "words": [
+      {
+       "text": "ఈ",
+       "start": 70.08,
+       "end": 70.24,
+       "key": false
+      },
+      {
+       "text": "గదిలో",
+       "start": 70.24,
+       "end": 70.8,
+       "key": false
+      },
+      {
+       "text": "అందరికంటే",
+       "start": 70.8,
+       "end": 71.52,
+       "key": false
+      }
+     ],
+     "end": 71.52
+    },
+    {
+     "start": 71.52,
+     "words": [
+      {
+       "text": "ధనవంతుడిని",
+       "start": 71.52,
+       "end": 72.32,
+       "key": true
+      },
+      {
+       "text": "నేనే.",
+       "start": 72.32,
+       "end": 73.2,
+       "key": false
+      }
+     ],
+     "end": 73.2
+    }
+   ],
+   "start": 69.2,
+   "end": 73.12,
+   "shots": [
+    {
+     "start": 69.2,
+     "end": 73.12,
+     "image": "art/a15_richest_3.jpg",
+     "framing": 2
+    }
+   ]
+  },
+  {
+   "id": "a16_share",
+   "line": 15,
+   "words": [
+    {
+     "text": "ఇకపై",
+     "start": 73.2,
+     "end": 73.76,
+     "key": false
+    },
+    {
+     "text": "నా",
+     "start": 73.85,
+     "end": 74.16,
+     "key": false
+    },
+    {
+     "text": "జ్ఞానాన్ని",
+     "start": 74.17,
+     "end": 74.853,
+     "key": true
+    },
+    {
+     "text": "మీతో",
+     "start": 74.853,
+     "end": 75.12,
+     "key": false
+    },
+    {
+     "text": "పంచుకుంటాను.",
+     "start": 75.12,
+     "end": 76.08,
+     "key": true
+    }
+   ],
+   "chunks": [
+    {
+     "start": 73.2,
+     "words": [
+      {
+       "text": "ఇకపై",
+       "start": 73.2,
+       "end": 73.76,
+       "key": false
+      },
+      {
+       "text": "నా",
+       "start": 73.85,
+       "end": 74.16,
+       "key": false
+      },
+      {
+       "text": "జ్ఞానాన్ని",
+       "start": 74.17,
+       "end": 74.853,
+       "key": true
+      }
+     ],
+     "end": 74.853
+    },
+    {
+     "start": 74.853,
+     "words": [
+      {
+       "text": "మీతో",
+       "start": 74.853,
+       "end": 75.12,
+       "key": false
+      },
+      {
+       "text": "పంచుకుంటాను.",
+       "start": 75.12,
+       "end": 76.08,
+       "key": true
+      }
+     ],
+     "end": 76.68
+    }
+   ],
+   "start": 73.12,
+   "end": 76.78,
+   "shots": [
+    {
+     "start": 73.12,
+     "end": 76.78,
+     "image": "art/a16_share_17.jpg",
+     "framing": 1
+    }
+   ]
+  }
+ ]
+}

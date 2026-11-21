@@ -1,0 +1,216 @@
+{
+  "language": "en",
+  "output": "James_1_14_English.mp4",
+  "subtitleMaxChars": 30,
+  "leadIn": 0.35,
+  "elevenlabs": {
+    "voice_id": "nPczCjzI2devNBz1zQrb",
+    "voice_name": "Brian - Deep, Resonant and Comforting",
+    "model_id": "eleven_v4",
+    "voice_settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.8,
+      "style": 0.15,
+      "use_speaker_boost": true
+    }
+  },
+  "lines": [
+    {
+      "scene": "s1_candle",
+      "text": "Temptation doesn't always come loudly.",
+      "headline": "Temptation is quiet"
+    },
+    {
+      "scene": "s2_apple",
+      "text": "Sometimes, it begins with a desire we allow to grow.",
+      "headline": "A desire allowed to grow"
+    },
+    {
+      "scene": "s3_path",
+      "text": "Our choices begin in the heart, and every temptation challenges us to choose wisely.",
+      "headline": "Choices begin in the heart"
+    },
+    {
+      "scene": "s4_hourglass",
+      "text": "Don't let temporary desires lead your life.",
+      "headline": "Desires are temporary"
+    },
+    {
+      "scene": "s5_light",
+      "text": "Recognize the temptation. Turn toward God. Choose what is right.",
+      "headline": "",
+      "steps": [
+        "Recognize.",
+        "Turn toward God.",
+        "Choose what is right."
+      ]
+    },
+    {
+      "scene": "s6_bible",
+      "text": "James 1:14 reminds us: temptation begins when our own desires draw us away.",
+      "headline": "",
+      "pauseBefore": 0.35,
+      "speak": [
+        [
+          "James one fourteen",
+          "James 1:14"
+        ],
+        [
+          "reminds us: temptation begins when our own desires draw us away.",
+          null
+        ]
+      ]
+    },
+    {
+      "scene": "verse",
+      "text": "But each person is tempted when they are dragged away by their own evil desire and enticed.",
+      "pauseBefore": 0.4
+    }
+  ],
+  "verse": {
+    "number": "[14]",
+    "text": "But each person is tempted when they are dragged away by their own evil desire and enticed.",
+    "reference": "James 1:14 (NIV)"
+  },
+  "editorial": {
+    "watermark": "@axharry12",
+    "logo": "brand/ax-logo-circle.png",
+    "sideLabel": "NIV  ·  JAMES  1 : 14",
+    "header": {
+      "left": "1",
+      "right": "14",
+      "leftLabel": "chapter",
+      "rightLabel": "verse",
+      "caption": "JAMES · NIV\nCHAPTER 1 · VERSE 14"
+    },
+    "cardTitle": "Stand firm",
+    "scenes": [
+      {
+        "text": "Temptation doesn't always come loudly.",
+        "bg": "light",
+        "key": [
+          "loudly."
+        ],
+        "object": "candle",
+        "layout": "badge",
+        "header": true
+      },
+      {
+        "text": "Sometimes, it begins with a desire",
+        "bg": "black",
+        "key": [
+          "desire"
+        ]
+      },
+      {
+        "text": "we allow to grow.",
+        "bg": "light",
+        "key": [
+          "grow."
+        ],
+        "object": "apple",
+        "layout": "badge",
+        "grow": true
+      },
+      {
+        "text": "Our choices begin in the heart,",
+        "bg": "green",
+        "key": [
+          "heart,"
+        ],
+        "object": "heart",
+        "layout": "objectBelow"
+      },
+      {
+        "text": "and every temptation challenges us",
+        "bg": "light",
+        "key": [
+          "temptation"
+        ],
+        "accent": "outline"
+      },
+      {
+        "text": "to choose wisely.",
+        "bg": "light",
+        "key": [
+          "wisely."
+        ],
+        "accent": "label"
+      },
+      {
+        "text": "Don't let temporary desires",
+        "bg": "black",
+        "key": [
+          "temporary"
+        ],
+        "object": "hourglass",
+        "layout": "objectBelow"
+      },
+      {
+        "text": "lead your life.",
+        "bg": "light",
+        "key": [
+          "life."
+        ],
+        "enter": "circle"
+      },
+      {
+        "text": "Recognize the temptation. Turn toward God. Choose what is right.",
+        "bg": "green",
+        "layout": "card",
+        "items": [
+          "Recognize the temptation.",
+          "Turn toward God.",
+          "Choose what is right."
+        ]
+      },
+      {
+        "text": "James 1:14 reminds us:",
+        "bg": "black",
+        "key": [
+          "James 1:14"
+        ],
+        "enter": "circle"
+      },
+      {
+        "text": "temptation begins when our own desires",
+        "bg": "light",
+        "key": [
+          "desires"
+        ],
+        "object": "bible",
+        "layout": "badge",
+        "header": true
+      },
+      {
+        "text": "draw us away.",
+        "bg": "light",
+        "key": [
+          "away."
+        ],
+        "accent": "outline",
+        "exit": "tilt"
+      },
+      {
+        "text": "But each person is tempted when they are dragged away by their own evil desire and enticed.",
+        "bg": "light",
+        "layout": "verse",
+        "key": [
+          "tempted",
+          "enticed."
+        ]
+      }
+    ],
+    "final": {
+      "lines": [
+        "Guard your heart.",
+        "Choose wisely."
+      ],
+      "key": [
+        "heart.",
+        "wisely."
+      ],
+      "object": "cross"
+    }
+  }
+}

@@ -24,7 +24,8 @@ FINAL_GAP = 0.5
 FINAL_HOLD = 3.0
 LOGO_HOLD = 3.4
 
-FONT_FILES = {
+FONT_SETS = {}
+FONT_SETS["te"] = {
     "sans": ("Noto Sans Telugu", "noto-sans-telugu", [("telugu", "600", "normal"), ("telugu", "800", "normal"),
                                                      ("latin", "600", "normal"), ("latin", "800", "normal")]),
     "serif": ("Noto Serif Telugu", "noto-serif-telugu", [("telugu", "700", "normal"), ("latin", "700", "normal"),
@@ -32,17 +33,26 @@ FONT_FILES = {
     "label": ("Inter Tight", "inter-tight", [("latin", "600", "normal"), ("latin", "800", "normal")]),
     "elegant": ("Cormorant Garamond", "cormorant-garamond", [("latin", "600", "italic"), ("latin", "600", "normal")]),
 }
+# English: tight grotesk for body words, a true italic serif for accents (as in the reference).
+FONT_SETS["en"] = {
+    "sans": ("Inter Tight", "inter-tight", [("latin", "600", "normal"), ("latin", "800", "normal")]),
+    "serif": ("Cormorant Garamond", "cormorant-garamond", [("latin", "700", "italic"), ("latin", "600", "italic"),
+                                                          ("latin", "500", "normal"), ("latin", "700", "normal")]),
+    "label": ("Inter Tight", "inter-tight", [("latin", "600", "normal"), ("latin", "800", "normal")]),
+    "elegant": ("Cormorant Garamond", "cormorant-garamond", [("latin", "600", "italic"), ("latin", "600", "normal")]),
+}
+ITALIC_ACCENT = {"te": False, "en": True}
 
 
 def norm(text: str) -> str:
     return re.sub(r"\s+", " ", text.strip())
 
 
-def stage_fonts() -> dict:
+def stage_fonts(lang: str) -> dict:
     target = MOTION / "public" / "fonts"
     target.mkdir(parents=True, exist_ok=True)
     out = {}
-    for role, (family, package, files) in FONT_FILES.items():
+    for role, (family, package, files) in FONT_SETS[lang].items():
         staged = []
         for subset, weight, style in files:
             name = f"{package}-{subset}-{weight}-{style}.woff2"
@@ -52,6 +62,7 @@ def stage_fonts() -> dict:
             shutil.copy2(src, target / name)
             staged.append({"weight": weight, "style": style, "src": f"fonts/{name}"})
         out[role] = {"family": family, "files": staged}
+    out["italicAccent"] = ITALIC_ACCENT[lang]
     return out
 
 
@@ -103,7 +114,8 @@ def main() -> None:
 
     props = {
         "canvas": {"width": 1080, "height": 1920, "fps": FPS, "durationInFrames": frames},
-        "fonts": stage_fonts(),
+        "language": content["language"],
+        "fonts": stage_fonts(content["language"]),
         "sideLabel": plan["sideLabel"],
         "header": plan["header"],
         "cardTitle": plan["cardTitle"],

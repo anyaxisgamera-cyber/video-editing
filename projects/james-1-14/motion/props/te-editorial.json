@@ -5,6 +5,7 @@
   "fps": 30,
   "durationInFrames": 1468
  },
+ "language": "te",
  "fonts": {
   "sans": {
    "family": "Noto Sans Telugu",
@@ -85,14 +86,16 @@
      "src": "fonts/cormorant-garamond-latin-600-normal.woff2"
     }
    ]
-  }
+  },
+  "italicAccent": false
  },
  "sideLabel": "TELUBSI  ·  యాకోబు  1 : 14",
  "header": {
   "left": "1",
   "right": "14",
   "leftLabel": "అధ్యాయం",
-  "rightLabel": "వచనం"
+  "rightLabel": "వచనం",
+  "caption": "JAMES · TELUBSI\nCHAPTER 1 · VERSE 14"
  },
  "cardTitle": "స్థిరంగా నిలబడు",
  "watermark": "@axharry12",
