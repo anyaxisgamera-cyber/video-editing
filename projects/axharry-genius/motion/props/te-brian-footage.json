@@ -1,0 +1,2485 @@
+{
+ "canvas": {
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "durationInFrames": 2351
+ },
+ "language": "te",
+ "fonts": {
+  "caption": {
+   "family": "Noto Sans Telugu",
+   "files": [
+    {
+     "weight": "800",
+     "style": "normal",
+     "src": "fonts/noto-sans-telugu-telugu-800-normal.woff2"
+    },
+    {
+     "weight": "800",
+     "style": "normal",
+     "src": "fonts/noto-sans-telugu-latin-800-normal.woff2"
+    },
+    {
+     "weight": "600",
+     "style": "normal",
+     "src": "fonts/noto-sans-telugu-telugu-600-normal.woff2"
+    },
+    {
+     "weight": "600",
+     "style": "normal",
+     "src": "fonts/noto-sans-telugu-latin-600-normal.woff2"
+    }
+   ]
+  },
+  "label": {
+   "family": "Inter Tight",
+   "files": [
+    {
+     "weight": "600",
+     "style": "normal",
+     "src": "fonts/inter-tight-latin-600-normal.woff2"
+    },
+    {
+     "weight": "800",
+     "style": "normal",
+     "src": "fonts/inter-tight-latin-800-normal.woff2"
+    }
+   ]
+  },
+  "labelTe": {
+   "family": "Noto Sans Telugu",
+   "files": [
+    {
+     "weight": "600",
+     "style": "normal",
+     "src": "fonts/noto-sans-telugu-telugu-600-normal.woff2"
+    }
+   ]
+  }
+ },
+ "hook": "నీకూ నాకూ తేడా? నువ్వు స్పందిస్తావు. ఏం జరగాలో నేను నిర్ణయిస్తాను.",
+ "logo": "brand/axharry-logo-original.jpg",
+ "goldFrom": 72.33,
+ "endCard": 75.74,
+ "intense": [
+  "a03_genius",
+  "a11_button",
+  "a12_control",
+  "a15_richest"
+ ],
+ "scenes": [
+  {
+   "id": "a01_eyes",
+   "line": 0,
+   "words": [
+    {
+     "text": "చెప్పు,",
+     "start": 0.25,
+     "end": 1.28,
+     "key": false
+    },
+    {
+     "text": "ఒక",
+     "start": 1.28,
+     "end": 1.52,
+     "key": false
+    },
+    {
+     "text": "నిపుణుడికీ",
+     "start": 1.52,
+     "end": 2.48,
+     "key": true
+    },
+    {
+     "text": "ఒక",
+     "start": 2.48,
+     "end": 2.72,
+     "key": false
+    },
+    {
+     "text": "మేధావికీ",
+     "start": 2.72,
+     "end": 3.52,
+     "key": true
+    },
+    {
+     "text": "మధ్య",
+     "start": 3.52,
+     "end": 3.92,
+     "key": false
+    },
+    {
+     "text": "తేడా",
+     "start": 4.01,
+     "end": 4.453,
+     "key": false
+    },
+    {
+     "text": "ఏంటో",
+     "start": 4.453,
+     "end": 4.693,
+     "key": false
+    },
+    {
+     "text": "నీకు",
+     "start": 4.693,
+     "end": 4.853,
+     "key": false
+    },
+    {
+     "text": "తెలుసా?",
+     "start": 4.853,
+     "end": 5.64,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 0.25,
+     "words": [
+      {
+       "text": "చెప్పు,",
+       "start": 0.25,
+       "end": 1.28,
+       "key": false
+      }
+     ],
+     "end": 1.28
+    },
+    {
+     "start": 1.28,
+     "words": [
+      {
+       "text": "ఒక",
+       "start": 1.28,
+       "end": 1.52,
+       "key": false
+      },
+      {
+       "text": "నిపుణుడికీ",
+       "start": 1.52,
+       "end": 2.48,
+       "key": true
+      },
+      {
+       "text": "ఒక",
+       "start": 2.48,
+       "end": 2.72,
+       "key": false
+      }
+     ],
+     "end": 2.72
+    },
+    {
+     "start": 2.72,
+     "words": [
+      {
+       "text": "మేధావికీ",
+       "start": 2.72,
+       "end": 3.52,
+       "key": true
+      },
+      {
+       "text": "మధ్య",
+       "start": 3.52,
+       "end": 3.92,
+       "key": false
+      },
+      {
+       "text": "తేడా",
+       "start": 4.01,
+       "end": 4.453,
+       "key": false
+      }
+     ],
+     "end": 4.453
+    },
+    {
+     "start": 4.453,
+     "words": [
+      {
+       "text": "ఏంటో",
+       "start": 4.453,
+       "end": 4.693,
+       "key": false
+      },
+      {
+       "text": "నీకు",
+       "start": 4.693,
+       "end": 4.853,
+       "key": false
+      },
+      {
+       "text": "తెలుసా?",
+       "start": 4.853,
+       "end": 5.64,
+       "key": false
+      }
+     ],
+     "end": 5.93
+    }
+   ],
+   "start": 0.0,
+   "end": 5.85,
+   "shots": [
+    {
+     "start": 0.0,
+     "end": 2.68,
+     "framing": 0,
+     "clip": {
+      "src": "cal",
+      "in": 689.5,
+      "max": 3.5
+     },
+     "video": "clips/cal_0689.50.mp4",
+     "fx": 0.5,
+     "fy": 0.5,
+     "rate": 1.0
+    },
+    {
+     "start": 2.68,
+     "end": 5.85,
+     "framing": 1,
+     "image": "art/a01_eyes_41.jpg"
+    }
+   ]
+  },
+  {
+   "id": "a02_expert",
+   "line": 1,
+   "words": [
+    {
+     "text": "నిపుణుడు",
+     "start": 5.93,
+     "end": 6.72,
+     "key": false
+    },
+    {
+     "text": "ఒక",
+     "start": 6.72,
+     "end": 6.96,
+     "key": false
+    },
+    {
+     "text": "విషయం",
+     "start": 6.96,
+     "end": 7.36,
+     "key": false
+    },
+    {
+     "text": "గురించి",
+     "start": 7.36,
+     "end": 7.76,
+     "key": false
+    },
+    {
+     "text": "తెలుసుకోవాల్సినదంతా",
+     "start": 7.76,
+     "end": 9.12,
+     "key": true
+    },
+    {
+     "text": "నేర్చుకుంటాడు.",
+     "start": 9.12,
+     "end": 10.04,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 5.93,
+     "words": [
+      {
+       "text": "నిపుణుడు",
+       "start": 5.93,
+       "end": 6.72,
+       "key": false
+      },
+      {
+       "text": "ఒక",
+       "start": 6.72,
+       "end": 6.96,
+       "key": false
+      },
+      {
+       "text": "విషయం",
+       "start": 6.96,
+       "end": 7.36,
+       "key": false
+      }
+     ],
+     "end": 7.36
+    },
+    {
+     "start": 7.36,
+     "words": [
+      {
+       "text": "గురించి",
+       "start": 7.36,
+       "end": 7.76,
+       "key": false
+      }
+     ],
+     "end": 7.76
+    },
+    {
+     "start": 7.76,
+     "words": [
+      {
+       "text": "తెలుసుకోవాల్సినదంతా",
+       "start": 7.76,
+       "end": 9.12,
+       "key": true
+      }
+     ],
+     "end": 9.12
+    },
+    {
+     "start": 9.12,
+     "words": [
+      {
+       "text": "నేర్చుకుంటాడు.",
+       "start": 9.12,
+       "end": 10.04,
+       "key": false
+      }
+     ],
+     "end": 10.17
+    }
+   ],
+   "start": 5.85,
+   "end": 10.09,
+   "shots": [
+    {
+     "start": 5.85,
+     "end": 7.72,
+     "framing": 3,
+     "clip": {
+      "src": "tos",
+      "in": 53.77,
+      "max": 2.8
+     },
+     "video": "clips/tos_0053.77.mp4",
+     "fx": 0.35,
+     "fy": 0.5,
+     "rate": 1.0
+    },
+    {
+     "start": 7.72,
+     "end": 10.09,
+     "framing": 0,
+     "clip": {
+      "src": "metro",
+      "in": 875.6,
+      "max": 3.8
+     },
+     "video": "clips/metro_0875.60.mp4",
+     "fx": 0.5,
+     "fy": 0.5,
+     "rate": 1.0
+    }
+   ]
+  },
+  {
+   "id": "a03_genius",
+   "line": 2,
+   "words": [
+    {
+     "text": "కానీ",
+     "start": 10.17,
+     "end": 10.64,
+     "key": false
+    },
+    {
+     "text": "మేధావి,",
+     "start": 10.64,
+     "end": 11.76,
+     "key": true
+    },
+    {
+     "text": "మేధావి",
+     "start": 11.76,
+     "end": 12.4,
+     "key": false
+    },
+    {
+     "text": "ఆ",
+     "start": 12.4,
+     "end": 12.56,
+     "key": false
+    },
+    {
+     "text": "సమాచారాన్ని",
+     "start": 12.56,
+     "end": 13.36,
+     "key": false
+    },
+    {
+     "text": "ఉపయోగించి",
+     "start": 13.36,
+     "end": 14.08,
+     "key": false
+    },
+    {
+     "text": "నియమాలనే",
+     "start": 14.41,
+     "end": 15.36,
+     "key": false
+    },
+    {
+     "text": "పూర్తిగా",
+     "start": 15.36,
+     "end": 15.92,
+     "key": false
+    },
+    {
+     "text": "తిరగరాస్తాడు.",
+     "start": 15.92,
+     "end": 17.2,
+     "key": true
+    }
+   ],
+   "chunks": [
+    {
+     "start": 10.17,
+     "words": [
+      {
+       "text": "కానీ",
+       "start": 10.17,
+       "end": 10.64,
+       "key": false
+      },
+      {
+       "text": "మేధావి,",
+       "start": 10.64,
+       "end": 11.76,
+       "key": true
+      }
+     ],
+     "end": 11.76
+    },
+    {
+     "start": 11.76,
+     "words": [
+      {
+       "text": "మేధావి",
+       "start": 11.76,
+       "end": 12.4,
+       "key": false
+      },
+      {
+       "text": "ఆ",
+       "start": 12.4,
+       "end": 12.56,
+       "key": false
+      },
+      {
+       "text": "సమాచారాన్ని",
+       "start": 12.56,
+       "end": 13.36,
+       "key": false
+      }
+     ],
+     "end": 13.36
+    },
+    {
+     "start": 13.36,
+     "words": [
+      {
+       "text": "ఉపయోగించి",
+       "start": 13.36,
+       "end": 14.08,
+       "key": false
+      },
+      {
+       "text": "నియమాలనే",
+       "start": 14.41,
+       "end": 15.36,
+       "key": false
+      }
+     ],
+     "end": 15.36
+    },
+    {
+     "start": 15.36,
+     "words": [
+      {
+       "text": "పూర్తిగా",
+       "start": 15.36,
+       "end": 15.92,
+       "key": false
+      },
+      {
+       "text": "తిరగరాస్తాడు.",
+       "start": 15.92,
+       "end": 17.2,
+       "key": true
+      }
+     ],
+     "end": 17.2
+    }
+   ],
+   "start": 10.09,
+   "end": 17.12,
+   "shots": [
+    {
+     "start": 10.09,
+     "end": 13.32,
+     "framing": 2,
+     "clip": {
+      "src": "tos",
+      "in": 57.0,
+      "max": 3.5
+     },
+     "video": "clips/tos_0057.00.mp4",
+     "fx": 0.5,
+     "fy": 0.5,
+     "rate": 1.0
+    },
+    {
+     "start": 13.32,
+     "end": 15.32,
+     "framing": 3,
+     "clip": {
+      "src": "madsci",
+      "in": 340.54,
+      "max": 2.9
+     },
+     "video": "clips/madsci_0340.54.mp4",
+     "fx": 0.5,
+     "fy": 0.5,
+     "rate": 1.0
+    },
+    {
+     "start": 15.32,
+     "end": 17.12,
+     "framing": 0,
+     "image": "art/a03_genius_73.jpg"
+    }
+   ]
+  },
+  {
+   "id": "a04_crowd",
+   "line": 3,
+   "words": [
+    {
+     "text": "చాలామంది",
+     "start": 17.2,
+     "end": 18.08,
+     "key": false
+    },
+    {
+     "text": "జ్ఞానాన్ని",
+     "start": 18.09,
+     "end": 18.8,
+     "key": false
+    },
+    {
+     "text": "సమాజంలో",
+     "start": 18.8,
+     "end": 19.6,
+     "key": false
+    },
+    {
+     "text": "ఇమిడిపోవడానికే",
+     "start": 19.6,
+     "end": 20.48,
+     "key": true
+    },
+    {
+     "text": "వాడుకుంటారు.",
+     "start": 20.48,
+     "end": 21.6,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 17.2,
+     "words": [
+      {
+       "text": "చాలామంది",
+       "start": 17.2,
+       "end": 18.08,
+       "key": false
+      },
+      {
+       "text": "జ్ఞానాన్ని",
+       "start": 18.09,
+       "end": 18.8,
+       "key": false
+      }
+     ],
+     "end": 18.8
+    },
+    {
+     "start": 18.8,
+     "words": [
+      {
+       "text": "సమాజంలో",
+       "start": 18.8,
+       "end": 19.6,
+       "key": false
+      },
+      {
+       "text": "ఇమిడిపోవడానికే",
+       "start": 19.6,
+       "end": 20.48,
+       "key": true
+      }
+     ],
+     "end": 20.48
+    },
+    {
+     "start": 20.48,
+     "words": [
+      {
+       "text": "వాడుకుంటారు.",
+       "start": 20.48,
+       "end": 21.6,
+       "key": false
+      }
+     ],
+     "end": 21.6
+    }
+   ],
+   "start": 17.12,
+   "end": 21.52,
+   "shots": [
+    {
+     "start": 17.12,
+     "end": 20.44,
+     "framing": 1,
+     "clip": {
+      "src": "metro",
+      "in": 249.5,
+      "max": 3.5
+     },
+     "video": "clips/metro_0249.50.mp4",
+     "fx": 0.5,
+     "fy": 0.5,
+     "rate": 1.0
+    },
+    {
+     "start": 20.44,
+     "end": 21.52,
+     "framing": 2,
+     "clip": {
+      "src": "mechmon",
+      "in": 197.5,
+      "max": 3.0
+     },
+     "video": "clips/mechmon_0197.50.mp4",
+     "fx": 0.5,
+     "fy": 0.5,
+     "rate": 1.0
+    }
+   ]
+  },
+  {
+   "id": "a05_study",
+   "line": 4,
+   "words": [
+    {
+     "text": "ఉద్యోగం",
+     "start": 21.6,
+     "end": 22.133,
+     "key": true
+    },
+    {
+     "text": "కోసం,",
+     "start": 22.133,
+     "end": 22.8,
+     "key": false
+    },
+    {
+     "text": "డబ్బు",
+     "start": 22.8,
+     "end": 23.12,
+     "key": true
+    },
+    {
+     "text": "కోసం,",
+     "start": 23.12,
+     "end": 23.84,
+     "key": false
+    },
+    {
+     "text": "గౌరవం",
+     "start": 23.84,
+     "end": 24.32,
+     "key": true
+    },
+    {
+     "text": "కోసం",
+     "start": 24.32,
+     "end": 24.64,
+     "key": false
+    },
+    {
+     "text": "చదువుతారు.",
+     "start": 24.64,
+     "end": 25.76,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 21.6,
+     "words": [
+      {
+       "text": "ఉద్యోగం",
+       "start": 21.6,
+       "end": 22.133,
+       "key": true
+      },
+      {
+       "text": "కోసం,",
+       "start": 22.133,
+       "end": 22.8,
+       "key": false
+      }
+     ],
+     "end": 22.8
+    },
+    {
+     "start": 22.8,
+     "words": [
+      {
+       "text": "డబ్బు",
+       "start": 22.8,
+       "end": 23.12,
+       "key": true
+      },
+      {
+       "text": "కోసం,",
+       "start": 23.12,
+       "end": 23.84,
+       "key": false
+      }
+     ],
+     "end": 23.84
+    },
+    {
+     "start": 23.84,
+     "words": [
+      {
+       "text": "గౌరవం",
+       "start": 23.84,
+       "end": 24.32,
+       "key": true
+      },
+      {
+       "text": "కోసం",
+       "start": 24.32,
+       "end": 24.64,
+       "key": false
+      },
+      {
+       "text": "చదువుతారు.",
+       "start": 24.64,
+       "end": 25.76,
+       "key": false
+      }
+     ],
+     "end": 25.76
+    }
+   ],
+   "start": 21.52,
+   "end": 25.68,
+   "shots": [
+    {
+     "start": 21.52,
+     "end": 23.8,
+     "framing": 0,
+     "clip": {
+      "src": "metro",
+      "in": 1174.5,
+      "max": 3.5
+     },
+     "video": "clips/metro_1174.50.mp4",
+     "fx": 0.5,
+     "fy": 0.5,
+     "rate": 1.0
+    },
+    {
+     "start": 23.8,
+     "end": 25.68,
+     "framing": 1,
+     "clip": {
+      "src": "metro",
+      "in": 1124.5,
+      "max": 3.5
+     },
+     "video": "clips/metro_1124.50.mp4",
+     "fx": 0.5,
+     "fy": 0.5,
+     "rate": 1.0
+    }
+   ]
+  },
+  {
+   "id": "a06_tools",
+   "line": 5,
+   "words": [
+    {
+     "text": "వేరొకరి",
+     "start": 25.76,
+     "end": 26.32,
+     "key": false
+    },
+    {
+     "text": "చేతిలో",
+     "start": 26.32,
+     "end": 26.88,
+     "key": false
+    },
+    {
+     "text": "మంచి",
+     "start": 26.88,
+     "end": 27.36,
+     "key": false
+    },
+    {
+     "text": "పనిముట్లుగా",
+     "start": 27.36,
+     "end": 28.0,
+     "key": true
+    },
+    {
+     "text": "మారడానికే",
+     "start": 28.0,
+     "end": 28.96,
+     "key": false
+    },
+    {
+     "text": "వాళ్ళు",
+     "start": 28.96,
+     "end": 29.2,
+     "key": false
+    },
+    {
+     "text": "శిక్షణ",
+     "start": 29.2,
+     "end": 29.6,
+     "key": false
+    },
+    {
+     "text": "పొందుతున్నారు.",
+     "start": 29.6,
+     "end": 30.72,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 25.76,
+     "words": [
+      {
+       "text": "వేరొకరి",
+       "start": 25.76,
+       "end": 26.32,
+       "key": false
+      },
+      {
+       "text": "చేతిలో",
+       "start": 26.32,
+       "end": 26.88,
+       "key": false
+      },
+      {
+       "text": "మంచి",
+       "start": 26.88,
+       "end": 27.36,
+       "key": false
+      }
+     ],
+     "end": 27.36
+    },
+    {
+     "start": 27.36,
+     "words": [
+      {
+       "text": "పనిముట్లుగా",
+       "start": 27.36,
+       "end": 28.0,
+       "key": true
+      },
+      {
+       "text": "మారడానికే",
+       "start": 28.0,
+       "end": 28.96,
+       "key": false
+      }
+     ],
+     "end": 28.96
+    },
+    {
+     "start": 28.96,
+     "words": [
+      {
+       "text": "వాళ్ళు",
+       "start": 28.96,
+       "end": 29.2,
+       "key": false
+      },
+      {
+       "text": "శిక్షణ",
+       "start": 29.2,
+       "end": 29.6,
+       "key": false
+      }
+     ],
+     "end": 29.6
+    },
+    {
+     "start": 29.6,
+     "words": [
+      {
+       "text": "పొందుతున్నారు.",
+       "start": 29.6,
+       "end": 30.72,
+       "key": false
+      }
+     ],
+     "end": 30.72
+    }
+   ],
+   "start": 25.68,
+   "end": 30.64,
+   "shots": [
+    {
+     "start": 25.68,
+     "end": 28.92,
+     "framing": 3,
+     "clip": {
+      "src": "mechmon",
+      "in": 467.5,
+      "max": 3.0
+     },
+     "video": "clips/mechmon_0467.50.mp4",
+     "fx": 0.5,
+     "fy": 0.5,
+     "rate": 0.898
+    },
+    {
+     "start": 28.92,
+     "end": 30.64,
+     "framing": 0,
+     "clip": {
+      "src": "metro",
+      "in": 875.6,
+      "max": 3.8
+     },
+     "video": "clips/metro_0875.60.mp4",
+     "fx": 0.5,
+     "fy": 0.5,
+     "rate": 1.0
+    }
+   ]
+  },
+  {
+   "id": "a07_hand",
+   "line": 6,
+   "words": [
+    {
+     "text": "కానీ",
+     "start": 30.72,
+     "end": 31.04,
+     "key": false
+    },
+    {
+     "text": "నన్ను,",
+     "start": 31.04,
+     "end": 31.84,
+     "key": false
+    },
+    {
+     "text": "ఆ",
+     "start": 31.84,
+     "end": 32.0,
+     "key": false
+    },
+    {
+     "text": "పనిముట్టును",
+     "start": 32.0,
+     "end": 32.693,
+     "key": false
+    },
+    {
+     "text": "పట్టుకునే",
+     "start": 32.693,
+     "end": 33.2,
+     "key": false
+    },
+    {
+     "text": "చేయిగా",
+     "start": 33.2,
+     "end": 33.6,
+     "key": true
+    },
+    {
+     "text": "పెంచారు.",
+     "start": 33.6,
+     "end": 34.64,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 30.72,
+     "words": [
+      {
+       "text": "కానీ",
+       "start": 30.72,
+       "end": 31.04,
+       "key": false
+      },
+      {
+       "text": "నన్ను,",
+       "start": 31.04,
+       "end": 31.84,
+       "key": false
+      }
+     ],
+     "end": 31.84
+    },
+    {
+     "start": 31.84,
+     "words": [
+      {
+       "text": "ఆ",
+       "start": 31.84,
+       "end": 32.0,
+       "key": false
+      },
+      {
+       "text": "పనిముట్టును",
+       "start": 32.0,
+       "end": 32.693,
+       "key": false
+      }
+     ],
+     "end": 32.693
+    },
+    {
+     "start": 32.693,
+     "words": [
+      {
+       "text": "పట్టుకునే",
+       "start": 32.693,
+       "end": 33.2,
+       "key": false
+      },
+      {
+       "text": "చేయిగా",
+       "start": 33.2,
+       "end": 33.6,
+       "key": true
+      }
+     ],
+     "end": 33.6
+    },
+    {
+     "start": 33.6,
+     "words": [
+      {
+       "text": "పెంచారు.",
+       "start": 33.6,
+       "end": 34.64,
+       "key": false
+      }
+     ],
+     "end": 34.64
+    }
+   ],
+   "start": 30.64,
+   "end": 34.56,
+   "shots": [
+    {
+     "start": 30.64,
+     "end": 32.653,
+     "framing": 2,
+     "clip": {
+      "src": "madsci",
+      "in": 281.5,
+      "max": 3.3
+     },
+     "video": "clips/madsci_0281.50.mp4",
+     "fx": 0.5,
+     "fy": 0.5,
+     "rate": 1.0
+    },
+    {
+     "start": 32.653,
+     "end": 34.56,
+     "framing": 3,
+     "image": "art/a07_hand_73.jpg"
+    }
+   ]
+  },
+  {
+   "id": "a08_world",
+   "line": 7,
+   "words": [
+    {
+     "text": "ప్రపంచ",
+     "start": 34.64,
+     "end": 35.2,
+     "key": false
+    },
+    {
+     "text": "చరిత్ర",
+     "start": 35.2,
+     "end": 35.6,
+     "key": true
+    },
+    {
+     "text": "గురించి",
+     "start": 35.6,
+     "end": 35.973,
+     "key": false
+    },
+    {
+     "text": "గానీ,",
+     "start": 35.973,
+     "end": 36.64,
+     "key": false
+    },
+    {
+     "text": "సైన్స్",
+     "start": 36.65,
+     "end": 37.227,
+     "key": true
+    },
+    {
+     "text": "అందం",
+     "start": 37.227,
+     "end": 37.52,
+     "key": false
+    },
+    {
+     "text": "గురించి",
+     "start": 37.52,
+     "end": 37.893,
+     "key": false
+    },
+    {
+     "text": "గానీ",
+     "start": 37.893,
+     "end": 38.16,
+     "key": false
+    },
+    {
+     "text": "నాకు",
+     "start": 38.25,
+     "end": 38.64,
+     "key": false
+    },
+    {
+     "text": "పట్టింపు",
+     "start": 38.64,
+     "end": 39.013,
+     "key": false
+    },
+    {
+     "text": "లేదు.",
+     "start": 39.013,
+     "end": 39.84,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 34.64,
+     "words": [
+      {
+       "text": "ప్రపంచ",
+       "start": 34.64,
+       "end": 35.2,
+       "key": false
+      },
+      {
+       "text": "చరిత్ర",
+       "start": 35.2,
+       "end": 35.6,
+       "key": true
+      },
+      {
+       "text": "గురించి",
+       "start": 35.6,
+       "end": 35.973,
+       "key": false
+      }
+     ],
+     "end": 35.973
+    },
+    {
+     "start": 35.973,
+     "words": [
+      {
+       "text": "గానీ,",
+       "start": 35.973,
+       "end": 36.64,
+       "key": false
+      }
+     ],
+     "end": 36.65
+    },
+    {
+     "start": 36.65,
+     "words": [
+      {
+       "text": "సైన్స్",
+       "start": 36.65,
+       "end": 37.227,
+       "key": true
+      },
+      {
+       "text": "అందం",
+       "start": 37.227,
+       "end": 37.52,
+       "key": false
+      },
+      {
+       "text": "గురించి",
+       "start": 37.52,
+       "end": 37.893,
+       "key": false
+      }
+     ],
+     "end": 37.893
+    },
+    {
+     "start": 37.893,
+     "words": [
+      {
+       "text": "గానీ",
+       "start": 37.893,
+       "end": 38.16,
+       "key": false
+      },
+      {
+       "text": "నాకు",
+       "start": 38.25,
+       "end": 38.64,
+       "key": false
+      },
+      {
+       "text": "పట్టింపు",
+       "start": 38.64,
+       "end": 39.013,
+       "key": false
+      }
+     ],
+     "end": 39.013
+    },
+    {
+     "start": 39.013,
+     "words": [
+      {
+       "text": "లేదు.",
+       "start": 39.013,
+       "end": 39.84,
+       "key": false
+      }
+     ],
+     "end": 39.84
+    }
+   ],
+   "start": 34.56,
+   "end": 39.76,
+   "shots": [
+    {
+     "start": 34.56,
+     "end": 36.61,
+     "framing": 1,
+     "clip": {
+      "src": "madsci",
+      "in": 65.5,
+      "max": 3.0
+     },
+     "video": "clips/madsci_0065.50.mp4",
+     "fx": 0.5,
+     "fy": 0.5,
+     "rate": 1.0
+    },
+    {
+     "start": 36.61,
+     "end": 39.76,
+     "framing": 2,
+     "clip": {
+      "src": "sintel",
+      "in": 151.2,
+      "max": 3.8
+     },
+     "video": "clips/sintel_0151.20.mp4",
+     "fx": 0.5,
+     "fy": 0.5,
+     "rate": 1.0
+    }
+   ]
+  },
+  {
+   "id": "a09_leverage",
+   "line": 8,
+   "words": [
+    {
+     "text": "అవి",
+     "start": 39.84,
+     "end": 40.053,
+     "key": false
+    },
+    {
+     "text": "ఇచ్చే",
+     "start": 40.053,
+     "end": 40.48,
+     "key": false
+    },
+    {
+     "text": "ఆధిపత్యం",
+     "start": 40.48,
+     "end": 41.2,
+     "key": true
+    },
+    {
+     "text": "మాత్రమే",
+     "start": 41.2,
+     "end": 41.76,
+     "key": false
+    },
+    {
+     "text": "నాకు",
+     "start": 41.76,
+     "end": 42.0,
+     "key": false
+    },
+    {
+     "text": "ముఖ్యం.",
+     "start": 42.0,
+     "end": 42.96,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 39.84,
+     "words": [
+      {
+       "text": "అవి",
+       "start": 39.84,
+       "end": 40.053,
+       "key": false
+      },
+      {
+       "text": "ఇచ్చే",
+       "start": 40.053,
+       "end": 40.48,
+       "key": false
+      },
+      {
+       "text": "ఆధిపత్యం",
+       "start": 40.48,
+       "end": 41.2,
+       "key": true
+      }
+     ],
+     "end": 41.2
+    },
+    {
+     "start": 41.2,
+     "words": [
+      {
+       "text": "మాత్రమే",
+       "start": 41.2,
+       "end": 41.76,
+       "key": false
+      },
+      {
+       "text": "నాకు",
+       "start": 41.76,
+       "end": 42.0,
+       "key": false
+      },
+      {
+       "text": "ముఖ్యం.",
+       "start": 42.0,
+       "end": 42.96,
+       "key": false
+      }
+     ],
+     "end": 42.96
+    }
+   ],
+   "start": 39.76,
+   "end": 42.88,
+   "shots": [
+    {
+     "start": 39.76,
+     "end": 42.88,
+     "framing": 0,
+     "clip": {
+      "src": "madsci",
+      "in": 230.2,
+      "max": 3.2
+     },
+     "video": "clips/madsci_0230.20.mp4",
+     "fx": 0.5,
+     "fy": 0.5,
+     "rate": 0.994
+    }
+   ]
+  },
+  {
+   "id": "a10_textbooks",
+   "line": 9,
+   "words": [
+    {
+     "text": "కొన్ని",
+     "start": 42.96,
+     "end": 43.28,
+     "key": false
+    },
+    {
+     "text": "పుస్తకాలు",
+     "start": 43.28,
+     "end": 43.84,
+     "key": false
+    },
+    {
+     "text": "బట్టీ",
+     "start": 43.85,
+     "end": 44.32,
+     "key": true
+    },
+    {
+     "text": "పట్టినంత",
+     "start": 44.32,
+     "end": 44.8,
+     "key": false
+    },
+    {
+     "text": "మాత్రాన,",
+     "start": 44.8,
+     "end": 45.6,
+     "key": false
+    },
+    {
+     "text": "నువ్వు",
+     "start": 45.6,
+     "end": 45.893,
+     "key": false
+    },
+    {
+     "text": "తెలివైనవాడివి",
+     "start": 45.893,
+     "end": 46.587,
+     "key": true
+    },
+    {
+     "text": "అనుకుంటున్నావా?",
+     "start": 46.587,
+     "end": 47.2,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 42.96,
+     "words": [
+      {
+       "text": "కొన్ని",
+       "start": 42.96,
+       "end": 43.28,
+       "key": false
+      },
+      {
+       "text": "పుస్తకాలు",
+       "start": 43.28,
+       "end": 43.84,
+       "key": false
+      },
+      {
+       "text": "బట్టీ",
+       "start": 43.85,
+       "end": 44.32,
+       "key": true
+      }
+     ],
+     "end": 44.32
+    },
+    {
+     "start": 44.32,
+     "words": [
+      {
+       "text": "పట్టినంత",
+       "start": 44.32,
+       "end": 44.8,
+       "key": false
+      },
+      {
+       "text": "మాత్రాన,",
+       "start": 44.8,
+       "end": 45.6,
+       "key": false
+      }
+     ],
+     "end": 45.6
+    },
+    {
+     "start": 45.6,
+     "words": [
+      {
+       "text": "నువ్వు",
+       "start": 45.6,
+       "end": 45.893,
+       "key": false
+      },
+      {
+       "text": "తెలివైనవాడివి",
+       "start": 45.893,
+       "end": 46.587,
+       "key": true
+      }
+     ],
+     "end": 46.587
+    },
+    {
+     "start": 46.587,
+     "words": [
+      {
+       "text": "అనుకుంటున్నావా?",
+       "start": 46.587,
+       "end": 47.2,
+       "key": false
+      }
+     ],
+     "end": 47.8
+    }
+   ],
+   "start": 42.88,
+   "end": 47.77,
+   "shots": [
+    {
+     "start": 42.88,
+     "end": 45.56,
+     "framing": 3,
+     "clip": {
+      "src": "tos",
+      "in": 380.1,
+      "max": 2.9
+     },
+     "video": "clips/tos_0380.10.mp4",
+     "fx": 0.4,
+     "fy": 0.5,
+     "rate": 1.0
+    },
+    {
+     "start": 45.56,
+     "end": 47.77,
+     "framing": 0,
+     "image": "art/a10_textbooks_41.jpg"
+    }
+   ]
+  },
+  {
+   "id": "a11_button",
+   "line": 10,
+   "words": [
+    {
+     "text": "అసలైన",
+     "start": 47.85,
+     "end": 48.56,
+     "key": false
+    },
+    {
+     "text": "జ్ఞానం",
+     "start": 48.56,
+     "end": 48.933,
+     "key": false
+    },
+    {
+     "text": "అంటే,",
+     "start": 48.933,
+     "end": 49.68,
+     "key": false
+    },
+    {
+     "text": "ఒక",
+     "start": 49.68,
+     "end": 50.0,
+     "key": false
+    },
+    {
+     "text": "మంచి",
+     "start": 50.0,
+     "end": 50.4,
+     "key": false
+    },
+    {
+     "text": "మనిషితో",
+     "start": 50.4,
+     "end": 51.04,
+     "key": false
+    },
+    {
+     "text": "చెడ్డ",
+     "start": 51.13,
+     "end": 51.52,
+     "key": true
+    },
+    {
+     "text": "పని",
+     "start": 51.52,
+     "end": 51.84,
+     "key": false
+    },
+    {
+     "text": "చేయించడానికి",
+     "start": 51.84,
+     "end": 52.96,
+     "key": false
+    },
+    {
+     "text": "ఏ",
+     "start": 52.97,
+     "end": 53.36,
+     "key": false
+    },
+    {
+     "text": "బటన్",
+     "start": 53.36,
+     "end": 53.733,
+     "key": true
+    },
+    {
+     "text": "నొక్కాలో",
+     "start": 53.733,
+     "end": 54.32,
+     "key": false
+    },
+    {
+     "text": "కచ్చితంగా",
+     "start": 54.32,
+     "end": 54.96,
+     "key": false
+    },
+    {
+     "text": "తెలుసుకోవడం.",
+     "start": 54.96,
+     "end": 56.24,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 47.85,
+     "words": [
+      {
+       "text": "అసలైన",
+       "start": 47.85,
+       "end": 48.56,
+       "key": false
+      },
+      {
+       "text": "జ్ఞానం",
+       "start": 48.56,
+       "end": 48.933,
+       "key": false
+      },
+      {
+       "text": "అంటే,",
+       "start": 48.933,
+       "end": 49.68,
+       "key": false
+      }
+     ],
+     "end": 49.68
+    },
+    {
+     "start": 49.68,
+     "words": [
+      {
+       "text": "ఒక",
+       "start": 49.68,
+       "end": 50.0,
+       "key": false
+      },
+      {
+       "text": "మంచి",
+       "start": 50.0,
+       "end": 50.4,
+       "key": false
+      },
+      {
+       "text": "మనిషితో",
+       "start": 50.4,
+       "end": 51.04,
+       "key": false
+      },
+      {
+       "text": "చెడ్డ",
+       "start": 51.13,
+       "end": 51.52,
+       "key": true
+      }
+     ],
+     "end": 51.52
+    },
+    {
+     "start": 51.52,
+     "words": [
+      {
+       "text": "పని",
+       "start": 51.52,
+       "end": 51.84,
+       "key": false
+      },
+      {
+       "text": "చేయించడానికి",
+       "start": 51.84,
+       "end": 52.96,
+       "key": false
+      },
+      {
+       "text": "ఏ",
+       "start": 52.97,
+       "end": 53.36,
+       "key": false
+      }
+     ],
+     "end": 53.36
+    },
+    {
+     "start": 53.36,
+     "words": [
+      {
+       "text": "బటన్",
+       "start": 53.36,
+       "end": 53.733,
+       "key": true
+      },
+      {
+       "text": "నొక్కాలో",
+       "start": 53.733,
+       "end": 54.32,
+       "key": false
+      }
+     ],
+     "end": 54.32
+    },
+    {
+     "start": 54.32,
+     "words": [
+      {
+       "text": "కచ్చితంగా",
+       "start": 54.32,
+       "end": 54.96,
+       "key": false
+      },
+      {
+       "text": "తెలుసుకోవడం.",
+       "start": 54.96,
+       "end": 56.24,
+       "key": false
+      }
+     ],
+     "end": 56.24
+    }
+   ],
+   "start": 47.77,
+   "end": 56.16,
+   "shots": [
+    {
+     "start": 47.77,
+     "end": 49.64,
+     "framing": 2,
+     "clip": {
+      "src": "mechmon",
+      "in": 339.2,
+      "max": 2.4
+     },
+     "video": "clips/mechmon_0339.20.mp4",
+     "fx": 0.5,
+     "fy": 0.5,
+     "rate": 1.0
+    },
+    {
+     "start": 49.64,
+     "end": 51.48,
+     "framing": 3,
+     "clip": {
+      "src": "mechmon",
+      "in": 379.95,
+      "max": 1.8
+     },
+     "video": "clips/mechmon_0379.95.mp4",
+     "fx": 0.5,
+     "fy": 0.5,
+     "rate": 0.928
+    },
+    {
+     "start": 51.48,
+     "end": 53.32,
+     "framing": 0,
+     "image": "art/a11_button_17.jpg"
+    },
+    {
+     "start": 53.32,
+     "end": 56.16,
+     "framing": 1,
+     "image": "art/a11_button_17.jpg"
+    }
+   ]
+  },
+  {
+   "id": "a12_control",
+   "line": 11,
+   "words": [
+    {
+     "text": "నిన్ను",
+     "start": 56.24,
+     "end": 56.56,
+     "key": false
+    },
+    {
+     "text": "కంట్రోల్",
+     "start": 56.56,
+     "end": 56.96,
+     "key": true
+    },
+    {
+     "text": "చేయడానికి,",
+     "start": 56.96,
+     "end": 57.92,
+     "key": false
+    },
+    {
+     "text": "నేను",
+     "start": 57.92,
+     "end": 58.213,
+     "key": false
+    },
+    {
+     "text": "నీ",
+     "start": 58.213,
+     "end": 58.32,
+     "key": false
+    },
+    {
+     "text": "స్నేహితుడిని",
+     "start": 58.32,
+     "end": 58.96,
+     "key": false
+    },
+    {
+     "text": "కావాల్సిన",
+     "start": 58.96,
+     "end": 59.44,
+     "key": false
+    },
+    {
+     "text": "అవసరం",
+     "start": 59.44,
+     "end": 59.76,
+     "key": false
+    },
+    {
+     "text": "లేదు.",
+     "start": 59.76,
+     "end": 60.64,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 56.24,
+     "words": [
+      {
+       "text": "నిన్ను",
+       "start": 56.24,
+       "end": 56.56,
+       "key": false
+      },
+      {
+       "text": "కంట్రోల్",
+       "start": 56.56,
+       "end": 56.96,
+       "key": true
+      }
+     ],
+     "end": 56.96
+    },
+    {
+     "start": 56.96,
+     "words": [
+      {
+       "text": "చేయడానికి,",
+       "start": 56.96,
+       "end": 57.92,
+       "key": false
+      }
+     ],
+     "end": 57.92
+    },
+    {
+     "start": 57.92,
+     "words": [
+      {
+       "text": "నేను",
+       "start": 57.92,
+       "end": 58.213,
+       "key": false
+      },
+      {
+       "text": "నీ",
+       "start": 58.213,
+       "end": 58.32,
+       "key": false
+      },
+      {
+       "text": "స్నేహితుడిని",
+       "start": 58.32,
+       "end": 58.96,
+       "key": false
+      }
+     ],
+     "end": 58.96
+    },
+    {
+     "start": 58.96,
+     "words": [
+      {
+       "text": "కావాల్సిన",
+       "start": 58.96,
+       "end": 59.44,
+       "key": false
+      },
+      {
+       "text": "అవసరం",
+       "start": 59.44,
+       "end": 59.76,
+       "key": false
+      },
+      {
+       "text": "లేదు.",
+       "start": 59.76,
+       "end": 60.64,
+       "key": false
+      }
+     ],
+     "end": 60.64
+    }
+   ],
+   "start": 56.16,
+   "end": 60.56,
+   "shots": [
+    {
+     "start": 56.16,
+     "end": 58.92,
+     "framing": 1,
+     "clip": {
+      "src": "cal",
+      "in": 696.0,
+      "max": 3.8
+     },
+     "video": "clips/cal_0696.00.mp4",
+     "fx": 0.5,
+     "fy": 0.5,
+     "rate": 1.0
+    },
+    {
+     "start": 58.92,
+     "end": 60.56,
+     "framing": 2,
+     "clip": {
+      "src": "tos",
+      "in": 102.6,
+      "max": 2.3
+     },
+     "video": "clips/tos_0102.60.mp4",
+     "fx": 0.5,
+     "fy": 0.5,
+     "rate": 1.0
+    }
+   ]
+  },
+  {
+   "id": "a13_fear",
+   "line": 12,
+   "words": [
+    {
+     "text": "నువ్వు",
+     "start": 60.64,
+     "end": 60.96,
+     "key": false
+    },
+    {
+     "text": "దేనికి",
+     "start": 60.96,
+     "end": 61.413,
+     "key": false
+    },
+    {
+     "text": "భయపడతావో,",
+     "start": 61.413,
+     "end": 62.4,
+     "key": true
+    },
+    {
+     "text": "అది",
+     "start": 62.4,
+     "end": 62.64,
+     "key": false
+    },
+    {
+     "text": "తెలిస్తే",
+     "start": 62.64,
+     "end": 63.12,
+     "key": false
+    },
+    {
+     "text": "చాలు.",
+     "start": 63.12,
+     "end": 64.0,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 60.64,
+     "words": [
+      {
+       "text": "నువ్వు",
+       "start": 60.64,
+       "end": 60.96,
+       "key": false
+      },
+      {
+       "text": "దేనికి",
+       "start": 60.96,
+       "end": 61.413,
+       "key": false
+      }
+     ],
+     "end": 61.413
+    },
+    {
+     "start": 61.413,
+     "words": [
+      {
+       "text": "భయపడతావో,",
+       "start": 61.413,
+       "end": 62.4,
+       "key": true
+      }
+     ],
+     "end": 62.4
+    },
+    {
+     "start": 62.4,
+     "words": [
+      {
+       "text": "అది",
+       "start": 62.4,
+       "end": 62.64,
+       "key": false
+      },
+      {
+       "text": "తెలిస్తే",
+       "start": 62.64,
+       "end": 63.12,
+       "key": false
+      },
+      {
+       "text": "చాలు.",
+       "start": 63.12,
+       "end": 64.0,
+       "key": false
+      }
+     ],
+     "end": 64.0
+    }
+   ],
+   "start": 60.56,
+   "end": 63.92,
+   "shots": [
+    {
+     "start": 60.56,
+     "end": 62.36,
+     "framing": 0,
+     "clip": {
+      "src": "spring",
+      "in": 151.0,
+      "max": 3.4
+     },
+     "video": "clips/spring_0151.00.mp4",
+     "fx": 0.45,
+     "fy": 0.5,
+     "rate": 1.0
+    },
+    {
+     "start": 62.36,
+     "end": 63.92,
+     "framing": 1,
+     "clip": {
+      "src": "sintel",
+      "in": 337.9,
+      "max": 1.35
+     },
+     "video": "clips/sintel_0337.90.mp4",
+     "fx": 0.55,
+     "fy": 0.5,
+     "rate": 0.813
+    }
+   ]
+  },
+  {
+   "id": "a14_currency",
+   "line": 13,
+   "words": [
+    {
+     "text": "ఎప్పటికీ",
+     "start": 64.0,
+     "end": 64.72,
+     "key": false
+    },
+    {
+     "text": "విలువ",
+     "start": 64.72,
+     "end": 65.12,
+     "key": false
+    },
+    {
+     "text": "కోల్పోని",
+     "start": 65.12,
+     "end": 65.68,
+     "key": false
+    },
+    {
+     "text": "ఏకైక",
+     "start": 65.68,
+     "end": 66.24,
+     "key": false
+    },
+    {
+     "text": "కరెన్సీ,",
+     "start": 66.24,
+     "end": 67.12,
+     "key": true
+    },
+    {
+     "text": "సమాచారమే.",
+     "start": 67.12,
+     "end": 68.28,
+     "key": true
+    }
+   ],
+   "chunks": [
+    {
+     "start": 64.0,
+     "words": [
+      {
+       "text": "ఎప్పటికీ",
+       "start": 64.0,
+       "end": 64.72,
+       "key": false
+      },
+      {
+       "text": "విలువ",
+       "start": 64.72,
+       "end": 65.12,
+       "key": false
+      }
+     ],
+     "end": 65.12
+    },
+    {
+     "start": 65.12,
+     "words": [
+      {
+       "text": "కోల్పోని",
+       "start": 65.12,
+       "end": 65.68,
+       "key": false
+      },
+      {
+       "text": "ఏకైక",
+       "start": 65.68,
+       "end": 66.24,
+       "key": false
+      },
+      {
+       "text": "కరెన్సీ,",
+       "start": 66.24,
+       "end": 67.12,
+       "key": true
+      }
+     ],
+     "end": 67.12
+    },
+    {
+     "start": 67.12,
+     "words": [
+      {
+       "text": "సమాచారమే.",
+       "start": 67.12,
+       "end": 68.28,
+       "key": true
+      }
+     ],
+     "end": 68.49
+    }
+   ],
+   "start": 63.92,
+   "end": 68.41,
+   "shots": [
+    {
+     "start": 63.92,
+     "end": 67.08,
+     "framing": 3,
+     "clip": {
+      "src": "sintel",
+      "in": 467.5,
+      "max": 3.5
+     },
+     "video": "clips/sintel_0467.50.mp4",
+     "fx": 0.5,
+     "fy": 0.5,
+     "rate": 1.0
+    },
+    {
+     "start": 67.08,
+     "end": 68.41,
+     "framing": 0,
+     "clip": {
+      "src": "mechmon",
+      "in": 161.5,
+      "max": 3.0
+     },
+     "video": "clips/mechmon_0161.50.mp4",
+     "fx": 0.5,
+     "fy": 0.5,
+     "rate": 1.0
+    }
+   ]
+  },
+  {
+   "id": "a15_richest",
+   "line": 14,
+   "words": [
+    {
+     "text": "ఇప్పుడు,",
+     "start": 68.49,
+     "end": 69.44,
+     "key": false
+    },
+    {
+     "text": "ఈ",
+     "start": 69.44,
+     "end": 69.68,
+     "key": false
+    },
+    {
+     "text": "గదిలో",
+     "start": 69.68,
+     "end": 70.16,
+     "key": false
+    },
+    {
+     "text": "అందరికంటే",
+     "start": 70.16,
+     "end": 70.88,
+     "key": false
+    },
+    {
+     "text": "ధనవంతుడిని",
+     "start": 70.88,
+     "end": 71.6,
+     "key": true
+    },
+    {
+     "text": "నేనే.",
+     "start": 71.6,
+     "end": 72.24,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 68.49,
+     "words": [
+      {
+       "text": "ఇప్పుడు,",
+       "start": 68.49,
+       "end": 69.44,
+       "key": false
+      }
+     ],
+     "end": 69.44
+    },
+    {
+     "start": 69.44,
+     "words": [
+      {
+       "text": "ఈ",
+       "start": 69.44,
+       "end": 69.68,
+       "key": false
+      },
+      {
+       "text": "గదిలో",
+       "start": 69.68,
+       "end": 70.16,
+       "key": false
+      },
+      {
+       "text": "అందరికంటే",
+       "start": 70.16,
+       "end": 70.88,
+       "key": false
+      }
+     ],
+     "end": 70.88
+    },
+    {
+     "start": 70.88,
+     "words": [
+      {
+       "text": "ధనవంతుడిని",
+       "start": 70.88,
+       "end": 71.6,
+       "key": true
+      },
+      {
+       "text": "నేనే.",
+       "start": 71.6,
+       "end": 72.24,
+       "key": false
+      }
+     ],
+     "end": 72.41
+    }
+   ],
+   "start": 68.41,
+   "end": 72.33,
+   "shots": [
+    {
+     "start": 68.41,
+     "end": 70.84,
+     "framing": 2,
+     "clip": {
+      "src": "mechmon",
+      "in": 193.2,
+      "max": 3.8
+     },
+     "video": "clips/mechmon_0193.20.mp4",
+     "fx": 0.5,
+     "fy": 0.5,
+     "rate": 1.0
+    },
+    {
+     "start": 70.84,
+     "end": 72.33,
+     "framing": 3,
+     "image": "art/a15_richest_41.jpg"
+    }
+   ]
+  },
+  {
+   "id": "a16_share",
+   "line": 15,
+   "words": [
+    {
+     "text": "ఇకపై",
+     "start": 72.41,
+     "end": 72.96,
+     "key": false
+    },
+    {
+     "text": "నా",
+     "start": 72.96,
+     "end": 73.12,
+     "key": false
+    },
+    {
+     "text": "జ్ఞానాన్ని",
+     "start": 73.12,
+     "end": 73.76,
+     "key": true
+    },
+    {
+     "text": "మీతో",
+     "start": 73.77,
+     "end": 74.16,
+     "key": false
+    },
+    {
+     "text": "పంచుకుంటాను.",
+     "start": 74.16,
+     "end": 75.04,
+     "key": true
+    }
+   ],
+   "chunks": [
+    {
+     "start": 72.41,
+     "words": [
+      {
+       "text": "ఇకపై",
+       "start": 72.41,
+       "end": 72.96,
+       "key": false
+      },
+      {
+       "text": "నా",
+       "start": 72.96,
+       "end": 73.12,
+       "key": false
+      },
+      {
+       "text": "జ్ఞానాన్ని",
+       "start": 73.12,
+       "end": 73.76,
+       "key": true
+      }
+     ],
+     "end": 73.77
+    },
+    {
+     "start": 73.77,
+     "words": [
+      {
+       "text": "మీతో",
+       "start": 73.77,
+       "end": 74.16,
+       "key": false
+      },
+      {
+       "text": "పంచుకుంటాను.",
+       "start": 74.16,
+       "end": 75.04,
+       "key": true
+      }
+     ],
+     "end": 75.64
+    }
+   ],
+   "start": 72.33,
+   "end": 75.74,
+   "shots": [
+    {
+     "start": 72.33,
+     "end": 75.74,
+     "framing": 1,
+     "image": "art/a16_share_17.jpg"
+    }
+   ]
+  }
+ ],
+ "credits": [
+  "Footage: Sintel (CC BY 3.0) & Tears of Steel (CC BY 3.0) Blender Foundation | Spring (CC BY 4.0) Blender Studio",
+  "Public domain: Superman (Fleischer Studios, 1941) | Metropolis (1927) | The Cabinet of Dr. Caligari (1920)"
+ ]
+}
