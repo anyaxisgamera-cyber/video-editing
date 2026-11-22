@@ -145,7 +145,10 @@ def main() -> None:
                     used.add(id(entry))
                     break
             if entry is None:
-                entry = {"art": variants[k % len(variants)]}
+                # fall back to an art variant that differs from the previous shot's picture
+                last_art = prev.get("art") if isinstance(prev, dict) else None
+                pick = next((v for v in variants[k % len(variants):] + variants if v != last_art), variants[0])
+                entry = {"art": pick}
             prev = entry
             shot = {"start": start, "end": end, "framing": (si * 3 + k) % 4}
             if "art" in entry:
