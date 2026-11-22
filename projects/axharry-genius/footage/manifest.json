@@ -1,0 +1,88 @@
+{
+ "note": "Footage sources for the AXHARRY edit. Files are downloaded to a local footage root (not committed). Licence fields are copied from each Internet Archive item's metadata (licenseurl/rights) on 2026-11-22.",
+ "sources": [
+  {
+   "id": "mechmon",
+   "title": "Superman: The Mechanical Monsters (Fleischer Studios, 1941)",
+   "archive": "superman_mechanical_monsters",
+   "file": "mechmon/mechanical_monsters.mp4",
+   "license": "CC0 1.0 (public domain dedication on the item); US public domain, copyright not renewed",
+   "licenseurl": "http://creativecommons.org/publicdomain/zero/1.0/",
+   "attribution_required": false,
+   "use": "ok",
+   "crop": "634:476:3:2"
+  },
+  {
+   "id": "madsci",
+   "title": "Superman: The Mad Scientist (Fleischer Studios, 1941)",
+   "archive": "mad-scientist-superman-fleischer",
+   "file": "madsci/mad_scientist.mp4",
+   "license": "Public Domain Mark 1.0; item notes: fell into US public domain when copyright was not renewed",
+   "licenseurl": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "attribution_required": false,
+   "use": "ok"
+  },
+  {
+   "id": "metro",
+   "title": "Metropolis (Fritz Lang, 1927)",
+   "archive": "metropolis-1927-bdrip-1080p-x-265-dts-hd-ma-5.1-d-0ct-0r-lew-sev",
+   "file": "metropolis/metropolis_480p.mp4",
+   "license": "Public Domain Mark 1.0 (US public domain since 2023)",
+   "licenseurl": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "attribution_required": false,
+   "use": "ok",
+   "caution": "Public domain in the US; restoration/score rights and non-US status not verified. Picture only is used; the archive's soundtrack is not used.",
+   "crop": "632:472:111:4"
+  },
+  {
+   "id": "cal",
+   "title": "The Cabinet of Dr. Caligari (Robert Wiene, 1920)",
+   "archive": "DasKabinettdesDoktorCaligariTheCabinetofDrCaligari",
+   "file": "caligari/caligari.mp4",
+   "license": "Public domain (item licenseurl creativecommons.org/licenses/publicdomain)",
+   "licenseurl": "http://creativecommons.org/licenses/publicdomain/",
+   "attribution_required": false,
+   "use": "ok"
+  },
+  {
+   "id": "tos",
+   "title": "Tears of Steel (Blender Foundation, 2012)",
+   "archive": "Tears-of-Steel",
+   "file": "tos/tears_of_steel_720p.mkv",
+   "license": "CC BY 3.0",
+   "licenseurl": "http://creativecommons.org/licenses/by/3.0/",
+   "attribution_required": true,
+   "credit": "Tears of Steel (CC BY 3.0) Blender Foundation | mango.blender.org",
+   "use": "ok"
+  },
+  {
+   "id": "sintel",
+   "title": "Sintel (Blender Foundation, 2010)",
+   "archive": "Sintel",
+   "file": "sintel/sintel_2048.mp4",
+   "license": "CC BY 3.0",
+   "licenseurl": "http://creativecommons.org/licenses/by/3.0/",
+   "attribution_required": true,
+   "credit": "Sintel (CC BY 3.0) Blender Foundation | durian.blender.org",
+   "use": "ok"
+  },
+  {
+   "id": "spring",
+   "title": "Spring (Blender Animation Studio, 2019)",
+   "archive": "springopenmovie",
+   "file": "spring/spring.mp4",
+   "license": "CC BY 4.0",
+   "licenseurl": "https://creativecommons.org/licenses/by/4.0/",
+   "attribution_required": true,
+   "credit": "Spring (CC BY 4.0) Blender Animation Studio | studio.blender.org",
+   "use": "ok"
+  },
+  {
+   "id": "agent327",
+   "title": "Agent 327: Operation Barbershop",
+   "license": "CC BY-ND 4.0",
+   "use": "excluded",
+   "reason": "No-derivatives licence: cutting, grading and captioning would be a derivative."
+  }
+ ]
+}

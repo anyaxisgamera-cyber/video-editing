@@ -1,0 +1,250 @@
+{
+ "_note": "Per-scene shot plan. Clip entries: src (footage/manifest.json id), in (source seconds), max (usable seconds before the source's next cut, checked on filmstrips), fx/fy crop focus. Art entries reuse the original anime art. A shot takes the next entry in the list that is long enough; art always fits.",
+ "_credits": [
+  "Footage: Sintel (CC BY 3.0) & Tears of Steel (CC BY 3.0) Blender Foundation | Spring (CC BY 4.0) Blender Studio",
+  "Public domain: Superman (Fleischer Studios, 1941) | Metropolis (1927) | The Cabinet of Dr. Caligari (1920)"
+ ],
+ "a01_eyes": [
+  {
+   "src": "mechmon",
+   "in": 379.95,
+   "max": 1.8
+  },
+  {
+   "src": "cal",
+   "in": 689.5,
+   "max": 3.5
+  },
+  {
+   "art": 41
+  }
+ ],
+ "a02_expert": [
+  {
+   "src": "tos",
+   "in": 53.77,
+   "max": 2.8,
+   "fx": 0.35
+  },
+  {
+   "src": "metro",
+   "in": 875.6,
+   "max": 3.8
+  },
+  {
+   "art": 17
+  }
+ ],
+ "a03_genius": [
+  {
+   "src": "tos",
+   "in": 57.0,
+   "max": 3.5,
+   "fx": 0.5
+  },
+  {
+   "src": "madsci",
+   "in": 340.54,
+   "max": 2.9
+  },
+  {
+   "art": 73
+  }
+ ],
+ "a04_crowd": [
+  {
+   "src": "metro",
+   "in": 249.5,
+   "max": 3.5
+  },
+  {
+   "src": "mechmon",
+   "in": 197.5,
+   "max": 3.0
+  },
+  {
+   "art": 17
+  }
+ ],
+ "a05_study": [
+  {
+   "src": "metro",
+   "in": 1174.5,
+   "max": 3.5
+  },
+  {
+   "src": "metro",
+   "in": 1124.5,
+   "max": 3.5
+  },
+  {
+   "art": 41
+  }
+ ],
+ "a06_tools": [
+  {
+   "src": "mechmon",
+   "in": 467.5,
+   "max": 3.0
+  },
+  {
+   "src": "metro",
+   "in": 875.6,
+   "max": 3.8
+  },
+  {
+   "art": 73
+  }
+ ],
+ "a07_hand": [
+  {
+   "src": "madsci",
+   "in": 281.5,
+   "max": 3.3
+  },
+  {
+   "art": 73
+  },
+  {
+   "src": "madsci",
+   "in": 230.2,
+   "max": 3.2
+  }
+ ],
+ "a08_world": [
+  {
+   "src": "madsci",
+   "in": 65.5,
+   "max": 3.0
+  },
+  {
+   "src": "sintel",
+   "in": 151.2,
+   "max": 3.8
+  },
+  {
+   "src": "spring",
+   "in": 29.9,
+   "max": 3.0
+  }
+ ],
+ "a09_leverage": [
+  {
+   "src": "madsci",
+   "in": 230.2,
+   "max": 3.2
+  },
+  {
+   "art": 73
+  }
+ ],
+ "a10_textbooks": [
+  {
+   "src": "tos",
+   "in": 380.1,
+   "max": 2.9,
+   "fx": 0.4
+  },
+  {
+   "art": 41
+  }
+ ],
+ "a11_button": [
+  {
+   "src": "mechmon",
+   "in": 337.4,
+   "max": 1.3
+  },
+  {
+   "src": "mechmon",
+   "in": 339.2,
+   "max": 2.4
+  },
+  {
+   "src": "mechmon",
+   "in": 379.95,
+   "max": 1.8
+  },
+  {
+   "art": 17
+  }
+ ],
+ "a12_control": [
+  {
+   "src": "cal",
+   "in": 696.0,
+   "max": 3.8
+  },
+  {
+   "src": "tos",
+   "in": 102.6,
+   "max": 2.3
+  },
+  {
+   "art": 41
+  }
+ ],
+ "a13_fear": [
+  {
+   "src": "spring",
+   "in": 151.0,
+   "max": 3.4,
+   "fx": 0.45
+  },
+  {
+   "src": "sintel",
+   "in": 337.9,
+   "max": 1.35,
+   "fx": 0.55
+  },
+  {
+   "art": 3
+  }
+ ],
+ "a14_currency": [
+  {
+   "src": "sintel",
+   "in": 467.5,
+   "max": 3.5
+  },
+  {
+   "src": "mechmon",
+   "in": 161.5,
+   "max": 3.0
+  },
+  {
+   "art": 41
+  }
+ ],
+ "a15_richest": [
+  {
+   "src": "mechmon",
+   "in": 193.2,
+   "max": 3.8
+  },
+  {
+   "art": 41
+  },
+  {
+   "src": "metro",
+   "in": 1124.5,
+   "max": 3.5
+  }
+ ],
+ "a16_share": [
+  {
+   "src": "spring",
+   "in": 248.3,
+   "max": 1.9,
+   "fx": 0.4
+  },
+  {
+   "art": 17
+  },
+  {
+   "src": "sintel",
+   "in": 151.2,
+   "max": 3.8
+  }
+ ]
+}

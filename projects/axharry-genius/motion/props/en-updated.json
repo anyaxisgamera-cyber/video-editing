@@ -1,0 +1,2877 @@
+{
+ "canvas": {
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "durationInFrames": 1923
+ },
+ "language": "en",
+ "fonts": {
+  "caption": {
+   "family": "Inter Tight",
+   "files": [
+    {
+     "weight": "800",
+     "style": "normal",
+     "src": "fonts/inter-tight-latin-800-normal.woff2"
+    },
+    {
+     "weight": "600",
+     "style": "normal",
+     "src": "fonts/inter-tight-latin-600-normal.woff2"
+    }
+   ]
+  },
+  "label": {
+   "family": "Inter Tight",
+   "files": [
+    {
+     "weight": "600",
+     "style": "normal",
+     "src": "fonts/inter-tight-latin-600-normal.woff2"
+    },
+    {
+     "weight": "800",
+     "style": "normal",
+     "src": "fonts/inter-tight-latin-800-normal.woff2"
+    }
+   ]
+  },
+  "labelTe": {
+   "family": "Noto Sans Telugu",
+   "files": [
+    {
+     "weight": "600",
+     "style": "normal",
+     "src": "fonts/noto-sans-telugu-telugu-600-normal.woff2"
+    }
+   ]
+  }
+ },
+ "hook": "THE DIFFERENCE BETWEEN YOU AND ME? YOU REACT. I DECIDE WHAT HAPPENS.",
+ "logo": "brand/axharry-logo-original.jpg",
+ "goldFrom": 57.99,
+ "endCard": 61.49,
+ "intense": [
+  "a03_genius",
+  "a11_button",
+  "a12_control",
+  "a15_richest"
+ ],
+ "scenes": [
+  {
+   "id": "a01_eyes",
+   "line": 0,
+   "words": [
+    {
+     "text": "Tell",
+     "start": 0.4,
+     "end": 0.7,
+     "key": false
+    },
+    {
+     "text": "me,",
+     "start": 0.7,
+     "end": 0.94,
+     "key": false
+    },
+    {
+     "text": "do",
+     "start": 1.44,
+     "end": 1.7,
+     "key": false
+    },
+    {
+     "text": "you",
+     "start": 1.7,
+     "end": 1.84,
+     "key": false
+    },
+    {
+     "text": "know",
+     "start": 1.84,
+     "end": 2.02,
+     "key": false
+    },
+    {
+     "text": "the",
+     "start": 2.02,
+     "end": 2.16,
+     "key": false
+    },
+    {
+     "text": "difference",
+     "start": 2.16,
+     "end": 2.52,
+     "key": false
+    },
+    {
+     "text": "between",
+     "start": 2.52,
+     "end": 2.92,
+     "key": false
+    },
+    {
+     "text": "an",
+     "start": 2.92,
+     "end": 3.12,
+     "key": false
+    },
+    {
+     "text": "expert",
+     "start": 3.12,
+     "end": 3.5,
+     "key": true
+    },
+    {
+     "text": "and",
+     "start": 3.5,
+     "end": 3.9,
+     "key": false
+    },
+    {
+     "text": "a",
+     "start": 3.9,
+     "end": 4.02,
+     "key": false
+    },
+    {
+     "text": "genius?",
+     "start": 4.02,
+     "end": 4.32,
+     "key": true
+    }
+   ],
+   "chunks": [
+    {
+     "start": 0.4,
+     "words": [
+      {
+       "text": "Tell",
+       "start": 0.4,
+       "end": 0.7,
+       "key": false
+      },
+      {
+       "text": "me,",
+       "start": 0.7,
+       "end": 0.94,
+       "key": false
+      }
+     ],
+     "end": 1.44
+    },
+    {
+     "start": 1.44,
+     "words": [
+      {
+       "text": "do",
+       "start": 1.44,
+       "end": 1.7,
+       "key": false
+      },
+      {
+       "text": "you",
+       "start": 1.7,
+       "end": 1.84,
+       "key": false
+      },
+      {
+       "text": "know",
+       "start": 1.84,
+       "end": 2.02,
+       "key": false
+      },
+      {
+       "text": "the",
+       "start": 2.02,
+       "end": 2.16,
+       "key": false
+      }
+     ],
+     "end": 2.16
+    },
+    {
+     "start": 2.16,
+     "words": [
+      {
+       "text": "difference",
+       "start": 2.16,
+       "end": 2.52,
+       "key": false
+      },
+      {
+       "text": "between",
+       "start": 2.52,
+       "end": 2.92,
+       "key": false
+      },
+      {
+       "text": "an",
+       "start": 2.92,
+       "end": 3.12,
+       "key": false
+      }
+     ],
+     "end": 3.12
+    },
+    {
+     "start": 3.12,
+     "words": [
+      {
+       "text": "expert",
+       "start": 3.12,
+       "end": 3.5,
+       "key": true
+      },
+      {
+       "text": "and",
+       "start": 3.5,
+       "end": 3.9,
+       "key": false
+      },
+      {
+       "text": "a",
+       "start": 3.9,
+       "end": 4.02,
+       "key": false
+      },
+      {
+       "text": "genius?",
+       "start": 4.02,
+       "end": 4.32,
+       "key": true
+      }
+     ],
+     "end": 4.92
+    }
+   ],
+   "start": 0.0,
+   "end": 4.86,
+   "shots": [
+    {
+     "start": 0.0,
+     "end": 2.12,
+     "image": "art/a01_eyes_41.jpg",
+     "framing": 0
+    },
+    {
+     "start": 2.12,
+     "end": 4.86,
+     "image": "art/a01_eyes_3.jpg",
+     "framing": 1
+    }
+   ]
+  },
+  {
+   "id": "a02_expert",
+   "line": 1,
+   "words": [
+    {
+     "text": "An",
+     "start": 4.94,
+     "end": 5.12,
+     "key": false
+    },
+    {
+     "text": "expert",
+     "start": 5.12,
+     "end": 5.44,
+     "key": false
+    },
+    {
+     "text": "has",
+     "start": 5.44,
+     "end": 5.7,
+     "key": false
+    },
+    {
+     "text": "learned",
+     "start": 5.7,
+     "end": 5.94,
+     "key": false
+    },
+    {
+     "text": "everything",
+     "start": 5.94,
+     "end": 6.3,
+     "key": true
+    },
+    {
+     "text": "there",
+     "start": 6.3,
+     "end": 6.56,
+     "key": false
+    },
+    {
+     "text": "is",
+     "start": 6.56,
+     "end": 6.72,
+     "key": false
+    },
+    {
+     "text": "to",
+     "start": 6.72,
+     "end": 6.86,
+     "key": false
+    },
+    {
+     "text": "know",
+     "start": 6.86,
+     "end": 7.04,
+     "key": false
+    },
+    {
+     "text": "about",
+     "start": 7.04,
+     "end": 7.26,
+     "key": false
+    },
+    {
+     "text": "a",
+     "start": 7.26,
+     "end": 7.42,
+     "key": false
+    },
+    {
+     "text": "subject.",
+     "start": 7.42,
+     "end": 7.86,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 4.94,
+     "words": [
+      {
+       "text": "An",
+       "start": 4.94,
+       "end": 5.12,
+       "key": false
+      },
+      {
+       "text": "expert",
+       "start": 5.12,
+       "end": 5.44,
+       "key": false
+      },
+      {
+       "text": "has",
+       "start": 5.44,
+       "end": 5.7,
+       "key": false
+      },
+      {
+       "text": "learned",
+       "start": 5.7,
+       "end": 5.94,
+       "key": false
+      }
+     ],
+     "end": 5.94
+    },
+    {
+     "start": 5.94,
+     "words": [
+      {
+       "text": "everything",
+       "start": 5.94,
+       "end": 6.3,
+       "key": true
+      },
+      {
+       "text": "there",
+       "start": 6.3,
+       "end": 6.56,
+       "key": false
+      },
+      {
+       "text": "is",
+       "start": 6.56,
+       "end": 6.72,
+       "key": false
+      },
+      {
+       "text": "to",
+       "start": 6.72,
+       "end": 6.86,
+       "key": false
+      }
+     ],
+     "end": 6.86
+    },
+    {
+     "start": 6.86,
+     "words": [
+      {
+       "text": "know",
+       "start": 6.86,
+       "end": 7.04,
+       "key": false
+      },
+      {
+       "text": "about",
+       "start": 7.04,
+       "end": 7.26,
+       "key": false
+      },
+      {
+       "text": "a",
+       "start": 7.26,
+       "end": 7.42,
+       "key": false
+      },
+      {
+       "text": "subject.",
+       "start": 7.42,
+       "end": 7.86,
+       "key": false
+      }
+     ],
+     "end": 8.46
+    }
+   ],
+   "start": 4.86,
+   "end": 8.4,
+   "shots": [
+    {
+     "start": 4.86,
+     "end": 6.82,
+     "image": "art/a02_expert_17.jpg",
+     "framing": 3
+    },
+    {
+     "start": 6.82,
+     "end": 8.4,
+     "image": "art/a02_expert_41.jpg",
+     "framing": 0
+    }
+   ]
+  },
+  {
+   "id": "a03_genius",
+   "line": 2,
+   "words": [
+    {
+     "text": "But",
+     "start": 8.48,
+     "end": 8.7,
+     "key": false
+    },
+    {
+     "text": "a",
+     "start": 8.7,
+     "end": 8.84,
+     "key": false
+    },
+    {
+     "text": "genius,",
+     "start": 8.84,
+     "end": 9.2,
+     "key": true
+    },
+    {
+     "text": "a",
+     "start": 9.6,
+     "end": 9.78,
+     "key": false
+    },
+    {
+     "text": "genius",
+     "start": 9.78,
+     "end": 10.06,
+     "key": false
+    },
+    {
+     "text": "knows",
+     "start": 10.06,
+     "end": 10.4,
+     "key": false
+    },
+    {
+     "text": "how",
+     "start": 10.4,
+     "end": 10.64,
+     "key": false
+    },
+    {
+     "text": "to",
+     "start": 10.64,
+     "end": 10.76,
+     "key": false
+    },
+    {
+     "text": "use",
+     "start": 10.76,
+     "end": 11.04,
+     "key": false
+    },
+    {
+     "text": "that",
+     "start": 11.04,
+     "end": 11.26,
+     "key": false
+    },
+    {
+     "text": "information",
+     "start": 11.26,
+     "end": 11.88,
+     "key": false
+    },
+    {
+     "text": "to",
+     "start": 11.88,
+     "end": 12.14,
+     "key": false
+    },
+    {
+     "text": "rewrite",
+     "start": 12.14,
+     "end": 12.52,
+     "key": true
+    },
+    {
+     "text": "the",
+     "start": 12.52,
+     "end": 12.82,
+     "key": false
+    },
+    {
+     "text": "rules",
+     "start": 12.82,
+     "end": 13.1,
+     "key": true
+    },
+    {
+     "text": "entirely.",
+     "start": 13.1,
+     "end": 13.7,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 8.48,
+     "words": [
+      {
+       "text": "But",
+       "start": 8.48,
+       "end": 8.7,
+       "key": false
+      },
+      {
+       "text": "a",
+       "start": 8.7,
+       "end": 8.84,
+       "key": false
+      },
+      {
+       "text": "genius,",
+       "start": 8.84,
+       "end": 9.2,
+       "key": true
+      }
+     ],
+     "end": 9.6
+    },
+    {
+     "start": 9.6,
+     "words": [
+      {
+       "text": "a",
+       "start": 9.6,
+       "end": 9.78,
+       "key": false
+      },
+      {
+       "text": "genius",
+       "start": 9.78,
+       "end": 10.06,
+       "key": false
+      },
+      {
+       "text": "knows",
+       "start": 10.06,
+       "end": 10.4,
+       "key": false
+      },
+      {
+       "text": "how",
+       "start": 10.4,
+       "end": 10.64,
+       "key": false
+      }
+     ],
+     "end": 10.64
+    },
+    {
+     "start": 10.64,
+     "words": [
+      {
+       "text": "to",
+       "start": 10.64,
+       "end": 10.76,
+       "key": false
+      },
+      {
+       "text": "use",
+       "start": 10.76,
+       "end": 11.04,
+       "key": false
+      },
+      {
+       "text": "that",
+       "start": 11.04,
+       "end": 11.26,
+       "key": false
+      },
+      {
+       "text": "information",
+       "start": 11.26,
+       "end": 11.88,
+       "key": false
+      }
+     ],
+     "end": 11.88
+    },
+    {
+     "start": 11.88,
+     "words": [
+      {
+       "text": "to",
+       "start": 11.88,
+       "end": 12.14,
+       "key": false
+      },
+      {
+       "text": "rewrite",
+       "start": 12.14,
+       "end": 12.52,
+       "key": true
+      },
+      {
+       "text": "the",
+       "start": 12.52,
+       "end": 12.82,
+       "key": false
+      },
+      {
+       "text": "rules",
+       "start": 12.82,
+       "end": 13.1,
+       "key": true
+      }
+     ],
+     "end": 13.1
+    },
+    {
+     "start": 13.1,
+     "words": [
+      {
+       "text": "entirely.",
+       "start": 13.1,
+       "end": 13.7,
+       "key": false
+      }
+     ],
+     "end": 14.26
+    }
+   ],
+   "start": 8.4,
+   "end": 14.18,
+   "shots": [
+    {
+     "start": 8.4,
+     "end": 10.6,
+     "image": "art/a03_genius_73.jpg",
+     "framing": 2
+    },
+    {
+     "start": 10.6,
+     "end": 13.06,
+     "image": "art/a03_genius_3.jpg",
+     "framing": 3
+    },
+    {
+     "start": 13.06,
+     "end": 14.18,
+     "image": "art/a03_genius_41.jpg",
+     "framing": 0
+    }
+   ]
+  },
+  {
+   "id": "a04_crowd",
+   "line": 3,
+   "words": [
+    {
+     "text": "Most",
+     "start": 14.26,
+     "end": 14.52,
+     "key": false
+    },
+    {
+     "text": "people",
+     "start": 14.52,
+     "end": 14.8,
+     "key": false
+    },
+    {
+     "text": "use",
+     "start": 14.8,
+     "end": 15.12,
+     "key": false
+    },
+    {
+     "text": "knowledge",
+     "start": 15.12,
+     "end": 15.52,
+     "key": false
+    },
+    {
+     "text": "to",
+     "start": 15.52,
+     "end": 15.78,
+     "key": false
+    },
+    {
+     "text": "fit",
+     "start": 15.78,
+     "end": 16.0,
+     "key": true
+    },
+    {
+     "text": "into",
+     "start": 16.0,
+     "end": 16.2,
+     "key": false
+    },
+    {
+     "text": "society.",
+     "start": 16.2,
+     "end": 16.76,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 14.26,
+     "words": [
+      {
+       "text": "Most",
+       "start": 14.26,
+       "end": 14.52,
+       "key": false
+      },
+      {
+       "text": "people",
+       "start": 14.52,
+       "end": 14.8,
+       "key": false
+      },
+      {
+       "text": "use",
+       "start": 14.8,
+       "end": 15.12,
+       "key": false
+      }
+     ],
+     "end": 15.12
+    },
+    {
+     "start": 15.12,
+     "words": [
+      {
+       "text": "knowledge",
+       "start": 15.12,
+       "end": 15.52,
+       "key": false
+      },
+      {
+       "text": "to",
+       "start": 15.52,
+       "end": 15.78,
+       "key": false
+      },
+      {
+       "text": "fit",
+       "start": 15.78,
+       "end": 16.0,
+       "key": true
+      },
+      {
+       "text": "into",
+       "start": 16.0,
+       "end": 16.2,
+       "key": false
+      }
+     ],
+     "end": 16.2
+    },
+    {
+     "start": 16.2,
+     "words": [
+      {
+       "text": "society.",
+       "start": 16.2,
+       "end": 16.76,
+       "key": false
+      }
+     ],
+     "end": 17.36
+    }
+   ],
+   "start": 14.18,
+   "end": 17.4,
+   "shots": [
+    {
+     "start": 14.18,
+     "end": 16.16,
+     "image": "art/a04_crowd_17.jpg",
+     "framing": 1
+    },
+    {
+     "start": 16.16,
+     "end": 17.4,
+     "image": "art/a04_crowd_41.jpg",
+     "framing": 2
+    }
+   ]
+  },
+  {
+   "id": "a05_study",
+   "line": 4,
+   "words": [
+    {
+     "text": "They",
+     "start": 17.48,
+     "end": 17.66,
+     "key": false
+    },
+    {
+     "text": "study",
+     "start": 17.66,
+     "end": 17.98,
+     "key": false
+    },
+    {
+     "text": "to",
+     "start": 17.98,
+     "end": 18.2,
+     "key": false
+    },
+    {
+     "text": "get",
+     "start": 18.2,
+     "end": 18.34,
+     "key": false
+    },
+    {
+     "text": "a",
+     "start": 18.34,
+     "end": 18.44,
+     "key": false
+    },
+    {
+     "text": "job,",
+     "start": 18.44,
+     "end": 18.82,
+     "key": true
+    },
+    {
+     "text": "to",
+     "start": 19.06,
+     "end": 19.18,
+     "key": false
+    },
+    {
+     "text": "make",
+     "start": 19.18,
+     "end": 19.38,
+     "key": false
+    },
+    {
+     "text": "money,",
+     "start": 19.38,
+     "end": 19.7,
+     "key": true
+    },
+    {
+     "text": "to",
+     "start": 19.92,
+     "end": 20.02,
+     "key": false
+    },
+    {
+     "text": "be",
+     "start": 20.02,
+     "end": 20.14,
+     "key": false
+    },
+    {
+     "text": "respected.",
+     "start": 20.14,
+     "end": 20.66,
+     "key": true
+    }
+   ],
+   "chunks": [
+    {
+     "start": 17.48,
+     "words": [
+      {
+       "text": "They",
+       "start": 17.48,
+       "end": 17.66,
+       "key": false
+      },
+      {
+       "text": "study",
+       "start": 17.66,
+       "end": 17.98,
+       "key": false
+      },
+      {
+       "text": "to",
+       "start": 17.98,
+       "end": 18.2,
+       "key": false
+      },
+      {
+       "text": "get",
+       "start": 18.2,
+       "end": 18.34,
+       "key": false
+      }
+     ],
+     "end": 18.34
+    },
+    {
+     "start": 18.34,
+     "words": [
+      {
+       "text": "a",
+       "start": 18.34,
+       "end": 18.44,
+       "key": false
+      },
+      {
+       "text": "job,",
+       "start": 18.44,
+       "end": 18.82,
+       "key": true
+      }
+     ],
+     "end": 19.06
+    },
+    {
+     "start": 19.06,
+     "words": [
+      {
+       "text": "to",
+       "start": 19.06,
+       "end": 19.18,
+       "key": false
+      },
+      {
+       "text": "make",
+       "start": 19.18,
+       "end": 19.38,
+       "key": false
+      },
+      {
+       "text": "money,",
+       "start": 19.38,
+       "end": 19.7,
+       "key": true
+      }
+     ],
+     "end": 19.92
+    },
+    {
+     "start": 19.92,
+     "words": [
+      {
+       "text": "to",
+       "start": 19.92,
+       "end": 20.02,
+       "key": false
+      },
+      {
+       "text": "be",
+       "start": 20.02,
+       "end": 20.14,
+       "key": false
+      },
+      {
+       "text": "respected.",
+       "start": 20.14,
+       "end": 20.66,
+       "key": true
+      }
+     ],
+     "end": 21.26
+    }
+   ],
+   "start": 17.4,
+   "end": 21.28,
+   "shots": [
+    {
+     "start": 17.4,
+     "end": 19.88,
+     "image": "art/a05_study_17.jpg",
+     "framing": 0
+    },
+    {
+     "start": 19.88,
+     "end": 21.28,
+     "image": "art/a05_study_41.jpg",
+     "framing": 1
+    }
+   ]
+  },
+  {
+   "id": "a06_tools",
+   "line": 5,
+   "words": [
+    {
+     "text": "They're",
+     "start": 21.36,
+     "end": 21.64,
+     "key": false
+    },
+    {
+     "text": "training",
+     "start": 21.64,
+     "end": 22.0,
+     "key": false
+    },
+    {
+     "text": "to",
+     "start": 22.0,
+     "end": 22.22,
+     "key": false
+    },
+    {
+     "text": "be",
+     "start": 22.22,
+     "end": 22.34,
+     "key": false
+    },
+    {
+     "text": "better",
+     "start": 22.34,
+     "end": 22.58,
+     "key": false
+    },
+    {
+     "text": "tools",
+     "start": 22.58,
+     "end": 22.98,
+     "key": true
+    },
+    {
+     "text": "for",
+     "start": 22.98,
+     "end": 23.24,
+     "key": false
+    },
+    {
+     "text": "someone",
+     "start": 23.24,
+     "end": 23.56,
+     "key": false
+    },
+    {
+     "text": "else.",
+     "start": 23.56,
+     "end": 23.84,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 21.36,
+     "words": [
+      {
+       "text": "They're",
+       "start": 21.36,
+       "end": 21.64,
+       "key": false
+      },
+      {
+       "text": "training",
+       "start": 21.64,
+       "end": 22.0,
+       "key": false
+      },
+      {
+       "text": "to",
+       "start": 22.0,
+       "end": 22.22,
+       "key": false
+      },
+      {
+       "text": "be",
+       "start": 22.22,
+       "end": 22.34,
+       "key": false
+      }
+     ],
+     "end": 22.34
+    },
+    {
+     "start": 22.34,
+     "words": [
+      {
+       "text": "better",
+       "start": 22.34,
+       "end": 22.58,
+       "key": false
+      },
+      {
+       "text": "tools",
+       "start": 22.58,
+       "end": 22.98,
+       "key": true
+      },
+      {
+       "text": "for",
+       "start": 22.98,
+       "end": 23.24,
+       "key": false
+      },
+      {
+       "text": "someone",
+       "start": 23.24,
+       "end": 23.56,
+       "key": false
+      }
+     ],
+     "end": 23.56
+    },
+    {
+     "start": 23.56,
+     "words": [
+      {
+       "text": "else.",
+       "start": 23.56,
+       "end": 23.84,
+       "key": false
+      }
+     ],
+     "end": 24.36
+    }
+   ],
+   "start": 21.28,
+   "end": 24.28,
+   "shots": [
+    {
+     "start": 21.28,
+     "end": 24.28,
+     "image": "art/a06_tools_41.jpg",
+     "framing": 3
+    }
+   ]
+  },
+  {
+   "id": "a07_hand",
+   "line": 6,
+   "words": [
+    {
+     "text": "I",
+     "start": 24.36,
+     "end": 24.54,
+     "key": false
+    },
+    {
+     "text": "was",
+     "start": 24.54,
+     "end": 24.72,
+     "key": false
+    },
+    {
+     "text": "raised",
+     "start": 24.72,
+     "end": 25.06,
+     "key": false
+    },
+    {
+     "text": "to",
+     "start": 25.06,
+     "end": 25.32,
+     "key": false
+    },
+    {
+     "text": "be",
+     "start": 25.32,
+     "end": 25.42,
+     "key": false
+    },
+    {
+     "text": "the",
+     "start": 25.42,
+     "end": 25.56,
+     "key": false
+    },
+    {
+     "text": "hand",
+     "start": 25.56,
+     "end": 25.92,
+     "key": true
+    },
+    {
+     "text": "that",
+     "start": 25.92,
+     "end": 26.1,
+     "key": false
+    },
+    {
+     "text": "holds",
+     "start": 26.1,
+     "end": 26.44,
+     "key": false
+    },
+    {
+     "text": "the",
+     "start": 26.44,
+     "end": 26.7,
+     "key": false
+    },
+    {
+     "text": "tool.",
+     "start": 26.7,
+     "end": 27.0,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 24.36,
+     "words": [
+      {
+       "text": "I",
+       "start": 24.36,
+       "end": 24.54,
+       "key": false
+      },
+      {
+       "text": "was",
+       "start": 24.54,
+       "end": 24.72,
+       "key": false
+      },
+      {
+       "text": "raised",
+       "start": 24.72,
+       "end": 25.06,
+       "key": false
+      },
+      {
+       "text": "to",
+       "start": 25.06,
+       "end": 25.32,
+       "key": false
+      }
+     ],
+     "end": 25.32
+    },
+    {
+     "start": 25.32,
+     "words": [
+      {
+       "text": "be",
+       "start": 25.32,
+       "end": 25.42,
+       "key": false
+      },
+      {
+       "text": "the",
+       "start": 25.42,
+       "end": 25.56,
+       "key": false
+      },
+      {
+       "text": "hand",
+       "start": 25.56,
+       "end": 25.92,
+       "key": true
+      },
+      {
+       "text": "that",
+       "start": 25.92,
+       "end": 26.1,
+       "key": false
+      }
+     ],
+     "end": 26.1
+    },
+    {
+     "start": 26.1,
+     "words": [
+      {
+       "text": "holds",
+       "start": 26.1,
+       "end": 26.44,
+       "key": false
+      },
+      {
+       "text": "the",
+       "start": 26.44,
+       "end": 26.7,
+       "key": false
+      },
+      {
+       "text": "tool.",
+       "start": 26.7,
+       "end": 27.0,
+       "key": false
+      }
+     ],
+     "end": 27.0
+    }
+   ],
+   "start": 24.28,
+   "end": 26.92,
+   "shots": [
+    {
+     "start": 24.28,
+     "end": 26.92,
+     "image": "art/a07_hand_73.jpg",
+     "framing": 2
+    }
+   ]
+  },
+  {
+   "id": "a08_world",
+   "line": 7,
+   "words": [
+    {
+     "text": "I",
+     "start": 27.0,
+     "end": 27.8,
+     "key": false
+    },
+    {
+     "text": "don't",
+     "start": 27.8,
+     "end": 27.98,
+     "key": false
+    },
+    {
+     "text": "care",
+     "start": 27.98,
+     "end": 28.26,
+     "key": false
+    },
+    {
+     "text": "about",
+     "start": 28.26,
+     "end": 28.52,
+     "key": false
+    },
+    {
+     "text": "the",
+     "start": 28.52,
+     "end": 28.7,
+     "key": false
+    },
+    {
+     "text": "history",
+     "start": 28.7,
+     "end": 29.08,
+     "key": true
+    },
+    {
+     "text": "of",
+     "start": 29.08,
+     "end": 29.36,
+     "key": false
+    },
+    {
+     "text": "the",
+     "start": 29.36,
+     "end": 29.48,
+     "key": false
+    },
+    {
+     "text": "world",
+     "start": 29.48,
+     "end": 29.9,
+     "key": false
+    },
+    {
+     "text": "or",
+     "start": 29.9,
+     "end": 30.12,
+     "key": false
+    },
+    {
+     "text": "the",
+     "start": 30.12,
+     "end": 30.28,
+     "key": false
+    },
+    {
+     "text": "beauty",
+     "start": 30.28,
+     "end": 30.56,
+     "key": false
+    },
+    {
+     "text": "of",
+     "start": 30.56,
+     "end": 30.8,
+     "key": false
+    },
+    {
+     "text": "science.",
+     "start": 30.8,
+     "end": 31.22,
+     "key": true
+    }
+   ],
+   "chunks": [
+    {
+     "start": 27.0,
+     "words": [
+      {
+       "text": "I",
+       "start": 27.0,
+       "end": 27.8,
+       "key": false
+      },
+      {
+       "text": "don't",
+       "start": 27.8,
+       "end": 27.98,
+       "key": false
+      },
+      {
+       "text": "care",
+       "start": 27.98,
+       "end": 28.26,
+       "key": false
+      },
+      {
+       "text": "about",
+       "start": 28.26,
+       "end": 28.52,
+       "key": false
+      }
+     ],
+     "end": 28.52
+    },
+    {
+     "start": 28.52,
+     "words": [
+      {
+       "text": "the",
+       "start": 28.52,
+       "end": 28.7,
+       "key": false
+      },
+      {
+       "text": "history",
+       "start": 28.7,
+       "end": 29.08,
+       "key": true
+      },
+      {
+       "text": "of",
+       "start": 29.08,
+       "end": 29.36,
+       "key": false
+      },
+      {
+       "text": "the",
+       "start": 29.36,
+       "end": 29.48,
+       "key": false
+      }
+     ],
+     "end": 29.48
+    },
+    {
+     "start": 29.48,
+     "words": [
+      {
+       "text": "world",
+       "start": 29.48,
+       "end": 29.9,
+       "key": false
+      },
+      {
+       "text": "or",
+       "start": 29.9,
+       "end": 30.12,
+       "key": false
+      },
+      {
+       "text": "the",
+       "start": 30.12,
+       "end": 30.28,
+       "key": false
+      },
+      {
+       "text": "beauty",
+       "start": 30.28,
+       "end": 30.56,
+       "key": false
+      }
+     ],
+     "end": 30.56
+    },
+    {
+     "start": 30.56,
+     "words": [
+      {
+       "text": "of",
+       "start": 30.56,
+       "end": 30.8,
+       "key": false
+      },
+      {
+       "text": "science.",
+       "start": 30.8,
+       "end": 31.22,
+       "key": true
+      }
+     ],
+     "end": 31.82
+    }
+   ],
+   "start": 26.92,
+   "end": 31.86,
+   "shots": [
+    {
+     "start": 26.92,
+     "end": 29.44,
+     "image": "art/a08_world_17.jpg",
+     "framing": 1
+    },
+    {
+     "start": 29.44,
+     "end": 31.86,
+     "image": "art/a08_world_41.jpg",
+     "framing": 2
+    }
+   ]
+  },
+  {
+   "id": "a09_leverage",
+   "line": 8,
+   "words": [
+    {
+     "text": "I",
+     "start": 31.94,
+     "end": 32.46,
+     "key": false
+    },
+    {
+     "text": "only",
+     "start": 32.46,
+     "end": 32.82,
+     "key": false
+    },
+    {
+     "text": "care",
+     "start": 32.82,
+     "end": 33.18,
+     "key": false
+    },
+    {
+     "text": "about",
+     "start": 33.18,
+     "end": 33.4,
+     "key": false
+    },
+    {
+     "text": "the",
+     "start": 33.4,
+     "end": 33.58,
+     "key": false
+    },
+    {
+     "text": "leverage",
+     "start": 33.58,
+     "end": 34.04,
+     "key": true
+    },
+    {
+     "text": "those",
+     "start": 34.04,
+     "end": 34.4,
+     "key": false
+    },
+    {
+     "text": "things",
+     "start": 34.4,
+     "end": 34.74,
+     "key": false
+    },
+    {
+     "text": "provide.",
+     "start": 34.74,
+     "end": 35.28,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 31.94,
+     "words": [
+      {
+       "text": "I",
+       "start": 31.94,
+       "end": 32.46,
+       "key": false
+      },
+      {
+       "text": "only",
+       "start": 32.46,
+       "end": 32.82,
+       "key": false
+      },
+      {
+       "text": "care",
+       "start": 32.82,
+       "end": 33.18,
+       "key": false
+      },
+      {
+       "text": "about",
+       "start": 33.18,
+       "end": 33.4,
+       "key": false
+      }
+     ],
+     "end": 33.4
+    },
+    {
+     "start": 33.4,
+     "words": [
+      {
+       "text": "the",
+       "start": 33.4,
+       "end": 33.58,
+       "key": false
+      },
+      {
+       "text": "leverage",
+       "start": 33.58,
+       "end": 34.04,
+       "key": true
+      },
+      {
+       "text": "those",
+       "start": 34.04,
+       "end": 34.4,
+       "key": false
+      }
+     ],
+     "end": 34.4
+    },
+    {
+     "start": 34.4,
+     "words": [
+      {
+       "text": "things",
+       "start": 34.4,
+       "end": 34.74,
+       "key": false
+      },
+      {
+       "text": "provide.",
+       "start": 34.74,
+       "end": 35.28,
+       "key": false
+      }
+     ],
+     "end": 35.86
+    }
+   ],
+   "start": 31.86,
+   "end": 35.78,
+   "shots": [
+    {
+     "start": 31.86,
+     "end": 34.36,
+     "image": "art/a09_leverage_73.jpg",
+     "framing": 0
+    },
+    {
+     "start": 34.36,
+     "end": 35.78,
+     "image": "art/a09_leverage_41.jpg",
+     "framing": 1
+    }
+   ]
+  },
+  {
+   "id": "a10_textbooks",
+   "line": 9,
+   "words": [
+    {
+     "text": "You",
+     "start": 35.86,
+     "end": 35.98,
+     "key": false
+    },
+    {
+     "text": "think",
+     "start": 35.98,
+     "end": 36.22,
+     "key": false
+    },
+    {
+     "text": "you're",
+     "start": 36.22,
+     "end": 36.42,
+     "key": false
+    },
+    {
+     "text": "smart",
+     "start": 36.42,
+     "end": 36.74,
+     "key": true
+    },
+    {
+     "text": "because",
+     "start": 36.74,
+     "end": 37.12,
+     "key": false
+    },
+    {
+     "text": "you've",
+     "start": 37.12,
+     "end": 37.36,
+     "key": false
+    },
+    {
+     "text": "memorized",
+     "start": 37.36,
+     "end": 37.76,
+     "key": false
+    },
+    {
+     "text": "a",
+     "start": 37.76,
+     "end": 38.04,
+     "key": false
+    },
+    {
+     "text": "few",
+     "start": 38.04,
+     "end": 38.16,
+     "key": false
+    },
+    {
+     "text": "textbooks?",
+     "start": 38.16,
+     "end": 38.54,
+     "key": true
+    }
+   ],
+   "chunks": [
+    {
+     "start": 35.86,
+     "words": [
+      {
+       "text": "You",
+       "start": 35.86,
+       "end": 35.98,
+       "key": false
+      },
+      {
+       "text": "think",
+       "start": 35.98,
+       "end": 36.22,
+       "key": false
+      },
+      {
+       "text": "you're",
+       "start": 36.22,
+       "end": 36.42,
+       "key": false
+      },
+      {
+       "text": "smart",
+       "start": 36.42,
+       "end": 36.74,
+       "key": true
+      }
+     ],
+     "end": 36.74
+    },
+    {
+     "start": 36.74,
+     "words": [
+      {
+       "text": "because",
+       "start": 36.74,
+       "end": 37.12,
+       "key": false
+      },
+      {
+       "text": "you've",
+       "start": 37.12,
+       "end": 37.36,
+       "key": false
+      },
+      {
+       "text": "memorized",
+       "start": 37.36,
+       "end": 37.76,
+       "key": false
+      }
+     ],
+     "end": 37.76
+    },
+    {
+     "start": 37.76,
+     "words": [
+      {
+       "text": "a",
+       "start": 37.76,
+       "end": 38.04,
+       "key": false
+      },
+      {
+       "text": "few",
+       "start": 38.04,
+       "end": 38.16,
+       "key": false
+      },
+      {
+       "text": "textbooks?",
+       "start": 38.16,
+       "end": 38.54,
+       "key": true
+      }
+     ],
+     "end": 39.14
+    }
+   ],
+   "start": 35.78,
+   "end": 39.5,
+   "shots": [
+    {
+     "start": 35.78,
+     "end": 37.72,
+     "image": "art/a10_textbooks_41.jpg",
+     "framing": 3
+    },
+    {
+     "start": 37.72,
+     "end": 39.5,
+     "image": "art/a10_textbooks_73.jpg",
+     "framing": 0
+    }
+   ]
+  },
+  {
+   "id": "a11_button",
+   "line": 10,
+   "words": [
+    {
+     "text": "Real",
+     "start": 39.58,
+     "end": 39.92,
+     "key": false
+    },
+    {
+     "text": "knowledge",
+     "start": 39.92,
+     "end": 40.44,
+     "key": false
+    },
+    {
+     "text": "is",
+     "start": 40.44,
+     "end": 40.62,
+     "key": false
+    },
+    {
+     "text": "knowing",
+     "start": 40.62,
+     "end": 40.86,
+     "key": false
+    },
+    {
+     "text": "exactly",
+     "start": 40.86,
+     "end": 41.42,
+     "key": false
+    },
+    {
+     "text": "which",
+     "start": 41.42,
+     "end": 41.74,
+     "key": false
+    },
+    {
+     "text": "button",
+     "start": 41.74,
+     "end": 42.14,
+     "key": true
+    },
+    {
+     "text": "to",
+     "start": 42.14,
+     "end": 42.3,
+     "key": false
+    },
+    {
+     "text": "press",
+     "start": 42.3,
+     "end": 42.6,
+     "key": false
+    },
+    {
+     "text": "to",
+     "start": 42.6,
+     "end": 42.78,
+     "key": false
+    },
+    {
+     "text": "make",
+     "start": 42.78,
+     "end": 42.94,
+     "key": false
+    },
+    {
+     "text": "a",
+     "start": 42.94,
+     "end": 43.1,
+     "key": false
+    },
+    {
+     "text": "good",
+     "start": 43.1,
+     "end": 43.28,
+     "key": false
+    },
+    {
+     "text": "person",
+     "start": 43.28,
+     "end": 43.8,
+     "key": false
+    },
+    {
+     "text": "do",
+     "start": 43.8,
+     "end": 44.0,
+     "key": false
+    },
+    {
+     "text": "something",
+     "start": 44.0,
+     "end": 44.32,
+     "key": false
+    },
+    {
+     "text": "evil.",
+     "start": 44.32,
+     "end": 44.76,
+     "key": true
+    }
+   ],
+   "chunks": [
+    {
+     "start": 39.58,
+     "words": [
+      {
+       "text": "Real",
+       "start": 39.58,
+       "end": 39.92,
+       "key": false
+      },
+      {
+       "text": "knowledge",
+       "start": 39.92,
+       "end": 40.44,
+       "key": false
+      },
+      {
+       "text": "is",
+       "start": 40.44,
+       "end": 40.62,
+       "key": false
+      }
+     ],
+     "end": 40.62
+    },
+    {
+     "start": 40.62,
+     "words": [
+      {
+       "text": "knowing",
+       "start": 40.62,
+       "end": 40.86,
+       "key": false
+      },
+      {
+       "text": "exactly",
+       "start": 40.86,
+       "end": 41.42,
+       "key": false
+      },
+      {
+       "text": "which",
+       "start": 41.42,
+       "end": 41.74,
+       "key": false
+      }
+     ],
+     "end": 41.74
+    },
+    {
+     "start": 41.74,
+     "words": [
+      {
+       "text": "button",
+       "start": 41.74,
+       "end": 42.14,
+       "key": true
+      },
+      {
+       "text": "to",
+       "start": 42.14,
+       "end": 42.3,
+       "key": false
+      },
+      {
+       "text": "press",
+       "start": 42.3,
+       "end": 42.6,
+       "key": false
+      },
+      {
+       "text": "to",
+       "start": 42.6,
+       "end": 42.78,
+       "key": false
+      }
+     ],
+     "end": 42.78
+    },
+    {
+     "start": 42.78,
+     "words": [
+      {
+       "text": "make",
+       "start": 42.78,
+       "end": 42.94,
+       "key": false
+      },
+      {
+       "text": "a",
+       "start": 42.94,
+       "end": 43.1,
+       "key": false
+      },
+      {
+       "text": "good",
+       "start": 43.1,
+       "end": 43.28,
+       "key": false
+      },
+      {
+       "text": "person",
+       "start": 43.28,
+       "end": 43.8,
+       "key": false
+      }
+     ],
+     "end": 43.8
+    },
+    {
+     "start": 43.8,
+     "words": [
+      {
+       "text": "do",
+       "start": 43.8,
+       "end": 44.0,
+       "key": false
+      },
+      {
+       "text": "something",
+       "start": 44.0,
+       "end": 44.32,
+       "key": false
+      },
+      {
+       "text": "evil.",
+       "start": 44.32,
+       "end": 44.76,
+       "key": true
+      }
+     ],
+     "end": 45.34
+    }
+   ],
+   "start": 39.5,
+   "end": 45.26,
+   "shots": [
+    {
+     "start": 39.5,
+     "end": 41.7,
+     "image": "art/a11_button_17.jpg",
+     "framing": 2
+    },
+    {
+     "start": 41.7,
+     "end": 43.76,
+     "image": "art/a11_button_73.jpg",
+     "framing": 3
+    },
+    {
+     "start": 43.76,
+     "end": 45.26,
+     "image": "art/a11_button_41.jpg",
+     "framing": 0
+    }
+   ]
+  },
+  {
+   "id": "a12_control",
+   "line": 11,
+   "words": [
+    {
+     "text": "I",
+     "start": 45.34,
+     "end": 45.5,
+     "key": false
+    },
+    {
+     "text": "don't",
+     "start": 45.5,
+     "end": 45.76,
+     "key": false
+    },
+    {
+     "text": "need",
+     "start": 45.76,
+     "end": 45.96,
+     "key": false
+    },
+    {
+     "text": "to",
+     "start": 45.96,
+     "end": 46.14,
+     "key": false
+    },
+    {
+     "text": "be",
+     "start": 46.14,
+     "end": 46.26,
+     "key": false
+    },
+    {
+     "text": "your",
+     "start": 46.26,
+     "end": 46.42,
+     "key": false
+    },
+    {
+     "text": "friend",
+     "start": 46.42,
+     "end": 46.74,
+     "key": false
+    },
+    {
+     "text": "to",
+     "start": 46.74,
+     "end": 46.92,
+     "key": false
+    },
+    {
+     "text": "control",
+     "start": 46.92,
+     "end": 47.28,
+     "key": true
+    },
+    {
+     "text": "you.",
+     "start": 47.28,
+     "end": 47.56,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 45.34,
+     "words": [
+      {
+       "text": "I",
+       "start": 45.34,
+       "end": 45.5,
+       "key": false
+      },
+      {
+       "text": "don't",
+       "start": 45.5,
+       "end": 45.76,
+       "key": false
+      },
+      {
+       "text": "need",
+       "start": 45.76,
+       "end": 45.96,
+       "key": false
+      },
+      {
+       "text": "to",
+       "start": 45.96,
+       "end": 46.14,
+       "key": false
+      }
+     ],
+     "end": 46.14
+    },
+    {
+     "start": 46.14,
+     "words": [
+      {
+       "text": "be",
+       "start": 46.14,
+       "end": 46.26,
+       "key": false
+      },
+      {
+       "text": "your",
+       "start": 46.26,
+       "end": 46.42,
+       "key": false
+      },
+      {
+       "text": "friend",
+       "start": 46.42,
+       "end": 46.74,
+       "key": false
+      },
+      {
+       "text": "to",
+       "start": 46.74,
+       "end": 46.92,
+       "key": false
+      }
+     ],
+     "end": 46.92
+    },
+    {
+     "start": 46.92,
+     "words": [
+      {
+       "text": "control",
+       "start": 46.92,
+       "end": 47.28,
+       "key": true
+      },
+      {
+       "text": "you.",
+       "start": 47.28,
+       "end": 47.56,
+       "key": false
+      }
+     ],
+     "end": 47.96
+    }
+   ],
+   "start": 45.26,
+   "end": 47.88,
+   "shots": [
+    {
+     "start": 45.26,
+     "end": 47.88,
+     "image": "art/a12_control_41.jpg",
+     "framing": 1
+    }
+   ]
+  },
+  {
+   "id": "a13_fear",
+   "line": 12,
+   "words": [
+    {
+     "text": "I",
+     "start": 47.96,
+     "end": 48.14,
+     "key": false
+    },
+    {
+     "text": "just",
+     "start": 48.14,
+     "end": 48.36,
+     "key": false
+    },
+    {
+     "text": "need",
+     "start": 48.36,
+     "end": 48.54,
+     "key": false
+    },
+    {
+     "text": "to",
+     "start": 48.54,
+     "end": 48.7,
+     "key": false
+    },
+    {
+     "text": "know",
+     "start": 48.7,
+     "end": 48.86,
+     "key": false
+    },
+    {
+     "text": "what",
+     "start": 48.86,
+     "end": 49.02,
+     "key": false
+    },
+    {
+     "text": "you're",
+     "start": 49.02,
+     "end": 49.26,
+     "key": false
+    },
+    {
+     "text": "afraid",
+     "start": 49.26,
+     "end": 49.54,
+     "key": true
+    },
+    {
+     "text": "of.",
+     "start": 49.54,
+     "end": 49.88,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 47.96,
+     "words": [
+      {
+       "text": "I",
+       "start": 47.96,
+       "end": 48.14,
+       "key": false
+      },
+      {
+       "text": "just",
+       "start": 48.14,
+       "end": 48.36,
+       "key": false
+      },
+      {
+       "text": "need",
+       "start": 48.36,
+       "end": 48.54,
+       "key": false
+      },
+      {
+       "text": "to",
+       "start": 48.54,
+       "end": 48.7,
+       "key": false
+      }
+     ],
+     "end": 48.7
+    },
+    {
+     "start": 48.7,
+     "words": [
+      {
+       "text": "know",
+       "start": 48.7,
+       "end": 48.86,
+       "key": false
+      },
+      {
+       "text": "what",
+       "start": 48.86,
+       "end": 49.02,
+       "key": false
+      },
+      {
+       "text": "you're",
+       "start": 49.02,
+       "end": 49.26,
+       "key": false
+      },
+      {
+       "text": "afraid",
+       "start": 49.26,
+       "end": 49.54,
+       "key": true
+      }
+     ],
+     "end": 49.54
+    },
+    {
+     "start": 49.54,
+     "words": [
+      {
+       "text": "of.",
+       "start": 49.54,
+       "end": 49.88,
+       "key": false
+      }
+     ],
+     "end": 50.48
+    }
+   ],
+   "start": 47.88,
+   "end": 50.44,
+   "shots": [
+    {
+     "start": 47.88,
+     "end": 50.44,
+     "image": "art/a13_fear_3.jpg",
+     "framing": 0
+    }
+   ]
+  },
+  {
+   "id": "a14_currency",
+   "line": 13,
+   "words": [
+    {
+     "text": "Information",
+     "start": 50.52,
+     "end": 50.92,
+     "key": true
+    },
+    {
+     "text": "is",
+     "start": 50.92,
+     "end": 51.42,
+     "key": false
+    },
+    {
+     "text": "the",
+     "start": 51.42,
+     "end": 51.56,
+     "key": false
+    },
+    {
+     "text": "only",
+     "start": 51.56,
+     "end": 51.8,
+     "key": false
+    },
+    {
+     "text": "currency",
+     "start": 51.8,
+     "end": 52.34,
+     "key": true
+    },
+    {
+     "text": "that",
+     "start": 52.34,
+     "end": 52.6,
+     "key": false
+    },
+    {
+     "text": "never",
+     "start": 52.6,
+     "end": 52.86,
+     "key": false
+    },
+    {
+     "text": "loses",
+     "start": 52.86,
+     "end": 53.24,
+     "key": false
+    },
+    {
+     "text": "its",
+     "start": 53.24,
+     "end": 53.5,
+     "key": false
+    },
+    {
+     "text": "value.",
+     "start": 53.5,
+     "end": 53.9,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 50.52,
+     "words": [
+      {
+       "text": "Information",
+       "start": 50.52,
+       "end": 50.92,
+       "key": true
+      },
+      {
+       "text": "is",
+       "start": 50.92,
+       "end": 51.42,
+       "key": false
+      },
+      {
+       "text": "the",
+       "start": 51.42,
+       "end": 51.56,
+       "key": false
+      },
+      {
+       "text": "only",
+       "start": 51.56,
+       "end": 51.8,
+       "key": false
+      }
+     ],
+     "end": 51.8
+    },
+    {
+     "start": 51.8,
+     "words": [
+      {
+       "text": "currency",
+       "start": 51.8,
+       "end": 52.34,
+       "key": true
+      },
+      {
+       "text": "that",
+       "start": 52.34,
+       "end": 52.6,
+       "key": false
+      },
+      {
+       "text": "never",
+       "start": 52.6,
+       "end": 52.86,
+       "key": false
+      }
+     ],
+     "end": 52.86
+    },
+    {
+     "start": 52.86,
+     "words": [
+      {
+       "text": "loses",
+       "start": 52.86,
+       "end": 53.24,
+       "key": false
+      },
+      {
+       "text": "its",
+       "start": 53.24,
+       "end": 53.5,
+       "key": false
+      },
+      {
+       "text": "value.",
+       "start": 53.5,
+       "end": 53.9,
+       "key": false
+      }
+     ],
+     "end": 53.9
+    }
+   ],
+   "start": 50.44,
+   "end": 53.82,
+   "shots": [
+    {
+     "start": 50.44,
+     "end": 52.82,
+     "image": "art/a14_currency_41.jpg",
+     "framing": 3
+    },
+    {
+     "start": 52.82,
+     "end": 53.82,
+     "image": "art/a14_currency_73.jpg",
+     "framing": 0
+    }
+   ]
+  },
+  {
+   "id": "a15_richest",
+   "line": 14,
+   "words": [
+    {
+     "text": "And",
+     "start": 53.9,
+     "end": 54.82,
+     "key": false
+    },
+    {
+     "text": "right",
+     "start": 54.82,
+     "end": 55.08,
+     "key": false
+    },
+    {
+     "text": "now,",
+     "start": 55.08,
+     "end": 55.38,
+     "key": false
+    },
+    {
+     "text": "I'm",
+     "start": 55.66,
+     "end": 55.86,
+     "key": false
+    },
+    {
+     "text": "the",
+     "start": 55.86,
+     "end": 55.96,
+     "key": false
+    },
+    {
+     "text": "richest",
+     "start": 55.96,
+     "end": 56.26,
+     "key": true
+    },
+    {
+     "text": "person",
+     "start": 56.26,
+     "end": 56.76,
+     "key": false
+    },
+    {
+     "text": "in",
+     "start": 56.76,
+     "end": 56.96,
+     "key": false
+    },
+    {
+     "text": "the",
+     "start": 56.96,
+     "end": 57.08,
+     "key": false
+    },
+    {
+     "text": "room.",
+     "start": 57.08,
+     "end": 57.32,
+     "key": false
+    }
+   ],
+   "chunks": [
+    {
+     "start": 53.9,
+     "words": [
+      {
+       "text": "And",
+       "start": 53.9,
+       "end": 54.82,
+       "key": false
+      },
+      {
+       "text": "right",
+       "start": 54.82,
+       "end": 55.08,
+       "key": false
+      },
+      {
+       "text": "now,",
+       "start": 55.08,
+       "end": 55.38,
+       "key": false
+      }
+     ],
+     "end": 55.66
+    },
+    {
+     "start": 55.66,
+     "words": [
+      {
+       "text": "I'm",
+       "start": 55.66,
+       "end": 55.86,
+       "key": false
+      },
+      {
+       "text": "the",
+       "start": 55.86,
+       "end": 55.96,
+       "key": false
+      },
+      {
+       "text": "richest",
+       "start": 55.96,
+       "end": 56.26,
+       "key": true
+      },
+      {
+       "text": "person",
+       "start": 56.26,
+       "end": 56.76,
+       "key": false
+      }
+     ],
+     "end": 56.76
+    },
+    {
+     "start": 56.76,
+     "words": [
+      {
+       "text": "in",
+       "start": 56.76,
+       "end": 56.96,
+       "key": false
+      },
+      {
+       "text": "the",
+       "start": 56.96,
+       "end": 57.08,
+       "key": false
+      },
+      {
+       "text": "room.",
+       "start": 57.08,
+       "end": 57.32,
+       "key": false
+      }
+     ],
+     "end": 57.92
+    }
+   ],
+   "start": 53.82,
+   "end": 57.99,
+   "shots": [
+    {
+     "start": 53.82,
+     "end": 55.62,
+     "image": "art/a15_richest_41.jpg",
+     "framing": 2
+    },
+    {
+     "start": 55.62,
+     "end": 57.99,
+     "image": "art/a15_richest_3.jpg",
+     "framing": 3
+    }
+   ]
+  },
+  {
+   "id": "a16_share",
+   "line": 15,
+   "words": [
+    {
+     "text": "From",
+     "start": 58.07,
+     "end": 58.23,
+     "key": false
+    },
+    {
+     "text": "now",
+     "start": 58.23,
+     "end": 58.47,
+     "key": false
+    },
+    {
+     "text": "on,",
+     "start": 58.47,
+     "end": 59.23,
+     "key": false
+    },
+    {
+     "text": "I",
+     "start": 59.23,
+     "end": 59.39,
+     "key": false
+    },
+    {
+     "text": "share",
+     "start": 59.39,
+     "end": 59.67,
+     "key": true
+    },
+    {
+     "text": "my",
+     "start": 59.67,
+     "end": 59.91,
+     "key": false
+    },
+    {
+     "text": "knowledge.",
+     "start": 60.0,
+     "end": 60.79,
+     "key": true
+    }
+   ],
+   "chunks": [
+    {
+     "start": 58.07,
+     "words": [
+      {
+       "text": "From",
+       "start": 58.07,
+       "end": 58.23,
+       "key": false
+      },
+      {
+       "text": "now",
+       "start": 58.23,
+       "end": 58.47,
+       "key": false
+      },
+      {
+       "text": "on,",
+       "start": 58.47,
+       "end": 59.23,
+       "key": false
+      }
+     ],
+     "end": 59.23
+    },
+    {
+     "start": 59.23,
+     "words": [
+      {
+       "text": "I",
+       "start": 59.23,
+       "end": 59.39,
+       "key": false
+      },
+      {
+       "text": "share",
+       "start": 59.39,
+       "end": 59.67,
+       "key": true
+      },
+      {
+       "text": "my",
+       "start": 59.67,
+       "end": 59.91,
+       "key": false
+      },
+      {
+       "text": "knowledge.",
+       "start": 60.0,
+       "end": 60.79,
+       "key": true
+      }
+     ],
+     "end": 61.39
+    }
+   ],
+   "start": 57.99,
+   "end": 61.49,
+   "shots": [
+    {
+     "start": 57.99,
+     "end": 61.49,
+     "image": "art/a16_share_17.jpg",
+     "framing": 1
+    }
+   ]
+  }
+ ]
+}

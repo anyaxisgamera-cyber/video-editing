@@ -1,3 +1,4 @@
-{"a01_eyes":[3,17],"a02_expert":[17,3],"a03_genius":[3,17],"a04_crowd":[17,3],"a05_study":[17,3],"a06_tools":[17,3],
- "a07_hand":[17],"a08_world":[17,3],"a09_leverage":[17],"a10_textbooks":[17,3],"a11_button":[17],"a12_control":[17],
- "a13_fear":[3,17],"a14_currency":[17],"a15_richest":[3,17],"a16_share":[17,3]}
+{"a01_eyes":[41,3,73],"a02_expert":[17,41,73],"a03_genius":[73,3,41],"a04_crowd":[17,41,73],"a05_study":[17,41,73],
+ "a06_tools":[41,73,17],"a07_hand":[73,17,41],"a08_world":[17,41,73],"a09_leverage":[73,41],"a10_textbooks":[41,73,17],
+ "a11_button":[17,73,41],"a12_control":[41,17,73],"a13_fear":[3,41,73],"a14_currency":[41,73],"a15_richest":[41,3,73],
+ "a16_share":[17,41,73]}

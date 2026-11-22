@@ -5,8 +5,8 @@
   "leadIn": 0.4,
   "hook": "నీకూ నాకూ తేడా? నువ్వు స్పందిస్తావు. ఏం జరగాలో నేను నిర్ణయిస్తాను.",
   "elevenlabs": {
-    "voice_id": "pNInz6obpgDQGcFmaJgB",
-    "voice_name": "Adam - Dominant, Firm",
+    "voice_id": "onwK4e9ZLuTAKqWW03F9",
+    "voice_name": "Daniel - Steady Broadcaster (ElevenLabs premade)",
     "model_id": "eleven_v4",
     "voice_settings": {
       "stability": 0.55,

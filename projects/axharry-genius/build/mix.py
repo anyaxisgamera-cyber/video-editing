@@ -46,6 +46,7 @@ def main() -> None:
     ap.add_argument("--output")
     ap.add_argument("--tag", help="name for the filtergraph / render dir (default LANG)")
     ap.add_argument("--uhd", action="store_true", help="deliver 2160x3840 (4K UHD vertical) instead of 1080x1920")
+    ap.add_argument("--size", help="delivery WxH, e.g. 1920x1080 or 3840x2160 (overrides --uhd)")
     args = ap.parse_args()
     lang = args.lang
     tag = args.tag or lang
@@ -53,6 +54,11 @@ def main() -> None:
     props_path = ROOT / (args.props or f"motion/props/{lang}.json")
     content = json.loads((ROOT / "content" / f"{lang}.json").read_text(encoding="utf-8"))
     canvas = json.loads(props_path.read_text(encoding="utf-8"))["canvas"]
+    if args.size:
+        out_w, out_h = (int(v) for v in args.size.lower().split("x"))
+    else:
+        out_w, out_h = (2160, 3840) if args.uhd else (1080, 1920)
+    big = out_w * out_h > 1920 * 1080
     duration = canvas["durationInFrames"] / canvas["fps"]
     has_sfx = (work / "sfx.wav").exists()
 
@@ -106,12 +112,12 @@ def main() -> None:
         "audio_map": "[aout]",
         "video": {
             "codec": "libx264",
-            "args": ["-preset", "slow", "-crf", "17", "-profile:v", "high", "-level:v", "5.2" if args.uhd else "4.2",
+            "args": ["-preset", "slow", "-crf", "17", "-profile:v", "high", "-level:v", "5.2" if big else "4.2",
                      "-movflags", "+faststart", "-tag:v", "avc1"],
             "pixel_format": "yuv420p",
             "fps": "30",
-            "width": 2160 if args.uhd else 1080,
-            "height": 3840 if args.uhd else 1920,
+            "width": out_w,
+            "height": out_h,
         },
         "audio": {"codec": "aac", "args": ["-b:a", "192k"], "sample_rate": 48000},
         "validation": {

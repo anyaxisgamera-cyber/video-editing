@@ -1,6 +1,12 @@
 """Build AnimeShort props from content, ElevenLabs word timings, and the art selection.
 
 Usage: python build/anime_props.py content/en.json work/en art.selection.json motion/props/en.json
+                                   [--footage footage.selection.json] [--landscape]
+
+With --footage, each scene's shots cycle through that scene's footage list, whose entries are
+{"src": ID, "in": SECONDS, "fx": 0-1, "fy": 0-1} (a clip of a licensed source, see footage/manifest.json)
+or {"art": SEED} (one of the original art variants). build/cut_clips.py then cuts the clips.
+--landscape makes a 1920x1080 canvas instead of 1080x1920.
 
 - Every narration word appears exactly once, inside caption chunks of 1-4 words
   (the reference's caption grammar), timed to the voice.
@@ -22,9 +28,10 @@ FPS = 30
 ROOT = Path(__file__).resolve().parent.parent
 MOTION = ROOT / "motion"
 PRE_ROLL = 0.08
-SHOT_MAX = 2.4
+SHOT_MAX = 1.8   # faster rhythm, per the reference reels (0.6-2 s shots)
 END_GAP = 0.7
 END_CARD = 2.6
+MIN_RATE = 0.7  # slowest playback used to stretch a short source shot
 
 FONTS = {
     "en": {"caption": ("Inter Tight", "inter-tight", [("latin", "800", "normal"), ("latin", "600", "normal")])},
@@ -71,7 +78,17 @@ def chunk_words(words: list[dict], max_chars: int) -> list[list[dict]]:
 
 
 def main() -> None:
-    content_path, work, sel_path, out_path = Path(sys.argv[1]), Path(sys.argv[2]), Path(sys.argv[3]), Path(sys.argv[4])
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("content")
+    ap.add_argument("work")
+    ap.add_argument("selection")
+    ap.add_argument("out")
+    ap.add_argument("--footage")
+    ap.add_argument("--landscape", action="store_true")
+    opt = ap.parse_args()
+    content_path, work, sel_path, out_path = Path(opt.content), Path(opt.work), Path(opt.selection), Path(opt.out)
+    footage = json.loads(Path(opt.footage).read_text(encoding="utf-8")) if opt.footage else {}
     content = json.loads(content_path.read_text(encoding="utf-8"))
     words = json.loads((work / "words.json").read_text(encoding="utf-8"))
     selection = json.loads(sel_path.read_text(encoding="utf-8"))
@@ -111,10 +128,37 @@ def main() -> None:
                 cuts.append(round(c["start"] - 0.04, 3))
                 last = c["start"]
         shots = []
+        plan = footage.get(s["id"]) or [{"art": v} for v in variants]
+        ptr, prev, used = 0, None, set()
         for k, start in enumerate(cuts):
             end = cuts[k + 1] if k + 1 < len(cuts) else s["end"]
-            shots.append({"start": start, "end": end, "image": f"art/{s['id']}_{variants[k % len(variants)]}.jpg",
-                          "framing": (si * 3 + k) % 4})
+            # take the next planned entry that is long enough for this shot (art always fits)
+            need = end - start + 0.1
+            # a clip may be slowed to at most MIN_RATE speed to cover the shot; clips are not repeated in a scene
+            entry = None
+            for j in range(len(plan)):
+                idx = (ptr + j) % len(plan)
+                e = plan[idx]
+                fits = "art" in e or e.get("max", 99) >= need * MIN_RATE
+                if fits and e is not prev and ("art" in e or id(e) not in used):
+                    entry, ptr = e, idx + 1
+                    used.add(id(entry))
+                    break
+            if entry is None:
+                entry = {"art": variants[k % len(variants)]}
+            prev = entry
+            shot = {"start": start, "end": end, "framing": (si * 3 + k) % 4}
+            if "art" in entry:
+                shot["image"] = f"art/{s['id']}_{entry['art']}.jpg"
+                if not (media / f"{s['id']}_{entry['art']}.jpg").exists():
+                    sys.exit(f"missing art {s['id']}_{entry['art']}.jpg")
+            else:
+                shot["clip"] = {"src": entry["src"], "in": entry["in"]}
+                shot["video"] = f"clips/{entry['src']}_{entry['in']:07.2f}.mp4"
+                shot["fx"], shot["fy"] = entry.get("fx", 0.5), entry.get("fy", 0.5)
+                shot["rate"] = round(min(1.0, entry.get("max", 99) / need), 3)
+                shot["clip"]["max"] = entry.get("max", 99)
+            shots.append(shot)
         s["shots"] = shots
 
     total = end_start + END_CARD
@@ -122,7 +166,7 @@ def main() -> None:
     fonts = stage(FONTS[lang])
     fonts.update(stage(COMMON))
     props = {
-        "canvas": {"width": 1080, "height": 1920, "fps": FPS, "durationInFrames": frames},
+        "canvas": {"width": 1920 if opt.landscape else 1080, "height": 1080 if opt.landscape else 1920, "fps": FPS, "durationInFrames": frames},
         "language": lang,
         "fonts": fonts,
         "hook": content["hook"],
@@ -131,6 +175,7 @@ def main() -> None:
         "endCard": end_start,
         "intense": ["a03_genius", "a11_button", "a12_control", "a15_richest"],
         "scenes": scenes,
+        "credits": footage.get("_credits", []),
     }
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(props, ensure_ascii=False, indent=1), encoding="utf-8")

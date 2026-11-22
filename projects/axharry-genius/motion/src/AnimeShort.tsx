@@ -2,6 +2,8 @@ import {useEffect, useState} from 'react';
 import {
   AbsoluteFill,
   Img,
+  OffthreadVideo,
+  Sequence,
   continueRender,
   delayRender,
   interpolate,
@@ -23,7 +25,7 @@ import {
 
 type Word = {text: string; start: number; end: number; key: boolean};
 type Chunk = {start: number; end: number; words: Word[]};
-type Shot = {start: number; end: number; image: string; framing: number};
+type Shot = {start: number; end: number; image?: string; video?: string; fx?: number; fy?: number; rate?: number; framing: number};
 type Scene = {id: string; line: number; start: number; end: number; words: Word[]; chunks: Chunk[]; shots: Shot[]};
 type FontRole = {family: string; files: {weight: string; style: string; src: string}[]};
 export type AnimeProps = {
@@ -36,7 +38,19 @@ export type AnimeProps = {
   endCard: number;
   intense: string[];
   scenes: Scene[];
+  credits?: string[];
 };
+
+/* Layout per orientation: 9:16 puts the picture in a square panel under the hook with captions
+   below it; 16:9 runs footage full-frame with captions in the lower third. */
+type Layout = {W: number; H: number; landscape: boolean; panel: {left: number; top: number; w: number; h: number};
+  hookTop: number; hookSize: number; capTop: number; capH: number; capSide: number; capSize: {en: number; te: number};
+  logoCy: number; logoSize: number; endCy: number; endSize: number; focusY: number};
+const layoutFor = (W: number, H: number): Layout => W > H
+  ? {W, H, landscape: true, panel: {left: 0, top: 0, w: W, h: H}, hookTop: 30, hookSize: 26, capTop: 735, capH: 180,
+    capSide: 160, capSize: {en: 62, te: 48}, logoCy: 990, logoSize: 104, endCy: 500, endSize: 300, focusY: 470}
+  : {W, H, landscape: false, panel: {left: 0, top: 290, w: 1080, h: 1080}, hookTop: 150, hookSize: 34, capTop: 1290, capH: 310,
+    capSide: 60, capSize: {en: 82, te: 62}, logoCy: 1725, logoSize: 150, endCy: 900, endSize: 380, focusY: 830};
 
 const RED = '#FF2A3D';
 const GOLD = '#FFC857';
@@ -64,40 +78,57 @@ const FRAMINGS: number[][] = [
   [1.42, 1.26, 0, 0, -30, 6],
 ];
 
-const ShotView = ({shot, t, intense, shake}: {shot: Shot; t: number; intense: boolean; shake: number}) => {
+const ShotView = ({shot, t, intense, shake, L}: {shot: Shot; t: number; intense: boolean; shake: number; L: Layout}) => {
+  const {fps} = useVideoConfig();
   const f = FRAMINGS[shot.framing];
+  const isVideo = Boolean(shot.video);
   const life = Math.min(1, Math.max(0, (t - shot.start) / Math.max(0.4, shot.end - shot.start)));
   const crash = interpolate(t, [shot.start, shot.start + 0.22], [intense ? 0.28 : 0.16, 0], {...clamp, easing: easeOut});
-  const scale = interpolate(life, [0, 1], [f[0], f[1]]) * 0.92 + crash;
+  const whip = shot.start < 0.05 ? 0 : interpolate(t, [shot.start, shot.start + 0.16], [1, 0], {...clamp, easing: easeOut});
+  // footage gets a gentler push-in than the stills (it already moves)
+  const base = isVideo ? interpolate(life, [0, 1], [1.04, 1.12]) : interpolate(life, [0, 1], [f[0], f[1]]) * 0.92;
+  const scale = base + crash * (isVideo ? 0.6 : 1);
   const jx = shake * (random(`sx${Math.floor(t * 30)}`) - 0.5) * 22;
   const jy = shake * (random(`sy${Math.floor(t * 30)}`) - 0.5) * 22;
-  const x = interpolate(life, [0, 1], [f[2], f[3]]) + jx;
-  const y = interpolate(life, [0, 1], [f[4], f[5]]) + jy;
-  const src = staticFile(shot.image);
-  return (
+  const drift = isVideo ? 0.35 : 1;
+  const x = interpolate(life, [0, 1], [f[2], f[3]]) * drift + jx;
+  const y = interpolate(life, [0, 1], [f[4], f[5]]) * drift + jy;
+  const P = L.panel;
+  // stills are square: in 16:9 they sit in a centred square panel with soft side edges
+  const still = !isVideo && L.landscape;
+  const box = still ? {left: (L.W - L.H) / 2, top: 0, w: L.H, h: L.H} : P;
+  const mask = L.landscape
+    ? (still ? 'linear-gradient(90deg, transparent 0%, black 14%, black 86%, transparent 100%)' : 'none')
+    : 'linear-gradient(180deg, black 0%, black 72%, transparent 100%)';
+  const pos = `${(shot.fx ?? 0.5) * 100}% ${(shot.fy ?? 0.5) * 100}%`;
+  const media = (style: React.CSSProperties) => isVideo
+    ? <OffthreadVideo src={staticFile(shot.video!)} muted playbackRate={shot.rate ?? 1} style={{...style, objectPosition: pos}} />
+    : <Img src={staticFile(shot.image!)} style={style} />;
+  const content = (
     <AbsoluteFill style={{overflow: 'hidden'}}>
-      {/* ambient fill: same art, heavily blurred and darkened */}
-      <Img src={src} style={{position: 'absolute', left: -300, top: -200, width: 1680, height: 2320, objectFit: 'cover',
-        filter: 'blur(46px) brightness(0.42) saturate(1.2)', transform: `scale(${1 + life * 0.05})`}} />
-      {/* art panel: full width, faded at the bottom so captions sit over it */}
-      <div style={{position: 'absolute', left: 0, top: 290, width: 1080, height: 1080, overflow: 'hidden',
-        maskImage: 'linear-gradient(180deg, black 0%, black 72%, transparent 100%)',
-        WebkitMaskImage: 'linear-gradient(180deg, black 0%, black 72%, transparent 100%)',
-        transform: `translate(${jx * 0.5}px, ${jy * 0.5}px)`}}>
-        <Img src={src} style={{width: '100%', height: '100%', objectFit: 'cover',
-          transform: `translate(${x}px, ${y}px) scale(${scale})`, filter: 'contrast(1.12) saturate(1.05)'}} />
+      {/* ambient fill: same picture, heavily blurred and darkened */}
+      {(still || !L.landscape) ? media({position: 'absolute', left: -300, top: -200, width: L.W + 600, height: L.H + 400, objectFit: 'cover',
+        filter: 'blur(46px) brightness(0.42) saturate(1.2)', transform: `scale(${1 + life * 0.05})`}) : null}
+      <div style={{position: 'absolute', left: box.left, top: box.top, width: box.w, height: box.h, overflow: 'hidden',
+        maskImage: mask, WebkitMaskImage: mask, transform: `translate(${jx * 0.5}px, ${jy * 0.5}px)`}}>
+        {media({width: '100%', height: '100%', objectFit: 'cover',
+          transform: `translate(${x + whip * (shot.framing % 2 ? 90 : -90)}px, ${y}px) scale(${scale})`,
+          filter: `contrast(${isVideo ? 1.18 : 1.12}) saturate(${isVideo ? 1.1 : 1.05}) blur(${whip * 9}px)`})}
       </div>
     </AbsoluteFill>
   );
+  if (!isVideo) return content;
+  const from = Math.round(shot.start * fps);
+  return <Sequence from={from} durationInFrames={Math.max(1, Math.round(shot.end * fps) - from)} layout="none">{content}</Sequence>;
 };
 
-const SpeedLines = ({t, opacity}: {t: number; opacity: number}) => {
+const SpeedLines = ({t, opacity, L}: {t: number; opacity: number; L: Layout}) => {
   if (opacity <= 0) return null;
   const n = 64;
   const rot = (t * 40) % 360;
   return (
-    <svg width={1080} height={1920} style={{position: 'absolute', inset: 0, opacity, mixBlendMode: 'screen'}}>
-      <g transform={`translate(540 830) rotate(${rot})`}>
+    <svg width={L.W} height={L.H} style={{position: 'absolute', inset: 0, opacity, mixBlendMode: 'screen'}}>
+      <g transform={`translate(${L.W / 2} ${L.focusY}) rotate(${rot})`}>
         {Array.from({length: n}, (_, i) => {
           const a = (i / n) * Math.PI * 2 + random(`a${i}`) * 0.05;
           const r0 = 380 + random(`r${i}`) * 220;
@@ -116,20 +147,20 @@ const Halftone = ({opacity}: {opacity: number}) => (
     WebkitMaskImage: 'radial-gradient(ellipse 75% 60% at 50% 45%, transparent 55%, black 100%)'}} />
 );
 
-const Grain = ({frame}: {frame: number}) => (
-  <svg width={1080} height={1920} style={{position: 'absolute', inset: 0, opacity: 0.09, mixBlendMode: 'overlay'}}>
+const Grain = ({frame, L}: {frame: number; L: Layout}) => (
+  <svg width={L.W} height={L.H} style={{position: 'absolute', inset: 0, opacity: 0.09, mixBlendMode: 'overlay'}}>
     <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves={2} seed={frame % 12} /></filter>
     <rect width="100%" height="100%" filter="url(#grain)" />
   </svg>
 );
 
 /** Caption chunk: words pop in on their spoken time; key words glow red (gold at the end). */
-const Caption = ({chunk, t, fonts, lang, gold}: {chunk: Chunk; t: number; fonts: AnimeProps['fonts']; lang: 'en' | 'te'; gold: number}) => {
+const Caption = ({chunk, t, fonts, lang, gold, L}: {chunk: Chunk; t: number; fonts: AnimeProps['fonts']; lang: 'en' | 'te'; gold: number; L: Layout}) => {
   const out = interpolate(t, [chunk.end - 0.08, chunk.end], [1, 0], clamp);
   const keyColor = gold > 0.5 ? GOLD : RED;
-  const size = lang === 'en' ? 82 : 62;
+  const size = L.capSize[lang];
   return (
-    <div style={{position: 'absolute', left: 60, right: 60, top: 1290, height: 310, display: 'flex', flexWrap: 'wrap',
+    <div style={{position: 'absolute', left: L.capSide, right: L.capSide, top: L.capTop, height: L.capH, display: 'flex', flexWrap: 'wrap',
       justifyContent: 'center', alignContent: 'center', alignItems: 'baseline', opacity: out, columnGap: 22, rowGap: 6}}>
       {chunk.words.map((w, i) => {
         const p = easeOut(interpolate(t, [w.start - 0.05, w.start + 0.14], [0, 1], clamp));
@@ -143,7 +174,6 @@ const Caption = ({chunk, t, fonts, lang, gold}: {chunk: Chunk; t: number; fonts:
             textShadow: k
               ? `0 0 18px ${keyColor}cc, 0 0 44px ${keyColor}88, 0 4px 14px rgba(0,0,0,0.9)`
               : '0 4px 16px rgba(0,0,0,0.95), 0 0 2px rgba(0,0,0,0.9)',
-            WebkitTextStroke: k ? undefined : '1.5px rgba(0,0,0,0.55)',
             opacity: p, transform: `translateY(${(1 - p) * 26}px) scale(${0.86 + 0.14 * p + (k ? (1 - p) * 0.25 : 0)})`,
             filter: `blur(${(1 - p) * 6}px)`,
           }}>{w.text}</span>
@@ -153,31 +183,31 @@ const Caption = ({chunk, t, fonts, lang, gold}: {chunk: Chunk; t: number; fonts:
   );
 };
 
-const HookBadge = ({text, fonts, lang, t}: {text: string; fonts: AnimeProps['fonts']; lang: 'en' | 'te'; t: number}) => {
+const HookBadge = ({text, fonts, lang, t, L}: {text: string; fonts: AnimeProps['fonts']; lang: 'en' | 'te'; t: number; L: Layout}) => {
   const p = easeOut(interpolate(t, [0.2, 0.8], [0, 1], clamp));
   return (
-    <div style={{position: 'absolute', top: 150, left: 70, right: 70, display: 'flex', justifyContent: 'center', opacity: p,
+    <div style={{position: 'absolute', top: L.hookTop, left: 70, right: 70, display: 'flex', justifyContent: 'center', opacity: p,
       transform: `translateY(${(1 - p) * -20}px)`}}>
       <div style={{padding: '16px 30px', borderRadius: 26, background: 'rgba(10,10,14,0.42)', border: '1.5px solid rgba(255,255,255,0.22)',
         backdropFilter: 'blur(16px) saturate(140%)', WebkitBackdropFilter: 'blur(16px) saturate(140%)',
         boxShadow: '0 10px 30px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.18)', textAlign: 'center',
         fontFamily: lang === 'en' ? `'${fonts.label.family}'` : `'${fonts.labelTe.family}', '${fonts.label.family}'`,
-        fontWeight: lang === 'en' ? 800 : 600, fontSize: lang === 'en' ? 34 : 34, lineHeight: 1.35, letterSpacing: lang === 'en' ? 1.2 : 0,
-        color: 'rgba(255,255,255,0.94)', maxWidth: 900}}>{text}</div>
+        fontWeight: lang === 'en' ? 800 : 600, fontSize: L.hookSize, lineHeight: 1.35, letterSpacing: lang === 'en' ? 1.2 : 0,
+        color: 'rgba(255,255,255,0.94)', maxWidth: L.landscape ? 1400 : 900}}>{text}</div>
     </div>
   );
 };
 
 /** Original logo, unmodified pixels and proportions, in a glass badge. */
-const LogoBadge = ({src, t, endCard, total}: {src: string; t: number; endCard: number; total: number}) => {
+const LogoBadge = ({src, t, endCard, total, L}: {src: string; t: number; endCard: number; total: number; L: Layout}) => {
   const {fps} = useVideoConfig();
   const rise = spring({frame: Math.max(0, (t - endCard) * fps), fps, config: {damping: 16, mass: 0.9}});
-  const size = 150 + rise * 230; // 150 px badge -> 380 px on the end card
-  const cy = interpolate(rise, [0, 1], [1725, 900]);
+  const size = L.logoSize + rise * (L.endSize - L.logoSize); // small badge -> end-card size
+  const cy = interpolate(rise, [0, 1], [L.logoCy, L.endCy]);
   const glow = 0.35 + 0.25 * Math.sin(t * 2.2);
   const ring = interpolate(t, [endCard + 0.2, endCard + 1.2], [0, 1], clamp);
   return (
-    <div style={{position: 'absolute', left: 540 - size / 2, top: cy - size / 2, width: size, height: size}}>
+    <div style={{position: 'absolute', left: L.W / 2 - size / 2, top: cy - size / 2, width: size, height: size}}>
       <div style={{position: 'absolute', inset: -10, borderRadius: size * 0.26 + 10,
         background: 'rgba(255,255,255,0.10)', border: '1.5px solid rgba(255,255,255,0.35)',
         backdropFilter: 'blur(14px) saturate(150%)', WebkitBackdropFilter: 'blur(14px) saturate(150%)',
@@ -202,11 +232,27 @@ const LogoBadge = ({src, t, endCard, total}: {src: string; t: number; endCard: n
   );
 };
 
+/** Footage attribution (CC-BY credits and public-domain sources) on the end card. */
+const Credits = ({credits, t, endCard, L, fonts}: {credits: string[]; t: number; endCard: number; L: Layout; fonts: AnimeProps['fonts']}) => {
+  if (!credits.length) return null;
+  const p = interpolate(t, [endCard + 0.5, endCard + 1.0], [0, 1], clamp);
+  if (p <= 0) return null;
+  const top = L.endCy + L.endSize / 2 + (L.landscape ? 50 : 90);
+  return (
+    <div style={{position: 'absolute', left: 60, right: 60, top, opacity: p * 0.82, textAlign: 'center',
+      fontFamily: `'${fonts.label.family}', sans-serif`, fontWeight: 600, fontSize: L.landscape ? 19 : 23, lineHeight: 1.45,
+      color: 'rgba(255,255,255,0.85)', textShadow: '0 2px 8px rgba(0,0,0,0.9)'}}>
+      {credits.map((c, i) => <div key={i}>{c}</div>)}
+    </div>
+  );
+};
+
 export const AnimeShort = (props: AnimeProps) => {
   const {fonts, scenes, language: lang} = props;
   useFonts([fonts.caption, fonts.label, fonts.labelTe]);
   const frame = useCurrentFrame();
-  const {fps, durationInFrames} = useVideoConfig();
+  const {fps, durationInFrames, width, height} = useVideoConfig();
+  const L = layoutFor(width, height);
   const t = frame / fps;
   const total = durationInFrames / fps;
 
@@ -218,6 +264,9 @@ export const AnimeShort = (props: AnimeProps) => {
   const shake = (sinceCut < 0.16 ? 1 : 0) * (intense ? 1 : 0.5) + (keyHit ? 0.6 : 0);
   const ca = interpolate(sinceCut, [0, 0.18], [intense ? 14 : 9, 0], clamp);
   const flash = interpolate(sinceCut, [0, 0.1], [intense ? 0.45 : 0.22, 0], clamp);
+  const sinceLine = t - scene.start;
+  const leak = scene.start < 0.05 ? 0 : interpolate(sinceLine, [0, 0.12, 0.55], [0, 1, 0], clamp);
+  const leakPos = interpolate(sinceLine, [0, 0.55], [0, 1], clamp);
   const gold = interpolate(t, [props.goldFrom, props.goldFrom + 0.9], [0, 1], clamp);
   const ending = interpolate(t, [props.endCard, props.endCard + 0.6], [0, 1], clamp);
   const chunk = scenes.flatMap((s) => s.chunks).find((c) => t >= c.start - 0.05 && t < c.end);
@@ -235,21 +284,24 @@ export const AnimeShort = (props: AnimeProps) => {
         </filter>
       </svg>
       <AbsoluteFill style={{filter: ca > 0.4 ? 'url(#ca)' : undefined, opacity: 1 - ending * 0.75}}>
-        <ShotView shot={shot} t={t} intense={intense} shake={shake} />
+        <ShotView shot={shot} t={t} intense={intense} shake={shake} L={L} />
         {/* grade: crimson -> gold */}
         <AbsoluteFill style={{background: `linear-gradient(180deg, rgba(5,5,6,0.55) 0%, rgba(5,5,6,0.05) 28%, rgba(5,5,6,0.1) 52%, rgba(5,5,6,0.82) 100%)`}} />
         <AbsoluteFill style={{background: gold > 0 ? `rgba(255,170,60,${0.16 * gold})` : 'rgba(150,10,25,0.20)', mixBlendMode: 'soft-light'}} />
         <AbsoluteFill style={{background: `rgba(${Math.round(120 + 120 * gold)},${Math.round(10 + 140 * gold)},${Math.round(25 + 20 * gold)},0.16)`, mixBlendMode: 'color'}} />
         <AbsoluteFill style={{background: 'radial-gradient(ellipse 80% 60% at 50% 45%, transparent 45%, rgba(0,0,0,0.75) 100%)'}} />
-        <SpeedLines t={t} opacity={speed} />
+        <SpeedLines t={t} opacity={speed} L={L} />
         <Halftone opacity={intense ? 0.55 : 0.25} />
-        <Grain frame={frame} />
+        <Grain frame={frame} L={L} />
+        {leak > 0 ? <AbsoluteFill style={{mixBlendMode: 'screen', opacity: leak * 0.55,
+          background: `linear-gradient(115deg, transparent ${-40 + leakPos * 140}%, ${gold > 0.5 ? 'rgba(255,190,90,0.9)' : 'rgba(255,60,60,0.85)'} ${-20 + leakPos * 140}%, transparent ${0 + leakPos * 140}%)`}} /> : null}
         <AbsoluteFill style={{background: gold > 0.5 ? GOLD : 'white', opacity: flash, mixBlendMode: 'overlay'}} />
       </AbsoluteFill>
-      {ending > 0 ? <AbsoluteFill style={{background: `radial-gradient(circle at 50% 47%, rgba(255,200,87,${0.25 * ending}) 0%, transparent 55%)`}} /> : null}
-      <HookBadge text={props.hook} fonts={fonts} lang={lang} t={t} />
-      {chunk && t < props.endCard ? <Caption chunk={chunk} t={t} fonts={fonts} lang={lang} gold={gold} /> : null}
-      <LogoBadge src={props.logo} t={t} endCard={props.endCard} total={total} />
+      {ending > 0 ? <AbsoluteFill style={{background: `radial-gradient(circle at 50% ${(L.endCy / L.H) * 100}%, rgba(255,200,87,${0.25 * ending}) 0%, transparent 55%)`}} /> : null}
+      <HookBadge text={props.hook} fonts={fonts} lang={lang} t={t} L={L} />
+      {chunk && t < props.endCard ? <Caption chunk={chunk} t={t} fonts={fonts} lang={lang} gold={gold} L={L} /> : null}
+      <LogoBadge src={props.logo} t={t} endCard={props.endCard} total={total} L={L} />
+      <Credits credits={props.credits ?? []} t={t} endCard={props.endCard} L={L} fonts={fonts} />
     </AbsoluteFill>
   );
 };
